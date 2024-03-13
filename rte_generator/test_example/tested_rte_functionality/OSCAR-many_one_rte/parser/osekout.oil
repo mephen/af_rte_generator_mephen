@@ -1,0 +1,953 @@
+AUTOSAR AUTOSAR {
+	OsOS ExampleOS {
+		OsNumberOfCores = 2
+		OsScalabilityClass = SC4
+		OsStackMonitoring = TRUE
+		OsStatus = EXTENDED
+		OsUseResScheduler = FALSE
+		OsHooks Hooks {
+			OsErrorHook = TRUE
+			OsPreTaskHook = FALSE
+			OsPostTaskHook = FALSE
+			OsProtectionHook = TRUE
+			OsStartupHook = TRUE
+			OsShutdownHook = TRUE
+		}
+	}
+	OsApplication app_lion {
+		OsTrusted = TRUE
+		OsTrustedApplicationDelayTimingViolationCall = TRUE
+		OsTrustedApplicationWithProtection = TRUE
+		OsApplicationCoreRef = EcucCoreDefinition0
+		OsAppCounterRef = counter3
+		OsAppTaskRef = T001
+		OsAppTaskRef = T002
+		OsAppTaskRef = T003
+		OsAppIsrRef = I001
+		OsAppIsrRef = I002
+		OsAppIsrRef = I003
+		OsAppIsrRef = I004
+		OsAppAlarmRef = alarm3
+		OsAppAlarmRef = alarm4
+		OsAppScheduleTableRef = ST1
+		OsAppScheduleTableRef = ST2
+		OsRestartTask = T003
+		OsApplicationTrustedFunction AIMER {
+			OsTrustedFunctionName = AIMER
+			OsMemoryMappingCodeLocationRef = None
+		}
+		OsApplicationTrustedFunction IKURA {
+			OsTrustedFunctionName = IKURA
+			OsMemoryMappingCodeLocationRef = None
+		}
+		OsApplicationTrustedFunction YORUSHIKA {
+			OsTrustedFunctionName = YORUSHIKA
+			OsMemoryMappingCodeLocationRef = None
+		}
+	}
+	OsApplication app2 {
+		OsTrusted = TRUE
+		OsTrustedApplicationDelayTimingViolationCall = TRUE
+		OsTrustedApplicationWithProtection = FALSE
+		OsApplicationCoreRef = EcucCoreDefinition1
+		OsAppCounterRef = counter1
+		OsAppTaskRef = T101
+		OsAppTaskRef = T102
+		OsAppTaskRef = T103
+		OsAppIsrRef = I101
+		OsAppIsrRef = I102
+		OsAppIsrRef = I103
+		OsAppIsrRef = I104
+		OsAppAlarmRef = alarm1
+		OsAppScheduleTableRef = ST3
+		OsRestartTask = T103
+		OsApplicationTrustedFunction YUURI {
+			OsTrustedFunctionName = YUURI
+			OsMemoryMappingCodeLocationRef = None
+		}
+		OsApplicationTrustedFunction HITORIE {
+			OsTrustedFunctionName = HITORIE
+			OsMemoryMappingCodeLocationRef = None
+		}
+	}
+	OsApplication app3 {
+		OsTrusted = TRUE
+		OsTrustedApplicationDelayTimingViolationCall = FALSE
+		OsTrustedApplicationWithProtection = FALSE
+		OsApplicationCoreRef = EcucCoreDefinition0
+		OsAppCounterRef = counter4
+		OsAppTaskRef = T004
+		OsAppTaskRef = T005
+		OsAppTaskRef = T006
+		OsAppIsrRef = I005
+		OsAppIsrRef = I006
+		OsRestartTask = T006
+	}
+	OsApplication app4 {
+		OsTrusted = FALSE
+		OsTrustedApplicationDelayTimingViolationCall = FALSE
+		OsTrustedApplicationWithProtection = FALSE
+		OsApplicationCoreRef = EcucCoreDefinition1
+		OsAppCounterRef = counter2
+		OsAppTaskRef = T104
+		OsAppTaskRef = T105
+		OsAppTaskRef = T106
+		OsAppIsrRef = I105
+		OsAppIsrRef = I106
+		OsRestartTask = T106
+	}
+	OsTask T001 {
+		OsTaskActivation = 55
+		OsTaskPriority = 1
+		OsTaskStackSize = 512
+		OsTaskSchedule = FULL
+		OsTaskType = BASIC
+		OsTaskAccessingApplication = app_lion
+		OsTaskAccessingApplication = app2
+		OsTaskAccessingApplication = app3
+		OsTaskAccessingApplication = app4
+		OsTaskResourceRef = resource1
+		OsTaskAutostart OAT1 {
+			OsTaskAppModeRef = AppMode1
+		}
+		OsTaskTimingProtection OTTP {
+			OsTaskExecutionBudget = 50000
+			OsTaskAllInterruptLockBudget = 10
+			OsTaskOsInterruptLockBudget = 10
+			OsTaskTimeFrame = 20
+		}
+	}
+	OsTask T002 {
+		OsTaskActivation = 10
+		OsTaskPriority = 2
+		OsTaskStackSize = 512
+		OsTaskSchedule = FULL
+		OsTaskType = EXTENDED
+		OsTaskAccessingApplication = app_lion
+		OsTaskAccessingApplication = app2
+		OsTaskAccessingApplication = app3
+		OsTaskAccessingApplication = app4
+		OsTaskResourceRef = resource1
+		OsTaskResourceRef = resource2
+	}
+	OsTask T003 {
+		OsTaskActivation = 10
+		OsTaskPriority = 5
+		OsTaskStackSize = 512
+		OsTaskSchedule = FULL
+		OsTaskType = BASIC
+		OsTaskAccessingApplication = app_lion
+		OsTaskAccessingApplication = app2
+		OsTaskAccessingApplication = app3
+		OsTaskAccessingApplication = app4
+		OsTaskEventRef = event3
+	}
+	OsTask T004 {
+		OsTaskActivation = 10
+		OsTaskPriority = 3
+		OsTaskStackSize = 512
+		OsTaskSchedule = FULL
+		OsTaskType = EXTENDED
+		OsTaskAccessingApplication = app_lion
+		OsTaskAccessingApplication = app2
+		OsTaskAccessingApplication = app3
+		OsTaskAccessingApplication = app4
+		OsTaskResourceRef = resource1
+		OsTaskResourceRef = resource2
+		OsTaskTimingProtection OTTP4 {
+			OsTaskExecutionBudget = 3
+			OsTaskAllInterruptLockBudget = 20
+			OsTaskOsInterruptLockBudget = 20
+			OsTaskTimeFrame = 20
+		}
+	}
+	OsTask T005 {
+		OsTaskActivation = 1
+		OsTaskPriority = 3
+		OsTaskStackSize = 512
+		OsTaskSchedule = FULL
+		OsTaskType = BASIC
+		OsTaskAccessingApplication = app_lion
+		OsTaskAccessingApplication = app2
+		OsTaskAccessingApplication = app3
+		OsTaskAccessingApplication = app4
+		OsTaskEventRef = event3
+		OsTaskTimingProtection OTTP5 {
+			OsTaskExecutionBudget = 100
+			OsTaskAllInterruptLockBudget = 30
+			OsTaskOsInterruptLockBudget = 30
+			OsTaskTimeFrame = 20
+			OsTaskResourceLock OTTR5-1 {
+				OsTaskResourceLockResourceRef = resource1
+				OsTaskResourceLockBudget = 30
+			}
+			OsTaskResourceLock OTTR5-2 {
+				OsTaskResourceLockResourceRef = resource2
+				OsTaskResourceLockBudget = 30
+			}
+			OsTaskResourceLock OTTR5-3 {
+				OsTaskResourceLockResourceRef = resource3
+				OsTaskResourceLockBudget = 10
+			}
+		}
+	}
+	OsTask T006 {
+		OsTaskActivation = 10
+		OsTaskPriority = 1
+		OsTaskStackSize = 512
+		OsTaskSchedule = FULL
+		OsTaskType = BASIC
+		OsTaskAccessingApplication = app_lion
+		OsTaskAccessingApplication = app2
+		OsTaskAccessingApplication = app3
+		OsTaskAccessingApplication = app4
+		OsTaskResourceRef = resource1
+		OsTaskResourceRef = resource2
+	}
+	OsTask T101 {
+		OsTaskActivation = 55
+		OsTaskPriority = 3
+		OsTaskStackSize = 512
+		OsTaskSchedule = FULL
+		OsTaskType = EXTENDED
+		OsTaskAccessingApplication = app_lion
+		OsTaskAccessingApplication = app2
+		OsTaskAccessingApplication = app3
+		OsTaskAccessingApplication = app4
+		OsTaskResourceRef = resource1
+		OsTaskResourceRef = resource2
+		OsTaskAutostart OAT1 {
+			OsTaskAppModeRef = AppMode1
+		}
+		OsTaskTimingProtection OTTP {
+			OsTaskExecutionBudget = 50000
+			OsTaskAllInterruptLockBudget = 10
+			OsTaskOsInterruptLockBudget = 10
+			OsTaskTimeFrame = 20
+		}
+	}
+
+	OsTask T102 {
+		OsTaskActivation = 10
+		OsTaskPriority = 2
+		OsTaskStackSize = 512
+		OsTaskSchedule = FULL
+		OsTaskType = BASIC
+		OsTaskAccessingApplication = app_lion
+		OsTaskAccessingApplication = app2
+		OsTaskAccessingApplication = app3
+		OsTaskAccessingApplication = app4
+	}
+	OsTask T103 {
+		OsTaskActivation = 10
+		OsTaskPriority = 2
+		OsTaskStackSize = 512
+		OsTaskSchedule = FULL
+		OsTaskType = BASIC
+		OsTaskAccessingApplication = app_lion
+		OsTaskAccessingApplication = app2
+		OsTaskAccessingApplication = app3
+		OsTaskAccessingApplication = app4
+	}
+	OsTask T104 {
+		OsTaskActivation = 10
+		OsTaskPriority = 2
+		OsTaskStackSize = 512
+		OsTaskSchedule = FULL
+		OsTaskType = BASIC
+		OsTaskAccessingApplication = app_lion
+		OsTaskAccessingApplication = app2
+		OsTaskAccessingApplication = app3
+		OsTaskAccessingApplication = app4
+	}
+	OsTask T105 {
+		OsTaskActivation = 10
+		OsTaskPriority = 2
+		OsTaskStackSize = 512
+		OsTaskSchedule = FULL
+		OsTaskType = BASIC
+		OsTaskAccessingApplication = app_lion
+		OsTaskAccessingApplication = app2
+		OsTaskAccessingApplication = app3
+		OsTaskAccessingApplication = app4
+	}
+	OsTask T106 {
+		OsTaskActivation = 10
+		OsTaskPriority = 2
+		OsTaskStackSize = 512
+		OsTaskSchedule = FULL
+		OsTaskType = BASIC
+		OsTaskAccessingApplication = app_lion
+		OsTaskAccessingApplication = app2
+		OsTaskAccessingApplication = app3
+		OsTaskAccessingApplication = app4
+	}
+
+	OsResource resource1 {
+		OsResourceProperty = STANDARD
+		OsResourceAccessingApplication = app_lion
+	}
+	OsResource resource2 {
+		OsResourceProperty = STANDARD
+		OsResourceAccessingApplication = app_lion
+	}
+	OsResource resource3 {
+		OsResourceProperty = STANDARD
+		OsResourceAccessingApplication = app3
+	}
+	OsResource resource4 {
+		OsResourceProperty = STANDARD
+		OsResourceAccessingApplication = app2
+		OsResourceAccessingApplication = app4
+	}
+	OsResource resource5 {
+		OsResourceProperty = STANDARD
+		OsResourceAccessingApplication = app2
+		OsResourceAccessingApplication = app4
+	}
+	OsResource resource6 {
+		OsResourceProperty = STANDARD
+		OsResourceAccessingApplication = app2
+		OsResourceAccessingApplication = app4
+	}
+	OsScheduleTable ST1 {
+		OsScheduleTableDuration = 10
+		OsScheduleTableRepeating = FALSE
+		OsTaskAccessingApplication = app_lion
+		OsTaskAccessingApplication = app2
+		OsTaskAccessingApplication = app3
+		OsTaskAccessingApplication = app4
+		OsScheduleTableCounterRef = counter3
+		OsScheduleTableAutostart OSTstart1 {
+			OsScheduleTableAutostartType = ABSOLUTE
+			OsScheduleTableStartValue = 2
+			OsScheduleTableAppModeRef = AppMode1
+		}
+		OsScheduleTableExpiryPoint ep0 {
+			OsScheduleTblExpPointOffset = 2
+			OsScheduleTableTaskActivation OSTactivatetask1-1 {
+				OsScheduleTableActivateTaskRef = T002
+			}
+			OsScheduleTblAdjustableExpPoint OSTadjustpoint1-1 {
+				OsScheduleTableMaxLengthen = 1
+				OsScheduleTableMaxShorten = 1
+			}
+		}
+		OsScheduleTableExpiryPoint ep1 {
+			OsScheduleTblExpPointOffset = 5
+			OsScheduleTableTaskActivation OSTactivatetask1-2 {
+				OsScheduleTableActivateTaskRef = T003
+			}
+			OsScheduleTblAdjustableExpPoint OSTadjustpoint1-2 {
+				OsScheduleTableMaxLengthen = 1
+				OsScheduleTableMaxShorten = 1
+			}
+		}
+		OsScheduleTableExpiryPoint ep2 {
+			OsScheduleTblExpPointOffset = 8
+			OsScheduleTableTaskActivation OSTactivatetask1-1 {
+				OsScheduleTableActivateTaskRef = T004
+			}
+			OsScheduleTblAdjustableExpPoint OSTadjustpoint1-1 {
+				OsScheduleTableMaxLengthen = 1
+				OsScheduleTableMaxShorten = 1
+			}
+		}
+		OsScheduleTableSync OSTsync1 {
+			OsScheduleTblExplicitPrecision = 0
+			OsScheduleTblSyncStrategy = EXPLICIT
+		}
+	}
+	OsScheduleTable ST2 {
+		OsScheduleTableDuration = 7
+		OsScheduleTableRepeating = FALSE
+		OsTaskAccessingApplication = app_lion
+		OsScheduleTableCounterRef = counter3
+		OsScheduleTableAutostart OSTstart2 {
+			OsScheduleTableAutostartType = ABSOLUTE
+			OsScheduleTableStartValue = 2
+			OsScheduleTableAppModeRef = AppMode1
+		}
+		OsScheduleTableExpiryPoint ep20 {
+			OsScheduleTblExpPointOffset = 2
+			OsScheduleTableTaskActivation OSTactivatetask21-1 {
+				OsScheduleTableActivateTaskRef = T004
+			}
+			OsScheduleTblAdjustableExpPoint OSTadjustpoint21-1 {
+				OsScheduleTableMaxLengthen = 0
+				OsScheduleTableMaxShorten = 0
+			}
+		}
+		OsScheduleTableExpiryPoint ep21 {
+			OsScheduleTblExpPointOffset = 5
+			OsScheduleTableTaskActivation OSTactivatetask21-2 {
+				OsScheduleTableActivateTaskRef = T005
+			}
+			OsScheduleTblAdjustableExpPoint OSTadjustpoint1-3 {
+				OsScheduleTableMaxLengthen = 0
+				OsScheduleTableMaxShorten = 0
+			}
+		}
+		OsScheduleTableSync OSTsync2 {
+			OsScheduleTblExplicitPrecision = 0
+			OsScheduleTblSyncStrategy = NONE
+		}
+	}
+	OsScheduleTable ST3 {
+		OsScheduleTableDuration = 50
+		OsScheduleTableRepeating = TRUE
+		OsTaskAccessingApplication = app_lion
+		OsTaskAccessingApplication = app2
+		OsTaskAccessingApplication = app3
+		OsTaskAccessingApplication = app4
+		OsScheduleTableCounterRef = counter1
+		OsScheduleTableAutostart OSTstart3 {
+			OsScheduleTableAutostartType = ABSOLUTE
+			OsScheduleTableStartValue = 2
+			OsScheduleTableAppModeRef = AppMode1
+		}
+		OsScheduleTableExpiryPoint EP31 {
+			OsScheduleTblExpPointOffset = 30
+			OsScheduleTableTaskActivation OSTactivatetask31 {
+				OsScheduleTableActivateTaskRef = T106
+			}
+			OsScheduleTblAdjustableExpPoint OSTadjustpoint31 {
+				OsScheduleTableMaxLengthen = 5
+				OsScheduleTableMaxShorten = 2
+			}
+		}
+		OsScheduleTableExpiryPoint EP32 {
+			OsScheduleTblExpPointOffset = 31
+			OsScheduleTableTaskActivation OSTactivatetask32 {
+				OsScheduleTableActivateTaskRef = T102
+			}
+			OsScheduleTblAdjustableExpPoint OSTadjustpoint32 {
+				OsScheduleTableMaxLengthen = 3
+				OsScheduleTableMaxShorten = 4
+			}
+		}
+		OsScheduleTableSync OSTsync3 {
+			OsScheduleTblExplicitPrecision = 2
+			OsScheduleTblSyncStrategy = EXPLICIT
+		}
+	}
+	OsCounter counter1 {
+		OsCounterMaxAllowedValue = 100
+		OsCounterMinCycle = 2
+		OsCounterTicksPerBase = 10
+		OsCounterType = HARDWARE
+	}
+	OsCounter counter2 {
+		OsCounterMaxAllowedValue = 500
+		OsCounterMinCycle = 10
+		OsCounterTicksPerBase = 10
+		OsCounterType = SOFTWARE
+	}
+	OsCounter counter3 {
+		OsCounterMaxAllowedValue = 294967295
+		OsCounterMinCycle = 1
+		OsCounterTicksPerBase = 1
+		OsCounterType = SOFTWARE
+	}
+	OsCounter counter4 {
+		OsCounterMaxAllowedValue = 500
+		OsCounterMinCycle = 10
+		OsCounterTicksPerBase = 10
+		OsCounterType = HARDWARE
+	}
+	OsAppMode AppMode1 {
+    }
+    OsIoc IOC {
+		OsIocCommunication Q1 {
+			OsIocDataProperties IOC_DATA1 {
+				OsIocDataPropertyIndex = 0
+				OsIocInitValue = 0U
+				OsIocDataTypeRef = uint8
+			}
+			OsIocDataProperties IOC_DATA2 {
+				OsIocInitValue = 1
+				OsIocDataTypeRef = uint8
+			}
+			OsIocReceiverProperties RCV1 {
+				OsIocFunctionImplementationKind = FUNCTION
+				OsIocReceivingOsApplicationRef = app2
+			}
+			OsIocSenderProperties SND1 {
+				OsIocFunctionImplementationKind = FUNCTION
+				OsIocSendingOsApplicationRef = app_lion
+			}
+		}
+		OsIocCommunication Q2 {
+			OsIocDataProperties IOC_DATA1 {
+				OsIocDataPropertyIndex = 0
+				OsIocInitValue = 0U
+				OsIocDataTypeRef = str*
+			}
+			OsIocDataProperties IOC_DATA2 {
+				OsIocInitValue = 1
+				OsIocDataTypeRef = uint8*
+			}
+			OsIocReceiverProperties RCV1 {
+				OsIocFunctionImplementationKind = FUNCTION
+				OsIocReceivingOsApplicationRef = app2
+			}
+			OsIocSenderProperties SND1 {
+				OsIocFunctionImplementationKind = FUNCTION
+				OsIocSendingOsApplicationRef = app_lion
+			}
+		}
+		OsIocCommunication Q3 {
+			OsIocDataProperties IOC_DATA1 {
+				OsIocDataPropertyIndex = 0
+				OsIocInitValue = 0U
+				OsIocDataTypeRef = str*, length
+			}
+			OsIocDataProperties IOC_DATA2 {
+				OsIocInitValue = 1
+				OsIocDataTypeRef = str*, length
+			}
+			OsIocReceiverProperties RCV1 {
+				OsIocFunctionImplementationKind = FUNCTION
+				OsIocReceivingOsApplicationRef = app2
+			}
+			OsIocSenderProperties SND1 {
+				OsIocFunctionImplementationKind = FUNCTION
+				OsIocSendingOsApplicationRef = app_lion
+			}
+		}
+		OsIocCommunication Q4 {
+			OsIocDataProperties IOC_DATA1 {
+				OsIocDataPropertyIndex = 0
+				OsIocInitValue = 0U
+				OsIocDataTypeRef = uint8
+			}
+			OsIocDataProperties IOC_DATA2 {
+				OsIocInitValue = 1
+				OsIocDataTypeRef = str*
+			}
+			OsIocReceiverProperties RCV1 {
+				OsIocFunctionImplementationKind = FUNCTION
+				OsIocReceivingOsApplicationRef = app2
+			}
+			OsIocSenderProperties SND1 {
+				OsIocFunctionImplementationKind = FUNCTION
+				OsIocSendingOsApplicationRef = app_lion
+			}
+		}
+		OsIocCommunication Q5 {
+			OsIocDataProperties IOC_DATA1 {
+				OsIocDataPropertyIndex = 0
+				OsIocInitValue = 0U
+				OsIocDataTypeRef = str*
+			}
+			OsIocDataProperties IOC_DATA2 {
+				OsIocInitValue = 1
+				OsIocDataTypeRef = str*, length
+			}
+			OsIocReceiverProperties RCV1 {
+				OsIocFunctionImplementationKind = FUNCTION
+				OsIocReceivingOsApplicationRef = app2
+			}
+			OsIocSenderProperties SND1 {
+				OsIocFunctionImplementationKind = FUNCTION
+				OsIocSendingOsApplicationRef = app_lion
+			}
+		}
+	}
+	T T {
+	}
+    OsPeripheralArea COOL {
+        OsPeripheralAreaId = 0
+        OsPeripheralAreaStartAddress = 0
+        OsPeripheralAreaEndAddress = 0
+    }
+
+    OsPeripheralArea WOW {
+        OsPeripheralAreaId = 1
+        OsPeripheralAreaStartAddress = 0
+        OsPeripheralAreaEndAddress = 0
+        OsPeripheralAreaAccessingApplication = app_lion
+        OsPeripheralAreaAccessingApplication = app2
+        OsPeripheralAreaAccessingApplication = app3
+        OsPeripheralAreaAccessingApplication = app4
+    }
+
+    OsPeripheralArea HAHA {
+        OsPeripheralAreaId = 2
+        OsPeripheralAreaStartAddress = 0
+        OsPeripheralAreaEndAddress = 0
+        OsPeripheralAreaAccessingApplication = app_lion
+        OsPeripheralAreaAccessingApplication = app2
+        OsPeripheralAreaAccessingApplication = app3
+    }
+
+    OsPeripheralArea FUN {
+        OsPeripheralAreaId = 3
+        OsPeripheralAreaStartAddress = 0
+        OsPeripheralAreaEndAddress = 0
+        OsPeripheralAreaAccessingApplication = app_lion
+        OsPeripheralAreaAccessingApplication = app2
+    }
+
+    OsPeripheralArea TRY {
+        OsPeripheralAreaId = 4
+        OsPeripheralAreaStartAddress = 0
+        OsPeripheralAreaEndAddress = 0
+        OsPeripheralAreaAccessingApplication = app_lion
+    }
+
+
+    
+    OsEvent event1 {
+        OsEventMask = 12
+    }
+
+    OsEvent event2 {
+        OsEventMask = 3
+    }
+
+    OsEvent event3 {
+        OsEventMask = 7
+    }
+
+    OsAlarm alarm1 {
+        OsAlarmCounterRef = counter1
+        OsAppAlarmRef = alarm1
+        OsAppAlarmRef = alarm2
+        OsAlarmAction OAaction1 { 
+            OsAlarmActivateTask OAAT1 {
+                OsAlarmActivateTaskRef = T101
+            }
+        }
+        OsAlarmAutostart OAstart1 {
+            OsAlarmAlarmTime = 100
+            OsAlarmAutostartType = RELATIVE 
+            OsAlarmCycleTime = 0
+            OsAlarmAppModeRef = AppMode1
+        }
+    }
+
+    OsAlarm alarm2 {
+        OsAlarmAccessingApplication = app_lion
+        OsAlarmCounterRef = counter1
+        OsAlarmAction OAaction2 { 
+            OsAlarmActivateTask OAAT2 {
+                OsAlarmActivateTaskRef = T002
+            }
+        }
+    }
+
+    OsAlarm alarm3 {
+        OsAlarmCounterRef = counter4
+        OsAlarmAccessingApplication = app_lion
+        OsAlarmAction OAaction3 { 
+            OsAlarmActivateTask OAtask3 {
+                OsAlarmActivateTaskRef = T005
+            }
+        }
+    }
+
+    OsAlarm alarm4 {
+        OsAlarmAccessingApplication = app2
+        OsAlarmAccessingApplication = app_lion
+        OsAlarmCounterRef = counter4
+        OsAlarmAction OAaction4 { 
+            OsAlarmActivateTask OAtask4 {
+                OsAlarmActivateTaskRef = T104
+            }
+        }
+    }
+
+    OsAlarm alarm5 {
+        OsAlarmCounterRef = counter3
+        OsAlarmAccessingApplication = app_lion
+        OsAlarmAction OAaction5 { 
+            OsAlarmActivateTask OAtask5 {
+                OsAlarmActivateTaskRef = T001
+            }
+        }
+    }
+
+    OsAlarm alarm6 {
+        OsAlarmCounterRef = counter2
+        OsAlarmAccessingApplication = app_lion
+        OsAlarmAccessingApplication = app2
+        OsAlarmAction OAaction6 { 
+            OsAlarmActivateTask OAtask6 {
+                OsAlarmActivateTaskRef = T003
+            }
+        }
+    }
+
+    OsAlarm alarm7 {
+        OsAlarmAccessingApplication = app2
+        OsAlarmCounterRef = counter2
+        OsAlarmAction OAaction7 {
+            OsAlarmActivateTask OAtask {
+                OsAlarmActivateTaskRef = T001
+            }
+        }
+    }
+
+    OsAlarm alarm8 {
+        OsAlarmCounterRef = counter2
+        OsAlarmAction OAaction8 { 
+            OsAlarmSetEvent OAevent8 {
+                OsAlarmSetEventRef = event2
+                OsAlarmSetEventTaskRef = T001
+            }
+        }
+    }
+
+    OsAlarm alarm9 {
+        OsAlarmCounterRef = counter4
+        OsAlarmAction OAaction9 { 
+            OsAlarmActivateTask OAtask9 {
+                OsAlarmActivateTaskRef = T004
+            }
+        }
+        OsAlarmAutostart OAstart9 {
+            OsAlarmAlarmTime = 100
+            OsAlarmAutostartType = RELATIVE 
+            OsAlarmCycleTime = 100
+            OsAlarmAppModeRef = AppMode1
+        }
+    }
+
+    OsAlarm alarm10 {
+        OsAlarmAccessingApplication = app_lion
+        OsAlarmCounterRef = counter4
+        OsAlarmAction OAaction10 {
+            OsAlarmSetEvent OAevent10 {
+                OsAlarmSetEventRef = event1
+                OsAlarmSetEventTaskRef = T003
+            }
+        }
+    }
+
+    OsSpinlock spinlock1 {
+        OsSpinlockLockMethod = LOCK_NOTHING
+        OsSpinlockAccessingApplication = app_lion
+        OsSpinlockAccessingApplication = app2
+        OsSpinlockSuccessor = spinlock2
+    }
+
+    OsSpinlock spinlock2 {
+        OsSpinlockLockMethod = LOCK_ALL_INTERRUPTS
+        OsSpinlockAccessingApplication = app_lion
+        OsSpinlockAccessingApplication = app2
+        OsSpinlockSuccessor = spinlock6
+    }
+
+    OsSpinlock spinlock3 {
+        OsSpinlockLockMethod = LOCK_ALL_INTERRUPTS
+        OsSpinlockAccessingApplication = app_lion
+        OsSpinlockAccessingApplication = app2
+        OsSpinlockAccessingApplication = app3
+        OsSpinlockAccessingApplication = app4
+        OsSpinlockSuccessor = spinlock5
+    }
+
+    OsSpinlock spinlock4 {
+        OsSpinlockLockMethod = LOCK_WITH_RES_SCHEDULER
+        OsSpinlockAccessingApplication = app_lion
+        OsSpinlockAccessingApplication = app2
+        OsSpinlockAccessingApplication = app3
+        OsSpinlockAccessingApplication = app4
+    }
+
+    OsSpinlock spinlock5 {
+        OsSpinlockLockMethod = LOCK_CAT2_INTERRUPTS
+        OsSpinlockAccessingApplication = app_lion
+        OsSpinlockAccessingApplication = app2
+        OsSpinlockAccessingApplication = app3
+        OsSpinlockAccessingApplication = app4
+        OsSpinlockSuccessor = spinlock4
+    }
+
+    OsSpinlock spinlock6 {
+        OsSpinlockLockMethod = LOCK_CAT2_INTERRUPTS
+        OsSpinlockAccessingApplication = app_lion
+        OsSpinlockAccessingApplication = app2
+        OsSpinlockSuccessor = spinlock8
+    }
+
+    OsSpinlock spinlock7 {
+        OsSpinlockLockMethod = LOCK_NOTHING
+        OsSpinlockAccessingApplication = app_lion
+        OsSpinlockAccessingApplication = app2
+        OsSpinlockAccessingApplication = app3
+        OsSpinlockAccessingApplication = app4
+        OsSpinlockSuccessor = spinlock3
+    }
+
+    OsSpinlock spinlock8 {
+        OsSpinlockLockMethod = LOCK_WITH_RES_SCHEDULER
+        OsSpinlockAccessingApplication = app_lion
+        OsSpinlockAccessingApplication = app2
+        OsSpinlockSuccessor = spinlock7
+    }
+
+    OsIsr I001 {
+        OsIsrCategory = CATEGORY_1
+        OsIsrAccessingApplication = app_lion
+        OsIsrAccessingApplication = app2
+        OsIsrPriority = 2
+        OsIsrInterruptSource = 43
+        OsIsrStackSize = 52
+        OsIsrTimingProtection OITP1 {
+            OsIsrExecutionBudget = 0.05
+            OsIsrAllInterruptLockBudget = 0.03
+            OsIsrInterruptLockBudget = 0.03
+            OsIsrTimeFrame = 0.02
+            OsIsrResourceLock OIR1-1 {
+                OsIsrResourceLockResourceRef = resource4
+                OsIsrResourceLockBudget = 0.03
+            }
+            OsIsrResourceLock OIR1-2 {
+                OsIsrResourceLockResourceRef = resource5
+                OsIsrResourceLockBudget = 0.03
+            }
+            OsIsrResourceLock OIR1-3 {
+                OsIsrResourceLockResourceRef = resource6
+                OsIsrResourceLockBudget = 0.01
+            }
+        }
+    }
+
+    OsIsr I002 {
+        OsIsrCategory = CATEGORY_2
+        OsIsrAccessingApplication = app_lion
+        OsIsrAccessingApplication = app2
+        OsIsrPriority = 10
+        OsIsrInterruptSource = 44
+        OsIsrStackSize = 512
+    }
+
+    OsIsr I003 {
+        OsIsrCategory = CATEGORY_2
+        OsIsrAccessingApplication = app_lion
+        OsIsrAccessingApplication = app2
+        OsIsrPriority = 3
+        OsIsrInterruptSource = 93
+        OsIsrStackSize = 512
+    }
+
+    OsIsr I004 {
+        OsIsrCategory = CATEGORY_1
+        OsIsrAccessingApplication = app_lion
+        OsIsrAccessingApplication = app2
+        OsIsrPriority = 4
+        OsIsrInterruptSource = 69
+        OsIsrStackSize = 52
+    }
+
+    OsIsr I005 {
+        OsIsrCategory = CATEGORY_2
+        OsIsrAccessingApplication = app_lion
+        OsIsrAccessingApplication = app2
+        OsIsrAccessingApplication = app3
+        OsIsrAccessingApplication = app4
+        OsIsrPriority = 12
+        OsIsrInterruptSource = 94
+        OsIsrStackSize = 512
+    }
+
+    OsIsr I006 {
+        OsIsrCategory = CATEGORY_2
+        OsIsrAccessingApplication = app_lion
+        OsIsrAccessingApplication = app2
+        OsIsrAccessingApplication = app3
+        OsIsrAccessingApplication = app4
+        OsIsrPriority = 13
+        OsIsrInterruptSource = 95
+        OsIsrStackSize = 512
+        OsIsrTimingProtection OITP1 {
+            OsIsrExecutionBudget = 0.05
+            OsIsrAllInterruptLockBudget = 0.03
+            OsIsrInterruptLockBudget = 0.03
+            OsIsrTimeFrame = 0.02
+            OsIsrResourceLock OIR1-1 {
+                OsIsrResourceLockResourceRef = resource4
+                OsIsrResourceLockBudget = 0.03
+            }
+            OsIsrResourceLock OIR1-2 {
+                OsIsrResourceLockResourceRef = resource5
+                OsIsrResourceLockBudget = 0.03
+            }
+            OsIsrResourceLock OIR1-3 {
+                OsIsrResourceLockResourceRef = resource6
+                OsIsrResourceLockBudget = 0.01
+            }
+        }
+    }
+
+    OsIsr I101 {
+        OsIsrCategory = CATEGORY_1
+        OsIsrAccessingApplication = app_lion
+        OsIsrAccessingApplication = app2
+        OsIsrPriority = 2
+        OsIsrInterruptSource = 128
+        OsIsrStackSize = 512
+    }
+
+    OsIsr I102 {
+        OsIsrCategory = CATEGORY_2
+        OsIsrAccessingApplication = app_lion
+        OsIsrAccessingApplication = app2
+        OsIsrPriority = 10
+        OsIsrInterruptSource = 129
+        OsIsrStackSize = 512
+    }
+
+    OsIsr I103 {
+        OsIsrCategory = CATEGORY_2
+        OsIsrAccessingApplication = app_lion
+        OsIsrAccessingApplication = app2
+        OsIsrPriority = 11
+        OsIsrInterruptSource = 130
+        OsIsrStackSize = 512 
+    }
+
+    OsIsr I104 {
+        OsIsrCategory = CATEGORY_1
+        OsIsrAccessingApplication = app_lion
+        OsIsrAccessingApplication = app2
+        OsIsrPriority = 3
+        OsIsrInterruptSource = 186
+        OsIsrStackSize = 512
+    }
+
+    OsIsr I105 {
+        OsIsrCategory = CATEGORY_2
+        OsIsrAccessingApplication = app_lion
+        OsIsrAccessingApplication = app2
+        OsIsrAccessingApplication = app3
+        OsIsrAccessingApplication = app4
+        OsIsrPriority = 12
+        OsIsrInterruptSource = 187
+        OsIsrStackSize = 512
+    }
+
+    OsIsr I106 {
+        OsIsrCategory = CATEGORY_2
+        OsIsrAccessingApplication = app_lion
+        OsIsrAccessingApplication = app2
+        OsIsrAccessingApplication = app3
+        OsIsrAccessingApplication = app4
+        OsIsrPriority = 13
+        OsIsrInterruptSource = 188
+        OsIsrStackSize = 512
+    }
+    
+	EcucHardware EcucHardware {
+		EcucCoreDefinition EcucCoreDefinition0 {
+			EcucCoreId = 0
+		}
+		EcucCoreDefinition EcucCoreDefinition1 {
+			EcucCoreId = 1
+		}
+	}
+	T T {
+	}
+}

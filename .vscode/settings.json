@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        "rte_client_responserunnable.h": "c",
+        "ioc.h": "c",
+        "event_cfg.h": "c",
+        "rte_client_runnable.h": "c",
+        "event_c": "c",
+        "even": "c",
+        "event_cfg": "c",
+        "event.h": "c",
+        "lock.h": "c",
+        "task.h": "c",
+        "task_cfg.h": "c"
+    }
+}

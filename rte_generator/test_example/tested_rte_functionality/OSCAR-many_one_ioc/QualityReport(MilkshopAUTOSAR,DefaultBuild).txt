@@ -1,0 +1,856 @@
+QualityReport
+2024年2月21日 下午 11:40:35
+
+------ Start build(MilkshopAUTOSAR, DefaultBuild) ------
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.05.00\Bin\ccrh.exe kernel\alarm.c kernel\event.c kernel\isr2.c kernel\resource.c kernel\scheduler.c kernel\system.c kernel\task.c Os_Configure\src\alarm_Cfg.c Os_Configure\src\event_Cfg.c Os_Configure\src\isr_Cfg.c Os_Configure\src\resource_Cfg.c Os_Configure\src\task_Cfg.c device\board.c device\context.c device\GPIO.c device\ISRInit.c device\timer.c device\renesas_modules\peripherals\clkc\r_clkc.c device\renesas_modules\peripherals\intc\r_intc.c device\renesas_modules\peripherals\port\r_port.c device\renesas_modules\peripherals\rlin\r_rlin.c device\renesas_modules\modules\uart\r_uart.c device\renesas_modules\modules\lin\r_lin.c application\hook.c application\main_pe2.c application\main.c Os_Configure\src\application_Cfg.c Os_Configure\src\memprot_Cfg.c Os_Configure\src\os_Cfg.c Os_Configure\src\spinlock_Cfg.c Os_Configure\src\timingprot_Cfg.c kernel\application.c kernel\spinlock.c kernel\timingprot.c device\core.c device\lock.c device\memprot.c device\systemcall.c Os_Configure\src\counter_Cfg.c kernel\counter.c kernel\ScheduleTable.c Os_Configure\src\scheduleTable_Cfg.c kernel\string_format_test.c Os_Configure\src\softwaretimer_Cfg.c kernel\softwaretimer.c application\app2.c application\app3.c application\app4.c Os_Configure\src\trustedfunc_Cfg.c application\app1.c kernel\peripheral.c kernel\Ioc.c application\ring_buffer.c application\Controller\Rte_Controller_ReTxAcc.c application\Controller\Rte_Controller_ReTxSpd.c application\Controller\Rte_Controller_ReTxTemp.c application\Observation\Rte_Observation_ReRxAcc.c application\Observation\Rte_Observation_ReRxSpd.c application\Observation\Rte_Observation_ReRxTemp.c application\Controller2\Rte_Controller2_ReTxAcc2.c application\Controller2\Rte_Controller2_ReTxSpd2.c application\Controller2\Rte_Controller2_ReTxTemp2.c application\ioc_data_management.c -Xobj_path=DefaultBuild -Xcpu=g3m -g -g_line -Onothing -Iapplication\Controller2 -Iapplication -Iapplication\Observation -Iapplication\Controller -Idevice\renesas_modules\modules\lin -Idevice\renesas_modules\modules\uart -Idevice\renesas_modules\peripherals\rlin -Idevice\renesas_modules\peripherals\port -Idevice\renesas_modules\peripherals\intc -Idevice\renesas_modules\peripherals\clkc -Idevice\renesas_modules -Idevice -IOs_Configure\inc -Ikernel -Idevice\renesas_modules\peripherals -I. -D__CSP__ -lang=c99 -use_recipf -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\azx61\AppData\Local\Temp\CSPlusBuildTool_44fc4422c19c4419b5a288ba74e4a3a2a0s14znf.hnj -Xmsg_lang=english
+kernel\../application/Std_Types.h(47):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 17 of "kernel\os.h")
+kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+kernel\alarm.c(231):W0520167:Argument of type "AlarmBaseRefType" is incompatible with parameter of type "uint32 *"
+kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+kernel\os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "kernel\../application/Std_Types.h")
+kernel\event.c(301):W0520167:Argument of type "EventMaskRefType" is incompatible with parameter of type "uint32 *"
+kernel\../application/Std_Types.h(47):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 17 of "kernel\os.h")
+kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+kernel\../application/Std_Types.h(47):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 17 of "kernel\os.h")
+kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+kernel\resource.c(181):W0520177:Variable "TargetResource" was declared but never referenced
+kernel\resource.c(182):W0520177:Variable "ResourcesHead" was declared but never referenced
+kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+kernel\os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "kernel\../application/Std_Types.h")
+kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+kernel\os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "kernel\../application/Std_Types.h")
+kernel\system.c(482):W0520223:Function "StartupHook" declared implicitly
+kernel\system.c(671):W0520223:Function "ShutdownHook" declared implicitly
+kernel\system.c(848):W0520223:Function "ShutdownHook" declared implicitly
+kernel\system.c(1063):W0520167:Argument of type "uint32" is incompatible with parameter of type "void (*)(void)"
+kernel\../application/Std_Types.h(47):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 17 of "kernel\os.h")
+kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+kernel\task.c(440):W0520177:Variable "TargetSpinlock" was declared but never referenced
+kernel\task.c(1025):W0520167:Argument of type "TaskStateRefType" is incompatible with parameter of type "uint32 *"
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\../application/Std_Types.h")
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\../application/Platform_Types.h(27):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\../application/Platform_Types.h(28):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\../application/Platform_Types.h(29):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\../application/Std_Types.h")
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\../application/Std_Types.h")
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\../application/Std_Types.h")
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\../application/Platform_Types.h(27):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\../application/Platform_Types.h(28):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\../application/Platform_Types.h(29):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\../application/Std_Types.h")
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\../application/Platform_Types.h(27):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\../application/Platform_Types.h(28):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\../application/Platform_Types.h(29):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\../application/Std_Types.h")
+device\renesas_modules\modules\uart\r_uart.c(198):W0520167:Argument of type "SysServiceParaType **" is incompatible with parameter of type "SysServiceParaType *"
+device\renesas_modules\modules\uart\r_uart.c(200):W0520167:Argument of type "SysServiceParaType *" is incompatible with parameter of type "uint32 *"
+device\renesas_modules\modules\uart\r_uart.c(211):W0520167:Argument of type "uint32" is incompatible with parameter of type "char *"
+device\renesas_modules\modules\uart\r_uart.c(229):W0520513:A value of type "char *" cannot be assigned to an entity of type "uint32"
+device\renesas_modules\modules\uart\r_uart.c(249):W0520167:Argument of type "SysServiceParaType **" is incompatible with parameter of type "SysServiceParaType *"
+device\renesas_modules\modules\uart\r_uart.c(251):W0520167:Argument of type "SysServiceParaType *" is incompatible with parameter of type "uint32 *"
+device\renesas_modules\modules\uart\r_uart.c(261):W0520167:Argument of type "uint32" is incompatible with parameter of type "char *"
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\../application/Std_Types.h")
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\../application/Std_Types.h(47):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 17 of "C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\os.h")
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\../application/Std_Types.h(47):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 17 of "C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\os.h")
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\../application/Std_Types.h")
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+Os_Configure\src\memprot_Cfg.c(110):W0520144:A value of type "char *" cannot be used to initialize an entity of type "uint32"
+Os_Configure\src\memprot_Cfg.c(111):W0520144:A value of type "char *" cannot be used to initialize an entity of type "uint32"
+Os_Configure\src\memprot_Cfg.c(115):W0520144:A value of type "char *" cannot be used to initialize an entity of type "uint32"
+Os_Configure\src\memprot_Cfg.c(116):W0520144:A value of type "char *" cannot be used to initialize an entity of type "uint32"
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+Os_Configure\src\spinlock_Cfg.c(115):W0520188:Enumerated type mixed with another type
+Os_Configure\src\spinlock_Cfg.c(117):W0520069:Integer conversion resulted in truncation
+Os_Configure\src\spinlock_Cfg.c(121):W0520188:Enumerated type mixed with another type
+Os_Configure\src\spinlock_Cfg.c(123):W0520069:Integer conversion resulted in truncation
+Os_Configure\src\spinlock_Cfg.c(127):W0520188:Enumerated type mixed with another type
+Os_Configure\src\spinlock_Cfg.c(129):W0520069:Integer conversion resulted in truncation
+Os_Configure\src\spinlock_Cfg.c(133):W0520188:Enumerated type mixed with another type
+Os_Configure\src\spinlock_Cfg.c(135):W0520069:Integer conversion resulted in truncation
+Os_Configure\src\spinlock_Cfg.c(139):W0520188:Enumerated type mixed with another type
+Os_Configure\src\spinlock_Cfg.c(141):W0520069:Integer conversion resulted in truncation
+Os_Configure\src\spinlock_Cfg.c(145):W0520188:Enumerated type mixed with another type
+Os_Configure\src\spinlock_Cfg.c(147):W0520069:Integer conversion resulted in truncation
+Os_Configure\src\spinlock_Cfg.c(151):W0520188:Enumerated type mixed with another type
+Os_Configure\src\spinlock_Cfg.c(153):W0520069:Integer conversion resulted in truncation
+Os_Configure\src\spinlock_Cfg.c(157):W0520188:Enumerated type mixed with another type
+Os_Configure\src\spinlock_Cfg.c(159):W0520069:Integer conversion resulted in truncation
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+kernel\os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "kernel\../application/Std_Types.h")
+kernel\application.c(685):W0520167:Argument of type "ApplicationStateRefType" is incompatible with parameter of type "uint32 *"
+kernel\application.c(1202):W0520147:Declaration is incompatible with "StatusType SysCallTrustedFunction(TrustedFunctionIndexType, TrustedFunctionParameterRefType, uint32 *)" (declared at line 40 of "kernel\application.h")
+kernel\application.c(1204):W0520940:Missing return statement at end of non-void function "SysCallTrustedFunction"
+kernel\../application/Std_Types.h(47):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 17 of "kernel\os.h")
+kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+kernel\spinlock.c(266):W0520167:Argument of type "TryToGetSpinlockType *" is incompatible with parameter of type "uint32 *"
+kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+kernel\os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "kernel\../application/Std_Types.h")
+kernel\timingprot.c(98):W0520177:Variable "temp1" was declared but never referenced
+kernel\timingprot.c(99):W0520177:Variable "temp2" was declared but never referenced
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\device\renesas_modules\dr7f701527.dvf.h(41):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\device\renesas_modules\dr7f701527.dvf.h(42):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\device\renesas_modules\dr7f701527.dvf.h(43):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\../application/Std_Types.h")
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\../application/Std_Types.h")
+device\systemcall.c(150):W0520167:Argument of type "SysServiceParaType **" is incompatible with parameter of type "SysServiceParaType *"
+device\systemcall.c(152):W0520167:Argument of type "SysServiceParaType *" is incompatible with parameter of type "uint32 *"
+device\systemcall.c(220):W0520167:Argument of type "uint32" is incompatible with parameter of type "void *"
+device\systemcall.c(223):W0520223:Function "SysReadPeripheral8" declared implicitly
+device\systemcall.c(226):W0520223:Function "SysReadPeripheral16" declared implicitly
+device\systemcall.c(229):W0520223:Function "SysReadPeripheral32" declared implicitly
+device\systemcall.c(232):W0520223:Function "SysWritePeripheral8" declared implicitly
+device\systemcall.c(235):W0520223:Function "SysWritePeripheral16" declared implicitly
+device\systemcall.c(238):W0520223:Function "SysWritePeripheral32" declared implicitly
+device\systemcall.c(241):W0520223:Function "SysModifyPeripheral8" declared implicitly
+device\systemcall.c(244):W0520223:Function "SysModifyPeripheral16" declared implicitly
+device\systemcall.c(247):W0520223:Function "SysModifyPeripheral32" declared implicitly
+device\systemcall.c(533):W0520167:Argument of type "SysServiceParaType **" is incompatible with parameter of type "SysServiceParaType *"
+device\systemcall.c(535):W0520167:Argument of type "SysServiceParaType *" is incompatible with parameter of type "uint32 *"
+device\systemcall.c(544):W0520167:Argument of type "uint32" is incompatible with parameter of type "TrustedFunctionParameterRefType"
+device\systemcall.c(563):W0520167:Argument of type "uint32" is incompatible with parameter of type "TrustedFunctionParameterRefType"
+device\systemcall.c(578):W0520223:Function "ProtectionHandle" declared implicitly
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+kernel\../application/Std_Types.h(47):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 17 of "kernel\os.h")
+kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+kernel\os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "kernel\../application/Std_Types.h")
+kernel\ScheduleTable.c(1049):W0520167:Argument of type "ScheduleTableStatusRefType" is incompatible with parameter of type "uint32 *"
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\../application/Std_Types.h(47):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 17 of "C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\os.h")
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+kernel\../application/Std_Types.h(47):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 17 of "kernel\os.h")
+kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+kernel\softwaretimer.c(117):W0520167:Argument of type "SoftwareTimerTickType" is incompatible with parameter of type "uint32 *"
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\../application/Std_Types.h(47):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 17 of "C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\os.h")
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\../application/Std_Types.h(47):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 17 of "C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\os.h")
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\../application/Std_Types.h(47):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 17 of "C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\os.h")
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\../application/Std_Types.h(47):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 17 of "C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\os.h")
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+C:\program1\AutosarOS\OSCAR-many_one_ioc\kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+application\app1.c(127):W0520177:Variable "tt" was declared but never referenced
+application\app1.c(138):W0520177:Variable "tt" was declared but never referenced
+kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+kernel\os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "kernel\../application/Std_Types.h")
+kernel\peripheral.c(34):W0520513:A value of type "const uint8 *" cannot be assigned to an entity of type "uint32"
+kernel\peripheral.c(35):W0520513:A value of type "uint8 *" cannot be assigned to an entity of type "uint32"
+kernel\peripheral.c(37):W0520223:Function "pushStack" declared implicitly
+kernel\peripheral.c(38):W0520223:Function "sysCallSystemService" declared implicitly
+kernel\peripheral.c(39):W0520223:Function "popStack" declared implicitly
+kernel\peripheral.c(51):W0520042:Operand types are incompatible ("const uint8 *" and "uint32")
+kernel\peripheral.c(51):W0520042:Operand types are incompatible ("const uint8 *" and "uint32")
+kernel\peripheral.c(86):W0520223:Function "APPErrorHook" declared implicitly
+kernel\peripheral.c(98):W0520513:A value of type "const uint16 *" cannot be assigned to an entity of type "uint32"
+kernel\peripheral.c(99):W0520513:A value of type "uint16 *" cannot be assigned to an entity of type "uint32"
+kernel\peripheral.c(101):W0520223:Function "pushStack" declared implicitly
+kernel\peripheral.c(102):W0520223:Function "sysCallSystemService" declared implicitly
+kernel\peripheral.c(103):W0520223:Function "popStack" declared implicitly
+kernel\peripheral.c(115):W0520042:Operand types are incompatible ("const uint16 *" and "uint32")
+kernel\peripheral.c(115):W0520042:Operand types are incompatible ("const uint16 *" and "uint32")
+kernel\peripheral.c(148):W0520223:Function "APPErrorHook" declared implicitly
+kernel\peripheral.c(159):W0520513:A value of type "const uint32 *" cannot be assigned to an entity of type "uint32"
+kernel\peripheral.c(160):W0520513:A value of type "uint32 *" cannot be assigned to an entity of type "uint32"
+kernel\peripheral.c(162):W0520223:Function "pushStack" declared implicitly
+kernel\peripheral.c(163):W0520223:Function "sysCallSystemService" declared implicitly
+kernel\peripheral.c(164):W0520223:Function "popStack" declared implicitly
+kernel\peripheral.c(176):W0520042:Operand types are incompatible ("const uint32 *" and "uint32")
+kernel\peripheral.c(176):W0520042:Operand types are incompatible ("const uint32 *" and "uint32")
+kernel\peripheral.c(210):W0520223:Function "APPErrorHook" declared implicitly
+kernel\peripheral.c(221):W0520513:A value of type "uint8 *" cannot be assigned to an entity of type "uint32"
+kernel\peripheral.c(224):W0520223:Function "pushStack" declared implicitly
+kernel\peripheral.c(225):W0520223:Function "sysCallSystemService" declared implicitly
+kernel\peripheral.c(226):W0520223:Function "popStack" declared implicitly
+kernel\peripheral.c(238):W0520042:Operand types are incompatible ("uint8 *" and "uint32")
+kernel\peripheral.c(238):W0520042:Operand types are incompatible ("uint8 *" and "uint32")
+kernel\peripheral.c(272):W0520223:Function "APPErrorHook" declared implicitly
+kernel\peripheral.c(283):W0520513:A value of type "uint16 *" cannot be assigned to an entity of type "uint32"
+kernel\peripheral.c(286):W0520223:Function "pushStack" declared implicitly
+kernel\peripheral.c(287):W0520223:Function "sysCallSystemService" declared implicitly
+kernel\peripheral.c(288):W0520223:Function "popStack" declared implicitly
+kernel\peripheral.c(300):W0520042:Operand types are incompatible ("uint16 *" and "uint32")
+kernel\peripheral.c(300):W0520042:Operand types are incompatible ("uint16 *" and "uint32")
+kernel\peripheral.c(320):W0520940:Missing return statement at end of non-void function "SysWritePeripheral16"
+kernel\peripheral.c(325):W0520513:A value of type "uint32 *" cannot be assigned to an entity of type "uint32"
+kernel\peripheral.c(328):W0520223:Function "pushStack" declared implicitly
+kernel\peripheral.c(329):W0520223:Function "sysCallSystemService" declared implicitly
+kernel\peripheral.c(330):W0520223:Function "popStack" declared implicitly
+kernel\peripheral.c(342):W0520042:Operand types are incompatible ("uint32 *" and "uint32")
+kernel\peripheral.c(342):W0520042:Operand types are incompatible ("uint32 *" and "uint32")
+kernel\peripheral.c(376):W0520223:Function "APPErrorHook" declared implicitly
+kernel\peripheral.c(387):W0520513:A value of type "uint8 *" cannot be assigned to an entity of type "uint32"
+kernel\peripheral.c(389):W0520513:A value of type "uint8 *" cannot be assigned to an entity of type "uint32"
+kernel\peripheral.c(391):W0520223:Function "pushStack" declared implicitly
+kernel\peripheral.c(392):W0520223:Function "sysCallSystemService" declared implicitly
+kernel\peripheral.c(393):W0520223:Function "popStack" declared implicitly
+kernel\peripheral.c(405):W0520042:Operand types are incompatible ("uint8 *" and "uint32")
+kernel\peripheral.c(405):W0520042:Operand types are incompatible ("uint8 *" and "uint32")
+kernel\peripheral.c(439):W0520223:Function "APPErrorHook" declared implicitly
+kernel\peripheral.c(450):W0520513:A value of type "uint16 *" cannot be assigned to an entity of type "uint32"
+kernel\peripheral.c(452):W0520513:A value of type "uint16 *" cannot be assigned to an entity of type "uint32"
+kernel\peripheral.c(454):W0520223:Function "pushStack" declared implicitly
+kernel\peripheral.c(455):W0520223:Function "sysCallSystemService" declared implicitly
+kernel\peripheral.c(456):W0520223:Function "popStack" declared implicitly
+kernel\peripheral.c(468):W0520042:Operand types are incompatible ("uint16 *" and "uint32")
+kernel\peripheral.c(468):W0520042:Operand types are incompatible ("uint16 *" and "uint32")
+kernel\peripheral.c(502):W0520223:Function "APPErrorHook" declared implicitly
+kernel\peripheral.c(513):W0520513:A value of type "uint32 *" cannot be assigned to an entity of type "uint32"
+kernel\peripheral.c(515):W0520513:A value of type "uint32 *" cannot be assigned to an entity of type "uint32"
+kernel\peripheral.c(517):W0520223:Function "pushStack" declared implicitly
+kernel\peripheral.c(518):W0520223:Function "sysCallSystemService" declared implicitly
+kernel\peripheral.c(519):W0520223:Function "popStack" declared implicitly
+kernel\peripheral.c(531):W0520042:Operand types are incompatible ("uint32 *" and "uint32")
+kernel\peripheral.c(531):W0520042:Operand types are incompatible ("uint32 *" and "uint32")
+kernel\peripheral.c(565):W0520223:Function "APPErrorHook" declared implicitly
+kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+kernel\typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+kernel\os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "kernel\../application/Std_Types.h")
+kernel\Ioc.c(100):W0520940:Missing return statement at end of non-void function "IOC_API"
+kernel\Ioc.c(119):W0520513:A value of type "void (*)(void)" cannot be assigned to an entity of type "void (*)(StatusType)"
+kernel\Ioc.c(131):W0520513:A value of type "void (*)(void)" cannot be assigned to an entity of type "uint32"
+kernel\Ioc.c(141):W0520940:Missing return statement at end of non-void function "SetCallbackfunctionAction"
+kernel\Ioc.c(207):W0520513:A value of type "struct IOC_Q1_struct *" cannot be assigned to an entity of type "uint32"
+kernel\Ioc.c(211):W0520223:Function "pushStack" declared implicitly
+kernel\Ioc.c(212):W0520223:Function "sysCallSystemService" declared implicitly
+kernel\Ioc.c(213):W0520223:Function "popStack" declared implicitly
+kernel\Ioc.c(229):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+kernel\Ioc.c(243):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+kernel\Ioc.c(258):W0520223:Function "APPErrorHook" declared implicitly
+kernel\Ioc.c(275):W0520513:A value of type "struct IOC_Q1_struct *" cannot be assigned to an entity of type "uint32"
+kernel\Ioc.c(279):W0520223:Function "pushStack" declared implicitly
+kernel\Ioc.c(280):W0520223:Function "sysCallSystemService" declared implicitly
+kernel\Ioc.c(281):W0520223:Function "popStack" declared implicitly
+kernel\Ioc.c(297):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+kernel\Ioc.c(311):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+kernel\Ioc.c(326):W0520223:Function "APPErrorHook" declared implicitly
+kernel\Ioc.c(343):W0520513:A value of type "struct IOC_Q1_struct *" cannot be assigned to an entity of type "uint32"
+kernel\Ioc.c(347):W0520223:Function "pushStack" declared implicitly
+kernel\Ioc.c(348):W0520223:Function "sysCallSystemService" declared implicitly
+kernel\Ioc.c(349):W0520223:Function "popStack" declared implicitly
+kernel\Ioc.c(355):W0520223:Function "PrintText" declared implicitly
+kernel\Ioc.c(369):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+kernel\Ioc.c(373):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+kernel\Ioc.c(388):W0520223:Function "APPErrorHook" declared implicitly
+kernel\Ioc.c(405):W0520513:A value of type "struct IOC_Q2_struct *" cannot be assigned to an entity of type "uint32"
+kernel\Ioc.c(409):W0520223:Function "pushStack" declared implicitly
+kernel\Ioc.c(410):W0520223:Function "sysCallSystemService" declared implicitly
+kernel\Ioc.c(411):W0520223:Function "popStack" declared implicitly
+kernel\Ioc.c(427):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+kernel\Ioc.c(441):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+kernel\Ioc.c(456):W0520223:Function "APPErrorHook" declared implicitly
+kernel\Ioc.c(473):W0520513:A value of type "struct IOC_Q2_struct *" cannot be assigned to an entity of type "uint32"
+kernel\Ioc.c(477):W0520223:Function "pushStack" declared implicitly
+kernel\Ioc.c(478):W0520223:Function "sysCallSystemService" declared implicitly
+kernel\Ioc.c(479):W0520223:Function "popStack" declared implicitly
+kernel\Ioc.c(495):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+kernel\Ioc.c(509):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+kernel\Ioc.c(524):W0520223:Function "APPErrorHook" declared implicitly
+kernel\Ioc.c(541):W0520513:A value of type "struct IOC_Q2_struct *" cannot be assigned to an entity of type "uint32"
+kernel\Ioc.c(545):W0520223:Function "pushStack" declared implicitly
+kernel\Ioc.c(546):W0520223:Function "sysCallSystemService" declared implicitly
+kernel\Ioc.c(547):W0520223:Function "popStack" declared implicitly
+kernel\Ioc.c(553):W0520223:Function "PrintText" declared implicitly
+kernel\Ioc.c(567):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+kernel\Ioc.c(571):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+kernel\Ioc.c(586):W0520223:Function "APPErrorHook" declared implicitly
+kernel\Ioc.c(603):W0520513:A value of type "struct IOC_Q3_struct *" cannot be assigned to an entity of type "uint32"
+kernel\Ioc.c(607):W0520223:Function "pushStack" declared implicitly
+kernel\Ioc.c(608):W0520223:Function "sysCallSystemService" declared implicitly
+kernel\Ioc.c(609):W0520223:Function "popStack" declared implicitly
+kernel\Ioc.c(626):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+kernel\Ioc.c(646):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+kernel\Ioc.c(661):W0520223:Function "APPErrorHook" declared implicitly
+kernel\Ioc.c(678):W0520513:A value of type "struct IOC_Q3_struct *" cannot be assigned to an entity of type "uint32"
+kernel\Ioc.c(682):W0520223:Function "pushStack" declared implicitly
+kernel\Ioc.c(683):W0520223:Function "sysCallSystemService" declared implicitly
+kernel\Ioc.c(684):W0520223:Function "popStack" declared implicitly
+kernel\Ioc.c(701):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+kernel\Ioc.c(721):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+kernel\Ioc.c(736):W0520223:Function "APPErrorHook" declared implicitly
+kernel\Ioc.c(753):W0520513:A value of type "struct IOC_Q3_struct *" cannot be assigned to an entity of type "uint32"
+kernel\Ioc.c(757):W0520223:Function "pushStack" declared implicitly
+kernel\Ioc.c(758):W0520223:Function "sysCallSystemService" declared implicitly
+kernel\Ioc.c(759):W0520223:Function "popStack" declared implicitly
+kernel\Ioc.c(765):W0520223:Function "PrintText" declared implicitly
+kernel\Ioc.c(779):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+kernel\Ioc.c(796):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+kernel\Ioc.c(811):W0520223:Function "APPErrorHook" declared implicitly
+kernel\Ioc.c(824):W0520513:A value of type "void *" cannot be assigned to an entity of type "uint32"
+kernel\Ioc.c(828):W0520223:Function "pushStack" declared implicitly
+kernel\Ioc.c(829):W0520223:Function "sysCallSystemService" declared implicitly
+kernel\Ioc.c(830):W0520223:Function "popStack" declared implicitly
+kernel\Ioc.c(844):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+kernel\Ioc.c(847):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+kernel\Ioc.c(861):W0520223:Function "APPErrorHook" declared implicitly
+application\Controller\../../kernel/typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+application\Controller\../../kernel/typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+application\Controller\../../kernel/typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+application\Controller\../../kernel/typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+application\Controller\../../kernel/typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+application\Controller\../../kernel/os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "application\Controller\../Std_Types.h")
+application\Controller\Rte_Controller_ReTxAcc.c(29):W0520188:Enumerated type mixed with another type
+application\Controller\../../kernel/typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+application\Controller\../../kernel/typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+application\Controller\../../kernel/typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+application\Controller\../../kernel/typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+application\Controller\../../kernel/typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+application\Controller\../../kernel/os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "application\Controller\../Std_Types.h")
+application\Controller\../../kernel/typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+application\Controller\../../kernel/typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+application\Controller\../../kernel/typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+application\Controller\../../kernel/typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+application\Controller\../../kernel/typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+application\Controller\../../kernel/os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "application\Controller\../Std_Types.h")
+application\Observation\../../kernel/typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+application\Observation\../../kernel/typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+application\Observation\../../kernel/typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+application\Observation\../../kernel/typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+application\Observation\../../kernel/typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+application\Observation\../../kernel/os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "application\Observation\../Std_Types.h")
+application\Observation\Rte_Observation_ReRxAcc.c(24):W0520167:Argument of type "MyUint16OfVendorID **" is incompatible with parameter of type "MyUint16OfVendorID *"
+application\Observation\../../kernel/typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+application\Observation\../../kernel/typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+application\Observation\../../kernel/typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+application\Observation\../../kernel/typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+application\Observation\../../kernel/typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+application\Observation\../../kernel/os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "application\Observation\../Std_Types.h")
+application\Observation\../../kernel/typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+application\Observation\../../kernel/typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+application\Observation\../../kernel/typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+application\Observation\../../kernel/typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+application\Observation\../../kernel/typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+application\Observation\../../kernel/os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "application\Observation\../Std_Types.h")
+application\Observation\Rte_Observation_ReRxTemp.c(36):W0520167:Argument of type "MyUint16OfVendorID **" is incompatible with parameter of type "MyUint16OfVendorID *"
+application\Controller2\../../kernel/typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+application\Controller2\../../kernel/typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+application\Controller2\../../kernel/typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+application\Controller2\../../kernel/typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+application\Controller2\../../kernel/typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+application\Controller2\../../kernel/os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "application\Controller2\../Std_Types.h")
+application\Controller2\Rte_Controller2_ReTxAcc2.c(29):W0520188:Enumerated type mixed with another type
+application\Controller2\../../kernel/typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+application\Controller2\../../kernel/typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+application\Controller2\../../kernel/typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+application\Controller2\../../kernel/typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+application\Controller2\../../kernel/typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+application\Controller2\../../kernel/os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "application\Controller2\../Std_Types.h")
+application\Controller2\../../kernel/typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+application\Controller2\../../kernel/typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+application\Controller2\../../kernel/typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+application\Controller2\../../kernel/typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+application\Controller2\../../kernel/typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+application\Controller2\../../kernel/os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "application\Controller2\../Std_Types.h")
+application\../kernel/typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
+application\../kernel/typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
+application\../kernel/typedefine.h(15):W0520301:Typedef name has already been declared (with same type)
+application\../kernel/typedefine.h(16):W0520301:Typedef name has already been declared (with same type)
+application\../kernel/typedefine.h(19):W0520301:Typedef name has already been declared (with same type)
+application\../kernel/os.h(17):W0520047:Incompatible redefinition of macro "E_OK" (declared at line 47 of "application\Std_Types.h")
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.05.00\Bin\ccrh.exe device\boot.asm device\cstart1.asm device\cstart2.asm device\boot2.asm -Xobj_path=DefaultBuild -Xcpu=g3m -g -c -MAKEUD=DefaultBuild -Xexec_time=C:\Users\azx61\AppData\Local\Temp\CSPlusBuildTool_a7946272d73041cab81565a2faec933eoxktpaj3.121 -Xmsg_lang=english
+C:\Program Files (x86)\Renesas Electronics\CS+\CC\CC-RH\V2.05.00\Bin\rlink.exe -MAKEUD=DefaultBuild\MilkshopAUTOSAR.lk.ud -subcommand=DefaultBuild\MilkshopAUTOSAR.clnk
+W0561017:Paid license of CC-RH V2 is not found, and the evaluation period has expired. Please consider purchasing the product.
+W0561120:Section address is not assigned to "TASK_SysTask_core0.text"
+W0561120:Section address is not assigned to "TASK_SysTask_core1.text"
+W0561017:Paid license of CC-RH V2 is not found, and the evaluation period has expired. Please consider purchasing the product.
+Renesas Optimizing Linker Completed
+------ Build ended(Error:0, Warning:552)(MilkshopAUTOSAR, DefaultBuild) ------
+
+--- CommandFile 1 ---
+DefaultBuild\MilkshopAUTOSAR.clnk :
+-input=DefaultBuild\alarm.obj
+-input=DefaultBuild\event.obj
+-input=DefaultBuild\isr2.obj
+-input=DefaultBuild\resource.obj
+-input=DefaultBuild\scheduler.obj
+-input=DefaultBuild\system.obj
+-input=DefaultBuild\task.obj
+-input=DefaultBuild\alarm_Cfg.obj
+-input=DefaultBuild\event_Cfg.obj
+-input=DefaultBuild\isr_Cfg.obj
+-input=DefaultBuild\resource_Cfg.obj
+-input=DefaultBuild\task_Cfg.obj
+-input=DefaultBuild\board.obj
+-input=DefaultBuild\boot.obj
+-input=DefaultBuild\context.obj
+-input=DefaultBuild\cstart1.obj
+-input=DefaultBuild\cstart2.obj
+-input=DefaultBuild\GPIO.obj
+-input=DefaultBuild\ISRInit.obj
+-input=DefaultBuild\timer.obj
+-input=DefaultBuild\r_clkc.obj
+-input=DefaultBuild\r_intc.obj
+-input=DefaultBuild\r_port.obj
+-input=DefaultBuild\r_rlin.obj
+-input=DefaultBuild\r_uart.obj
+-input=DefaultBuild\r_lin.obj
+-input=DefaultBuild\hook.obj
+-input=DefaultBuild\main_pe2.obj
+-input=DefaultBuild\main.obj
+-input=DefaultBuild\application_Cfg.obj
+-input=DefaultBuild\memprot_Cfg.obj
+-input=DefaultBuild\os_Cfg.obj
+-input=DefaultBuild\spinlock_Cfg.obj
+-input=DefaultBuild\timingprot_Cfg.obj
+-input=DefaultBuild\application.obj
+-input=DefaultBuild\spinlock.obj
+-input=DefaultBuild\timingprot.obj
+-input=DefaultBuild\boot2.obj
+-input=DefaultBuild\core.obj
+-input=DefaultBuild\lock.obj
+-input=DefaultBuild\memprot.obj
+-input=DefaultBuild\systemcall.obj
+-input=DefaultBuild\counter_Cfg.obj
+-input=DefaultBuild\counter.obj
+-input=DefaultBuild\ScheduleTable.obj
+-input=DefaultBuild\scheduleTable_Cfg.obj
+-input=DefaultBuild\string_format_test.obj
+-input=DefaultBuild\softwaretimer_Cfg.obj
+-input=DefaultBuild\softwaretimer.obj
+-input=DefaultBuild\app2.obj
+-input=DefaultBuild\app3.obj
+-input=DefaultBuild\app4.obj
+-input=DefaultBuild\trustedfunc_Cfg.obj
+-input=DefaultBuild\app1.obj
+-input=DefaultBuild\peripheral.obj
+-input=DefaultBuild\Ioc.obj
+-input=DefaultBuild\ring_buffer.obj
+-input=DefaultBuild\Rte_Controller_ReTxAcc.obj
+-input=DefaultBuild\Rte_Controller_ReTxSpd.obj
+-input=DefaultBuild\Rte_Controller_ReTxTemp.obj
+-input=DefaultBuild\Rte_Observation_ReRxAcc.obj
+-input=DefaultBuild\Rte_Observation_ReRxSpd.obj
+-input=DefaultBuild\Rte_Observation_ReRxTemp.obj
+-input=DefaultBuild\Rte_Controller2_ReTxAcc2.obj
+-input=DefaultBuild\Rte_Controller2_ReTxSpd2.obj
+-input=DefaultBuild\Rte_Controller2_ReTxTemp2.obj
+-input=DefaultBuild\ioc_data_management.obj
+-debug
+-nocompress
+-NOOPtimize
+-output=DefaultBuild\MilkshopAUTOSAR.abs
+-library=v850e3v5\rhf8n.lib
+-library=v850e3v5\libmalloc.lib
+-list=DefaultBuild\MilkshopAUTOSAR.map
+-start=RESET_PE1,EIINTTBL_PE1,SYSTEMCALLTBL/0,.text,IOC_RESERVED_SEC.text,USER_SHARED_SEC.text,LOCAL_RAM_PE1.text,LOCAL_RAM_PE2.text,SELF_AREA.text,GLOBAL_RAM_A.text,RETENTION_RAM.text,OSAPP_A01_SEC.text,ISR_I001_SEC.text,ISR_I002_SEC.text,ISR_I003_SEC.text,ISR_I004_SEC.text,TASK_T001_SEC.text,TASK_T002_SEC.text,TASK_T003_SEC.text,OSAPP_A02_SEC.text,ISR_I101_SEC.text,ISR_I102_SEC.text,ISR_I103_SEC.text,ISR_I104_SEC.text,TASK_T101_SEC.text,TASK_T102_SEC.text,TASK_T103_SEC.text,OSAPP_A03_SEC.text,ISR_I005_SEC.text,ISR_I006_SEC.text,TASK_T004_SEC.text,TASK_T005_SEC.text,TASK_T006_SEC.text,OSAPP_A04_SEC.text,ISR_I105_SEC.text,ISR_I106_SEC.text,TASK_T104_SEC.text,TASK_T105_SEC.text,TASK_T106_SEC.text,GLOBAL_RAM_B.text/00008000,RESET_PE2,EIINTTBL_PE2,.const,IOC_RESERVED_SEC.const,USER_SHARED_SEC.const,LOCAL_RAM_PE1.const,LOCAL_RAM_PE2.const,SELF_AREA.const,OSAPP_A01_SEC.const,ISR_I001_SEC.const,ISR_I002_SEC.const,ISR_I003_SEC.const,ISR_I004_SEC.const,TASK_T001_SEC.const,TASK_T002_SEC.const,TASK_T003_SEC.const,OSAPP_A02_SEC.const,ISR_I101_SEC.const,ISR_I102_SEC.const,ISR_I103_SEC.const,ISR_I104_SEC.const,TASK_T101_SEC.const,TASK_T102_SEC.const,TASK_T103_SEC.const,OSAPP_A03_SEC.const,ISR_I005_SEC.const,ISR_I006_SEC.const,TASK_T004_SEC.const,TASK_T005_SEC.const,TASK_T006_SEC.const,OSAPP_A04_SEC.const,ISR_I105_SEC.const,ISR_I106_SEC.const,TASK_T104_SEC.const,TASK_T105_SEC.const,TASK_T106_SEC.const,TASK_SysTask_core0.const,TASK_SysTask_core1.const,GLOBAL_RAM_A.const,RETENTION_RAM.const,GLOBAL_RAM_B.const,.data,IOC_RESERVED_SEC.data,USER_SHARED_SEC.data,LOCAL_RAM_PE1.data,LOCAL_RAM_PE2.data,SELF_AREA.data,OSAPP_A01_SEC.data,ISR_I001_SEC.data,ISR_I002_SEC.data,ISR_I003_SEC.data,ISR_I004_SEC.data,TASK_T001_SEC.data,TASK_T002_SEC.data,TASK_T003_SEC.data,OSAPP_A02_SEC.data,ISR_I101_SEC.data,ISR_I102_SEC.data,ISR_I103_SEC.data,ISR_I104_SEC.data,TASK_T101_SEC.data,TASK_T102_SEC.data,TASK_T103_SEC.data,OSAPP_A03_SEC.data,ISR_I005_SEC.data,ISR_I006_SEC.data,TASK_T004_SEC.data,TASK_T005_SEC.data,TASK_T006_SEC.data,OSAPP_A04_SEC.data,ISR_I105_SEC.data,ISR_I106_SEC.data,TASK_T104_SEC.data,TASK_T105_SEC.data,TASK_T106_SEC.data,TASK_SysTask_core0.data,TASK_SysTask_core1.data,GLOBAL_RAM_A.data,RETENTION_RAM.data,GLOBAL_RAM_B.data/00800000,LOCAL_RAM_PE2.bss,LOCAL_RAM_PE2.data.R,OSAPP_A02_SEC.bss,OSAPP_A02_SEC.data.R,ISR_I101_SEC.bss,ISR_I101_SEC.data.R,ISR_I102_SEC.bss,ISR_I102_SEC.data.R,ISR_I103_SEC.bss,ISR_I103_SEC.data.R,ISR_I104_SEC.bss,ISR_I104_SEC.data.R,TASK_T101_SEC.bss,TASK_T101_SEC.data.R,TASK_T102_SEC.bss,TASK_T102_SEC.data.R,TASK_T103_SEC.bss,TASK_T103_SEC.data.R,OSAPP_A04_SEC.bss,OSAPP_A04_SEC.data.R,ISR_I105_SEC.bss,ISR_I105_SEC.data.R,ISR_I106_SEC.bss,ISR_I106_SEC.data.R,TASK_T104_SEC.bss,TASK_T104_SEC.data.R,TASK_T105_SEC.bss,TASK_T105_SEC.data.R,TASK_T106_SEC.bss,TASK_T106_SEC.data.R,TASK_SysTask_core1.bss,TASK_SysTask_core1.data.R,ALL_TASK_ISR_STACK_PE2.bss,system_pe2_stack.bss/FE9E0000,LOCAL_RAM_PE1.bss,LOCAL_RAM_PE1.data.R,OSAPP_A01_SEC.bss,OSAPP_A01_SEC.data.R,ISR_I001_SEC.bss,ISR_I001_SEC.data.R,ISR_I002_SEC.bss,ISR_I002_SEC.data.R,ISR_I003_SEC.bss,ISR_I003_SEC.data.R,ISR_I004_SEC.bss,ISR_I004_SEC.data.R,TASK_T001_SEC.bss,TASK_T001_SEC.data.R,TASK_T002_SEC.bss,TASK_T002_SEC.data.R,TASK_T003_SEC.bss,TASK_T003_SEC.data.R,OSAPP_A03_SEC.bss,OSAPP_A03_SEC.data.R,ISR_I005_SEC.bss,ISR_I005_SEC.data.R,ISR_I006_SEC.bss,ISR_I006_SEC.data.R,TASK_T004_SEC.bss,TASK_T004_SEC.data.R,TASK_T005_SEC.bss,TASK_T005_SEC.data.R,TASK_T006_SEC.bss,TASK_T006_SEC.data.R,TASK_SysTask_core0.bss,TASK_SysTask_core0.data.R,ALL_TASK_ISR_STACK_PE1.bss,system_pe1_stack.bss/FEBC0000,SELF_AREA.bss,SELF_AREA.data.R/FEDFE000,IOC_RESERVED_SEC.bss,IOC_RESERVED_SEC.data.R,GLOBAL_RAM_A.bss,GLOBAL_RAM_A.data.R/FEEF8000,.bss,.data.R,RETENTION_RAM.bss,RETENTION_RAM.data.R/FEF01000,USER_SHARED_SEC.bss,USER_SHARED_SEC.data.R,GLOBAL_RAM_B.bss,GLOBAL_RAM_B.data.R/FEFF8000
+-rom=.data=.data.R,IOC_RESERVED_SEC.data=IOC_RESERVED_SEC.data.R,USER_SHARED_SEC.data=USER_SHARED_SEC.data.R,LOCAL_RAM_PE2.data=LOCAL_RAM_PE2.data.R,LOCAL_RAM_PE1.data=LOCAL_RAM_PE1.data.R,SELF_AREA.data=SELF_AREA.data.R,GLOBAL_RAM_A.data=GLOBAL_RAM_A.data.R,RETENTION_RAM.data=RETENTION_RAM.data.R,GLOBAL_RAM_B.data=GLOBAL_RAM_B.data.R,OSAPP_A01_SEC.data=OSAPP_A01_SEC.data.R,ISR_I001_SEC.data=ISR_I001_SEC.data.R,ISR_I002_SEC.data=ISR_I002_SEC.data.R,ISR_I003_SEC.data=ISR_I003_SEC.data.R,ISR_I004_SEC.data=ISR_I004_SEC.data.R,TASK_T001_SEC.data=TASK_T001_SEC.data.R,TASK_T002_SEC.data=TASK_T002_SEC.data.R,TASK_T003_SEC.data=TASK_T003_SEC.data.R,OSAPP_A02_SEC.data=OSAPP_A02_SEC.data.R,ISR_I101_SEC.data=ISR_I101_SEC.data.R,ISR_I102_SEC.data=ISR_I102_SEC.data.R,ISR_I103_SEC.data=ISR_I103_SEC.data.R,ISR_I104_SEC.data=ISR_I104_SEC.data.R,TASK_T101_SEC.data=TASK_T101_SEC.data.R,TASK_T102_SEC.data=TASK_T102_SEC.data.R,TASK_T103_SEC.data=TASK_T103_SEC.data.R,OSAPP_A03_SEC.data=OSAPP_A03_SEC.data.R,ISR_I005_SEC.data=ISR_I005_SEC.data.R,ISR_I006_SEC.data=ISR_I006_SEC.data.R,TASK_T004_SEC.data=TASK_T004_SEC.data.R,TASK_T005_SEC.data=TASK_T005_SEC.data.R,TASK_T006_SEC.data=TASK_T006_SEC.data.R,OSAPP_A04_SEC.data=OSAPP_A04_SEC.data.R,ISR_I105_SEC.data=ISR_I105_SEC.data.R,ISR_I106_SEC.data=ISR_I106_SEC.data.R,TASK_T104_SEC.data=TASK_T104_SEC.data.R,TASK_T105_SEC.data=TASK_T105_SEC.data.R,TASK_T106_SEC.data=TASK_T106_SEC.data.R,TASK_SysTask_core0.data=TASK_SysTask_core0.data.R,TASK_SysTask_core1.data=TASK_SysTask_core1.data.R
+-memory=high
+-nologo
+-end
+-input=DefaultBuild\MilkshopAUTOSAR.abs
+-output=DefaultBuild\MilkshopAUTOSAR.mot
+-form=stype
+-exit
+
+
+--- SHA1 hash value of output files ---
+C:\program1\AutosarOS\OSCAR-many_one_ioc\DefaultBuild\MilkshopAUTOSAR.abs: fef5792810c537ef7501d3812ae37eb30fb2008a
+C:\program1\AutosarOS\OSCAR-many_one_ioc\DefaultBuild\MilkshopAUTOSAR.mot: df07d8c05fc6eb70a51bbe4bfee159034920e51d
+
+
+--- System Information ---
+*OS Version
+ Microsoft Windows 11 專業版 (-, 10.0.22000, WOW64)
+*Language
+ 中文(台灣)
+*.NET Framework Version
+ Microsoft .NET Framework 4 [.NET 4.8 or later] (533325)
+
+--- Application Information ---
+*Product Name
+ CS+ for CC
+*Package Version
+ V8.10.00  [06 Jun 2023]
+*Version
+ V9.10.00.03 [23 May 2023]
+*Assembly Version
+ 3.12.10.1
+*Product License
+ 
+*Execution Place
+ C:\Program Files (x86)\Renesas Electronics\CS+\CC
+*Memory Usage
+ *Private Working Set
+  331 MB
+ *Number of GDI Objects
+  2363
+ *Number of USER Objects
+  1271
+ *Opened Files
+  22 editors, 22 files, 198 KB
+
+--- Build Tool Plug-in Information ---
+RH850 Build tool CC-RH Plug-in
+ *Version
+  V8.09.00.00 [07 Oct 2022]
+ *Assembly Version
+  1.1.10.12
+ *DLL File Name
+  BuildToolCCRH.dll
+RL78 Build tool CC-RL Plug-in
+ *Version
+  V8.09.00.01 [07 Oct 2022]
+ *Assembly Version
+  1.0.0.0
+ *DLL File Name
+  BuildToolCCRL.dll
+RX Build tool CC-RX Plug-in
+ *Version
+  V8.09.00.00 [07 Oct 2022]
+ *Assembly Version
+  3.12.10.1
+ *DLL File Name
+  BuildToolCCRX.dll
+RH850 Build tool GHS CCRH850 Plug-in
+ *Version
+  V1.08.00.00 [03 Apr 2023]
+ *Assembly Version
+  1.0.0.0
+ *DLL File Name
+  BuildToolGHSCCRH850.dll
+
+--- Debug Tool Plug-in Information ---
+Debugger Collection Plug-in
+ *Version
+  V8.10.00.02 [12 May 2023]
+ *Assembly Version
+  2.12.10.1
+ *DLL File Name
+  DebugToolCollection.dll
+
+--- Other Plug-in Information ---
+Code Generator Plug-in for RH850
+ *Version
+  V1.02.02.05 [25 May 2018]
+ *Assembly Version
+  1.0.0.0
+ *DLL File Name
+  CodeGeneratorRH850.dll
+Code Generator Plug-in
+ *Version
+  V4.08.06.01 [28 Oct 2022]
+ *Assembly Version
+  3.0.0.0
+ *DLL File Name
+  CodePart.dll
+Code Generator/PinView Plug-in
+ *Version
+  V2.10.07.02 [08 Nov 2021]
+ *Assembly Version
+  1.0.0.0
+ *DLL File Name
+  CodePart2.dll
+Debug Console Plug-in
+ *Version
+  V8.09.00.03 [24 Nov 2022]
+ *Assembly Version
+  8.9.0.0
+ *DLL File Name
+  DebugConsole.dll
+Quick and Effective tool solution - QE
+ *Version
+  V9.09.00.01 [18 Oct 2022]
+ *Assembly Version
+  1.15.10.16
+ *DLL File Name
+  InCarTools.dll
+Pin Configurator Plug-in
+ *Version
+  V1.54.01.01 [31 Jul 2014]
+ *Assembly Version
+  1.6.10.23
+ *DLL File Name
+  PinConfig.dll
+Program Analyzer Plug-in
+ *Version
+  V4.13.00.03 [24 May 2023]
+ *Assembly Version
+  3.12.11.9
+ *DLL File Name
+  ProgramAnalyzer.dll
+IronPython Console Plug-in
+ *Version
+  V1.46.00.02 [08 May 2023]
+ *Assembly Version
+  1.6.10.23
+ *DLL File Name
+  PythonConsole.dll
+Editor plug-in DLL
+ *Version
+  V1.19.00.01 [24 Oct 2022]
+ *Assembly Version
+  1.1.0.0
+ *DLL File Name
+  SEditor.dll
+Stack Usage Tracer
+ *Version
+  V1.05.00.02 [30 Jul 2014]
+ *Assembly Version
+  1.30.11.15
+ *DLL File Name
+  Stk.dll
+Update Manager Plug-in
+ *Version
+  V2.03.00.02 [29 Oct 2018]
+ *Assembly Version
+  1.13.6.20
+ *DLL File Name
+  Update.dll
+
+Debug Tool Common Interface
+ *Version
+  V8.10.00.02 [12 May 2023]
+ *Assembly Version
+  3.12.10.1
+ *DLL File Name
+  CommonDebuggerInterface.dll
+Device Information Common Interface
+ *Version
+  V9.10.00.01 [14 Apr 2023]
+ *Assembly Version
+  3.0.0.0
+ *DLL File Name
+  DeviceInformation.dll
+
+--- Main Project Information ---
+C:\program1\AutosarOS\OSCAR-many_one_ioc\MilkshopAUTOSAR.mtpj
+Microcontroller Information
+ *R7F701527
+  *File Name: Version
+   RH850_Productlist.xml: V8.100000
+   R7F701527_common.xml: V1.40.00.XX.XX
+   DR7F701527.DVF: V1.40
+   -: -
+   -: -
+  
+
+Build Tool Information
+ *CC-RH
+   * Version of plug-in(*.dll)
+     V8.10.00.02 [08 May 2023]
+   * The Version of the Compiler Package
+     V2.05.00
+  
+
+Debug Tool Information
+ *RH850 E1(LPD)
+  Debugger Library V8.10.00.02 [12 May 2023]
+  
+
+Other Tool Information
+ *Boot Loader
+ *None
+
+ *None
+
+ *None
+
+ *None
+
+ *None
+
+

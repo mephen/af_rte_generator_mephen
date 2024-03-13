@@ -1,0 +1,88 @@
+import os, sys
+import pdb
+from autosarfactory import autosarfactory
+
+interface_file = os.path.join(os.path.dirname(__file__), 'swc', 'tpc_composition_interface.arxml')
+
+from autosarfactory.autosarfactory import SwImplPolicyEnum ,HandleInvalidEnum\
+    , SwCalibrationAccessEnum 
+
+from TPCComposition_DataType_config import App_uint8, Impl_float64 
+
+TPC_Composition_ARPackage= autosarfactory.new_file(interface_file, defaultArPackage = 'TPC_Composition', overWrite = 'true')
+Interfaces_ARPackage = TPC_Composition_ARPackage.new_ARPackage('Interfaces') 
+SR_If1 = Interfaces_ARPackage.new_SenderReceiverInterface('SR_If1')
+SR_If1_DE_Acc = SR_If1.new_DataElement('Acc') 
+SR_If1_DE_Acc.set_category('VALUE')
+SR_If1_DE_Acc.set_type(App_uint8)
+SR_If1_DE_Acc_SwDefProps = SR_If1_DE_Acc.new_SwDataDefProps().new_SwDataDefPropsVariant()
+SR_If1_DE_Acc_SwDefProps.set_swImplPolicy(SwImplPolicyEnum.VALUE_STANDARD)
+SR_If1_DE_Acc_SwDefProps.set_swCalibrationAccess(SwCalibrationAccessEnum.VALUE_READ_ONLY)
+swDefProps_num_value_sepc = SR_If1_DE_Acc_SwDefProps.new_NumericalValueSpecification()
+swDefProps_num_value_sepc.set_shortLabel('DefaultInvalidValue_SR_If1_DE_Acc')
+swDefProps_num_value_sepc_value = swDefProps_num_value_sepc.new_Value()
+swDefProps_num_value_sepc_value.set(1618)
+SR_If1_Acc_InvalidationPolicy = SR_If1.new_InvalidationPolicie('SR_If1_Acc_InvalidationPolicy')
+SR_If1_Acc_InvalidationPolicy.set_handleInvalid(HandleInvalidEnum.VALUE_REPLACE)
+SR_If1_Acc_InvalidationPolicy.set_dataElement(SR_If1_DE_Acc)
+
+SR_If1_DE_Spd = SR_If1.new_DataElement('Spd') 
+SR_If1_DE_Spd.set_category('VALUE')
+SR_If1_DE_Spd.set_type(App_uint8)
+SR_If1_DE_Spd_SwDefProps = SR_If1_DE_Spd.new_SwDataDefProps().new_SwDataDefPropsVariant()
+SR_If1_DE_Spd_SwDefProps.set_swImplPolicy(SwImplPolicyEnum.VALUE_STANDARD)
+SR_If1_DE_Spd_SwDefProps.set_swCalibrationAccess(SwCalibrationAccessEnum.VALUE_READ_ONLY)
+swDefProps_num_value_sepc = SR_If1_DE_Spd_SwDefProps.new_NumericalValueSpecification()
+swDefProps_num_value_sepc.set_shortLabel('DefaultInvalidValue_SR_If1_DE_Spd')
+swDefProps_num_value_sepc_value = swDefProps_num_value_sepc.new_Value()
+swDefProps_num_value_sepc_value.set(392)
+SR_If1_Spd_InvalidationPolicy = SR_If1.new_InvalidationPolicie('SR_If1_Spd_InvalidationPolicy')
+SR_If1_Spd_InvalidationPolicy.set_handleInvalid(HandleInvalidEnum.VALUE_KEEP)
+SR_If1_Spd_InvalidationPolicy.set_dataElement(SR_If1_DE_Spd)
+
+SR_If2 = Interfaces_ARPackage.new_SenderReceiverInterface('SR_If2')
+SR_If2_DE_Temp = SR_If2.new_DataElement('Temp') 
+SR_If2_DE_Temp.set_category('VALUE')
+SR_If2_DE_Temp.set_type(App_uint8)
+SR_If2_DE_Temp_SwDDP = SR_If2_DE_Temp.new_SwDataDefProps()
+SR_If2_DE_Temp_SwDDP_Variant1 = SR_If2_DE_Temp_SwDDP.new_SwDataDefPropsVariant()
+SR_If2_DE_Temp_SwDDP_Variant1.set_swImplPolicy(SwImplPolicyEnum.VALUE_QUEUED)
+SR_If2_DE_Temp_SwDDP_Variant1.set_swCalibrationAccess(SwCalibrationAccessEnum.VALUE_READ_ONLY)
+# SR_If2_DE_Temp_InvalidationPolicy = SR_If2.new_InvalidationPolicie('SR_If2_Temp_InvalidationPolicy')
+# SR_If2_DE_Temp_InvalidationPolicy.set_handleInvalid(HandleInvalidEnum.VALUE_REPLACE)
+# SR_If2_DE_Temp_InvalidationPolicy.set_dataElement(SR_If2_DE_Temp)
+
+# Obv_SR_If1 = Interfaces_ARPackage.new_SenderReceiverInterface('Obv_SR_If1')
+# Obv_SR_If1_DE_Acc = Obv_SR_If1.new_DataElement('Acc') 
+# Obv_SR_If1_DE_Acc.set_category('VALUE')
+# Obv_SR_If1_DE_Acc.set_type(App_uint16)
+# Obv_SR_If1_DE_Acc_SwDefProps = Obv_SR_If1_DE_Acc.new_SwDataDefProps().new_SwDataDefPropsVariant()
+# Obv_SR_If1_DE_Acc_SwDefProps.set_swImplPolicy(SwImplPolicyEnum.VALUE_STANDARD)
+# Obv_SR_If1_DE_Acc_SwDefProps.set_swCalibrationAccess(SwCalibrationAccessEnum.VALUE_READ_ONLY)
+# Obv_SR_If1_Acc_InvalidationPolicy = Obv_SR_If1.new_InvalidationPolicie('Obv_SR_If1_Acc_InvalidationPolicy')
+# Obv_SR_If1_Acc_InvalidationPolicy.set_handleInvalid(HandleInvalidEnum.VALUE_KEEP)
+# Obv_SR_If1_Acc_InvalidationPolicy.set_dataElement(Obv_SR_If1_DE_Acc)
+
+# Obv_SR_If1_DE_Spd = Obv_SR_If1.new_DataElement('Spd') 
+# Obv_SR_If1_DE_Spd.set_category('VALUE')
+# Obv_SR_If1_DE_Spd.set_type(App_uint16)
+# Obv_SR_If1_DE_Spd_SwDefProps = Obv_SR_If1_DE_Spd.new_SwDataDefProps().new_SwDataDefPropsVariant()
+# Obv_SR_If1_DE_Spd_SwDefProps.set_swImplPolicy(SwImplPolicyEnum.VALUE_STANDARD)
+# Obv_SR_If1_DE_Spd_SwDefProps.set_swCalibrationAccess(SwCalibrationAccessEnum.VALUE_READ_ONLY)
+# Obv_SR_If1_Spd_InvalidationPolicy = Obv_SR_If1.new_InvalidationPolicie('Obv_SR_If1_Spd_InvalidationPolicy')
+# Obv_SR_If1_Spd_InvalidationPolicy.set_handleInvalid(HandleInvalidEnum.VALUE_REPLACE)
+# Obv_SR_If1_Spd_InvalidationPolicy.set_dataElement(Obv_SR_If1_DE_Spd)
+
+# Obv_SR_If2 = Interfaces_ARPackage.new_SenderReceiverInterface('Obv_SR_If2')
+# Obv_SR_If2_DE_Temp = Obv_SR_If2.new_DataElement('Temp') 
+# Obv_SR_If2_DE_Temp.set_category('VALUE')
+# Obv_SR_If2_DE_Temp.set_type(Impl_float32)
+# Obv_SR_If2_DE_Temp_SwDDP = Obv_SR_If2_DE_Temp.new_SwDataDefProps()
+# Obv_SR_If2_DE_Temp_SwDDP_Variant1 = Obv_SR_If2_DE_Temp_SwDDP.new_SwDataDefPropsVariant()
+# Obv_SR_If2_DE_Temp_SwDDP_Variant1.set_swImplPolicy(SwImplPolicyEnum.VALUE_QUEUED)
+# Obv_SR_If2_DE_Temp_SwDDP_Variant1.set_swCalibrationAccess(SwCalibrationAccessEnum.VALUE_READ_ONLY)
+# Obv_SR_If2_DE_Temp_InvalidationPolicy = Obv_SR_If2.new_InvalidationPolicie('Obv_SR_If2_Temp_InvalidationPolicy')
+# Obv_SR_If2_DE_Temp_InvalidationPolicy.set_handleInvalid(HandleInvalidEnum.VALUE_REPLACE)
+# Obv_SR_If2_DE_Temp_InvalidationPolicy.set_dataElement(Obv_SR_If2_DE_Temp)
+
+autosarfactory.save()

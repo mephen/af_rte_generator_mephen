@@ -1,0 +1,344 @@
+AUTOSAR AUTOSAR {
+	OsApplication A01 {
+		OsTrusted = TRUE
+		OsTrustedApplicationDelayTimingViolationCall = TRUE
+		OsTrustedApplicationWithProtection = TRUE
+		OsApplicationCoreRef = EcucCoreDefinition0
+		OsAppCounterRef = counter3
+		OsAppTaskRef = T001
+		OsAppTaskRef = T002
+		OsAppTaskRef = T003
+		OsAppIsrRef = I001
+		OsAppIsrRef = I002
+		OsAppIsrRef = I003
+		OsAppIsrRef = I004
+		OsAppAlarmRef = alarm3
+		OsAppAlarmRef = alarm4
+		OsAppScheduleTableRef = ST1
+		OsAppScheduleTableRef = ST2
+		OsRestartTask = T003
+		OsApplicationTrustedFunction AIMER {
+			OsTrustedFunctionName = AIMER
+			OsMemoryMappingCodeLocationRef = None
+		}
+		OsApplicationTrustedFunction IKURA {
+			OsTrustedFunctionName = IKURA
+			OsMemoryMappingCodeLocationRef = None
+		}
+		OsApplicationTrustedFunction YORUSHIKA {
+			OsTrustedFunctionName = YORUSHIKA
+			OsMemoryMappingCodeLocationRef = None
+		}
+	}
+	OsApplication A02 {
+		OsTrusted = TRUE
+		OsTrustedApplicationDelayTimingViolationCall = TRUE
+		OsTrustedApplicationWithProtection = FALSE
+		OsApplicationCoreRef = EcucCoreDefinition1
+		OsAppCounterRef = counter1
+		OsAppTaskRef = T101
+		OsAppTaskRef = T102
+		OsAppTaskRef = T103
+		OsAppIsrRef = I101
+		OsAppIsrRef = I102
+		OsAppIsrRef = I103
+		OsAppIsrRef = I104
+		OsAppAlarmRef = alarm1
+		OsAppScheduleTableRef = ST3
+		OsRestartTask = T103
+		OsApplicationTrustedFunction YUURI {
+			OsTrustedFunctionName = YUURI
+			OsMemoryMappingCodeLocationRef = None
+		}
+		OsApplicationTrustedFunction HITORIE {
+			OsTrustedFunctionName = HITORIE
+			OsMemoryMappingCodeLocationRef = None
+		}
+	}
+	OsApplication A03 {
+		OsTrusted = TRUE
+		OsTrustedApplicationDelayTimingViolationCall = FALSE
+		OsTrustedApplicationWithProtection = FALSE
+		OsApplicationCoreRef = EcucCoreDefinition0
+		OsAppCounterRef = counter4
+		OsAppTaskRef = T004
+		OsAppTaskRef = T005
+		OsAppTaskRef = T006
+		OsAppIsrRef = I005
+		OsAppIsrRef = I006
+		OsRestartTask = T006
+	}
+	OsApplication A04 {
+		OsTrusted = FALSE
+		OsTrustedApplicationDelayTimingViolationCall = FALSE
+		OsTrustedApplicationWithProtection = FALSE
+		OsApplicationCoreRef = EcucCoreDefinition1
+		OsAppCounterRef = counter2
+		OsAppTaskRef = T104
+		OsAppTaskRef = T105
+		OsAppTaskRef = T106
+		OsAppIsrRef = I105
+		OsAppIsrRef = I106
+		OsRestartTask = T106
+	}
+	OsTask T001 {
+		OsTaskActivation = 55
+		OsTaskPriority = 1
+		OsTaskStackSize = 512
+		OsTaskSchedule = FULL
+		OsTaskType = BASIC
+		OsTaskAccessingApplication = A01
+		OsTaskAccessingApplication = A02
+		OsTaskAccessingApplication = A03
+		OsTaskAccessingApplication = A04
+		OsTaskResourceRef = resource1
+		OsTaskAutostart OAT1 {
+			OsTaskAppModeRef = AppMode1
+		}
+		OsTaskTimingProtection OTTP {
+			OsTaskExecutionBudget = 1
+			OsTaskAllInterruptLockBudget = 10
+			OsTaskOsInterruptLockBudget = 10
+			OsTaskTimeFrame = 20
+		}
+	}
+	OsTask T002 {
+		OsTaskActivation = 10
+		OsTaskPriority = 2
+		OsTaskStackSize = 512
+		OsTaskSchedule = FULL
+		OsTaskType = EXTENDED
+		OsTaskAccessingApplication = A01
+		OsTaskAccessingApplication = A02
+		OsTaskAccessingApplication = A03
+		OsTaskAccessingApplication = A04
+		OsTaskResourceRef = resource1
+		OsTaskResourceRef = resource2
+	}
+	OsTask T003 {
+		OsTaskActivation = 10
+		OsTaskPriority = 5
+		OsTaskStackSize = 512
+		OsTaskSchedule = FULL
+		OsTaskType = BASIC
+		OsTaskAccessingApplication = A01
+		OsTaskAccessingApplication = A02
+		OsTaskAccessingApplication = A03
+		OsTaskAccessingApplication = A04
+		OsTaskEventRef = event3
+	}
+	OsTask T004 {
+		OsTaskActivation = 10
+		OsTaskPriority = 3
+		OsTaskStackSize = 512
+		OsTaskSchedule = FULL
+		OsTaskType = EXTENDED
+		OsTaskAccessingApplication = A01
+		OsTaskAccessingApplication = A02
+		OsTaskAccessingApplication = A03
+		OsTaskAccessingApplication = A04
+		OsTaskResourceRef = resource1
+		OsTaskResourceRef = resource2
+		OsTaskTimingProtection OTTP4 {
+			OsTaskExecutionBudget = 3
+			OsTaskAllInterruptLockBudget = 20
+			OsTaskOsInterruptLockBudget = 20
+			OsTaskTimeFrame = 20
+		}
+	}
+	OsTask T005 {
+		OsTaskActivation = 1
+		OsTaskPriority = 3
+		OsTaskStackSize = 512
+		OsTaskSchedule = FULL
+		OsTaskType = BASIC
+		OsTaskAccessingApplication = A01
+		OsTaskAccessingApplication = A02
+		OsTaskAccessingApplication = A03
+		OsTaskAccessingApplication = A04
+		OsTaskEventRef = event3
+		OsTaskTimingProtection OTTP5 {
+			OsTaskExecutionBudget = 100
+			OsTaskAllInterruptLockBudget = 30
+			OsTaskOsInterruptLockBudget = 30
+			OsTaskTimeFrame = 20
+			OsTaskResourceLock OTTR5-1 {
+				OsTaskResourceLockResourceRef = resource1
+				OsTaskResourceLockBudget = 30
+			}
+			OsTaskResourceLock OTTR5-2 {
+				OsTaskResourceLockResourceRef = resource2
+				OsTaskResourceLockBudget = 30
+			}
+			OsTaskResourceLock OTTR5-3 {
+				OsTaskResourceLockResourceRef = resource3
+				OsTaskResourceLockBudget = 10
+			}
+		}
+	}
+	OsTask T006 {
+		OsTaskActivation = 10
+		OsTaskPriority = 1
+		OsTaskStackSize = 512
+		OsTaskSchedule = FULL
+		OsTaskType = BASIC
+		OsTaskAccessingApplication = A01
+		OsTaskAccessingApplication = A02
+		OsTaskAccessingApplication = A03
+		OsTaskAccessingApplication = A04
+		OsTaskResourceRef = resource1
+		OsTaskResourceRef = resource2
+	}
+	OsResource resource1 {
+		OsResourceProperty = STANDARD
+		OsResourceAccessingApplication = A01
+	}
+	OsResource resource2 {
+		OsResourceProperty = STANDARD
+		OsResourceAccessingApplication = A01
+	}
+	OsResource resource3 {
+		OsResourceProperty = STANDARD
+		OsResourceAccessingApplication = A03
+	}
+	OsResource resource4 {
+		OsResourceProperty = STANDARD
+		OsResourceAccessingApplication = A02
+		OsResourceAccessingApplication = A04
+	}
+	OsResource resource5 {
+		OsResourceProperty = STANDARD
+		OsResourceAccessingApplication = A02
+		OsResourceAccessingApplication = A04
+	}
+	OsResource resource6 {
+		OsResourceProperty = STANDARD
+		OsResourceAccessingApplication = A02
+		OsResourceAccessingApplication = A04
+	}
+	OsEvent event1 {
+	}
+	OsEvent event2 {
+	}
+	OsEvent event3 {
+	}
+	OsEvent event4 {
+	}
+	OsScheduleTable ST1 {
+		OsScheduleTableDuration = 10
+		OsScheduleTableRepeating = FALSE
+		OsTaskAccessingApplication = A01
+		OsTaskAccessingApplication = A02
+		OsTaskAccessingApplication = A03
+		OsTaskAccessingApplication = A04
+		OsScheduleTableCounterRef = counter3
+		OsScheduleTableAutostart OSTstart1 {
+			OsScheduleTableAutostartType = ABSOLUTE
+			OsScheduleTableStartValue = 2
+			OsScheduleTableAppModeRef = AppMode1
+		}
+		OsScheduleTableExpiryPoint ep0 {
+			OsScheduleTblExpPointOffset = 2
+			OsScheduleTableTaskActivation OSTactivatetask1-1 {
+				OsScheduleTableActivateTaskRef = T002
+			}
+			OsScheduleTblAdjustableExpPoint OSTadjustpoint1-1 {
+				OsScheduleTableMaxLengthen = 1
+				OsScheduleTableMaxShorten = 1
+			}
+		}
+		OsScheduleTableExpiryPoint ep1 {
+			OsScheduleTblExpPointOffset = 5
+			OsScheduleTableTaskActivation OSTactivatetask1-2 {
+				OsScheduleTableActivateTaskRef = T003
+			}
+			OsScheduleTblAdjustableExpPoint OSTadjustpoint1-2 {
+				OsScheduleTableMaxLengthen = 1
+				OsScheduleTableMaxShorten = 1
+			}
+		}
+		OsScheduleTableExpiryPoint ep2 {
+			OsScheduleTblExpPointOffset = 8
+			OsScheduleTableTaskActivation OSTactivatetask1-1 {
+				OsScheduleTableActivateTaskRef = T004
+			}
+			OsScheduleTblAdjustableExpPoint OSTadjustpoint1-1 {
+				OsScheduleTableMaxLengthen = 1
+				OsScheduleTableMaxShorten = 1
+			}
+		}
+		OsScheduleTableSync OSTsync1 {
+			OsScheduleTblExplicitPrecision = 0
+			OsScheduleTblSyncStrategy = EXPLICIT
+		}
+	}
+	OsScheduleTable ST2 {
+		OsScheduleTableDuration = 7
+		OsScheduleTableRepeating = FALSE
+		OsTaskAccessingApplication = A01
+		OsScheduleTableCounterRef = counter3
+		OsScheduleTableAutostart OSTstart2 {
+			OsScheduleTableAutostartType = ABSOLUTE
+			OsScheduleTableStartValue = 2
+			OsScheduleTableAppModeRef = AppMode1
+		}
+		OsScheduleTableExpiryPoint ep20 {
+			OsScheduleTblExpPointOffset = 2
+			OsScheduleTableTaskActivation OSTactivatetask21-1 {
+				OsScheduleTableActivateTaskRef = T004
+			}
+			OsScheduleTblAdjustableExpPoint OSTadjustpoint21-1 {
+				OsScheduleTableMaxLengthen = 0
+				OsScheduleTableMaxShorten = 0
+			}
+		}
+		OsScheduleTableExpiryPoint ep21 {
+			OsScheduleTblExpPointOffset = 5
+			OsScheduleTableTaskActivation OSTactivatetask21-2 {
+				OsScheduleTableActivateTaskRef = T005
+			}
+			OsScheduleTblAdjustableExpPoint OSTadjustpoint1-3 {
+				OsScheduleTableMaxLengthen = 0
+				OsScheduleTableMaxShorten = 0
+			}
+		}
+		OsScheduleTableSync OSTsync2 {
+			OsScheduleTblExplicitPrecision = 0
+			OsScheduleTblSyncStrategy = NONE
+		}
+	}
+	OsCounter counter1 {
+		OsCounterMaxAllowedValue = 100
+		OsCounterMinCycle = 2
+		OsCounterTicksPerBase = 10
+		OsCounterType = HARDWARE
+	}
+	OsCounter counter2 {
+		OsCounterMaxAllowedValue = 500
+		OsCounterMinCycle = 10
+		OsCounterTicksPerBase = 10
+		OsCounterType = SOFTWARE
+	}
+	OsCounter counter3 {
+		OsCounterMaxAllowedValue = 294967295
+		OsCounterMinCycle = 1
+		OsCounterTicksPerBase = 1
+		OsCounterType = SOFTWARE
+	}
+	OsCounter counter4 {
+		OsCounterMaxAllowedValue = 500
+		OsCounterMinCycle = 10
+		OsCounterTicksPerBase = 10
+		OsCounterType = HARDWARE
+	}
+	EcucHardware EcucHardware {
+		EcucCoreDefinition EcucCoreDefinition0 {
+			EcucCoreId = 0
+		}
+		EcucCoreDefinition EcucCoreDefinition1 {
+			EcucCoreId = 1
+		}
+	}
+	T T {
+	}
+}

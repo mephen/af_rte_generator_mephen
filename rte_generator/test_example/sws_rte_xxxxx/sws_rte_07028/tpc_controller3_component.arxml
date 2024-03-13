@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00051.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>TPC_Composition</SHORT-NAME>
+      <ELEMENTS/>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>Components</SHORT-NAME>
+          <ELEMENTS>
+            <APPLICATION-SW-COMPONENT-TYPE>
+              <SHORT-NAME>Controller3</SHORT-NAME>
+              <INTERNAL-BEHAVIORS>
+                <SWC-INTERNAL-BEHAVIOR>
+                  <SHORT-NAME>SWC_Controller3_InternalBehavior</SHORT-NAME>
+                  <SUPPORTS-MULTIPLE-INSTANTIATION>true</SUPPORTS-MULTIPLE-INSTANTIATION>
+                  <EXPLICIT-INTER-RUNNABLE-VARIABLES>
+                    <VARIABLE-DATA-PROTOTYPE>
+                      <SHORT-NAME>Local_DE_Temp</SHORT-NAME>
+                      <CATEGORY>VALUE</CATEGORY>
+                      <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/TPC_Composition/Datatypes/ImplementationDataTypes/Impl_float64</TYPE-TREF>
+                      <SW-DATA-DEF-PROPS>
+                        <SW-DATA-DEF-PROPS-VARIANTS>
+                          <SW-DATA-DEF-PROPS-CONDITIONAL>
+                            <SW-IMPL-POLICY>QUEUED</SW-IMPL-POLICY>
+                            <SW-CALIBRATION-ACCESS>READ-ONLY</SW-CALIBRATION-ACCESS>
+                          </SW-DATA-DEF-PROPS-CONDITIONAL>
+                        </SW-DATA-DEF-PROPS-VARIANTS>
+                      </SW-DATA-DEF-PROPS>
+                    </VARIABLE-DATA-PROTOTYPE>
+                    <VARIABLE-DATA-PROTOTYPE>
+                      <SHORT-NAME>Local_DE_Spd</SHORT-NAME>
+                      <CATEGORY>VALUE</CATEGORY>
+                      <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/TPC_Composition/Datatypes/ApplicationDataTypes/App_uint16</TYPE-TREF>
+                      <SW-DATA-DEF-PROPS>
+                        <SW-DATA-DEF-PROPS-VARIANTS>
+                          <SW-DATA-DEF-PROPS-CONDITIONAL>
+                            <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                            <SW-CALIBRATION-ACCESS>READ-ONLY</SW-CALIBRATION-ACCESS>
+                            <INVALID-VALUE>
+                              <NUMERICAL-VALUE-SPECIFICATION>
+                                <SHORT-LABEL>DefaultInvalidValue_Local_DE_Spd</SHORT-LABEL>
+                                <VALUE>392</VALUE>
+                              </NUMERICAL-VALUE-SPECIFICATION>
+                            </INVALID-VALUE>
+                          </SW-DATA-DEF-PROPS-CONDITIONAL>
+                        </SW-DATA-DEF-PROPS-VARIANTS>
+                      </SW-DATA-DEF-PROPS>
+                    </VARIABLE-DATA-PROTOTYPE>
+                    <VARIABLE-DATA-PROTOTYPE>
+                      <SHORT-NAME>Local_DE_Acc</SHORT-NAME>
+                      <CATEGORY>VALUE</CATEGORY>
+                      <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/TPC_Composition/Datatypes/ApplicationDataTypes/App_uint16</TYPE-TREF>
+                      <SW-DATA-DEF-PROPS>
+                        <SW-DATA-DEF-PROPS-VARIANTS>
+                          <SW-DATA-DEF-PROPS-CONDITIONAL>
+                            <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                            <SW-CALIBRATION-ACCESS>READ-ONLY</SW-CALIBRATION-ACCESS>
+                            <INVALID-VALUE>
+                              <NUMERICAL-VALUE-SPECIFICATION>
+                                <SHORT-LABEL>DefaultInvalidValue_Local_DE_Acc</SHORT-LABEL>
+                                <VALUE>392</VALUE>
+                              </NUMERICAL-VALUE-SPECIFICATION>
+                            </INVALID-VALUE>
+                          </SW-DATA-DEF-PROPS-CONDITIONAL>
+                        </SW-DATA-DEF-PROPS-VARIANTS>
+                      </SW-DATA-DEF-PROPS>
+                    </VARIABLE-DATA-PROTOTYPE>
+                  </EXPLICIT-INTER-RUNNABLE-VARIABLES>
+                  <RUNNABLES>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>ReTxTemp</SHORT-NAME>
+                      <WRITTEN-LOCAL-VARIABLES>
+                        <VARIABLE-ACCESS>
+                          <SHORT-NAME>WrittenLocalVariable_Temp</SHORT-NAME>
+                          <RETURN-VALUE-PROVISION>RETURN-VALUE-PROVIDED</RETURN-VALUE-PROVISION>
+                          <ACCESSED-VARIABLE>
+                            <LOCAL-VARIABLE-REF DEST="VARIABLE-DATA-PROTOTYPE">/TPC_Composition/Components/Controller3/SWC_Controller3_InternalBehavior/Local_DE_Temp</LOCAL-VARIABLE-REF>
+                          </ACCESSED-VARIABLE>
+                        </VARIABLE-ACCESS>
+                      </WRITTEN-LOCAL-VARIABLES>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>ReRxTemp</SHORT-NAME>
+                      <READ-LOCAL-VARIABLES>
+                        <VARIABLE-ACCESS>
+                          <SHORT-NAME>ReadLocalVariable_Temp</SHORT-NAME>
+                          <ACCESSED-VARIABLE>
+                            <LOCAL-VARIABLE-REF DEST="VARIABLE-DATA-PROTOTYPE">/TPC_Composition/Components/Controller3/SWC_Controller3_InternalBehavior/Local_DE_Temp</LOCAL-VARIABLE-REF>
+                          </ACCESSED-VARIABLE>
+                        </VARIABLE-ACCESS>
+                      </READ-LOCAL-VARIABLES>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>ReTxSpd</SHORT-NAME>
+                      <WRITTEN-LOCAL-VARIABLES>
+                        <VARIABLE-ACCESS>
+                          <SHORT-NAME>WrittenLocalVariable_Spd</SHORT-NAME>
+                          <RETURN-VALUE-PROVISION>RETURN-VALUE-PROVIDED</RETURN-VALUE-PROVISION>
+                          <ACCESSED-VARIABLE>
+                            <LOCAL-VARIABLE-REF DEST="VARIABLE-DATA-PROTOTYPE">/TPC_Composition/Components/Controller3/SWC_Controller3_InternalBehavior/Local_DE_Spd</LOCAL-VARIABLE-REF>
+                          </ACCESSED-VARIABLE>
+                        </VARIABLE-ACCESS>
+                      </WRITTEN-LOCAL-VARIABLES>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>ReRxSpd</SHORT-NAME>
+                      <READ-LOCAL-VARIABLES>
+                        <VARIABLE-ACCESS>
+                          <SHORT-NAME>ReadLocalVariable_Spd</SHORT-NAME>
+                          <ACCESSED-VARIABLE>
+                            <LOCAL-VARIABLE-REF DEST="VARIABLE-DATA-PROTOTYPE">/TPC_Composition/Components/Controller3/SWC_Controller3_InternalBehavior/Local_DE_Spd</LOCAL-VARIABLE-REF>
+                          </ACCESSED-VARIABLE>
+                        </VARIABLE-ACCESS>
+                      </READ-LOCAL-VARIABLES>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>ReTxAcc</SHORT-NAME>
+                      <WRITTEN-LOCAL-VARIABLES>
+                        <VARIABLE-ACCESS>
+                          <SHORT-NAME>ReadLocalVariable_PpIfVehMov_Acc</SHORT-NAME>
+                          <RETURN-VALUE-PROVISION>RETURN-VALUE-PROVIDED</RETURN-VALUE-PROVISION>
+                          <ACCESSED-VARIABLE>
+                            <LOCAL-VARIABLE-REF DEST="VARIABLE-DATA-PROTOTYPE">/TPC_Composition/Components/Controller3/SWC_Controller3_InternalBehavior/Local_DE_Acc</LOCAL-VARIABLE-REF>
+                          </ACCESSED-VARIABLE>
+                        </VARIABLE-ACCESS>
+                      </WRITTEN-LOCAL-VARIABLES>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>ReRxAcc</SHORT-NAME>
+                      <READ-LOCAL-VARIABLES>
+                        <VARIABLE-ACCESS>
+                          <SHORT-NAME>ReadLocalVariable_PpIfVehMov_Acc</SHORT-NAME>
+                          <ACCESSED-VARIABLE>
+                            <LOCAL-VARIABLE-REF DEST="VARIABLE-DATA-PROTOTYPE">/TPC_Composition/Components/Controller3/SWC_Controller3_InternalBehavior/Local_DE_Acc</LOCAL-VARIABLE-REF>
+                          </ACCESSED-VARIABLE>
+                        </VARIABLE-ACCESS>
+                      </READ-LOCAL-VARIABLES>
+                    </RUNNABLE-ENTITY>
+                  </RUNNABLES>
+                  <EVENTS>
+                    <TIMING-EVENT>
+                      <SHORT-NAME>EvTiTxTemp_20ms</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/TPC_Composition/Components/Controller3/SWC_Controller3_InternalBehavior/ReTxTemp</START-ON-EVENT-REF>
+                      <PERIOD>0.02</PERIOD>
+                    </TIMING-EVENT>
+                    <TIMING-EVENT>
+                      <SHORT-NAME>EvTiRxTemp_20ms</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/TPC_Composition/Components/Controller3/SWC_Controller3_InternalBehavior/ReRxTemp</START-ON-EVENT-REF>
+                      <PERIOD>0.02</PERIOD>
+                    </TIMING-EVENT>
+                    <TIMING-EVENT>
+                      <SHORT-NAME>EvTiTxSpd_20ms</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/TPC_Composition/Components/Controller3/SWC_Controller3_InternalBehavior/ReTxSpd</START-ON-EVENT-REF>
+                      <PERIOD>0.02</PERIOD>
+                    </TIMING-EVENT>
+                    <TIMING-EVENT>
+                      <SHORT-NAME>EvTiRxSpd_20ms</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/TPC_Composition/Components/Controller3/SWC_Controller3_InternalBehavior/ReRxSpd</START-ON-EVENT-REF>
+                      <PERIOD>0.02</PERIOD>
+                    </TIMING-EVENT>
+                    <TIMING-EVENT>
+                      <SHORT-NAME>EvTiTxAcc_20ms</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/TPC_Composition/Components/Controller3/SWC_Controller3_InternalBehavior/ReTxAcc</START-ON-EVENT-REF>
+                      <PERIOD>0.02</PERIOD>
+                    </TIMING-EVENT>
+                    <TIMING-EVENT>
+                      <SHORT-NAME>EvTiRxAcc_20ms</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/TPC_Composition/Components/Controller3/SWC_Controller3_InternalBehavior/ReRxAcc</START-ON-EVENT-REF>
+                      <PERIOD>0.02</PERIOD>
+                    </TIMING-EVENT>
+                  </EVENTS>
+                </SWC-INTERNAL-BEHAVIOR>
+              </INTERNAL-BEHAVIORS>
+            </APPLICATION-SW-COMPONENT-TYPE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

@@ -1,0 +1,3083 @@
+{
+  "AUTOSAR": {
+    "AR-PACKAGES": {
+      "AR-PACKAGE": {
+        "SHORT-NAME": "ActiveEcuC",
+        "ELEMENTS": {
+          "ECUC-MODULE-CONFIGURATION-VALUES": {
+            "SHORT-NAME": "Os",
+            "DEFINITION-REF": {
+              "@DEST": "ECUC-MODULE-DEF",
+              "#text": "/MICROSAR/Os"
+            },
+            "CONTAINERS": {
+              "ECUC-CONTAINER-VALUE": [
+                {
+                  "SHORT-NAME": "A01",
+                  "DEFINITION-REF": {
+                    "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                    "#text": "/MICROSAR/Os/OsApplication"
+                  },
+                  "PARAMETER-VALUES": {
+                    "ECUC-NUMERICAL-PARAM-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-BOOLEAN-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsTrusted"
+                        },
+                        "VALUE": "TRUE"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-BOOLEAN-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsTrustedApplicationDelayTimingViolationCall"
+                        },
+                        "VALUE": "TRUE"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-BOOLEAN-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsTrustedApplicationWithProtection"
+                        },
+                        "VALUE": "TRUE"
+                      }
+                    ]
+                  },
+                  "REFERENCE-VALUES": {
+                    "ECUC-REFERENCE-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-SYMBOLIC-NAME-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsApplicationCoreRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/EcuC/EcucHardware/EcucCoreDefinition0"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppCounterRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/counter3"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppTaskRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/T001"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppTaskRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/T002"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppTaskRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/T003"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppIsrRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/I001"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppIsrRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/I002"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppIsrRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/I003"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppIsrRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/I004"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppAlarmRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/alarm3"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppAlarmRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/alarm4"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppScheduleTableRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/ST1"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppScheduleTableRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/ST2"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsRestartTask"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/T003"
+                        }
+                      }
+                    ]
+                  },
+                  "SUB-CONTAINERS": [
+                    {
+                      "ECUC-CONTAINER-VALUE": {
+                        "SHORT-NAME": "AIMER",
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsApplicationTrustedFunction"
+                        },
+                        "PARAMETER-VALUES": {
+                          "ECUC-NUMERICAL-PARAM-VALUE": [
+                            {
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-BOOLEAN-PARAM-DEF",
+                                "#text": "/MICROSAR/Os/OsApplication/OsApplicationTrustedFunction/OsTrustedFunctionName"
+                              },
+                              "VALUE": "AIMER"
+                            },
+                            {
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-BOOLEAN-PARAM-DEF",
+                                "#text": "/MICROSAR/Os/OsApplication/OsApplicationTrustedFunction/OsMemoryMappingCodeLocationRef"
+                              },
+                              "VALUE": "None"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "ECUC-CONTAINER-VALUE": {
+                        "SHORT-NAME": "IKURA",
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsApplicationTrustedFunction"
+                        },
+                        "PARAMETER-VALUES": {
+                          "ECUC-NUMERICAL-PARAM-VALUE": [
+                            {
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-BOOLEAN-PARAM-DEF",
+                                "#text": "/MICROSAR/Os/OsApplication/OsApplicationTrustedFunction/OsTrustedFunctionName"
+                              },
+                              "VALUE": "IKURA"
+                            },
+                            {
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-BOOLEAN-PARAM-DEF",
+                                "#text": "/MICROSAR/Os/OsApplication/OsApplicationTrustedFunction/OsMemoryMappingCodeLocationRef"
+                              },
+                              "VALUE": "None"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "ECUC-CONTAINER-VALUE": {
+                        "SHORT-NAME": "YORUSHIKA",
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsApplicationTrustedFunction"
+                        },
+                        "PARAMETER-VALUES": {
+                          "ECUC-NUMERICAL-PARAM-VALUE": [
+                            {
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-BOOLEAN-PARAM-DEF",
+                                "#text": "/MICROSAR/Os/OsApplication/OsApplicationTrustedFunction/OsTrustedFunctionName"
+                              },
+                              "VALUE": "YORUSHIKA"
+                            },
+                            {
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-BOOLEAN-PARAM-DEF",
+                                "#text": "/MICROSAR/Os/OsApplication/OsApplicationTrustedFunction/OsMemoryMappingCodeLocationRef"
+                              },
+                              "VALUE": "None"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "SHORT-NAME": "A02",
+                  "DEFINITION-REF": {
+                    "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                    "#text": "/MICROSAR/Os/OsApplication"
+                  },
+                  "PARAMETER-VALUES": {
+                    "ECUC-NUMERICAL-PARAM-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-BOOLEAN-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsTrusted"
+                        },
+                        "VALUE": "TRUE"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-BOOLEAN-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsTrustedApplicationDelayTimingViolationCall"
+                        },
+                        "VALUE": "TRUE"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-BOOLEAN-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsTrustedApplicationWithProtection"
+                        },
+                        "VALUE": "FALSE"
+                      }
+                    ]
+                  },
+                  "REFERENCE-VALUES": {
+                    "ECUC-REFERENCE-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-SYMBOLIC-NAME-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsApplicationCoreRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/EcuC/EcucHardware/EcucCoreDefinition1"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppCounterRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/counter1"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppTaskRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/T101"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppTaskRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/T102"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppTaskRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/T103"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppIsrRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/I101"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppIsrRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/I102"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppIsrRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/I103"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppIsrRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/I104"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppAlarmRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/alarm1"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppScheduleTableRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/ST3"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsRestartTask"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/T103"
+                        }
+                      }
+                    ]
+                  },
+                  "SUB-CONTAINERS": [
+                    {
+                      "ECUC-CONTAINER-VALUE": {
+                        "SHORT-NAME": "YUURI",
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsApplicationTrustedFunction"
+                        },
+                        "PARAMETER-VALUES": {
+                          "ECUC-NUMERICAL-PARAM-VALUE": [
+                            {
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-BOOLEAN-PARAM-DEF",
+                                "#text": "/MICROSAR/Os/OsApplication/OsApplicationTrustedFunction/OsTrustedFunctionName"
+                              },
+                              "VALUE": "YUURI"
+                            },
+                            {
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-BOOLEAN-PARAM-DEF",
+                                "#text": "/MICROSAR/Os/OsApplication/OsApplicationTrustedFunction/OsMemoryMappingCodeLocationRef"
+                              },
+                              "VALUE": "None"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "ECUC-CONTAINER-VALUE": {
+                        "SHORT-NAME": "HITORIE",
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsApplicationTrustedFunction"
+                        },
+                        "PARAMETER-VALUES": {
+                          "ECUC-NUMERICAL-PARAM-VALUE": [
+                            {
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-BOOLEAN-PARAM-DEF",
+                                "#text": "/MICROSAR/Os/OsApplication/OsApplicationTrustedFunction/OsTrustedFunctionName"
+                              },
+                              "VALUE": "HITORIE"
+                            },
+                            {
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-BOOLEAN-PARAM-DEF",
+                                "#text": "/MICROSAR/Os/OsApplication/OsApplicationTrustedFunction/OsMemoryMappingCodeLocationRef"
+                              },
+                              "VALUE": "None"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "SHORT-NAME": "A03",
+                  "DEFINITION-REF": {
+                    "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                    "#text": "/MICROSAR/Os/OsApplication"
+                  },
+                  "PARAMETER-VALUES": {
+                    "ECUC-NUMERICAL-PARAM-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-BOOLEAN-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsTrusted"
+                        },
+                        "VALUE": "TRUE"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-BOOLEAN-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsTrustedApplicationDelayTimingViolationCall"
+                        },
+                        "VALUE": "FALSE"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-BOOLEAN-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsTrustedApplicationWithProtection"
+                        },
+                        "VALUE": "FALSE"
+                      }
+                    ]
+                  },
+                  "REFERENCE-VALUES": {
+                    "ECUC-REFERENCE-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-SYMBOLIC-NAME-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsApplicationCoreRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/EcuC/EcucHardware/EcucCoreDefinition0"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppCounterRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/counter4"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppTaskRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/T004"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppTaskRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/T005"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppTaskRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/T006"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppIsrRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/I005"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppIsrRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/I006"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsRestartTask"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/T006"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "SHORT-NAME": "A04",
+                  "DEFINITION-REF": {
+                    "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                    "#text": "/MICROSAR/Os/OsApplication"
+                  },
+                  "PARAMETER-VALUES": {
+                    "ECUC-NUMERICAL-PARAM-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-BOOLEAN-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsTrusted"
+                        },
+                        "VALUE": "FALSE"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-BOOLEAN-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsTrustedApplicationDelayTimingViolationCall"
+                        },
+                        "VALUE": "FALSE"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-BOOLEAN-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsTrustedApplicationWithProtection"
+                        },
+                        "VALUE": "FALSE"
+                      }
+                    ]
+                  },
+                  "REFERENCE-VALUES": {
+                    "ECUC-REFERENCE-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-SYMBOLIC-NAME-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsApplicationCoreRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/EcuC/EcucHardware/EcucCoreDefinition1"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppCounterRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/counter2"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppTaskRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/T104"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppTaskRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/T105"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppTaskRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/T106"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppIsrRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/I105"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsAppIsrRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/I106"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsApplication/OsRestartTask"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/T106"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "SHORT-NAME": "T001",
+                  "DEFINITION-REF": {
+                    "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                    "#text": "/MICROSAR/Os/OsTask"
+                  },
+                  "PARAMETER-VALUES": {
+                    "ECUC-NUMERICAL-PARAM-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskActivation"
+                        },
+                        "VALUE": "55"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskPriority"
+                        },
+                        "VALUE": "1"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskStackSize"
+                        },
+                        "VALUE": "512"
+                      }
+                    ],
+                    "ECUC-TEXTUAL-PARAM-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskSchedule"
+                        },
+                        "VALUE": "FULL"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskType"
+                        },
+                        "VALUE": "BASIC"
+                      }
+                    ]
+                  },
+                  "REFERENCE-VALUES": {
+                    "ECUC-REFERENCE-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A01"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A02"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A03"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A04"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskResourceRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/resource1"
+                        }
+                      }
+                    ]
+                  },
+                  "SUB-CONTAINERS": [
+                    {
+                      "ECUC-CONTAINER-VALUE": {
+                        "SHORT-NAME": "OAT1",
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAutostart"
+                        },
+                        "REFERENCE-VALUES": {
+                          "ECUC-REFERENCE-VALUE": {
+                            "DEFINITION-REF": {
+                              "@DEST": "ECUC-REFERENCE-DEF",
+                              "#text": "/MICROSAR/Os/OsTask/OsTaskAutostart/OsTaskAppModeRef"
+                            },
+                            "VALUE-REF": {
+                              "@DEST": "ECUC-CONTAINER-VALUE",
+                              "#text": "/ActiveEcuC/Os/AppMode1"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "ECUC-CONTAINER-VALUE": {
+                        "SHORT-NAME": "OTTP",
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskTimingProtection"
+                        },
+                        "PARAMETER-VALUES": {
+                          "ECUC-NUMERICAL-PARAM-VALUE": [
+                            {
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                "#text": "/MICROSAR/Os/OsTask/OsTaskTimingProtection/OsTaskExecutionBudget"
+                              },
+                              "VALUE": "1"
+                            },
+                            {
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                "#text": "/MICROSAR/Os/OsTask/OsTaskTimingProtection/OsTaskAllInterruptLockBudget"
+                              },
+                              "VALUE": "10"
+                            },
+                            {
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                "#text": "/MICROSAR/Os/OsTask/OsTaskTimingProtection/OsTaskOsInterruptLockBudget"
+                              },
+                              "VALUE": "10"
+                            },
+                            {
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                "#text": "/MICROSAR/Os/OsTask/OsTaskTimingProtection/OsTaskTimeFrame"
+                              },
+                              "VALUE": "20"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "SHORT-NAME": "T002",
+                  "DEFINITION-REF": {
+                    "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                    "#text": "/MICROSAR/Os/OsTask"
+                  },
+                  "PARAMETER-VALUES": {
+                    "ECUC-NUMERICAL-PARAM-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskActivation"
+                        },
+                        "VALUE": "10"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskPriority"
+                        },
+                        "VALUE": "2"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskStackSize"
+                        },
+                        "VALUE": "512"
+                      }
+                    ],
+                    "ECUC-TEXTUAL-PARAM-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskSchedule"
+                        },
+                        "VALUE": "FULL"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskType"
+                        },
+                        "VALUE": "EXTENDED"
+                      }
+                    ]
+                  },
+                  "REFERENCE-VALUES": {
+                    "ECUC-REFERENCE-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A01"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A02"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A03"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A04"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskResourceRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/resource1"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskResourceRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/resource2"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "SHORT-NAME": "T003",
+                  "DEFINITION-REF": {
+                    "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                    "#text": "/MICROSAR/Os/OsTask"
+                  },
+                  "PARAMETER-VALUES": {
+                    "ECUC-NUMERICAL-PARAM-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskActivation"
+                        },
+                        "VALUE": "10"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskPriority"
+                        },
+                        "VALUE": "5"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskStackSize"
+                        },
+                        "VALUE": "512"
+                      }
+                    ],
+                    "ECUC-TEXTUAL-PARAM-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskSchedule"
+                        },
+                        "VALUE": "FULL"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskType"
+                        },
+                        "VALUE": "BASIC"
+                      }
+                    ]
+                  },
+                  "REFERENCE-VALUES": {
+                    "ECUC-REFERENCE-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A01"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A02"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A03"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A04"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskEventRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/event3"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "SHORT-NAME": "T004",
+                  "DEFINITION-REF": {
+                    "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                    "#text": "/MICROSAR/Os/OsTask"
+                  },
+                  "PARAMETER-VALUES": {
+                    "ECUC-NUMERICAL-PARAM-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskActivation"
+                        },
+                        "VALUE": "10"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskPriority"
+                        },
+                        "VALUE": "3"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskStackSize"
+                        },
+                        "VALUE": "512"
+                      }
+                    ],
+                    "ECUC-TEXTUAL-PARAM-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskSchedule"
+                        },
+                        "VALUE": "FULL"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskType"
+                        },
+                        "VALUE": "EXTENDED"
+                      }
+                    ]
+                  },
+                  "REFERENCE-VALUES": {
+                    "ECUC-REFERENCE-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A01"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A02"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A03"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A04"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskResourceRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/resource1"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskResourceRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/resource2"
+                        }
+                      }
+                    ]
+                  },
+                  "SUB-CONTAINERS": {
+                    "ECUC-CONTAINER-VALUE": {
+                      "SHORT-NAME": "OTTP4",
+                      "DEFINITION-REF": {
+                        "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                        "#text": "/MICROSAR/Os/OsTask/OsTaskTimingProtection"
+                      },
+                      "PARAMETER-VALUES": {
+                        "ECUC-NUMERICAL-PARAM-VALUE": [
+                          {
+                            "DEFINITION-REF": {
+                              "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                              "#text": "/MICROSAR/Os/OsTask/OsTaskTimingProtection/OsTaskExecutionBudget"
+                            },
+                            "VALUE": "3"
+                          },
+                          {
+                            "DEFINITION-REF": {
+                              "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                              "#text": "/MICROSAR/Os/OsTask/OsTaskTimingProtection/OsTaskAllInterruptLockBudget"
+                            },
+                            "VALUE": "20"
+                          },
+                          {
+                            "DEFINITION-REF": {
+                              "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                              "#text": "/MICROSAR/Os/OsTask/OsTaskTimingProtection/OsTaskOsInterruptLockBudget"
+                            },
+                            "VALUE": "20"
+                          },
+                          {
+                            "DEFINITION-REF": {
+                              "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                              "#text": "/MICROSAR/Os/OsTask/OsTaskTimingProtection/OsTaskTimeFrame"
+                            },
+                            "VALUE": "20"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                {
+                  "SHORT-NAME": "T005",
+                  "DEFINITION-REF": {
+                    "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                    "#text": "/MICROSAR/Os/OsTask"
+                  },
+                  "PARAMETER-VALUES": {
+                    "ECUC-NUMERICAL-PARAM-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskActivation"
+                        },
+                        "VALUE": "1"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskPriority"
+                        },
+                        "VALUE": "3"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskStackSize"
+                        },
+                        "VALUE": "512"
+                      }
+                    ],
+                    "ECUC-TEXTUAL-PARAM-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskSchedule"
+                        },
+                        "VALUE": "FULL"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskType"
+                        },
+                        "VALUE": "BASIC"
+                      }
+                    ]
+                  },
+                  "REFERENCE-VALUES": {
+                    "ECUC-REFERENCE-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A01"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A02"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A03"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A04"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskEventRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/event3"
+                        }
+                      }
+                    ]
+                  },
+                  "SUB-CONTAINERS": {
+                    "ECUC-CONTAINER-VALUE": {
+                      "SHORT-NAME": "OTTP5",
+                      "DEFINITION-REF": {
+                        "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                        "#text": "/MICROSAR/Os/OsTask/OsTaskTimingProtection"
+                      },
+                      "PARAMETER-VALUES": {
+                        "ECUC-NUMERICAL-PARAM-VALUE": [
+                          {
+                            "DEFINITION-REF": {
+                              "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                              "#text": "/MICROSAR/Os/OsTask/OsTaskTimingProtection/OsTaskExecutionBudget"
+                            },
+                            "VALUE": "100"
+                          },
+                          {
+                            "DEFINITION-REF": {
+                              "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                              "#text": "/MICROSAR/Os/OsTask/OsTaskTimingProtection/OsTaskAllInterruptLockBudget"
+                            },
+                            "VALUE": "30"
+                          },
+                          {
+                            "DEFINITION-REF": {
+                              "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                              "#text": "/MICROSAR/Os/OsTask/OsTaskTimingProtection/OsTaskOsInterruptLockBudget"
+                            },
+                            "VALUE": "30"
+                          },
+                          {
+                            "DEFINITION-REF": {
+                              "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                              "#text": "/MICROSAR/Os/OsTask/OsTaskTimingProtection/OsTaskTimeFrame"
+                            },
+                            "VALUE": "20"
+                          }
+                        ]
+                      },
+                      "SUB-CONTAINERS": [
+                        {
+                          "ECUC-CONTAINER-VALUE": {
+                            "SHORT-NAME": "OTTR5-1",
+                            "DEFINITION-REF": {
+                              "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                              "#text": "/MICROSAR/Os/OsTask/OsTaskTimingProtection/OsTaskResourceLock"
+                            },
+                            "PARAMETER-VALUES": {
+                              "ECUC-NUMERICAL-PARAM-VALUE": [
+                                {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                    "#text": "/MICROSAR/Os/OsTask/OsTaskTimingProtection/OsTaskResourceLock/OsTaskResourceLockResourceRef"
+                                  },
+                                  "VALUE": "resource1"
+                                },
+                                {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                    "#text": "/MICROSAR/Os/OsTask/OsTaskTimingProtection/OsTaskResourceLock/OsTaskResourceLockBudget"
+                                  },
+                                  "VALUE": "30"
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "ECUC-CONTAINER-VALUE": {
+                            "SHORT-NAME": "OTTR5-2",
+                            "DEFINITION-REF": {
+                              "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                              "#text": "/MICROSAR/Os/OsTask/OsTaskTimingProtection/OsTaskResourceLock"
+                            },
+                            "PARAMETER-VALUES": {
+                              "ECUC-NUMERICAL-PARAM-VALUE": [
+                                {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                    "#text": "/MICROSAR/Os/OsTask/OsTaskTimingProtection/OsTaskResourceLock/OsTaskResourceLockResourceRef"
+                                  },
+                                  "VALUE": "resource2"
+                                },
+                                {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                    "#text": "/MICROSAR/Os/OsTask/OsTaskTimingProtection/OsTaskResourceLock/OsTaskResourceLockBudget"
+                                  },
+                                  "VALUE": "30"
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        {
+                          "ECUC-CONTAINER-VALUE": {
+                            "SHORT-NAME": "OTTR5-3",
+                            "DEFINITION-REF": {
+                              "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                              "#text": "/MICROSAR/Os/OsTask/OsTaskTimingProtection/OsTaskResourceLock"
+                            },
+                            "PARAMETER-VALUES": {
+                              "ECUC-NUMERICAL-PARAM-VALUE": [
+                                {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                    "#text": "/MICROSAR/Os/OsTask/OsTaskTimingProtection/OsTaskResourceLock/OsTaskResourceLockResourceRef"
+                                  },
+                                  "VALUE": "resource3"
+                                },
+                                {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                    "#text": "/MICROSAR/Os/OsTask/OsTaskTimingProtection/OsTaskResourceLock/OsTaskResourceLockBudget"
+                                  },
+                                  "VALUE": "10"
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "SHORT-NAME": "T006",
+                  "DEFINITION-REF": {
+                    "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                    "#text": "/MICROSAR/Os/OsTask"
+                  },
+                  "PARAMETER-VALUES": {
+                    "ECUC-NUMERICAL-PARAM-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskActivation"
+                        },
+                        "VALUE": "10"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskPriority"
+                        },
+                        "VALUE": "1"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskStackSize"
+                        },
+                        "VALUE": "512"
+                      }
+                    ],
+                    "ECUC-TEXTUAL-PARAM-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskSchedule"
+                        },
+                        "VALUE": "FULL"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskType"
+                        },
+                        "VALUE": "BASIC"
+                      }
+                    ]
+                  },
+                  "REFERENCE-VALUES": {
+                    "ECUC-REFERENCE-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A01"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A02"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A03"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A04"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskResourceRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/resource1"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskResourceRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/resource2"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "SHORT-NAME": "T101",
+                  "DEFINITION-REF": {
+                    "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                    "#text": "/MICROSAR/Os/OsTask"
+                  },
+                  "PARAMETER-VALUES": {
+                    "ECUC-NUMERICAL-PARAM-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskActivation"
+                        },
+                        "VALUE": "1"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskPriority"
+                        },
+                        "VALUE": "3"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskStackSize"
+                        },
+                        "VALUE": "512"
+                      }
+                    ],
+                    "ECUC-TEXTUAL-PARAM-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskSchedule"
+                        },
+                        "VALUE": "FULL"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskType"
+                        },
+                        "VALUE": "EXTENDED"
+                      }
+                    ]
+                  },
+                  "REFERENCE-VALUES": {
+                    "ECUC-REFERENCE-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A01"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A02"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A03"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A04"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskResourceRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/resource1"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskResourceRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/resource2"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "SHORT-NAME": "T102",
+                  "DEFINITION-REF": {
+                    "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                    "#text": "/MICROSAR/Os/OsTask"
+                  },
+                  "PARAMETER-VALUES": {
+                    "ECUC-NUMERICAL-PARAM-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskActivation"
+                        },
+                        "VALUE": "10"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskPriority"
+                        },
+                        "VALUE": "2"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskStackSize"
+                        },
+                        "VALUE": "512"
+                      }
+                    ],
+                    "ECUC-TEXTUAL-PARAM-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskSchedule"
+                        },
+                        "VALUE": "FULL"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskType"
+                        },
+                        "VALUE": "BASIC"
+                      }
+                    ]
+                  },
+                  "REFERENCE-VALUES": {
+                    "ECUC-REFERENCE-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A01"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A02"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A03"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsTask/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A04"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "SHORT-NAME": "resource1",
+                  "DEFINITION-REF": {
+                    "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                    "#text": "/MICROSAR/Os/OsResource"
+                  },
+                  "PARAMETER-VALUES": {
+                    "ECUC-TEXTUAL-PARAM-VALUE": {
+                      "DEFINITION-REF": {
+                        "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                        "#text": "/MICROSAR/Os/OsResource/OsResourceProperty"
+                      },
+                      "VALUE": "STANDARD"
+                    }
+                  },
+                  "REFERENCE-VALUES": {
+                    "ECUC-REFERENCE-VALUE": {
+                      "DEFINITION-REF": {
+                        "@DEST": "ECUC-REFERENCE-DEF",
+                        "#text": "/MICROSAR/Os/OsResource/OsResourceAccessingApplication"
+                      },
+                      "VALUE-REF": {
+                        "@DEST": "ECUC-CONTAINER-VALUE",
+                        "#text": "/ActiveEcuC/Os/A01"
+                      }
+                    }
+                  }
+                },
+                {
+                  "SHORT-NAME": "resource2",
+                  "DEFINITION-REF": {
+                    "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                    "#text": "/MICROSAR/Os/OsResource"
+                  },
+                  "PARAMETER-VALUES": {
+                    "ECUC-TEXTUAL-PARAM-VALUE": {
+                      "DEFINITION-REF": {
+                        "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                        "#text": "/MICROSAR/Os/OsResource/OsResourceProperty"
+                      },
+                      "VALUE": "STANDARD"
+                    }
+                  },
+                  "REFERENCE-VALUES": {
+                    "ECUC-REFERENCE-VALUE": {
+                      "DEFINITION-REF": {
+                        "@DEST": "ECUC-REFERENCE-DEF",
+                        "#text": "/MICROSAR/Os/OsResource/OsResourceAccessingApplication"
+                      },
+                      "VALUE-REF": {
+                        "@DEST": "ECUC-CONTAINER-VALUE",
+                        "#text": "/ActiveEcuC/Os/A01"
+                      }
+                    }
+                  }
+                },
+                {
+                  "SHORT-NAME": "resource3",
+                  "DEFINITION-REF": {
+                    "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                    "#text": "/MICROSAR/Os/OsResource"
+                  },
+                  "PARAMETER-VALUES": {
+                    "ECUC-TEXTUAL-PARAM-VALUE": {
+                      "DEFINITION-REF": {
+                        "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                        "#text": "/MICROSAR/Os/OsResource/OsResourceProperty"
+                      },
+                      "VALUE": "STANDARD"
+                    }
+                  },
+                  "REFERENCE-VALUES": {
+                    "ECUC-REFERENCE-VALUE": {
+                      "DEFINITION-REF": {
+                        "@DEST": "ECUC-REFERENCE-DEF",
+                        "#text": "/MICROSAR/Os/OsResource/OsResourceAccessingApplication"
+                      },
+                      "VALUE-REF": {
+                        "@DEST": "ECUC-CONTAINER-VALUE",
+                        "#text": "/ActiveEcuC/Os/A03"
+                      }
+                    }
+                  }
+                },
+                {
+                  "SHORT-NAME": "resource4",
+                  "DEFINITION-REF": {
+                    "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                    "#text": "/MICROSAR/Os/OsResource"
+                  },
+                  "PARAMETER-VALUES": {
+                    "ECUC-TEXTUAL-PARAM-VALUE": {
+                      "DEFINITION-REF": {
+                        "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                        "#text": "/MICROSAR/Os/OsResource/OsResourceProperty"
+                      },
+                      "VALUE": "STANDARD"
+                    }
+                  },
+                  "REFERENCE-VALUES": {
+                    "ECUC-REFERENCE-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsResource/OsResourceAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A02"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsResource/OsResourceAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A04"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "SHORT-NAME": "resource5",
+                  "DEFINITION-REF": {
+                    "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                    "#text": "/MICROSAR/Os/OsResource"
+                  },
+                  "PARAMETER-VALUES": {
+                    "ECUC-TEXTUAL-PARAM-VALUE": {
+                      "DEFINITION-REF": {
+                        "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                        "#text": "/MICROSAR/Os/OsResource/OsResourceProperty"
+                      },
+                      "VALUE": "STANDARD"
+                    }
+                  },
+                  "REFERENCE-VALUES": {
+                    "ECUC-REFERENCE-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsResource/OsResourceAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A02"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsResource/OsResourceAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A04"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "SHORT-NAME": "resource6",
+                  "DEFINITION-REF": {
+                    "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                    "#text": "/MICROSAR/Os/OsResource"
+                  },
+                  "PARAMETER-VALUES": {
+                    "ECUC-TEXTUAL-PARAM-VALUE": {
+                      "DEFINITION-REF": {
+                        "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                        "#text": "/MICROSAR/Os/OsResource/OsResourceProperty"
+                      },
+                      "VALUE": "STANDARD"
+                    }
+                  },
+                  "REFERENCE-VALUES": {
+                    "ECUC-REFERENCE-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsResource/OsResourceAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A02"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsResource/OsResourceAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A04"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "SHORT-NAME": "ST1",
+                  "DEFINITION-REF": {
+                    "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                    "#text": "/MICROSAR/Os/OsScheduleTable"
+                  },
+                  "PARAMETER-VALUES": {
+                    "ECUC-NUMERICAL-PARAM-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableDuration"
+                        },
+                        "VALUE": "10"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableRepeating"
+                        },
+                        "VALUE": "FALSE"
+                      }
+                    ]
+                  },
+                  "REFERENCE-VALUES": {
+                    "ECUC-REFERENCE-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsScheduleTable/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A01"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsScheduleTable/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A02"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsScheduleTable/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A03"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsScheduleTable/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A04"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableCounterRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/counter3"
+                        }
+                      }
+                    ]
+                  },
+                  "SUB-CONTAINERS": [
+                    {
+                      "ECUC-CONTAINER-VALUE": {
+                        "SHORT-NAME": "OSTstart1",
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                          "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableAutostart"
+                        },
+                        "PARAMETER-VALUES": {
+                          "ECUC-NUMERICAL-PARAM-VALUE": [
+                            {
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableAutostart/OsScheduleTableAutostartType"
+                              },
+                              "VALUE": "ABSOLUTE"
+                            },
+                            {
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableAutostart/OsScheduleTableStartValue"
+                              },
+                              "VALUE": "2"
+                            },
+                            {
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableAutostart/OsScheduleTableAppModeRef"
+                              },
+                              "VALUE": "AppMode1"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "ECUC-CONTAINER-VALUE": {
+                        "SHORT-NAME": "ep0",
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                          "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint"
+                        },
+                        "PARAMETER-VALUES": {
+                          "ECUC-NUMERICAL-PARAM-VALUE": {
+                            "DEFINITION-REF": {
+                              "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                              "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTblExpPointOffset"
+                            },
+                            "VALUE": "2"
+                          }
+                        },
+                        "SUB-CONTAINERS": [
+                          {
+                            "ECUC-CONTAINER-VALUE": {
+                              "SHORT-NAME": "OSTactivatetask1-1",
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                                "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTableTaskActivation"
+                              },
+                              "PARAMETER-VALUES": {
+                                "ECUC-NUMERICAL-PARAM-VALUE": {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                    "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTableTaskActivation/OsScheduleTableActivateTaskRef"
+                                  },
+                                  "VALUE": "T002"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "ECUC-CONTAINER-VALUE": {
+                              "SHORT-NAME": "OSTadjustpoint1-1",
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                                "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTblAdjustableExpPoint"
+                              },
+                              "PARAMETER-VALUES": {
+                                "ECUC-NUMERICAL-PARAM-VALUE": [
+                                  {
+                                    "DEFINITION-REF": {
+                                      "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                      "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTblAdjustableExpPoint/OsScheduleTableMaxLengthen"
+                                    },
+                                    "VALUE": "1"
+                                  },
+                                  {
+                                    "DEFINITION-REF": {
+                                      "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                      "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTblAdjustableExpPoint/OsScheduleTableMaxShorten"
+                                    },
+                                    "VALUE": "1"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "ECUC-CONTAINER-VALUE": {
+                        "SHORT-NAME": "ep1",
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                          "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint"
+                        },
+                        "PARAMETER-VALUES": {
+                          "ECUC-NUMERICAL-PARAM-VALUE": {
+                            "DEFINITION-REF": {
+                              "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                              "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTblExpPointOffset"
+                            },
+                            "VALUE": "5"
+                          }
+                        },
+                        "SUB-CONTAINERS": [
+                          {
+                            "ECUC-CONTAINER-VALUE": {
+                              "SHORT-NAME": "OSTactivatetask1-2",
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                                "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTableTaskActivation"
+                              },
+                              "PARAMETER-VALUES": {
+                                "ECUC-NUMERICAL-PARAM-VALUE": {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                    "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTableTaskActivation/OsScheduleTableActivateTaskRef"
+                                  },
+                                  "VALUE": "T003"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "ECUC-CONTAINER-VALUE": {
+                              "SHORT-NAME": "OSTadjustpoint1-2",
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                                "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTblAdjustableExpPoint"
+                              },
+                              "PARAMETER-VALUES": {
+                                "ECUC-NUMERICAL-PARAM-VALUE": [
+                                  {
+                                    "DEFINITION-REF": {
+                                      "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                      "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTblAdjustableExpPoint/OsScheduleTableMaxLengthen"
+                                    },
+                                    "VALUE": "1"
+                                  },
+                                  {
+                                    "DEFINITION-REF": {
+                                      "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                      "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTblAdjustableExpPoint/OsScheduleTableMaxShorten"
+                                    },
+                                    "VALUE": "1"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "ECUC-CONTAINER-VALUE": {
+                        "SHORT-NAME": "ep2",
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                          "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint"
+                        },
+                        "PARAMETER-VALUES": {
+                          "ECUC-NUMERICAL-PARAM-VALUE": {
+                            "DEFINITION-REF": {
+                              "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                              "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTblExpPointOffset"
+                            },
+                            "VALUE": "8"
+                          }
+                        },
+                        "SUB-CONTAINERS": [
+                          {
+                            "ECUC-CONTAINER-VALUE": {
+                              "SHORT-NAME": "OSTactivatetask1-1",
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                                "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTableTaskActivation"
+                              },
+                              "PARAMETER-VALUES": {
+                                "ECUC-NUMERICAL-PARAM-VALUE": {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                    "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTableTaskActivation/OsScheduleTableActivateTaskRef"
+                                  },
+                                  "VALUE": "T004"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "ECUC-CONTAINER-VALUE": {
+                              "SHORT-NAME": "OSTadjustpoint1-1",
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                                "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTblAdjustableExpPoint"
+                              },
+                              "PARAMETER-VALUES": {
+                                "ECUC-NUMERICAL-PARAM-VALUE": [
+                                  {
+                                    "DEFINITION-REF": {
+                                      "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                      "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTblAdjustableExpPoint/OsScheduleTableMaxLengthen"
+                                    },
+                                    "VALUE": "1"
+                                  },
+                                  {
+                                    "DEFINITION-REF": {
+                                      "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                      "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTblAdjustableExpPoint/OsScheduleTableMaxShorten"
+                                    },
+                                    "VALUE": "1"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "ECUC-CONTAINER-VALUE": {
+                        "SHORT-NAME": "OSTsync1",
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                          "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableSync"
+                        },
+                        "PARAMETER-VALUES": {
+                          "ECUC-NUMERICAL-PARAM-VALUE": [
+                            {
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableSync/OsScheduleTblExplicitPrecision"
+                              },
+                              "VALUE": "0"
+                            },
+                            {
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableSync/OsScheduleTblSyncStrategy"
+                              },
+                              "VALUE": "EXPLICIT"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "SHORT-NAME": "ST2",
+                  "DEFINITION-REF": {
+                    "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                    "#text": "/MICROSAR/Os/OsScheduleTable"
+                  },
+                  "PARAMETER-VALUES": {
+                    "ECUC-NUMERICAL-PARAM-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableDuration"
+                        },
+                        "VALUE": "7"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableRepeating"
+                        },
+                        "VALUE": "FALSE"
+                      }
+                    ]
+                  },
+                  "REFERENCE-VALUES": {
+                    "ECUC-REFERENCE-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsScheduleTable/OsTaskAccessingApplication"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/A01"
+                        }
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-REFERENCE-DEF",
+                          "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableCounterRef"
+                        },
+                        "VALUE-REF": {
+                          "@DEST": "ECUC-CONTAINER-VALUE",
+                          "#text": "/ActiveEcuC/Os/counter3"
+                        }
+                      }
+                    ]
+                  },
+                  "SUB-CONTAINERS": [
+                    {
+                      "ECUC-CONTAINER-VALUE": {
+                        "SHORT-NAME": "OSTstart2",
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                          "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableAutostart"
+                        },
+                        "PARAMETER-VALUES": {
+                          "ECUC-NUMERICAL-PARAM-VALUE": [
+                            {
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableAutostart/OsScheduleTableAutostartType"
+                              },
+                              "VALUE": "ABSOLUTE"
+                            },
+                            {
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableAutostart/OsScheduleTableStartValue"
+                              },
+                              "VALUE": "2"
+                            },
+                            {
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableAutostart/OsScheduleTableAppModeRef"
+                              },
+                              "VALUE": "AppMode1"
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    {
+                      "ECUC-CONTAINER-VALUE": {
+                        "SHORT-NAME": "ep20",
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                          "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint"
+                        },
+                        "PARAMETER-VALUES": {
+                          "ECUC-NUMERICAL-PARAM-VALUE": {
+                            "DEFINITION-REF": {
+                              "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                              "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTblExpPointOffset"
+                            },
+                            "VALUE": "2"
+                          }
+                        },
+                        "SUB-CONTAINERS": [
+                          {
+                            "ECUC-CONTAINER-VALUE": {
+                              "SHORT-NAME": "OSTactivatetask21-1",
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                                "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTableTaskActivation"
+                              },
+                              "PARAMETER-VALUES": {
+                                "ECUC-NUMERICAL-PARAM-VALUE": {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                    "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTableTaskActivation/OsScheduleTableActivateTaskRef"
+                                  },
+                                  "VALUE": "T004"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "ECUC-CONTAINER-VALUE": {
+                              "SHORT-NAME": "OSTadjustpoint21-1",
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                                "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTblAdjustableExpPoint"
+                              },
+                              "PARAMETER-VALUES": {
+                                "ECUC-NUMERICAL-PARAM-VALUE": [
+                                  {
+                                    "DEFINITION-REF": {
+                                      "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                      "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTblAdjustableExpPoint/OsScheduleTableMaxLengthen"
+                                    },
+                                    "VALUE": "0"
+                                  },
+                                  {
+                                    "DEFINITION-REF": {
+                                      "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                      "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTblAdjustableExpPoint/OsScheduleTableMaxShorten"
+                                    },
+                                    "VALUE": "0"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "ECUC-CONTAINER-VALUE": {
+                        "SHORT-NAME": "ep21",
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                          "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint"
+                        },
+                        "PARAMETER-VALUES": {
+                          "ECUC-NUMERICAL-PARAM-VALUE": {
+                            "DEFINITION-REF": {
+                              "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                              "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTblExpPointOffset"
+                            },
+                            "VALUE": "5"
+                          }
+                        },
+                        "SUB-CONTAINERS": [
+                          {
+                            "ECUC-CONTAINER-VALUE": {
+                              "SHORT-NAME": "OSTactivatetask21-2",
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                                "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTableTaskActivation"
+                              },
+                              "PARAMETER-VALUES": {
+                                "ECUC-NUMERICAL-PARAM-VALUE": {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                    "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTableTaskActivation/OsScheduleTableActivateTaskRef"
+                                  },
+                                  "VALUE": "T005"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "ECUC-CONTAINER-VALUE": {
+                              "SHORT-NAME": "OSTadjustpoint1-3",
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                                "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTblAdjustableExpPoint"
+                              },
+                              "PARAMETER-VALUES": {
+                                "ECUC-NUMERICAL-PARAM-VALUE": [
+                                  {
+                                    "DEFINITION-REF": {
+                                      "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                      "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTblAdjustableExpPoint/OsScheduleTableMaxLengthen"
+                                    },
+                                    "VALUE": "0"
+                                  },
+                                  {
+                                    "DEFINITION-REF": {
+                                      "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                      "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableExpiryPoint/OsScheduleTblAdjustableExpPoint/OsScheduleTableMaxShorten"
+                                    },
+                                    "VALUE": "0"
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "ECUC-CONTAINER-VALUE": {
+                        "SHORT-NAME": "OSTsync2",
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                          "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableSync"
+                        },
+                        "PARAMETER-VALUES": {
+                          "ECUC-NUMERICAL-PARAM-VALUE": [
+                            {
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableSync/OsScheduleTblExplicitPrecision"
+                              },
+                              "VALUE": "0"
+                            },
+                            {
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                "#text": "/MICROSAR/Os/OsScheduleTable/OsScheduleTableSync/OsScheduleTblSyncStrategy"
+                              },
+                              "VALUE": "NONE"
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "SHORT-NAME": "counter1",
+                  "DEFINITION-REF": {
+                    "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                    "#text": "/MICROSAR/Os/OsCounter"
+                  },
+                  "PARAMETER-VALUES": {
+                    "ECUC-TEXTUAL-PARAM-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsCounter/OsCounterMaxAllowedValue"
+                        },
+                        "VALUE": "100"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsCounter/OsCounterMinCycle"
+                        },
+                        "VALUE": "2"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsCounter/OsCounterTicksPerBase"
+                        },
+                        "VALUE": "10"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsCounter/OsCounterType"
+                        },
+                        "VALUE": "HARDWARE"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "SHORT-NAME": "counter2",
+                  "DEFINITION-REF": {
+                    "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                    "#text": "/MICROSAR/Os/OsCounter"
+                  },
+                  "PARAMETER-VALUES": {
+                    "ECUC-TEXTUAL-PARAM-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsCounter/OsCounterMaxAllowedValue"
+                        },
+                        "VALUE": "500"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsCounter/OsCounterMinCycle"
+                        },
+                        "VALUE": "10"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsCounter/OsCounterTicksPerBase"
+                        },
+                        "VALUE": "10"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsCounter/OsCounterType"
+                        },
+                        "VALUE": "SOFTWARE"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "SHORT-NAME": "counter3",
+                  "DEFINITION-REF": {
+                    "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                    "#text": "/MICROSAR/Os/OsCounter"
+                  },
+                  "PARAMETER-VALUES": {
+                    "ECUC-TEXTUAL-PARAM-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsCounter/OsCounterMaxAllowedValue"
+                        },
+                        "VALUE": "294967295"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsCounter/OsCounterMinCycle"
+                        },
+                        "VALUE": "1"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsCounter/OsCounterTicksPerBase"
+                        },
+                        "VALUE": "1"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsCounter/OsCounterType"
+                        },
+                        "VALUE": "SOFTWARE"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "SHORT-NAME": "counter4",
+                  "DEFINITION-REF": {
+                    "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                    "#text": "/MICROSAR/Os/OsCounter"
+                  },
+                  "PARAMETER-VALUES": {
+                    "ECUC-TEXTUAL-PARAM-VALUE": [
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsCounter/OsCounterMaxAllowedValue"
+                        },
+                        "VALUE": "500"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsCounter/OsCounterMinCycle"
+                        },
+                        "VALUE": "10"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsCounter/OsCounterTicksPerBase"
+                        },
+                        "VALUE": "10"
+                      },
+                      {
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                          "#text": "/MICROSAR/Os/OsCounter/OsCounterType"
+                        },
+                        "VALUE": "HARDWARE"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "SHORT-NAME": "IOC",
+                  "DEFINITION-REF": {
+                    "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                    "#text": "/MICROSAR/Os/OsIoc"
+                  },
+                  "SUB-CONTAINERS": {
+                    "ECUC-CONTAINER-VALUE": [
+                      {
+                        "SHORT-NAME": "Q1",
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                          "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication"
+                        },
+                        "PARAMETER-VALUES": {
+                          "ECUC-NUMERICAL-PARAM-VALUE": {
+                            "DEFINITION-REF": {
+                              "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                              "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocBufferLength"
+                            },
+                            "VALUE": "30"
+                          }
+                        },
+                        "SUB-CONTAINERS": {
+                          "ECUC-CONTAINER-VALUE": [
+                            {
+                              "SHORT-NAME": "IOC_QUE_DATA",
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                                "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocDataProperties"
+                              },
+                              "PARAMETER-VALUES": {
+                                "ECUC-TEXTUAL-PARAM-VALUE": {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-STRING-PARAM-DEF",
+                                    "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocDataProperties/OsIocInitValue"
+                                  },
+                                  "VALUE": "1"
+                                }
+                              },
+                              "REFERENCE-VALUES": {
+                                "ECUC-REFERENCE-VALUE": {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-FOREIGN-REFERENCE-DEF",
+                                    "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocDataProperties/OsIocDataTypeRef"
+                                  },
+                                  "VALUE-REF": {
+                                    "@DEST": "IMPLEMENTATION-DATA-TYPE",
+                                    "#text": "/ImplementationDataTypes/int"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "SHORT-NAME": "RCV",
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                                "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocReceiverProperties"
+                              },
+                              "PARAMETER-VALUES": {
+                                "ECUC-TEXTUAL-PARAM-VALUE": {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                                    "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocReceiverProperties/OsIocFunctionImplementationKind"
+                                  },
+                                  "VALUE": "FUNCTION"
+                                }
+                              },
+                              "REFERENCE-VALUES": {
+                                "ECUC-REFERENCE-VALUE": {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-REFERENCE-DEF",
+                                    "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocReceiverProperties/OsIocReceivingOsApplicationRef"
+                                  },
+                                  "VALUE-REF": {
+                                    "@DEST": "ECUC-CONTAINER-VALUE",
+                                    "#text": "/MICROSAR/Os/A03"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "SHORT-NAME": "SND",
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                                "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocSenderProperties"
+                              },
+                              "PARAMETER-VALUES": {
+                                "ECUC-NUMERICAL-PARAM-VALUE": {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                    "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocSenderProperties/OsIocSenderId"
+                                  },
+                                  "VALUE": "0"
+                                },
+                                "ECUC-TEXTUAL-PARAM-VALUE": {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                                    "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocSenderProperties/OsIocFunctionImplementationKind"
+                                  },
+                                  "VALUE": "FUNCTION"
+                                }
+                              },
+                              "REFERENCE-VALUES": {
+                                "ECUC-REFERENCE-VALUE": {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-REFERENCE-DEF",
+                                    "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocSenderProperties/OsIocSendingOsApplicationRef"
+                                  },
+                                  "VALUE-REF": {
+                                    "@DEST": "ECUC-CONTAINER-VALUE",
+                                    "#text": "/MICROSAR/Os/A01"
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "SHORT-NAME": "Q2",
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                          "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication"
+                        },
+                        "PARAMETER-VALUES": {
+                          "ECUC-NUMERICAL-PARAM-VALUE": {
+                            "DEFINITION-REF": {
+                              "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                              "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocBufferLength"
+                            },
+                            "VALUE": "30"
+                          }
+                        },
+                        "SUB-CONTAINERS": {
+                          "ECUC-CONTAINER-VALUE": [
+                            {
+                              "SHORT-NAME": "IOC_QUE_DATA",
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                                "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocDataProperties"
+                              },
+                              "PARAMETER-VALUES": {
+                                "ECUC-NUMERICAL-PARAM-VALUE": {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                    "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocDataProperties/OsIocDataPropertyIndex"
+                                  },
+                                  "VALUE": "0"
+                                },
+                                "ECUC-TEXTUAL-PARAM-VALUE": {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-STRING-PARAM-DEF",
+                                    "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocDataProperties/OsIocInitValue"
+                                  },
+                                  "VALUE": "0U"
+                                }
+                              },
+                              "REFERENCE-VALUES": {
+                                "ECUC-REFERENCE-VALUE": {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-FOREIGN-REFERENCE-DEF",
+                                    "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocDataProperties/OsIocDataTypeRef"
+                                  },
+                                  "VALUE-REF": {
+                                    "@DEST": "IMPLEMENTATION-DATA-TYPE",
+                                    "#text": "/ImplementationDataTypes/int"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "SHORT-NAME": "RCV",
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                                "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocReceiverProperties"
+                              },
+                              "PARAMETER-VALUES": {
+                                "ECUC-TEXTUAL-PARAM-VALUE": {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                                    "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocReceiverProperties/OsIocFunctionImplementationKind"
+                                  },
+                                  "VALUE": "FUNCTION"
+                                }
+                              },
+                              "REFERENCE-VALUES": {
+                                "ECUC-REFERENCE-VALUE": {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-REFERENCE-DEF",
+                                    "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocReceiverProperties/OsIocReceivingOsApplicationRef"
+                                  },
+                                  "VALUE-REF": {
+                                    "@DEST": "ECUC-CONTAINER-VALUE",
+                                    "#text": "/MICROSAR/Os/A02"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "SHORT-NAME": "SND",
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                                "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocSenderProperties"
+                              },
+                              "PARAMETER-VALUES": {
+                                "ECUC-TEXTUAL-PARAM-VALUE": {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                                    "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocSenderProperties/OsIocFunctionImplementationKind"
+                                  },
+                                  "VALUE": "FUNCTION"
+                                }
+                              },
+                              "REFERENCE-VALUES": {
+                                "ECUC-REFERENCE-VALUE": {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-REFERENCE-DEF",
+                                    "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocSenderProperties/OsIocSendingOsApplicationRef"
+                                  },
+                                  "VALUE-REF": {
+                                    "@DEST": "ECUC-CONTAINER-VALUE",
+                                    "#text": "/MICROSAR/Os/A01"
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "SHORT-NAME": "Q3",
+                        "DEFINITION-REF": {
+                          "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                          "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication"
+                        },
+                        "PARAMETER-VALUES": {
+                          "ECUC-NUMERICAL-PARAM-VALUE": {
+                            "DEFINITION-REF": {
+                              "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                              "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocBufferLength"
+                            },
+                            "VALUE": "30"
+                          }
+                        },
+                        "SUB-CONTAINERS": {
+                          "ECUC-CONTAINER-VALUE": [
+                            {
+                              "SHORT-NAME": "IOC_QUE_DATA",
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                                "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocDataProperties"
+                              },
+                              "PARAMETER-VALUES": {
+                                "ECUC-NUMERICAL-PARAM-VALUE": {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-INTEGER-PARAM-DEF",
+                                    "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocDataProperties/OsIocDataPropertyIndex"
+                                  },
+                                  "VALUE": "0"
+                                },
+                                "ECUC-TEXTUAL-PARAM-VALUE": {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-STRING-PARAM-DEF",
+                                    "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocDataProperties/OsIocInitValue"
+                                  },
+                                  "VALUE": "0U"
+                                }
+                              },
+                              "REFERENCE-VALUES": {
+                                "ECUC-REFERENCE-VALUE": {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-FOREIGN-REFERENCE-DEF",
+                                    "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocDataProperties/OsIocDataTypeRef"
+                                  },
+                                  "VALUE-REF": {
+                                    "@DEST": "IMPLEMENTATION-DATA-TYPE",
+                                    "#text": "/ImplementationDataTypes/void*,int"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "SHORT-NAME": "RCV",
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                                "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocReceiverProperties"
+                              },
+                              "PARAMETER-VALUES": {
+                                "ECUC-TEXTUAL-PARAM-VALUE": {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                                    "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocReceiverProperties/OsIocFunctionImplementationKind"
+                                  },
+                                  "VALUE": "FUNCTION"
+                                }
+                              },
+                              "REFERENCE-VALUES": {
+                                "ECUC-REFERENCE-VALUE": {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-REFERENCE-DEF",
+                                    "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocReceiverProperties/OsIocReceivingOsApplicationRef"
+                                  },
+                                  "VALUE-REF": {
+                                    "@DEST": "ECUC-CONTAINER-VALUE",
+                                    "#text": "/Ecuc/Os/A03"
+                                  }
+                                }
+                              }
+                            },
+                            {
+                              "SHORT-NAME": "SND",
+                              "DEFINITION-REF": {
+                                "@DEST": "ECUC-PARAM-CONF-CONTAINER-DEF",
+                                "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocSenderProperties"
+                              },
+                              "PARAMETER-VALUES": {
+                                "ECUC-TEXTUAL-PARAM-VALUE": {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-ENUMERATION-PARAM-DEF",
+                                    "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocSenderProperties/OsIocFunctionImplementationKind"
+                                  },
+                                  "VALUE": "FUNCTION"
+                                }
+                              },
+                              "REFERENCE-VALUES": {
+                                "ECUC-REFERENCE-VALUE": {
+                                  "DEFINITION-REF": {
+                                    "@DEST": "ECUC-REFERENCE-DEF",
+                                    "#text": "/MICROSAR/Os/OsIoc/OsIocCommunication/OsIocSenderProperties/OsIocSendingOsApplicationRef"
+                                  },
+                                  "VALUE-REF": {
+                                    "@DEST": "ECUC-CONTAINER-VALUE",
+                                    "#text": "/MICROSAR/Os/A01"
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

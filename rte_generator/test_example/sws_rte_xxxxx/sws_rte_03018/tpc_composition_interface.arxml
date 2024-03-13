@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00051.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>TPC_Composition</SHORT-NAME>
+      <ELEMENTS/>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>Interfaces</SHORT-NAME>
+          <ELEMENTS>
+            <SENDER-RECEIVER-INTERFACE>
+              <SHORT-NAME>SR_If1</SHORT-NAME>
+              <DATA-ELEMENTS>
+                <VARIABLE-DATA-PROTOTYPE>
+                  <SHORT-NAME>Acc</SHORT-NAME>
+                  <CATEGORY>VALUE</CATEGORY>
+                  <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/TPC_Composition/Datatypes/ApplicationDataTypes/App_uint8</TYPE-TREF>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                        <SW-CALIBRATION-ACCESS>READ-ONLY</SW-CALIBRATION-ACCESS>
+                        <INVALID-VALUE>
+                          <NUMERICAL-VALUE-SPECIFICATION>
+                            <SHORT-LABEL>DefaultInvalidValue_SR_If1_DE_Acc</SHORT-LABEL>
+                            <VALUE>1618</VALUE>
+                          </NUMERICAL-VALUE-SPECIFICATION>
+                        </INVALID-VALUE>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </VARIABLE-DATA-PROTOTYPE>
+                <VARIABLE-DATA-PROTOTYPE>
+                  <SHORT-NAME>Spd</SHORT-NAME>
+                  <CATEGORY>VALUE</CATEGORY>
+                  <TYPE-TREF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/TPC_Composition/Datatypes/ApplicationDataTypes/App_uint8</TYPE-TREF>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                        <SW-CALIBRATION-ACCESS>READ-ONLY</SW-CALIBRATION-ACCESS>
+                        <INVALID-VALUE>
+                          <NUMERICAL-VALUE-SPECIFICATION>
+                            <SHORT-LABEL>DefaultInvalidValue_SR_If1_DE_Spd</SHORT-LABEL>
+                            <VALUE>392</VALUE>
+                          </NUMERICAL-VALUE-SPECIFICATION>
+                        </INVALID-VALUE>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </VARIABLE-DATA-PROTOTYPE>
+              </DATA-ELEMENTS>
+              <INVALIDATION-POLICYS>
+                <INVALIDATION-POLICY>
+                  <HANDLE-INVALID>REPLACE</HANDLE-INVALID>
+                  <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/TPC_Composition/Interfaces/SR_If1/Acc</DATA-ELEMENT-REF>
+                </INVALIDATION-POLICY>
+                <INVALIDATION-POLICY>
+                  <HANDLE-INVALID>KEEP</HANDLE-INVALID>
+                  <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/TPC_Composition/Interfaces/SR_If1/Spd</DATA-ELEMENT-REF>
+                </INVALIDATION-POLICY>
+              </INVALIDATION-POLICYS>
+            </SENDER-RECEIVER-INTERFACE>
+            <SENDER-RECEIVER-INTERFACE>
+              <SHORT-NAME>SR_If2</SHORT-NAME>
+              <DATA-ELEMENTS>
+                <VARIABLE-DATA-PROTOTYPE>
+                  <SHORT-NAME>Temp</SHORT-NAME>
+                  <CATEGORY>VALUE</CATEGORY>
+                  <TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/TPC_Composition/Datatypes/ImplementationDataTypes/Impl_float64</TYPE-TREF>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <SW-IMPL-POLICY>STANDARD</SW-IMPL-POLICY>
+                        <SW-CALIBRATION-ACCESS>READ-ONLY</SW-CALIBRATION-ACCESS>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                </VARIABLE-DATA-PROTOTYPE>
+              </DATA-ELEMENTS>
+              <INVALIDATION-POLICYS>
+                <INVALIDATION-POLICY>
+                  <HANDLE-INVALID>REPLACE</HANDLE-INVALID>
+                  <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/TPC_Composition/Interfaces/SR_If2/Temp</DATA-ELEMENT-REF>
+                </INVALIDATION-POLICY>
+              </INVALIDATION-POLICYS>
+            </SENDER-RECEIVER-INTERFACE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

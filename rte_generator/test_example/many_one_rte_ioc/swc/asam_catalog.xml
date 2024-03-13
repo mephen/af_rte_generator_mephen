@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CATALOG xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="catalog_V3_0_0.ml.xsd">
+    <SHORT-NAME>sample</SHORT-NAME>
+    <ABLOCKS>
+        <ABLOCK>
+            <SHORT-NAME>Rte_Controller</SHORT-NAME>
+            <CATEGORY>SWSRC</CATEGORY>
+            <DOMAIN>AUTOSAR</DOMAIN>
+            <FILES>
+                <FILE>generated/Controller/Rte_Controller.c</FILE>
+            </FILES>
+        </ABLOCK>
+        </ABLOCK>
+    </ABLOCKS>
+</CATALOG>

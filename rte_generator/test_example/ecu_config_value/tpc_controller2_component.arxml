@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00051.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>TPC_Composition</SHORT-NAME>
+      <ELEMENTS/>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>Components</SHORT-NAME>
+          <ELEMENTS>
+            <APPLICATION-SW-COMPONENT-TYPE>
+              <SHORT-NAME>Controller2</SHORT-NAME>
+              <PORTS>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PpIfVehAcc</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/TPC_Composition/Interfaces/SR_If1</PROVIDED-INTERFACE-TREF>
+                  <PROVIDED-COM-SPECS>
+                    <NONQUEUED-SENDER-COM-SPEC>
+                      <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/TPC_Composition/Interfaces/SR_If1/Acc</DATA-ELEMENT-REF>
+                      <INIT-VALUE>
+                        <NUMERICAL-VALUE-SPECIFICATION>
+                          <SHORT-LABEL>DefaultInitValue_Uint8</SHORT-LABEL>
+                          <VALUE>777</VALUE>
+                        </NUMERICAL-VALUE-SPECIFICATION>
+                      </INIT-VALUE>
+                    </NONQUEUED-SENDER-COM-SPEC>
+                  </PROVIDED-COM-SPECS>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PpIfVehSpd</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/TPC_Composition/Interfaces/SR_If1</PROVIDED-INTERFACE-TREF>
+                  <PROVIDED-COM-SPECS>
+                    <NONQUEUED-SENDER-COM-SPEC>
+                      <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/TPC_Composition/Interfaces/SR_If1/Spd</DATA-ELEMENT-REF>
+                      <INIT-VALUE>
+                        <NUMERICAL-VALUE-SPECIFICATION>
+                          <SHORT-LABEL>DefaultInitValue_Uint8</SHORT-LABEL>
+                          <VALUE>666</VALUE>
+                        </NUMERICAL-VALUE-SPECIFICATION>
+                      </INIT-VALUE>
+                    </NONQUEUED-SENDER-COM-SPEC>
+                  </PROVIDED-COM-SPECS>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE>
+                  <SHORT-NAME>PpIfTemperature</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/TPC_Composition/Interfaces/SR_If2</PROVIDED-INTERFACE-TREF>
+                  <PROVIDED-COM-SPECS>
+                    <QUEUED-SENDER-COM-SPEC>
+                      <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/TPC_Composition/Interfaces/SR_If2/Temp</DATA-ELEMENT-REF>
+                    </QUEUED-SENDER-COM-SPEC>
+                  </PROVIDED-COM-SPECS>
+                </P-PORT-PROTOTYPE>
+              </PORTS>
+              <INTERNAL-BEHAVIORS>
+                <SWC-INTERNAL-BEHAVIOR>
+                  <SHORT-NAME>SWC_Controller2_InternalBehavior</SHORT-NAME>
+                  <SUPPORTS-MULTIPLE-INSTANTIATION>true</SUPPORTS-MULTIPLE-INSTANTIATION>
+                  <RUNNABLES>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>ReTxTemp</SHORT-NAME>
+                      <DATA-WRITE-ACCESSS>
+                        <VARIABLE-ACCESS>
+                          <SHORT-NAME>DataSendPoint_PpIfTemperature_Temp</SHORT-NAME>
+                          <RETURN-VALUE-PROVISION>RETURN-VALUE-PROVIDED</RETURN-VALUE-PROVISION>
+                          <ACCESSED-VARIABLE>
+                            <AUTOSAR-VARIABLE-IREF>
+                              <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/TPC_Composition/Components/Controller2/PpIfTemperature</PORT-PROTOTYPE-REF>
+                              <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/TPC_Composition/Interfaces/SR_If2/Temp</TARGET-DATA-PROTOTYPE-REF>
+                            </AUTOSAR-VARIABLE-IREF>
+                          </ACCESSED-VARIABLE>
+                        </VARIABLE-ACCESS>
+                      </DATA-WRITE-ACCESSS>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>ReTxSpd</SHORT-NAME>
+                      <DATA-WRITE-ACCESSS>
+                        <VARIABLE-ACCESS>
+                          <SHORT-NAME>DataSendPoint_PpIfVehMov_Spd</SHORT-NAME>
+                          <RETURN-VALUE-PROVISION>RETURN-VALUE-PROVIDED</RETURN-VALUE-PROVISION>
+                          <ACCESSED-VARIABLE>
+                            <AUTOSAR-VARIABLE-IREF>
+                              <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/TPC_Composition/Components/Controller2/PpIfVehSpd</PORT-PROTOTYPE-REF>
+                              <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/TPC_Composition/Interfaces/SR_If1/Spd</TARGET-DATA-PROTOTYPE-REF>
+                            </AUTOSAR-VARIABLE-IREF>
+                          </ACCESSED-VARIABLE>
+                        </VARIABLE-ACCESS>
+                      </DATA-WRITE-ACCESSS>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>ReTxAcc</SHORT-NAME>
+                      <DATA-WRITE-ACCESSS>
+                        <VARIABLE-ACCESS>
+                          <SHORT-NAME>DataSendPoint_PpIfVehMov_Acc</SHORT-NAME>
+                          <RETURN-VALUE-PROVISION>RETURN-VALUE-PROVIDED</RETURN-VALUE-PROVISION>
+                          <ACCESSED-VARIABLE>
+                            <AUTOSAR-VARIABLE-IREF>
+                              <PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/TPC_Composition/Components/Controller2/PpIfVehAcc</PORT-PROTOTYPE-REF>
+                              <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/TPC_Composition/Interfaces/SR_If1/Acc</TARGET-DATA-PROTOTYPE-REF>
+                            </AUTOSAR-VARIABLE-IREF>
+                          </ACCESSED-VARIABLE>
+                        </VARIABLE-ACCESS>
+                      </DATA-WRITE-ACCESSS>
+                    </RUNNABLE-ENTITY>
+                  </RUNNABLES>
+                  <EVENTS>
+                    <TIMING-EVENT>
+                      <SHORT-NAME>EvTiTemp_20ms</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/TPC_Composition/Components/Controller2/SWC_Controller2_InternalBehavior/ReTxTemp</START-ON-EVENT-REF>
+                      <PERIOD>0.02</PERIOD>
+                    </TIMING-EVENT>
+                    <TIMING-EVENT>
+                      <SHORT-NAME>EvTiSpd_20ms</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/TPC_Composition/Components/Controller2/SWC_Controller2_InternalBehavior/ReTxSpd</START-ON-EVENT-REF>
+                      <PERIOD>0.02</PERIOD>
+                    </TIMING-EVENT>
+                    <TIMING-EVENT>
+                      <SHORT-NAME>EvTiAcc_20ms</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/TPC_Composition/Components/Controller2/SWC_Controller2_InternalBehavior/ReTxAcc</START-ON-EVENT-REF>
+                      <PERIOD>0.02</PERIOD>
+                    </TIMING-EVENT>
+                  </EVENTS>
+                  <PORT-API-OPTIONS>
+                    <PORT-API-OPTION>
+                      <PORT-REF DEST="P-PORT-PROTOTYPE">/TPC_Composition/Components/Controller2/PpIfVehAcc</PORT-REF>
+                      <TRANSFORMER-STATUS-FORWARDING>TRANSFORMER-STATUS-FORWARDING</TRANSFORMER-STATUS-FORWARDING>
+                      <ERROR-HANDLING>TRANSFORMER-ERROR-HANDLING</ERROR-HANDLING>
+                    </PORT-API-OPTION>
+                    <PORT-API-OPTION>
+                      <PORT-REF DEST="P-PORT-PROTOTYPE">/TPC_Composition/Components/Controller2/PpIfTemperature</PORT-REF>
+                      <ERROR-HANDLING>TRANSFORMER-ERROR-HANDLING</ERROR-HANDLING>
+                    </PORT-API-OPTION>
+                  </PORT-API-OPTIONS>
+                </SWC-INTERNAL-BEHAVIOR>
+              </INTERNAL-BEHAVIORS>
+            </APPLICATION-SW-COMPONENT-TYPE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

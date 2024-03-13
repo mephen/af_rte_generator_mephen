@@ -1,0 +1,901 @@
+AUTOSAR AUTOSAR {
+	OsApplication A01 {
+		OsTrusted = TRUE
+		OsTrustedApplicationDelayTimingViolationCall = TRUE
+		OsTrustedApplicationWithProtection = TRUE
+		OsApplicationCoreRef = EcucCoreDefinition0
+		OsAppCounterRef = counter3
+		OsAppTaskRef = T001
+		OsAppTaskRef = T002
+		OsAppTaskRef = T003
+		OsAppIsrRef = I001
+		OsAppIsrRef = I002
+		OsAppIsrRef = I003
+		OsAppIsrRef = I004
+		OsAppAlarmRef = alarm3
+		OsAppAlarmRef = alarm4
+		OsAppScheduleTableRef = ST1
+		OsAppScheduleTableRef = ST2
+		OsRestartTask = T003
+		OsApplicationTrustedFunction AIMER {
+			OsTrustedFunctionName = AIMER
+			OsMemoryMappingCodeLocationRef = None
+		}
+		OsApplicationTrustedFunction IKURA {
+			OsTrustedFunctionName = IKURA
+			OsMemoryMappingCodeLocationRef = None
+		}
+		OsApplicationTrustedFunction YORUSHIKA {
+			OsTrustedFunctionName = YORUSHIKA
+			OsMemoryMappingCodeLocationRef = None
+		}
+	}
+	OsApplication A02 {
+		OsTrusted = TRUE
+		OsTrustedApplicationDelayTimingViolationCall = TRUE
+		OsTrustedApplicationWithProtection = FALSE
+		OsApplicationCoreRef = EcucCoreDefinition1
+		OsAppCounterRef = counter1
+		OsAppTaskRef = T101
+		OsAppTaskRef = T102
+		OsAppTaskRef = T103
+		OsAppIsrRef = I101
+		OsAppIsrRef = I102
+		OsAppIsrRef = I103
+		OsAppIsrRef = I104
+		OsAppAlarmRef = alarm1
+		OsAppScheduleTableRef = ST3
+		OsRestartTask = T103
+		OsApplicationTrustedFunction YUURI {
+			OsTrustedFunctionName = YUURI
+			OsMemoryMappingCodeLocationRef = None
+		}
+		OsApplicationTrustedFunction HITORIE {
+			OsTrustedFunctionName = HITORIE
+			OsMemoryMappingCodeLocationRef = None
+		}
+	}
+	OsApplication A03 {
+		OsTrusted = TRUE
+		OsTrustedApplicationDelayTimingViolationCall = FALSE
+		OsTrustedApplicationWithProtection = FALSE
+		OsApplicationCoreRef = EcucCoreDefinition0
+		OsAppCounterRef = counter4
+		OsAppTaskRef = T004
+		OsAppTaskRef = T005
+		OsAppTaskRef = T006
+		OsAppIsrRef = I005
+		OsAppIsrRef = I006
+		OsRestartTask = T006
+	}
+	OsApplication A04 {
+		OsTrusted = FALSE
+		OsTrustedApplicationDelayTimingViolationCall = FALSE
+		OsTrustedApplicationWithProtection = FALSE
+		OsApplicationCoreRef = EcucCoreDefinition1
+		OsAppCounterRef = counter2
+		OsAppTaskRef = T104
+		OsAppTaskRef = T105
+		OsAppTaskRef = T106
+		OsAppIsrRef = I105
+		OsAppIsrRef = I106
+		OsRestartTask = T106
+	}
+	OsTask T001 {
+		OsTaskActivation = 55
+		OsTaskPriority = 1
+		OsTaskStackSize = 512
+		OsTaskSchedule = FULL
+		OsTaskType = BASIC
+		OsTaskAccessingApplication = A01
+		OsTaskAccessingApplication = A02
+		OsTaskAccessingApplication = A03
+		OsTaskAccessingApplication = A04
+		OsTaskResourceRef = resource1
+		OsTaskAutostart OAT1 {
+			OsTaskAppModeRef = AppMode1
+		}
+		OsTaskTimingProtection OTTP {
+			OsTaskExecutionBudget = 1
+			OsTaskAllInterruptLockBudget = 10
+			OsTaskOsInterruptLockBudget = 10
+			OsTaskTimeFrame = 20
+		}
+	}
+	OsTask T002 {
+		OsTaskActivation = 10
+		OsTaskPriority = 2
+		OsTaskStackSize = 512
+		OsTaskSchedule = FULL
+		OsTaskType = EXTENDED
+		OsTaskAccessingApplication = A01
+		OsTaskAccessingApplication = A02
+		OsTaskAccessingApplication = A03
+		OsTaskAccessingApplication = A04
+		OsTaskResourceRef = resource1
+		OsTaskResourceRef = resource2
+	}
+	OsTask T003 {
+		OsTaskActivation = 10
+		OsTaskPriority = 5
+		OsTaskStackSize = 512
+		OsTaskSchedule = FULL
+		OsTaskType = BASIC
+		OsTaskAccessingApplication = A01
+		OsTaskAccessingApplication = A02
+		OsTaskAccessingApplication = A03
+		OsTaskAccessingApplication = A04
+		OsTaskEventRef = event3
+	}
+	OsTask T004 {
+		OsTaskActivation = 10
+		OsTaskPriority = 3
+		OsTaskStackSize = 512
+		OsTaskSchedule = FULL
+		OsTaskType = EXTENDED
+		OsTaskAccessingApplication = A01
+		OsTaskAccessingApplication = A02
+		OsTaskAccessingApplication = A03
+		OsTaskAccessingApplication = A04
+		OsTaskResourceRef = resource1
+		OsTaskResourceRef = resource2
+		OsTaskTimingProtection OTTP4 {
+			OsTaskExecutionBudget = 3
+			OsTaskAllInterruptLockBudget = 20
+			OsTaskOsInterruptLockBudget = 20
+			OsTaskTimeFrame = 20
+		}
+	}
+	OsTask T005 {
+		OsTaskActivation = 1
+		OsTaskPriority = 3
+		OsTaskStackSize = 512
+		OsTaskSchedule = FULL
+		OsTaskType = BASIC
+		OsTaskAccessingApplication = A01
+		OsTaskAccessingApplication = A02
+		OsTaskAccessingApplication = A03
+		OsTaskAccessingApplication = A04
+		OsTaskEventRef = event3
+		OsTaskTimingProtection OTTP5 {
+			OsTaskExecutionBudget = 100
+			OsTaskAllInterruptLockBudget = 30
+			OsTaskOsInterruptLockBudget = 30
+			OsTaskTimeFrame = 20
+			OsTaskResourceLock OTTR5-1 {
+				OsTaskResourceLockResourceRef = resource1
+				OsTaskResourceLockBudget = 30
+			}
+			OsTaskResourceLock OTTR5-2 {
+				OsTaskResourceLockResourceRef = resource2
+				OsTaskResourceLockBudget = 30
+			}
+			OsTaskResourceLock OTTR5-3 {
+				OsTaskResourceLockResourceRef = resource3
+				OsTaskResourceLockBudget = 10
+			}
+		}
+	}
+	OsTask T006 {
+		OsTaskActivation = 10
+		OsTaskPriority = 1
+		OsTaskStackSize = 512
+		OsTaskSchedule = FULL
+		OsTaskType = BASIC
+		OsTaskAccessingApplication = A01
+		OsTaskAccessingApplication = A02
+		OsTaskAccessingApplication = A03
+		OsTaskAccessingApplication = A04
+		OsTaskResourceRef = resource1
+		OsTaskResourceRef = resource2
+	}
+	OsTask T101 {
+		OsTaskActivation = 1
+		OsTaskPriority = 3
+		OsTaskStackSize = 512
+		OsTaskSchedule = FULL
+		OsTaskType = EXTENDED
+		OsTaskAccessingApplication = A01
+		OsTaskAccessingApplication = A02
+		OsTaskAccessingApplication = A03
+		OsTaskAccessingApplication = A04
+		OsTaskResourceRef = resource1
+		OsTaskResourceRef = resource2
+	}
+	OsTask T102 {
+		OsTaskActivation = 10
+		OsTaskPriority = 2
+		OsTaskStackSize = 512
+		OsTaskSchedule = FULL
+		OsTaskType = BASIC
+		OsTaskAccessingApplication = A01
+		OsTaskAccessingApplication = A02
+		OsTaskAccessingApplication = A03
+		OsTaskAccessingApplication = A04
+	}
+	OsResource resource1 {
+		OsResourceProperty = STANDARD
+		OsResourceAccessingApplication = A01
+	}
+	OsResource resource2 {
+		OsResourceProperty = STANDARD
+		OsResourceAccessingApplication = A01
+	}
+	OsResource resource3 {
+		OsResourceProperty = STANDARD
+		OsResourceAccessingApplication = A03
+	}
+	OsResource resource4 {
+		OsResourceProperty = STANDARD
+		OsResourceAccessingApplication = A02
+		OsResourceAccessingApplication = A04
+	}
+	OsResource resource5 {
+		OsResourceProperty = STANDARD
+		OsResourceAccessingApplication = A02
+		OsResourceAccessingApplication = A04
+	}
+	OsResource resource6 {
+		OsResourceProperty = STANDARD
+		OsResourceAccessingApplication = A02
+		OsResourceAccessingApplication = A04
+	}
+	OsScheduleTable ST1 {
+		OsScheduleTableDuration = 10
+		OsScheduleTableRepeating = FALSE
+		OsTaskAccessingApplication = A01
+		OsTaskAccessingApplication = A02
+		OsTaskAccessingApplication = A03
+		OsTaskAccessingApplication = A04
+		OsScheduleTableCounterRef = counter3
+		OsScheduleTableAutostart OSTstart1 {
+			OsScheduleTableAutostartType = ABSOLUTE
+			OsScheduleTableStartValue = 2
+			OsScheduleTableAppModeRef = AppMode1
+		}
+		OsScheduleTableExpiryPoint ep0 {
+			OsScheduleTblExpPointOffset = 2
+			OsScheduleTableTaskActivation OSTactivatetask1-1 {
+				OsScheduleTableActivateTaskRef = T002
+			}
+			OsScheduleTblAdjustableExpPoint OSTadjustpoint1-1 {
+				OsScheduleTableMaxLengthen = 1
+				OsScheduleTableMaxShorten = 1
+			}
+		}
+		OsScheduleTableExpiryPoint ep1 {
+			OsScheduleTblExpPointOffset = 5
+			OsScheduleTableTaskActivation OSTactivatetask1-2 {
+				OsScheduleTableActivateTaskRef = T003
+			}
+			OsScheduleTblAdjustableExpPoint OSTadjustpoint1-2 {
+				OsScheduleTableMaxLengthen = 1
+				OsScheduleTableMaxShorten = 1
+			}
+		}
+		OsScheduleTableExpiryPoint ep2 {
+			OsScheduleTblExpPointOffset = 8
+			OsScheduleTableTaskActivation OSTactivatetask1-1 {
+				OsScheduleTableActivateTaskRef = T004
+			}
+			OsScheduleTblAdjustableExpPoint OSTadjustpoint1-1 {
+				OsScheduleTableMaxLengthen = 1
+				OsScheduleTableMaxShorten = 1
+			}
+		}
+		OsScheduleTableSync OSTsync1 {
+			OsScheduleTblExplicitPrecision = 0
+			OsScheduleTblSyncStrategy = EXPLICIT
+		}
+	}
+	OsScheduleTable ST2 {
+		OsScheduleTableDuration = 7
+		OsScheduleTableRepeating = FALSE
+		OsTaskAccessingApplication = A01
+		OsScheduleTableCounterRef = counter3
+		OsScheduleTableAutostart OSTstart2 {
+			OsScheduleTableAutostartType = ABSOLUTE
+			OsScheduleTableStartValue = 2
+			OsScheduleTableAppModeRef = AppMode1
+		}
+		OsScheduleTableExpiryPoint ep20 {
+			OsScheduleTblExpPointOffset = 2
+			OsScheduleTableTaskActivation OSTactivatetask21-1 {
+				OsScheduleTableActivateTaskRef = T004
+			}
+			OsScheduleTblAdjustableExpPoint OSTadjustpoint21-1 {
+				OsScheduleTableMaxLengthen = 0
+				OsScheduleTableMaxShorten = 0
+			}
+		}
+		OsScheduleTableExpiryPoint ep21 {
+			OsScheduleTblExpPointOffset = 5
+			OsScheduleTableTaskActivation OSTactivatetask21-2 {
+				OsScheduleTableActivateTaskRef = T005
+			}
+			OsScheduleTblAdjustableExpPoint OSTadjustpoint1-3 {
+				OsScheduleTableMaxLengthen = 0
+				OsScheduleTableMaxShorten = 0
+			}
+		}
+		OsScheduleTableSync OSTsync2 {
+			OsScheduleTblExplicitPrecision = 0
+			OsScheduleTblSyncStrategy = NONE
+		}
+	}
+	OsCounter counter1 {
+		OsCounterMaxAllowedValue = 100
+		OsCounterMinCycle = 2
+		OsCounterTicksPerBase = 10
+		OsCounterType = HARDWARE
+	}
+	OsCounter counter2 {
+		OsCounterMaxAllowedValue = 500
+		OsCounterMinCycle = 10
+		OsCounterTicksPerBase = 10
+		OsCounterType = SOFTWARE
+	}
+	OsCounter counter3 {
+		OsCounterMaxAllowedValue = 294967295
+		OsCounterMinCycle = 1
+		OsCounterTicksPerBase = 1
+		OsCounterType = SOFTWARE
+	}
+	OsCounter counter4 {
+		OsCounterMaxAllowedValue = 500
+		OsCounterMinCycle = 10
+		OsCounterTicksPerBase = 10
+		OsCounterType = HARDWARE
+	}
+	OsIoc IOC {
+		OsIocCommunication Q1 {
+			OsIocBufferLength = 30
+			OsIocDataProperties IOC_QUE_DATA {
+				OsIocInitValue = 1
+				OsIocDataTypeRef = int
+			}
+			OsIocReceiverProperties RCV {
+				OsIocFunctionImplementationKind = FUNCTION
+				OsIocReceivingOsApplicationRef = A03
+			}
+			OsIocSenderProperties SND {
+				OsIocSenderId = 0
+				OsIocFunctionImplementationKind = FUNCTION
+				OsIocSendingOsApplicationRef = A01
+			}
+		}
+		OsIocCommunication Q2 {
+			OsIocBufferLength = 30
+			OsIocDataProperties IOC_QUE_DATA {
+				OsIocDataPropertyIndex = 0
+				OsIocInitValue = 0U
+				OsIocDataTypeRef = int
+			}
+			OsIocReceiverProperties RCV {
+				OsIocFunctionImplementationKind = FUNCTION
+				OsIocReceivingOsApplicationRef = A02
+			}
+			OsIocSenderProperties SND {
+				OsIocFunctionImplementationKind = FUNCTION
+				OsIocSendingOsApplicationRef = A01
+			}
+		}
+		OsIocCommunication Q3 {
+			OsIocBufferLength = 30
+			OsIocDataProperties IOC_QUE_DATA {
+				OsIocDataPropertyIndex = 0
+				OsIocInitValue = 0U
+				OsIocDataTypeRef = void*,int
+			}
+			OsIocReceiverProperties RCV {
+				OsIocFunctionImplementationKind = FUNCTION
+				OsIocReceivingOsApplicationRef = A03
+			}
+			OsIocSenderProperties SND {
+				OsIocFunctionImplementationKind = FUNCTION
+				OsIocSendingOsApplicationRef = A01
+			}
+		}
+	}
+	EcucHardware EcucHardware {
+		EcucCoreDefinition EcucCoreDefinition0 {
+			EcucCoreId = 0
+		}
+		EcucCoreDefinition EcucCoreDefinition1 {
+			EcucCoreId = 1
+		}
+	}
+
+    OsTask T103 {
+        OsTaskPriority = 3;
+        OsTaskActivation = 1;
+        OsTaskStackSize = 512;
+        OsTaskType = BASIC;
+        OsTaskSchedule = FULL;
+        OsMemoryMappingCodeLocationRef = PARTITION_2;
+        OsTaskAccessingApplication = A04;
+    }
+    
+
+    OsTask T104 {
+        OsTaskPriority = 2;
+        OsTaskActivation = 1;
+        OsTaskStackSize = 512;
+        OsTaskType = EXTENDED;
+        OsTaskSchedule = FULL;
+        OsMemoryMappingCodeLocationRef = PARTITION_4;
+        OsTaskAccessingApplication = A02;
+        OsTaskEventRef = event1;
+        OsTaskEventRef = event2;
+    }
+
+    OsTask T105 {
+        OsTaskPriority = 1;
+        OsTaskActivation = 10;
+        OsTaskStackSize = 512;
+        OsTaskType = BASIC;
+        OsTaskSchedule = FULL;
+        OsMemoryMappingCodeLocationRef = PARTITION_4;
+        OsTaskAutostart = FALSE;
+        OsTaskAccessingApplication = A03;
+    }
+
+    OsTask T106 {
+        OsTaskPriority = 3;
+        OsTaskActivation = 1;
+        OsTaskStackSize = 512;
+        OsTaskType = BASIC;
+        OsTaskSchedule = FULL;
+        OsMemoryMappingCodeLocationRef = PARTITION_4;
+        OsTaskAccessingApplication = A02;
+    }
+
+
+
+    OsOS ExampleOS {
+        OsNumberOfCores = 2;
+        OsScalabilityClass = SC4;
+        OsStackMonitoring = TRUE;
+        OsStatus = EXTENDED;
+        OsUseResScheduler = FALSE;
+	OsHooks Hooks {
+            OsErrorHook = TRUE;
+        	OsPreTaskHook = FALSE;
+        	OsPostTaskHook = FALSE;
+        	OsProtectionHook = TRUE;
+        	OsStartupHook = TRUE;
+        	OsShutdownHook = TRUE;
+    	}	
+    };
+
+    OsAppMode AppMode1 {
+    };
+
+    OsPeripheralArea COOL {
+        OsPeripheralAreaId = 0;
+        OsPeripheralAreaStartAddress = 0;
+        OsPeripheralAreaEndAddress = 0;
+    };
+
+    OsPeripheralArea WOW {
+        OsPeripheralAreaId = 1;
+        OsPeripheralAreaStartAddress = 0;
+        OsPeripheralAreaEndAddress = 0;
+        OsPeripheralAreaAccessingApplication = A01;
+        OsPeripheralAreaAccessingApplication = A02;
+        OsPeripheralAreaAccessingApplication = A03;
+        OsPeripheralAreaAccessingApplication = A04;
+    };
+
+    OsPeripheralArea HAHA {
+        OsPeripheralAreaId = 2;
+        OsPeripheralAreaStartAddress = 0;
+        OsPeripheralAreaEndAddress = 0;
+        OsPeripheralAreaAccessingApplication = A01;
+        OsPeripheralAreaAccessingApplication = A02;
+        OsPeripheralAreaAccessingApplication = A03;
+    };
+
+    OsPeripheralArea FUN {
+        OsPeripheralAreaId = 3;
+        OsPeripheralAreaStartAddress = 0;
+        OsPeripheralAreaEndAddress = 0;
+        OsPeripheralAreaAccessingApplication = A01;
+        OsPeripheralAreaAccessingApplication = A02;
+    };
+
+    OsPeripheralArea TRY {
+        OsPeripheralAreaId = 4;
+        OsPeripheralAreaStartAddress = 0;
+        OsPeripheralAreaEndAddress = 0;
+        OsPeripheralAreaAccessingApplication = A01;
+    };
+
+
+    
+    OsEvent event1 {
+        OsEventMask = 12;
+    }
+
+    OsEvent event2 {
+        OsEventMask = 3;
+    }
+
+    OsEvent event3 {
+        OsEventMask = 7;
+    }
+
+    OsAlarm alarm1 {
+        OsAlarmCounterRef = counter1;
+        OsAppAlarmRef = alarm1;
+        OsAppAlarmRef = alarm2;
+        OsAlarmAction OAaction1 { 
+            OsAlarmActivateTask OAAT1 {
+                OsAlarmActivateTaskRef = T101;
+            }
+        }
+        OsAlarmAutostart OAstart1 {
+            OsAlarmAlarmTime = 100;
+            OsAlarmAutostartType = RELATIVE; 
+            OsAlarmCycleTime = 0;
+            OsAlarmAppModeRef = AppMode1;
+        }
+    }
+
+    OsAlarm alarm2 {
+        OsAlarmAccessingApplication = A01;
+        OsAlarmCounterRef = counter1;
+        OsAlarmAction OAaction2 { 
+            OsAlarmActivateTask OAAT2 {
+                OsAlarmActivateTaskRef = T002;
+            }
+        }
+    }
+
+    OsAlarm alarm3 {
+        OsAlarmCounterRef = counter4;
+        OsAlarmAccessingApplication = A01;
+        OsAlarmAction OAaction3 { 
+            OsAlarmActivateTask OAtask3 {
+                OsAlarmActivateTaskRef = T005;
+            }
+        }
+    }
+
+    OsAlarm alarm4 {
+        OsAlarmAccessingApplication = A02;
+        OsAlarmAccessingApplication = A01;
+        OsAlarmCounterRef = counter4;
+        OsAlarmAction OAaction4 { 
+            OsAlarmActivateTask OAtask4 {
+                OsAlarmActivateTaskRef = T104;
+            }
+        }
+    }
+
+    OsAlarm alarm5 {
+        OsAlarmCounterRef = counter3;
+        OsAlarmAccessingApplication = A01;
+        OsAlarmAction OAaction5 { 
+            OsAlarmActivateTask OAtask5 {
+                OsAlarmActivateTaskRef = T001;
+            }
+        }
+    }
+
+    OsAlarm alarm6 {
+        OsAlarmCounterRef = counter2;
+        OsAlarmAccessingApplication = A01;
+        OsAlarmAccessingApplication = A02;
+        OsAlarmAction OAaction6 { 
+            OsAlarmActivateTask OAtask6 {
+                OsAlarmActivateTaskRef = T003;
+            }
+        }
+    }
+
+    OsAlarm alarm7 {
+        OsAlarmAccessingApplication = A02;
+        OsAlarmCounterRef = counter2;
+        OsAlarmAction OAaction7 {
+            OsAlarmActivateTask OAtask {
+                OsAlarmActivateTaskRef = T001;
+            }
+        }
+    }
+
+    OsAlarm alarm8 {
+        OsAlarmCounterRef = counter2;
+        OsAlarmAction OAaction8 { 
+            OsAlarmSetEvent OAevent8 {
+                OsAlarmSetEventRef = event2;
+                OsAlarmSetEventTaskRef = T001;
+            }
+        }
+    }
+
+    OsAlarm alarm9 {
+        OsAlarmCounterRef = counter4;
+        OsAlarmAction OAaction9 { 
+            OsAlarmActivateTask OAtask9 {
+                OsAlarmActivateTaskRef = T004;
+            }
+        }
+        OsAlarmAutostart OAstart9 {
+            OsAlarmAlarmTime = 100;
+            OsAlarmAutostartType = RELATIVE; 
+            OsAlarmCycleTime = 100;
+            OsAlarmAppModeRef = AppMode1;
+        }
+    }
+
+    OsAlarm alarm10 {
+        OsAlarmAccessingApplication = A01;
+        OsAlarmCounterRef = counter4;
+        OsAlarmAction OAaction10 {
+            OsAlarmSetEvent OAevent10 {
+                OsAlarmSetEventRef = event1;
+                OsAlarmSetEventTaskRef = T003;
+            }
+        }
+    }
+
+    OsSpinlock spinlock1 {
+        OsSpinlockLockMethod = LOCK_NOTHING;
+        OsSpinlockAccessingApplication = A01;
+        OsSpinlockAccessingApplication = A02;
+        OsSpinlockSuccessor = spinlock2;
+    }
+
+    OsSpinlock spinlock2 {
+        OsSpinlockLockMethod = LOCK_ALL_INTERRUPTS;
+        OsSpinlockAccessingApplication = A01;
+        OsSpinlockAccessingApplication = A02;
+        OsSpinlockSuccessor = spinlock6;
+    }
+
+    OsSpinlock spinlock3 {
+        OsSpinlockLockMethod = LOCK_ALL_INTERRUPTS;
+        OsSpinlockAccessingApplication = A01;
+        OsSpinlockAccessingApplication = A02;
+        OsSpinlockAccessingApplication = A03;
+        OsSpinlockAccessingApplication = A04;
+        OsSpinlockSuccessor = spinlock5;
+    }
+
+    OsSpinlock spinlock4 {
+        OsSpinlockLockMethod = LOCK_WITH_RES_SCHEDULER;
+        OsSpinlockAccessingApplication = A01;
+        OsSpinlockAccessingApplication = A02;
+        OsSpinlockAccessingApplication = A03;
+        OsSpinlockAccessingApplication = A04;
+    }
+
+    OsSpinlock spinlock5 {
+        OsSpinlockLockMethod = LOCK_CAT2_INTERRUPTS;
+        OsSpinlockAccessingApplication = A01;
+        OsSpinlockAccessingApplication = A02;
+        OsSpinlockAccessingApplication = A03;
+        OsSpinlockAccessingApplication = A04;
+        OsSpinlockSuccessor = spinlock4;
+    }
+
+    OsSpinlock spinlock6 {
+        OsSpinlockLockMethod = LOCK_CAT2_INTERRUPTS;
+        OsSpinlockAccessingApplication = A01;
+        OsSpinlockAccessingApplication = A02;
+        OsSpinlockSuccessor = spinlock8;
+    }
+
+    OsSpinlock spinlock7 {
+        OsSpinlockLockMethod = LOCK_NOTHING;
+        OsSpinlockAccessingApplication = A01;
+        OsSpinlockAccessingApplication = A02;
+        OsSpinlockAccessingApplication = A03;
+        OsSpinlockAccessingApplication = A04;
+        OsSpinlockSuccessor = spinlock3;
+    }
+
+    OsSpinlock spinlock8 {
+        OsSpinlockLockMethod = LOCK_WITH_RES_SCHEDULER;
+        OsSpinlockAccessingApplication = A01;
+        OsSpinlockAccessingApplication = A02;
+        OsSpinlockSuccessor = spinlock7;
+    }
+
+    OsIsr I001 {
+        OsIsrCategory = CATEGORY_1;
+        OsIsrAccessingApplication = A01;
+        OsIsrAccessingApplication = A02;
+        OsIsrPriority = 2;
+        OsIsrInterruptSource = 43;
+        OsIsrStackSize = 52;
+        OsIsrTimingProtection OITP1 {
+            OsIsrExecutionBudget = 0.05;
+            OsIsrAllInterruptLockBudget = 0.03;
+            OsIsrInterruptLockBudget = 0.03;
+            OsIsrTimeFrame = 0.02;
+            OsIsrResourceLock OIR1-1 {
+                OsIsrResourceLockResourceRef = resource4;
+                OsIsrResourceLockBudget = 0.03;
+            }
+            OsIsrResourceLock OIR1-2 {
+                OsIsrResourceLockResourceRef = resource5;
+                OsIsrResourceLockBudget = 0.03;
+            }
+            OsIsrResourceLock OIR1-3 {
+                OsIsrResourceLockResourceRef = resource6;
+                OsIsrResourceLockBudget = 0.01;
+            }
+        }
+    }
+
+    OsIsr I002 {
+        OsIsrCategory = CATEGORY_2;
+        OsIsrAccessingApplication = A01;
+        OsIsrAccessingApplication = A02;
+        OsIsrPriority = 10;
+        OsIsrInterruptSource = 44;
+        OsIsrStackSize = 512;
+    }
+
+    OsIsr I003 {
+        OsIsrCategory = CATEGORY_2;
+        OsIsrAccessingApplication = A01;
+        OsIsrAccessingApplication = A02;
+        OsIsrPriority = 3;
+        OsIsrInterruptSource = 93;
+        OsIsrStackSize = 512;
+    }
+
+    OsIsr I004 {
+        OsIsrCategory = CATEGORY_1;
+        OsIsrAccessingApplication = A01;
+        OsIsrAccessingApplication = A02;
+        OsIsrPriority = 4;
+        OsIsrInterruptSource = 69;
+        OsIsrStackSize = 52;
+    }
+
+    OsIsr I005 {
+        OsIsrCategory = CATEGORY_2;
+        OsIsrAccessingApplication = A01;
+        OsIsrAccessingApplication = A02;
+        OsIsrAccessingApplication = A03;
+        OsIsrAccessingApplication = A04;
+        OsIsrPriority = 12;
+        OsIsrInterruptSource = 94;
+        OsIsrStackSize = 512;
+    }
+
+    OsIsr I006 {
+        OsIsrCategory = CATEGORY_2;
+        OsIsrAccessingApplication = A01;
+        OsIsrAccessingApplication = A02;
+        OsIsrAccessingApplication = A03;
+        OsIsrAccessingApplication = A04;
+        OsIsrPriority = 13;
+        OsIsrInterruptSource = 95;
+        OsIsrStackSize = 512;
+        OsIsrTimingProtection OITP1 {
+            OsIsrExecutionBudget = 0.05;
+            OsIsrAllInterruptLockBudget = 0.03;
+            OsIsrInterruptLockBudget = 0.03;
+            OsIsrTimeFrame = 0.02;
+            OsIsrResourceLock OIR1-1 {
+                OsIsrResourceLockResourceRef = resource4;
+                OsIsrResourceLockBudget = 0.03;
+            }
+            OsIsrResourceLock OIR1-2 {
+                OsIsrResourceLockResourceRef = resource5;
+                OsIsrResourceLockBudget = 0.03;
+            }
+            OsIsrResourceLock OIR1-3 {
+                OsIsrResourceLockResourceRef = resource6;
+                OsIsrResourceLockBudget = 0.01;
+            }
+        }
+    }
+
+    OsIsr I101 {
+        OsIsrCategory = CATEGORY_1;
+        OsIsrAccessingApplication = A01;
+        OsIsrAccessingApplication = A02;
+        OsIsrPriority = 2;
+        OsIsrInterruptSource = 128;
+        OsIsrStackSize = 512;
+    }
+
+    OsIsr I102 {
+        OsIsrCategory = CATEGORY_2;
+        OsIsrAccessingApplication = A01;
+        OsIsrAccessingApplication = A02;
+        OsIsrPriority = 10;
+        OsIsrInterruptSource = 129;
+        OsIsrStackSize = 512;
+    }
+
+    OsIsr I103 {
+        OsIsrCategory = CATEGORY_2;
+        OsIsrAccessingApplication = A01;
+        OsIsrAccessingApplication = A02;
+        OsIsrPriority = 11;
+        OsIsrInterruptSource = 130;
+        OsIsrStackSize = 512; 
+    }
+
+    OsIsr I104 {
+        OsIsrCategory = CATEGORY_1;
+        OsIsrAccessingApplication = A01;
+        OsIsrAccessingApplication = A02;
+        OsIsrPriority = 3;
+        OsIsrInterruptSource = 186;
+        OsIsrStackSize = 512;
+    }
+
+    OsIsr I105 {
+        OsIsrCategory = CATEGORY_2;
+        OsIsrAccessingApplication = A01;
+        OsIsrAccessingApplication = A02;
+        OsIsrAccessingApplication = A03;
+        OsIsrAccessingApplication = A04;
+        OsIsrPriority = 12;
+        OsIsrInterruptSource = 187;
+        OsIsrStackSize = 512;
+    }
+
+    OsIsr I106 {
+        OsIsrCategory = CATEGORY_2;
+        OsIsrAccessingApplication = A01;
+        OsIsrAccessingApplication = A02;
+        OsIsrAccessingApplication = A03;
+        OsIsrAccessingApplication = A04;
+        OsIsrPriority = 13;
+        OsIsrInterruptSource = 188;
+        OsIsrStackSize = 512;
+    }
+
+
+    OsScheduleTable ST3 {
+        OsScheduleTableDuration = 50;
+        OsScheduleTableRepeating = TRUE;
+        OsScheduleTableCounterRef = counter1;
+        OsSchTblAccessingApplication = A01;
+        OsSchTblAccessingApplication = A02;
+        OsSchTblAccessingApplication = A03;
+        OsSchTblAccessingApplication = A04;
+        OsScheduleTableAutostart OSTstart3 {
+            OsScheduleTableAutostartType = ABSOLUTE;
+            OsScheduleTableStartValue = 2;
+            OsScheduleTableAppModeRef = AppMode1;
+        }
+        OsScheduleTableExpiryPoint EP31 {
+            OsScheduleTblExpPointOffset = 30;
+            OsScheduleTableTaskActivation OSTacvtiontask31 {
+                OsScheduleTableActivateTaskRef = T106
+            }
+            OsScheduleTblAdjustableExpPoint OSTadjustpoint31 {
+                OsScheduleTableMaxLengthen = 5
+                OsScheduleTableMaxShorten = 2
+            }
+        }
+        
+        OsScheduleTableExpiryPoint EP32 {
+            OsScheduleTblExpPointOffset = 31;
+            OsScheduleTableTaskActivation OSTacvtiontask32 {
+                OsScheduleTableActivateTaskRef = T102
+            }
+            OsScheduleTblAdjustableExpPoint OSTadjustpoint32 {
+                OsScheduleTableMaxLengthen = 3
+                OsScheduleTableMaxShorten = 4
+            }
+
+        }
+        
+        OsScheduleTableSync OSTsync3 {
+            OsScheduleTblExplicitPrecision = 2
+            OsScheduleTblSyncStrategy = EXPLICIT
+        }
+    }
+	
+}

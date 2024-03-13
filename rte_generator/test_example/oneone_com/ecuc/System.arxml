@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00048.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>System</SHORT-NAME>
+      <ELEMENTS>
+        <SYSTEM>
+          <SHORT-NAME>ModelX</SHORT-NAME>
+          <MAPPINGS>
+            <ROOT-SOFTWARE-COMPOSITIONS>
+              <ROOT-SW-COMPOSITION-PROTOTYPE>
+                <SHORT-NAME>RootSwCompositionPrototype</SHORT-NAME>
+                <SOFTWARE-COMPOSITION-TREF DEST="COMPOSITION-SW-COMPONENT-TYPE">/TPC_Composition/Components/TPC_Composition</SOFTWARE-COMPOSITION-TREF>
+              </ROOT-SW-COMPOSITION-PROTOTYPE>
+            </ROOT-SOFTWARE-COMPOSITIONS>
+            <SYSTEM-MAPPING>
+              <SHORT-NAME>SystemMapping</SHORT-NAME>
+              <DATA-MAPPINGS>
+                <SENDER-RECEIVER-TO-SIGNAL-MAPPING>
+                  <DATA-ELEMENT-IREF>
+                    <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/TPC_Composition/Components/TPC_Composition</CONTEXT-COMPOSITION-REF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TPC_Composition/Components/TPC_Composition/Ctrl</CONTEXT-COMPONENT-REF>
+                    <CONTEXT-PORT-REF DEST="P-PORT-PROTOTYPE">/TPC_Composition/Components/Controller/PpIfVehSpd</CONTEXT-PORT-REF>
+                    <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/TPC_Composition/Interfaces/SR_If1/Spd</TARGET-DATA-PROTOTYPE-REF>
+                  </DATA-ELEMENT-IREF>
+                  <SYSTEM-SIGNAL-REF DEST="SYSTEM-SIGNAL">/Network/SystemSignal_Spd</SYSTEM-SIGNAL-REF>
+                </SENDER-RECEIVER-TO-SIGNAL-MAPPING>
+                <SENDER-RECEIVER-TO-SIGNAL-MAPPING>
+                  <DATA-ELEMENT-IREF>
+                    <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/TPC_Composition/Components/TPC_Composition</CONTEXT-COMPOSITION-REF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TPC_Composition/Components/TPC_Composition/Ctrl</CONTEXT-COMPONENT-REF>
+                    <CONTEXT-PORT-REF DEST="P-PORT-PROTOTYPE">/TPC_Composition/Components/Controller/PpIfVehAcc</CONTEXT-PORT-REF>
+                    <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/TPC_Composition/Interfaces/SR_If1/Acc</TARGET-DATA-PROTOTYPE-REF>
+                  </DATA-ELEMENT-IREF>
+                  <SYSTEM-SIGNAL-REF DEST="SYSTEM-SIGNAL">/Network/SystemSignal_Acc</SYSTEM-SIGNAL-REF>
+                </SENDER-RECEIVER-TO-SIGNAL-MAPPING>
+                <SENDER-RECEIVER-TO-SIGNAL-MAPPING>
+                  <DATA-ELEMENT-IREF>
+                    <CONTEXT-COMPOSITION-REF DEST="ROOT-SW-COMPOSITION-PROTOTYPE">/TPC_Composition/Components/TPC_Composition</CONTEXT-COMPOSITION-REF>
+                    <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/TPC_Composition/Components/TPC_Composition/Ctrl</CONTEXT-COMPONENT-REF>
+                    <CONTEXT-PORT-REF DEST="P-PORT-PROTOTYPE">/TPC_Composition/Components/Controller/PpIfTemperature</CONTEXT-PORT-REF>
+                    <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/TPC_Composition/Interfaces/SR_If2/Temp</TARGET-DATA-PROTOTYPE-REF>
+                  </DATA-ELEMENT-IREF>
+                  <SYSTEM-SIGNAL-REF DEST="SYSTEM-SIGNAL">/Network/SystemSignal_Temp</SYSTEM-SIGNAL-REF>
+                </SENDER-RECEIVER-TO-SIGNAL-MAPPING>
+              </DATA-MAPPINGS>
+            </SYSTEM-MAPPING>
+          </MAPPINGS>
+        </SYSTEM>
+        <ECU-INSTANCE>
+          <SHORT-NAME>EcuInstance0</SHORT-NAME>
+          <PARTITIONS>
+            <ECU-PARTITION>
+              <SHORT-NAME>Naruto</SHORT-NAME>
+            </ECU-PARTITION>
+            <ECU-PARTITION>
+              <SHORT-NAME>Sasuke</SHORT-NAME>
+            </ECU-PARTITION>
+          </PARTITIONS>
+        </ECU-INSTANCE>
+        <ECU-INSTANCE>
+          <SHORT-NAME>EcuInstance1</SHORT-NAME>
+          <PARTITIONS>
+            <ECU-PARTITION>
+              <SHORT-NAME>Kobe</SHORT-NAME>
+            </ECU-PARTITION>
+            <ECU-PARTITION>
+              <SHORT-NAME>LarryBird</SHORT-NAME>
+            </ECU-PARTITION>
+          </PARTITIONS>
+        </ECU-INSTANCE>
+      </ELEMENTS>
+    </AR-PACKAGE>
+    <AR-PACKAGE>
+      <SHORT-NAME>Network</SHORT-NAME>
+      <ELEMENTS>
+        <SYSTEM-SIGNAL>
+          <SHORT-NAME>SystemSignal_Spd</SHORT-NAME>
+          <DYNAMIC-LENGTH>false</DYNAMIC-LENGTH>
+        </SYSTEM-SIGNAL>
+        <I-SIGNAL>
+          <SHORT-NAME>ISignal_Spd</SHORT-NAME>
+          <DATA-TYPE-POLICY>PORT-INTERFACE-DEFINITION</DATA-TYPE-POLICY>
+          <LENGTH>32</LENGTH>
+          <NETWORK-REPRESENTATION-PROPS>
+            <SW-DATA-DEF-PROPS-VARIANTS>
+              <SW-DATA-DEF-PROPS-CONDITIONAL/>
+            </SW-DATA-DEF-PROPS-VARIANTS>
+          </NETWORK-REPRESENTATION-PROPS>
+          <SYSTEM-SIGNAL-REF DEST="SYSTEM-SIGNAL">/Network/SystemSignal_Spd</SYSTEM-SIGNAL-REF>
+        </I-SIGNAL>
+        <I-SIGNAL-I-PDU>
+          <SHORT-NAME>ISignalIPdu_Spd</SHORT-NAME>
+          <I-SIGNAL-TO-PDU-MAPPINGS>
+            <I-SIGNAL-TO-I-PDU-MAPPING>
+              <SHORT-NAME>iSignalToIPduMapping_Spd</SHORT-NAME>
+              <I-SIGNAL-REF DEST="I-SIGNAL">/Network/ISignal_Spd</I-SIGNAL-REF>
+            </I-SIGNAL-TO-I-PDU-MAPPING>
+          </I-SIGNAL-TO-PDU-MAPPINGS>
+        </I-SIGNAL-I-PDU>
+        <SYSTEM-SIGNAL>
+          <SHORT-NAME>SystemSignal_Acc</SHORT-NAME>
+          <DYNAMIC-LENGTH>false</DYNAMIC-LENGTH>
+        </SYSTEM-SIGNAL>
+        <I-SIGNAL>
+          <SHORT-NAME>ISignal_Acc</SHORT-NAME>
+          <DATA-TYPE-POLICY>PORT-INTERFACE-DEFINITION</DATA-TYPE-POLICY>
+          <LENGTH>32</LENGTH>
+          <NETWORK-REPRESENTATION-PROPS>
+            <SW-DATA-DEF-PROPS-VARIANTS>
+              <SW-DATA-DEF-PROPS-CONDITIONAL/>
+            </SW-DATA-DEF-PROPS-VARIANTS>
+          </NETWORK-REPRESENTATION-PROPS>
+          <SYSTEM-SIGNAL-REF DEST="SYSTEM-SIGNAL">/Network/SystemSignal_Acc</SYSTEM-SIGNAL-REF>
+        </I-SIGNAL>
+        <I-SIGNAL-I-PDU>
+          <SHORT-NAME>ISignalIPdu_Acc</SHORT-NAME>
+          <I-SIGNAL-TO-PDU-MAPPINGS>
+            <I-SIGNAL-TO-I-PDU-MAPPING>
+              <SHORT-NAME>iSignalToIPduMapping_Acc</SHORT-NAME>
+              <I-SIGNAL-REF DEST="I-SIGNAL">/Network/ISignal_Acc</I-SIGNAL-REF>
+            </I-SIGNAL-TO-I-PDU-MAPPING>
+          </I-SIGNAL-TO-PDU-MAPPINGS>
+        </I-SIGNAL-I-PDU>
+        <SYSTEM-SIGNAL>
+          <SHORT-NAME>SystemSignal_Temp</SHORT-NAME>
+          <DYNAMIC-LENGTH>false</DYNAMIC-LENGTH>
+        </SYSTEM-SIGNAL>
+        <I-SIGNAL>
+          <SHORT-NAME>ISignal_Temp</SHORT-NAME>
+          <DATA-TYPE-POLICY>PORT-INTERFACE-DEFINITION</DATA-TYPE-POLICY>
+          <LENGTH>32</LENGTH>
+          <NETWORK-REPRESENTATION-PROPS>
+            <SW-DATA-DEF-PROPS-VARIANTS>
+              <SW-DATA-DEF-PROPS-CONDITIONAL/>
+            </SW-DATA-DEF-PROPS-VARIANTS>
+          </NETWORK-REPRESENTATION-PROPS>
+          <SYSTEM-SIGNAL-REF DEST="SYSTEM-SIGNAL">/Network/SystemSignal_Temp</SYSTEM-SIGNAL-REF>
+        </I-SIGNAL>
+        <I-SIGNAL-I-PDU>
+          <SHORT-NAME>ISignalIPdu_Temp</SHORT-NAME>
+          <I-SIGNAL-TO-PDU-MAPPINGS>
+            <I-SIGNAL-TO-I-PDU-MAPPING>
+              <SHORT-NAME>iSignalToIPduMapping_Temp</SHORT-NAME>
+              <I-SIGNAL-REF DEST="I-SIGNAL">/Network/ISignal_Temp</I-SIGNAL-REF>
+            </I-SIGNAL-TO-I-PDU-MAPPING>
+          </I-SIGNAL-TO-PDU-MAPPINGS>
+        </I-SIGNAL-I-PDU>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

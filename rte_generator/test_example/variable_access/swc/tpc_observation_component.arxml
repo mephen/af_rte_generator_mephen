@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00051.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>TPC_Composition</SHORT-NAME>
+      <ELEMENTS/>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>Components</SHORT-NAME>
+          <ELEMENTS>
+            <APPLICATION-SW-COMPONENT-TYPE>
+              <SHORT-NAME>Observation</SHORT-NAME>
+              <PORTS>
+                <R-PORT-PROTOTYPE>
+                  <SHORT-NAME>RpIfVehAcc</SHORT-NAME>
+                  <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/TPC_Composition/Interfaces/SR_If1</REQUIRED-INTERFACE-TREF>
+                  <REQUIRED-COM-SPECS>
+                    <NONQUEUED-RECEIVER-COM-SPEC>
+                      <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/TPC_Composition/Interfaces/SR_If1/Acc</DATA-ELEMENT-REF>
+                      <INIT-VALUE>
+                        <NUMERICAL-VALUE-SPECIFICATION>
+                          <SHORT-LABEL>DefaultInitValue_Uint16</SHORT-LABEL>
+                          <VALUE>111</VALUE>
+                        </NUMERICAL-VALUE-SPECIFICATION>
+                      </INIT-VALUE>
+                    </NONQUEUED-RECEIVER-COM-SPEC>
+                  </REQUIRED-COM-SPECS>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE>
+                  <SHORT-NAME>RpIfVehSpd</SHORT-NAME>
+                  <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/TPC_Composition/Interfaces/SR_If1</REQUIRED-INTERFACE-TREF>
+                  <REQUIRED-COM-SPECS>
+                    <NONQUEUED-RECEIVER-COM-SPEC>
+                      <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/TPC_Composition/Interfaces/SR_If1/Spd</DATA-ELEMENT-REF>
+                      <INIT-VALUE>
+                        <NUMERICAL-VALUE-SPECIFICATION>
+                          <SHORT-LABEL>DefaultInitValue_Uint16</SHORT-LABEL>
+                          <VALUE>333</VALUE>
+                        </NUMERICAL-VALUE-SPECIFICATION>
+                      </INIT-VALUE>
+                    </NONQUEUED-RECEIVER-COM-SPEC>
+                  </REQUIRED-COM-SPECS>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE>
+                  <SHORT-NAME>RpIfTemperature</SHORT-NAME>
+                  <REQUIRED-INTERFACE-TREF DEST="SENDER-RECEIVER-INTERFACE">/TPC_Composition/Interfaces/SR_If2</REQUIRED-INTERFACE-TREF>
+                  <REQUIRED-COM-SPECS>
+                    <QUEUED-RECEIVER-COM-SPEC>
+                      <DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/TPC_Composition/Interfaces/SR_If2/Temp</DATA-ELEMENT-REF>
+                      <QUEUE-LENGTH>10</QUEUE-LENGTH>
+                      <RECEPTION-PROPS>
+                        <TIMEOUT>0.01</TIMEOUT>
+                      </RECEPTION-PROPS>
+                    </QUEUED-RECEIVER-COM-SPEC>
+                  </REQUIRED-COM-SPECS>
+                </R-PORT-PROTOTYPE>
+              </PORTS>
+              <INTERNAL-BEHAVIORS>
+                <SWC-INTERNAL-BEHAVIOR>
+                  <SHORT-NAME>SWC_Observation_InternalBehavior</SHORT-NAME>
+                  <RUNNABLES>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>ReRxAcc</SHORT-NAME>
+                      <SYMBOL>ReRxAcc</SYMBOL>
+                      <DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                        <VARIABLE-ACCESS>
+                          <SHORT-NAME>DataReceivePointByArgument_PpIfVehMov_Acc</SHORT-NAME>
+                          <RETURN-VALUE-PROVISION>RETURN-VALUE-PROVIDED</RETURN-VALUE-PROVISION>
+                          <ACCESSED-VARIABLE>
+                            <AUTOSAR-VARIABLE-IREF>
+                              <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/TPC_Composition/Components/Observation/RpIfVehAcc</PORT-PROTOTYPE-REF>
+                              <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/TPC_Composition/Interfaces/SR_If1/Acc</TARGET-DATA-PROTOTYPE-REF>
+                            </AUTOSAR-VARIABLE-IREF>
+                          </ACCESSED-VARIABLE>
+                        </VARIABLE-ACCESS>
+                      </DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>ReRxSpd</SHORT-NAME>
+                      <SYMBOL>ReRxSpd</SYMBOL>
+                      <DATA-RECEIVE-POINT-BY-VALUES>
+                        <VARIABLE-ACCESS>
+                          <SHORT-NAME>DataReceivePointByValue_PpIfVehMov_Spd</SHORT-NAME>
+                          <ACCESSED-VARIABLE>
+                            <AUTOSAR-VARIABLE-IREF>
+                              <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/TPC_Composition/Components/Observation/RpIfVehSpd</PORT-PROTOTYPE-REF>
+                              <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/TPC_Composition/Interfaces/SR_If1/Spd</TARGET-DATA-PROTOTYPE-REF>
+                            </AUTOSAR-VARIABLE-IREF>
+                          </ACCESSED-VARIABLE>
+                        </VARIABLE-ACCESS>
+                      </DATA-RECEIVE-POINT-BY-VALUES>
+                    </RUNNABLE-ENTITY>
+                    <RUNNABLE-ENTITY>
+                      <SHORT-NAME>ReRxTemp</SHORT-NAME>
+                      <SYMBOL>ReRxTemp</SYMBOL>
+                      <DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                        <VARIABLE-ACCESS>
+                          <SHORT-NAME>DataReceivePointByValue_PpIfTemperature_Temp</SHORT-NAME>
+                          <RETURN-VALUE-PROVISION>RETURN-VALUE-PROVIDED</RETURN-VALUE-PROVISION>
+                          <ACCESSED-VARIABLE>
+                            <AUTOSAR-VARIABLE-IREF>
+                              <PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/TPC_Composition/Components/Observation/RpIfTemperature</PORT-PROTOTYPE-REF>
+                              <TARGET-DATA-PROTOTYPE-REF DEST="VARIABLE-DATA-PROTOTYPE">/TPC_Composition/Interfaces/SR_If2/Temp</TARGET-DATA-PROTOTYPE-REF>
+                            </AUTOSAR-VARIABLE-IREF>
+                          </ACCESSED-VARIABLE>
+                        </VARIABLE-ACCESS>
+                      </DATA-RECEIVE-POINT-BY-ARGUMENTS>
+                      <WAIT-POINTS>
+                        <WAIT-POINT>
+                          <SHORT-NAME>ReRxTemp_WaitPoint</SHORT-NAME>
+                          <TRIGGER-REF DEST="DATA-RECEIVED-EVENT">/TPC_Composition/Components/Observation/SWC_Observation_InternalBehavior/Obv_Ev_DR</TRIGGER-REF>
+                        </WAIT-POINT>
+                      </WAIT-POINTS>
+                    </RUNNABLE-ENTITY>
+                  </RUNNABLES>
+                  <EVENTS>
+                    <TIMING-EVENT>
+                      <SHORT-NAME>EvTiAcc_20ms</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/TPC_Composition/Components/Observation/SWC_Observation_InternalBehavior/ReRxAcc</START-ON-EVENT-REF>
+                      <PERIOD>0.02</PERIOD>
+                    </TIMING-EVENT>
+                    <TIMING-EVENT>
+                      <SHORT-NAME>EvTiSpd_20ms</SHORT-NAME>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/TPC_Composition/Components/Observation/SWC_Observation_InternalBehavior/ReRxSpd</START-ON-EVENT-REF>
+                      <PERIOD>0.02</PERIOD>
+                    </TIMING-EVENT>
+                    <DATA-RECEIVED-EVENT>
+                      <SHORT-NAME>Obv_Ev_DR</SHORT-NAME>
+                      <DATA-IREF>
+                        <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/TPC_Composition/Components/Observation/RpIfTemperature</CONTEXT-R-PORT-REF>
+                        <TARGET-DATA-ELEMENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/TPC_Composition/Interfaces/SR_If2/Temp</TARGET-DATA-ELEMENT-REF>
+                      </DATA-IREF>
+                    </DATA-RECEIVED-EVENT>
+                  </EVENTS>
+                  <PORT-API-OPTIONS>
+                    <PORT-API-OPTION>
+                      <PORT-REF DEST="R-PORT-PROTOTYPE">/TPC_Composition/Components/Observation/RpIfVehAcc</PORT-REF>
+                      <TRANSFORMER-STATUS-FORWARDING>TRANSFORMER-STATUS-FORWARDING</TRANSFORMER-STATUS-FORWARDING>
+                      <ERROR-HANDLING>TRANSFORMER-ERROR-HANDLING</ERROR-HANDLING>
+                    </PORT-API-OPTION>
+                    <PORT-API-OPTION>
+                      <PORT-REF DEST="R-PORT-PROTOTYPE">/TPC_Composition/Components/Observation/RpIfVehSpd</PORT-REF>
+                      <ERROR-HANDLING>NO-TRANSFORMER-ERROR-HANDLING</ERROR-HANDLING>
+                    </PORT-API-OPTION>
+                    <PORT-API-OPTION>
+                      <PORT-REF DEST="R-PORT-PROTOTYPE">/TPC_Composition/Components/Observation/RpIfTemperature</PORT-REF>
+                      <ERROR-HANDLING>TRANSFORMER-ERROR-HANDLING</ERROR-HANDLING>
+                    </PORT-API-OPTION>
+                  </PORT-API-OPTIONS>
+                </SWC-INTERNAL-BEHAVIOR>
+              </INTERNAL-BEHAVIORS>
+            </APPLICATION-SW-COMPONENT-TYPE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
