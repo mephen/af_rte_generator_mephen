@@ -57,6 +57,7 @@ Std_ReturnType Rte_Result_Port1_InterPartitionAsynchronousAdd_NonBlocking(Std_Re
 }
 
 Std_ReturnType Rte_Result_Port1_InterPartitionAsynchronousAdd_Blocking(Std_ReturnType Previous_RteCall_returnValue, Impl_uint16* response){
+    WaitEvent(event1); //the runnable has to wait for the AsynchronousServerCallReturnsEvent
     SetRelAlarm(alarm3, 50, 0);
     Std_ReturnType rte_error_code = RTE_E_OK;
     if(Rte_Result_Port1_InterPartitionAsynchronousAdd_Blocking_metaData.connected_unconnected == "unconnected"){
@@ -94,7 +95,6 @@ Std_ReturnType Rte_Result_Port1_InterPartitionAsynchronousAdd_Blocking(Std_Retur
 Impl_uint16 Rte_Client_ResponseRunnable_1(Std_ReturnType Previous_RteCall_returnValue){
     //for developer to design the implementation
     Impl_uint16 response = 0;
-    WaitEvent(event1); //after client_response_runnable be activated, the runnable has to wait for the AsynchronousServerCallReturnsEvent to call blocking Rte_Result
     Rte_Result_Port1_InterPartitionAsynchronousAdd_Blocking(Previous_RteCall_returnValue, &response);
     return response;
 }

@@ -22,6 +22,7 @@ Rte_result_metaData Rte_Result_Port1_InterEcuAsynchronousAdd_Blocking_metaData =
 };
 
 Std_ReturnType Rte_Result_Port1_InterEcuAsynchronousAdd_Blocking(Std_ReturnType Previous_RteCall_returnValue, Impl_uint16* response){
+    WaitEvent(event1);
     SetRelAlarm(alarm3, 50, 0);
     Std_ReturnType rte_error_code = RTE_E_OK;
     if(Rte_Result_Port1_InterEcuAsynchronousAdd_Blocking_metaData.connected_unconnected == "unconnected"){
@@ -96,7 +97,6 @@ Std_ReturnType Rte_Result_Port1_InterEcuAsynchronousAdd_NonBlocking(Std_ReturnTy
 Impl_uint16 Rte_Client_ResponseRunnable_1(Std_ReturnType Previous_RteCall_returnValue){
     //for developer to design the implementation
     Impl_uint16 response = 0;
-    WaitEvent(event1);
     Rte_Result_Port1_InterEcuAsynchronousAdd_Blocking(Previous_RteCall_returnValue, &response);
     return response;
 }
