@@ -37,19 +37,19 @@ T01{//rte client side: 發送request
     if(rte_event_init_1){
         rte_event_init_1--;
         rte_event_operation_invoked_1++;
+        activateTask(T02);
 
         client_runnable_1();//send parameters, transaction_handle, and operation string(e.g. "add", "sub")。還有 enqueue sequence counter
-        activateTask(T02);
 
         terminateTask(); //因為 intra-partition 是單核，以完成一個 C/S 溝通為優先，而非發起多個 request 為優先。
     }
     if(rte_event_init_2){
+        client_runnable_2();
+
         rte_event_init_2--;
         rte_event_operation_invoked_2++;
 
-        client_runnable_2();
         activateTask(T02);
-
         terminateTask();
     }
 
@@ -57,41 +57,45 @@ T01{//rte client side: 發送request
     //可能會有同時存取同一個 global variable 的問題
     //假設 inter-partition case 連續發起兩個相同的 async request
     if(rte_event_init_3){
+        client_runnable_3();
+
         getLock(lock_3, lock_bit);
         rte_event_init_3--;
         rte_event_operation_invoked_3++;
         releaseLock(lock_3, lock_bit);
-        
-        client_runnable_3();
+
         activateTask(T11);
     }
     if(rte_event_init_4){
+        client_runnable_3();
+
         getLock(lock_3, lock_bit);
         rte_event_init_4--;
         rte_event_operation_invoked_3++;
         releaseLock(lock_3, lock_bit);
 
-        client_runnable_3();
         activateTask(T11);
     }
 
     //inter-ECU
     //可能會有同時存取同一個 global variable 的問題
     if(rte_event_init_5){
+        client_runnable_4();
+
         getLock(lock_5, lock_bit);
         rte_event_init_5--;
         releaseLock(lock_5, lock_bit);
 
-        client_runnable_4();
         int rte_event_operation_invoked_id = 5;
         com_sendSignal(signal_1, &rte_event_operation_invoked_id);
     }
     if(rte_event_init_6){
+        client_runnable_5();
+        
         getLock(lock_6, lock_bit);
         rte_event_init_6--;
         releaseLock(lock_6, lock_bit);
-        
-        client_runnable_5();
+
         int rte_event_operation_invoked_id = 6;
         com_sendSignal(signal_2, &rte_event_operation_invoked_id);
     }
@@ -116,7 +120,6 @@ T02{//rte server side: 接收request，處理request，發送response
         activateTask(T03);
         terminateTask();
     }
-    
 }
 
 T03{//rte client side: 接收response
@@ -128,7 +131,7 @@ T03{//rte client side: 接收response
             if(sequence_counter == transaction_handle.sequence_counter){
                 error = rte_client_side();//check error, call transformer, enqueue response queue
                 response_runnable_1_outside_error_flag = error;
-                client_response_runnable_1();
+                setEvent(T01, event1);//unblock client_response_runnable1() in T01
                 response_runnable_1_outside_error_flag == RTE_E_OK;//reset the error_flag 
                 rte_event_async_return_1--;
             }
@@ -142,7 +145,7 @@ T03{//rte client side: 接收response
             if(sequence_counter == transaction_handle.sequence_counter){
                 error = rte_client_side();
                 response_runnable_2_outside_error_flag = error;
-                client_response_runnable_2();
+                setEvent(T01, event2);
                 response_runnable_2_outside_error_flag == RTE_E_OK;
                 rte_event_async_return_2--;
             }
@@ -158,7 +161,7 @@ T03{//rte client side: 接收response
             if(sequence_counter == transaction_handle.sequence_counter){
                 error = ioc_client_side();
                 response_runnable_3_outside_error_flag = error;
-                client_response_runnable_3();
+                setEvent(T01, event3);
                 response_runnable_3_outside_error_flag == RTE_E_OK;
                 rte_event_async_return_3--;
             }
@@ -173,7 +176,7 @@ T03{//rte client side: 接收response
             if(sequence_counter == transaction_handle.sequence_counter){
                 error = com_client_side();
                 response_runnable_5_outside_error_flag = error;
-                client_response_runnable_5();
+                setEvent(T01, event4);
                 response_runnable_5_outside_error_flag == RTE_E_OK;
                 rte_event_async_return_5--;
             }
@@ -186,7 +189,7 @@ T03{//rte client side: 接收response
             if(sequence_counter == transaction_handle.sequence_counter){
                 error = com_client_side();
                 response_runnable_6_outside_error_flag = error;
-                client_response_runnable_6();
+                setEvent(T01, event5);
                 response_runnable_6_outside_error_flag == RTE_E_OK;
                 rte_event_async_return_6--;
             }

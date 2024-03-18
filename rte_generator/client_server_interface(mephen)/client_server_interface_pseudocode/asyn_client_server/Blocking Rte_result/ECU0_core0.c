@@ -35,22 +35,22 @@ T01{//rte client side: 發送request
     //intra-partition
     //單核，不會有同時存取同一個 global variable 的問題
     if(rte_event_init_1){
-        client_runnable_1();//send parameters, transaction_handle, and operation string(e.g. "add", "sub")。還有 enqueue sequence counter
-
         rte_event_init_1--;
         rte_event_operation_invoked_1++;
 
+        client_runnable_1();//send parameters, transaction_handle, and operation string(e.g. "add", "sub")。還有 enqueue sequence counter
         activateTask(T02);
+
         client_response_runnable_1();//wait until rte_event_async_return
         terminateTask(); //因為 intra-partition 是單核，以完成一個 C/S 溝通為優先，而非發起多個 request 為優先。
     }
     if(rte_event_init_2){
-        client_runnable_2();
-
         rte_event_init_2--;
         rte_event_operation_invoked_2++;
 
+        client_runnable_2();
         activateTask(T02);
+
         client_response_runnable_2();
         terminateTask();
     }
@@ -59,51 +59,50 @@ T01{//rte client side: 發送request
     //可能會有同時存取同一個 global variable 的問題
     //假設 inter-partition case 連續發起兩個相同的 async request
     if(rte_event_init_3){
-        client_runnable_3();
-        client_response_runnable_3();
-
         getLock(lock_3, lock_bit);
         rte_event_init_3--;
         rte_event_operation_invoked_3++;
         releaseLock(lock_3, lock_bit);
-
+        
+        client_runnable_3();
         activateTask(T11);
+
         client_response_runnable_3();
     }
     if(rte_event_init_4){
-        client_runnable_3();
-
         getLock(lock_3, lock_bit);
         rte_event_init_4--;
         rte_event_operation_invoked_3++;
         releaseLock(lock_3, lock_bit);
 
+        client_runnable_3();
         activateTask(T11);
+
         client_response_runnable_3();
     }
 
     //inter-ECU
     //可能會有同時存取同一個 global variable 的問題
     if(rte_event_init_5){
-        client_runnable_4();
-
         getLock(lock_5, lock_bit);
         rte_event_init_5--;
         releaseLock(lock_5, lock_bit);
 
+        client_runnable_4();
         int rte_event_operation_invoked_id = 5;
         com_sendSignal(signal_1, &rte_event_operation_invoked_id);
+
         client_response_runnable_4();
     }
     if(rte_event_init_6){
-        client_runnable_5();
-        
         getLock(lock_6, lock_bit);
         rte_event_init_6--;
         releaseLock(lock_6, lock_bit);
-
+        
+        client_runnable_5();
         int rte_event_operation_invoked_id = 6;
         com_sendSignal(signal_2, &rte_event_operation_invoked_id);
+
         client_response_runnable_5();
     }
 }
