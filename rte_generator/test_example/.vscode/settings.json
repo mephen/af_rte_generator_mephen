@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "rte_data_management.h": "c",
+        "ring_buffer.h": "c"
+    }
+}

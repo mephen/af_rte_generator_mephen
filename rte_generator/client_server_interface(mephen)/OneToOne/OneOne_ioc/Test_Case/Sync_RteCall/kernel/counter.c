@@ -12,7 +12,7 @@
 /* @2022/03/20 Sam */
 /* SWS_Os_00399 */
 /* This service increments a software counter */
-/* This service increments a software counter count, and tick dosen't change */
+/* This service increments a software counter count, and tick dosen't change /*
 
 /******************************************************************************
 ** Function:    IncrementCounter

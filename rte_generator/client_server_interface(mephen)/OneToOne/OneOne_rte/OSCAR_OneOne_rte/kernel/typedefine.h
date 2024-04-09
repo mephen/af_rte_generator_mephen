@@ -13,6 +13,13 @@ typedef unsigned short int uint16;
 typedef unsigned long uint32;         
 typedef unsigned long long uint64;
 
+/*********** for ioc test***********************************/
+typedef uint8 str[24];
+typedef struct composite{
+    uint32 data;
+    str arr;
+}composite;
+
 /* This type is used to represent the return value of API services */
 typedef unsigned char StatusType;
 

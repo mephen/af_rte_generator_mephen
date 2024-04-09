@@ -1,17 +1,28 @@
-void com_server_side();
+#include "Rte_Event_Cfg.h"
+
+Request_type request_q[10];
+ResponseInfoType response_q[10];
+ 
+
+void com_server_side_divide();
+void com_server_side_mod();
 
 void rte_callback(){
-    signal rte_event_operation_invoked_id = -1;
-    com_receiveSignal(signal_1, &rte_event_operation_invoked_id);
-    switch(rte_event_operation_invoked_id){
-        case 5:
-            rte_event_operation_invoked_5++;
+    signal OperationInvokedEvent_id = -1;
+    com_receiveSignal(signal_1, &OperationInvokedEvent_id);
+    switch(OperationInvokedEvent_id){
+        case 4:
+            GetLock(lock, lock_bit);
+            rte_event[OperationInvokedEvent_4]++;
+            ReleaseLock(lock, lock_bit);
             break;
-        case 6:
-            rte_event_operation_invoked_6++;
+        case 5:
+            GetLock(lock, lock_bit);
+            rte_event[OperationInvokedEvent_5]++;
+            ReleaseLock(lock, lock_bit);
             break;
     }
-    activateTask(T01);
+    activateTask(T01);  
     return;
 }
 
@@ -20,62 +31,91 @@ isr{//com 收到資料後，觸發 isr
 }
 
 T01{//com server side: 接收request，處理request，發送response
-    while(operation_invoked_5){
-        com_server_side();//check error, call transformer, enqueue request queue, do operation, send response
-
-        getLock(lock_5, lock_bit);
-        rte_event_operation_invoked_5--;
-        releaseLock(lock_5, lock_bit);
+    while(rte_event[OperationInvokedEvent_4]){//use while instead of if. Because inter-partition communication is multi-core, so there may be multiple requests coming when the server is processing the request.
+        GetLock(lock, lock_bit);
+        rte_event[OperationInvokedEvent_4]--;
+        ReleaseLock(lock, lock_bit);
         
-        signal rte_event_async_return_id = 5;
-        com_sendSignal(signal_2, &rte_event_async_return_id);
+        com_server_side_divide();//check error, call transformer, enqueue request queue, do operation, send response
+    
+        //因為執行 server runnable 後還需要調用 transformer 進行資料轉換，所以無法把 server-side 的 Rte event 存取包到 server runnable 內部調用的 api 裡面。
+        signal AsynchronousServerCallReturnsEvent_id = 4;
+        com_sendSignal(signal_2, &AsynchronousServerCallReturnsEvent_id);//send rte_event_id back to client side.
     }
-    while(operation_invoked_6){
-        com_server_side();//check error, call transformer, enqueue request queue, do operation, send response
-
-        getLock(lock_6, lock_bit);
-        rte_event_operation_invoked_6--;
-        releaseLock(lock_6, lock_bit);
+    while(rte_event[OperationInvokedEvent_5]){
+        GetLock(lock, lock_bit);
+        rte_event[OperationInvokedEvent_5]--;
+        ReleaseLock(lock, lock_bit);
         
-        signal rte_event_async_return_id = 6;
-        com_sendSignal(signal_2, &rte_event_async_return_id);
+        com_server_side_mod();
+
+        signal AsynchronousServerCallReturnsEvent_id = 5;
+        com_sendSignal(signal_2, &AsynchronousServerCallReturnsEvent_id);//send rte_event_id back to client side.
     }
 }
 
-void com_server_side(){
-    com_receiveSignal(signal_3, &data);//接收 parameters, transaction_handle, and operation string(e.g. "add", "sub")
-    if(data.operation_string == "add"){
-        check_transformer_buffer();
-        error = transformer(&transformed_data_1, data.parameters[0]);
-        check_transformer_hard_soft_error();
 
-        if(error == e_ok){
-            rte_enqueue(&transformed_data_1, request_queue);//在 server side enqueue request queue
 
-            response = server_runnable_1();//do "add" operation, add operation 會自己去 request_queue 裡面拿參數。
-            com_sendSignal(signal_4, &data.transaction_handle);
-            com_sendSignal(signal_5, &response);
-        }
-    }
-    if(data.operation_string == "sub"){
-        std_return error_1, error_2;
-        
-        check_transformer_buffer();
-        error_1 = transformer(&transformed_data_1, data.parameters[0]);
-        check_transformer_hard_soft_error();
+void com_server_side_divide(){
+    ReuqestInfoType request_info;
+    com_receiveSignal(signal_3, &request_info);//接收 parameters, transaction_handle.sequence_counter, and operation string(e.g. "add", "sub")
+    
+    check_transformer_buffer();
+    transformer(&transformed_para_1, request_info.parameters[0]);
+    Check_transformer_error(error);
 
-        check_transformer_buffer();
-        error_2 = transformer(&transformed_data_2, data.parameters[1]);
-        check_transformer_hard_soft_error();
-        
-        if(error_1 == e_ok && error_2 == e_ok){
-            rte_enqueue(&transformed_data_1, request_queue);
-            rte_enqueue(&transformed_data_2, request_queue);
+    check_transformer_buffer();
+    error = transformer(&transformed_para_2, request_info.parameters[1]);
+    Check_transformer_error(error);
+    
+    rte_enqueue(&transformed_para_1,  request_q);//在 server side enqueue request queue
+    rte_enqueue(&transformed_para_2,  request_q);
+    Impl_uint16 response;
+    response = RTE_RUNNABLE_Server4();//do "divide" operation, add operation 會自己去 request_queue 裡面拿參數。
+    
+    Check_transformer_buffer();
+    error = transformer(&transformed_response, response);
+    Check_transformer_error(error);
 
-            response = server_runnable_2();//do "sub" operation, sub operation 會自己去 request_queue 裡面拿參數。
-            com_sendSignal(signal_4, &data.transaction_handle);
-            com_sendSignal(signal_5, &response);
-        }
-    }
-};
+    ResponseInfoType response_info = {
+        request_info.transaction_handle,
+        transformed_response
+    };
+
+    com_sendSignal(signal_4, &response_info);
+
+    return;
+}
+
+void com_server_side_mod(){
+    ReuqestInfoType request_info;
+    com_receiveSignal(signal_3, &request_info);//接收 parameters, transaction_handle.sequence_counter, and operation string(e.g. "add", "sub")
+    
+    check_transformer_buffer();
+    transformer(&transformed_para_1, request_info.parameters[0]);
+    Check_transformer_error(error);
+
+    check_transformer_buffer();
+    transformer(&transformed_para_2, request_info.parameters[1]);
+    Check_transformer_error(error);
+
+    rte_enqueue(&transformed_para_1,  request_q);//在 server side enqueue request queue
+    rte_enqueue(&transformed_para_2,  request_q);
+    Impl_uint16 response;
+    response = RTE_RUNNABLE_Server5();//do "mod" operation, add operation 會自巙去 request_queue 裡面拿參數。
+    
+    Check_transformer_buffer();
+    error = transformer(&transformed_response, response);
+    Check_transformer_error(error);
+
+    ResponseInfoType response_info = {
+        request_info.transaction_handle,
+        transformed_response
+    };
+    
+    com_sendSignal(signal_4, &response_info);
+
+    return;
+}
+
 

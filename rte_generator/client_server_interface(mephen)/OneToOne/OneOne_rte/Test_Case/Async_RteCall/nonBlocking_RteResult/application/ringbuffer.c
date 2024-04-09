@@ -13,7 +13,7 @@ int IsEmpty(RingBuffer* rb) {
 
 void* memcpy_t(void* dest, const void* src, size_t n) {
     char* d = (char*) dest;
-    const char* s = (const char*) src;
+    const char* s = (const char*) src; //const char*: point to a byte in memory
     for (size_t i = 0; i < n; i++) {
         d[i] = s[i];
     }
@@ -21,14 +21,15 @@ void* memcpy_t(void* dest, const void* src, size_t n) {
 }
 
 // dest to add an element to the buffer
+//can't enqueue an array(point to address of first element), because memcpy_t will just store the array element instead of array address!!!
 Std_ReturnType RTE_Enqueue(RingBuffer* rb, void* data, size_t dataSize) {
     char* byte_buffer = (char*)rb->buffer;
     if (IsFull(rb)) {
-            return RTE_E_LIMIT;
+        return RTE_E_LIMIT;
     }
     size_t offset = rb->tail * dataSize;
     memcpy_t(byte_buffer+offset, data, dataSize);  // Convert to int* then assign
-    rb->tail = (rb->tail + 1) % rb->maxSize;
+    rb->tail = (rb->tail + 1) % rb->maxSize; //tail+1: means a new data is added
     rb->currentSize++;
     return RTE_E_OK;
 }

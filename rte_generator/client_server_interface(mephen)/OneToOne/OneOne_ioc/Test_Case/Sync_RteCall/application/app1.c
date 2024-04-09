@@ -26,8 +26,11 @@
 #include "ioc.h"
 #include "lock.h"
 #include "client_SWC/Rte_Client_Runnable.h"
-#include "client_SWC/Rte_Client_ResponseRunnable.h"
+#include "client_SWC/Rte_Client_Response_Runnable.h"
 #include "server_SWC/Rte_Server_Runnable.h"
+#include "Rte_Event_Cfg.h"
+#include "Transformer_stub.h"
+#include "Rte_Cs_Data_Management.h"
 
 extern int PrintText(char *TextArray);
 extern int PrintText_R35(char *TextArray);
@@ -38,83 +41,136 @@ extern int PrintText_R35(char *TextArray);
 extern int PrintText(char *TextArray);
 extern int PrintText_R35(char *TextArray);
 
-uint8 lock_buffer_x;
-uint8 lock_bit_x;
-extern Std_ReturnType errorFlag_Rte_Call_Port1_InterPartitionSynchronousAdd;
-extern Rte_call_metaData Rte_Call_Port1_InterPartitionSynchronousAdd_metaData;
+uint8 lock = 0;
+uint8 lock_bit = 1;
 
-/*buffer*/
-//shared by all the client response runnables(Asyn case), client runnables(Sync case).
-extern RingBuffer Rte_response_RB_ioc;
-//in Async case, this can be used to help client response runnable
-Std_ReturnType previous_RteCall_returnValue_buffer[10];
-RingBuffer previous_RteCall_returnValue_RB = {
-    previous_RteCall_returnValue_buffer,
-    0,
-    0,
-    10,
-    0
-};
-//for RTE to ensure the order of client requests on the server side
-Rte_Cs_TransactionHandleType Rte_request_buffer[10];
-RingBuffer Rte_request_RB = {
-    Rte_request_buffer,
-    0,
-    0,
-    10,
-    0
-};
+uint16 rte_server_side_add(){
+    uint16 para1, para2, transformed_para_1, transformed_para_2, transformed_response;
+    Rte_Cs_TransactionHandleType transaction_handle;//for transformer stub.
+    Std_ReturnType bsw_error = RTE_E_OK;
 
-Impl_uint16 transformer_buffer_ioc[20];
-RingBuffer transformer_RB_ioc = {
-    transformer_buffer_ioc,
-    0,//point to oldest data
-    0,
-    20,
-    0
-};
+    //get request information (parameters & sequence_counter).
+    RTE_Dequeue(&RB_requestInfo_core0, &para1, sizeof(Impl_uint16));
+    RTE_Dequeue(&RB_requestInfo_core0, &para2, sizeof(Impl_uint16));
+    RTE_Dequeue(&RB_requestInfo_core0, &transaction_handle.client_id, sizeof(uint16));
+    RTE_Dequeue(&RB_requestInfo_core0, &transaction_handle.sequence_counter, sizeof(uint16));
 
-int check_RTE_E_TRANSFORMER_LIMIT(RingBuffer* rb, Std_ReturnType* errorFlag){
-    if(IsFull(rb)){
-        *errorFlag = RTE_E_TRANSFORMER_LIMIT;
-        return 1;
-    }
-    return 0;
-}
+    //transforme data into DataType for server_operation
+    bsw_error = Check_Transformer_Buffer(&RB_transformer_core0);
+    uint8 transformer_error = Xfrm_Inv_transformer(&transaction_handle, &RB_transformer_core0, &RB_transformer_core0.currentSize, para1);
+    bsw_error = Check_Transformer_Error(transformer_error, bsw_error);
+    RTE_Dequeue(&RB_transformer_core0, (void*)&transformed_para_1, sizeof(uint16));
 
-int check_RTE_TRANSFORMER_ERROR(RingBuffer* rb, uint8 transformer_error_code, Std_ReturnType* errorFlag){
-    int true_false = 0;
-    //in the priority rule of Rte_call: RTE_E_TRANSFORMER_LIMIT > RTE_E_HARD_TRANSFORMER_ERROR > RTE_E_SOFT_TRANSFORMER_ERROR
-    if(*errorFlag != RTE_E_TRANSFORMER_LIMIT){
-        if(transformer_error_code >= 0x01 && transformer_error_code <= 0x7F){
-            //soft transformer error won't cause immediate return
-            *errorFlag = RTE_E_SOFT_TRANSFORMER_ERROR;
-            true_false = 1;
-        }else if(transformer_error_code >= 0x80 && transformer_error_code <= 0xFF){
-            *errorFlag = RTE_E_HARD_TRANSFORMER_ERROR;
-            true_false = 1;
-        }
-    }
-    return true_false;
-}
-
-void iocCase_client_side(){
-    uint8 server_response;
-    StatusType ioc_error_code = IocReceive_aa(&server_response);
-    Rte_Cs_TransactionHandleType transaction_handle; //for transformer stub.
-
-    /*transform received data, and fetch parameters form RTE transformer buffer*/
-    check_RTE_E_TRANSFORMER_LIMIT(&transformer_RB_ioc, &errorFlag_Rte_Call_Port1_InterPartitionSynchronousAdd);
-    uint8 transformer_error_code = Xfrm_Inv_transformer_2_ioc(&transaction_handle, &transformer_RB_ioc, &transformer_RB_ioc.currentSize, server_response);
-    check_RTE_TRANSFORMER_ERROR(&transformer_RB_ioc, transformer_error_code, &errorFlag_Rte_Call_Port1_InterPartitionSynchronousAdd);
-    Impl_uint16 server_response_transformed;
-    RTE_Dequeue(&transformer_RB_ioc, (void*)&server_response_transformed, sizeof(Impl_uint16));
-
-    //put server response in RTE internal buffer, and Rte_result will fetch the server response from the buffer.
-    RTE_Enqueue(&Rte_response_RB_ioc, (void*)&server_response_transformed, sizeof(Impl_uint16));
+    bsw_error = Check_Transformer_Buffer(&RB_transformer_core0);
+    transformer_error = Xfrm_Inv_transformer(&transaction_handle, &RB_transformer_core0, &RB_transformer_core0.currentSize, para2);
+    bsw_error = Check_Transformer_Error(transformer_error, bsw_error);
+    RTE_Dequeue(&RB_transformer_core0, (void*)&transformed_para_2, sizeof(uint16));
     
-    return;
+    //在 server side enqueue request queue
+    RTE_Enqueue(&RB_request_SR1, &transformed_para_1, sizeof(uint16));
+    RTE_Enqueue(&RB_request_SR1, &transformed_para_2, sizeof(uint16));
+    Impl_uint16 response = RTE_RUNNABLE_Server1();//do "add" operation, add operation 會自己去 request_queue 裡面拿參數。
+    
+    //transforme data into DataType for Rte_Enqueue the rte_internal_buffer
+    bsw_error = Check_Transformer_Buffer(&RB_transformer_core0);
+    transformer_error = Xfrm_transformer_2(&transaction_handle, &RB_transformer_core0, &RB_transformer_core0.currentSize, response);
+    bsw_error = Check_Transformer_Error(transformer_error, bsw_error);
+    RTE_Dequeue(&RB_transformer_core0, &transformed_response, sizeof(uint16));
+
+    ResponseInfoType response_info = {
+        RTE_E_OK,
+        transaction_handle,
+        transformed_response
+    };
+    RTE_Enqueue(&RB_responseInfo_core0, &response_info, sizeof(ResponseInfoType));//via rte_internal_buffer, store response information (response & sequence_counter)
+    return transaction_handle.client_id;
 }
+
+uint16 rte_server_side_sub(){
+    uint16 para1, para2, transformed_para_1, transformed_para_2, transformed_response;
+    Rte_Cs_TransactionHandleType transaction_handle;
+    Std_ReturnType bsw_error = RTE_E_OK;
+    
+    //get request information (parameters & sequence_counter).
+    RTE_Dequeue(&RB_requestInfo_core0, &para1, sizeof(Impl_uint16));
+    RTE_Dequeue(&RB_requestInfo_core0, &para2, sizeof(Impl_uint16));
+    RTE_Dequeue(&RB_requestInfo_core0, &transaction_handle.client_id, sizeof(uint16));
+    RTE_Dequeue(&RB_requestInfo_core0, &transaction_handle.sequence_counter, sizeof(uint16));
+
+    //transforme data into DataType for server_operation
+    bsw_error = Check_Transformer_Buffer(&RB_transformer_core0);
+    uint8 transformer_error = Xfrm_Inv_transformer(&transaction_handle, &RB_transformer_core0, &RB_transformer_core0.currentSize, para1);
+    bsw_error = Check_Transformer_Error(transformer_error, bsw_error);
+    RTE_Dequeue(&RB_transformer_core0, (void*)&transformed_para_1, sizeof(uint16));
+
+    bsw_error = Check_Transformer_Buffer(&RB_transformer_core0);
+    transformer_error = Xfrm_Inv_transformer(&transaction_handle, &RB_transformer_core0, &RB_transformer_core0.currentSize, para2);
+    bsw_error = Check_Transformer_Error(transformer_error, bsw_error);
+    RTE_Dequeue(&RB_transformer_core0, (void*)&transformed_para_2, sizeof(uint16));
+    
+    RTE_Enqueue(&RB_request_SR2, &transformed_para_1, sizeof(uint16));//在 server side enqueue request queue
+    RTE_Enqueue(&RB_request_SR2, &transformed_para_2, sizeof(uint16));
+    Impl_uint16 response = RTE_RUNNABLE_Server2();//do "sub" operation, sub operation 會自己去 request_queue 裡面拿參數。
+    
+    //transforme data into DataType for Rte_Enqueue the rte_internal_buffer
+    bsw_error = Check_Transformer_Buffer(&RB_transformer_core0);
+    transformer_error = Xfrm_transformer_2(&transaction_handle, &RB_transformer_core0, &RB_transformer_core0.currentSize, response);
+    bsw_error = Check_Transformer_Error(transformer_error, bsw_error);
+    RTE_Dequeue(&RB_transformer_core0, &transformed_response, sizeof(uint16));
+
+    ResponseInfoType response_info = {
+        RTE_E_OK,
+        transaction_handle,
+        transformed_response
+    };
+
+    RTE_Enqueue(&RB_responseInfo_core0, &response_info, sizeof(ResponseInfoType));//store response information (response & sequence_counter)
+    return transaction_handle.client_id;
+}
+
+ResponseInfoType rte_client_side(){
+    uint16 transformed_response;
+    Rte_Cs_TransactionHandleType transaction_handle;//for transformer stub.
+    Std_ReturnType bsw_error = RTE_E_OK;
+    ResponseInfoType response_info;
+    RTE_Dequeue(&RB_responseInfo_core0, &response_info, sizeof(ResponseInfoType));
+    
+    bsw_error = Check_Transformer_Buffer(&RB_transformer_core0);
+    uint8 transformer_error = Xfrm_Inv_transformer_2(&transaction_handle, &RB_transformer_core0, &RB_transformer_core0.currentSize, response_info.response);
+    bsw_error = Check_Transformer_Error(transformer_error, bsw_error);
+    RTE_Dequeue(&RB_transformer_core0, &transformed_response, sizeof(uint16));
+
+    ResponseInfoType server_response = {
+        bsw_error,
+        response_info.transaction_handle,
+        transformed_response
+    };
+    return server_response;
+}
+
+ResponseInfoType ioc_client_side(){
+    uint16 transformed_response;
+    Rte_Cs_TransactionHandleType transaction_handle;//for transformer stub.
+    Std_ReturnType bsw_error = RTE_E_OK;
+    ResponseInfoType response_info;
+    IocReceive_Q1(&response_info.transaction_handle.client_id);
+    IocReceive_Q1(&response_info.transaction_handle.sequence_counter);
+    IocReceive_Q1(&response_info.response);
+    
+    bsw_error = Check_Transformer_Buffer(&RB_transformer_core0);
+    uint8 transformer_error = Xfrm_Inv_transformer_2(&transaction_handle, &RB_transformer_core0, &RB_transformer_core0.currentSize, response_info.response);
+    bsw_error = Check_Transformer_Error(transformer_error, bsw_error);
+    RTE_Dequeue(&RB_transformer_core0, &transformed_response, sizeof(uint16));
+
+    ResponseInfoType server_response = {
+        bsw_error,
+        response_info.transaction_handle,
+        transformed_response
+    };
+    return server_response;
+}
+
+
 /************* OSAPP_A01 *****************/
 #pragma section OSAPP_A03_SEC
 uint16 App_A03_test_data_1 = 1;
@@ -208,13 +264,14 @@ void TRUSTED_TF_AIMER( TrustedFunctionIndexType id, TrustedFunctionParameterRefT
     for(uint32 i=0; i<40000;i++){
         temp = temp + 1;
     }
+
     // CallTrustedFunction(TF_IKURA, &temp);
 }
 void TRUSTED_TF_IKURA( TrustedFunctionIndexType id, TrustedFunctionParameterRefType para)
 {
     PrintText("TF IKURA\r\n\0");
     uint32 temp = 0;
-    // uint32* tt = &temp;
+    uint32* tt = &temp;
     ActivateTask(T03);
     CallTrustedFunction(TF_YORUSHIKA, &temp);
 }
@@ -253,44 +310,55 @@ uint16 testforvil = 5;
 
 
 #pragma section TASK_T001_SEC
-TASK(T01)
+uint32 temp1 = 10;
+TASK(T01)//rte client side: 發送request。(發起 request 的 runnable 應該放在同一個 task，不然不知道該在哪裡 activate 這些含有發起 requests 的 runnables 的 task)
 {
-    // GetLock(lock_buffer_x, lock_bit_x);
-    // uint16 data = 6;
-    // StatusType error = IocSend_aa(data);
-    // uint16 data2 = 3;
-    // error = IocSend_aa(data2);
-    // ReleaseLock(lock_buffer_x, lock_bit_x);
-    // ActivateTask(T11);
-
     PrintText("T01 initiate a C/S op\r\n\0");
-    RTE_Enqueue(&Rte_request_RB, (void*)&Rte_Call_Port1_InterPartitionSynchronousAdd_metaData.transaction_handle, sizeof(Rte_Cs_TransactionHandleType));
-    Impl_uint16 response = Rte_Client_Runnable_1();
-    if(response == 10U){
-        PrintText("success\r\n\0");
+    //inter-partition
+    //不可能在雙核上調用相同的 runnaable，因為一個 SWC 的 runnables 只能 map to "同一個core的同一個 os app (LSA spec.)"
+    if(rte_event_t01[InitEvent_3_t01]->rteevent){
+        GetLock(&lock, lock_bit);
+        rte_event_t01[InitEvent_3_t01]->rteevent--;
+        ReleaseLock(&lock, lock_bit);
+
+        Impl_uint16 result = RTE_RUNNABLE_Client3();
+        
+        /*test*/
+        if(result == 15U){
+            PrintText("success\r\n\0");
+        }
     }
     TerminateTask();
 }
 
 #pragma section TASK_T002_SEC
+int T02_Global = 0;
 TASK(T02)
 {
-    for(int i = 0; i <10000; i++){
+    for(int i = 0; i <10000; i++){//inter-arival protection
         ;
     }
-    iocCase_client_side();
-    PrintText("T02 set event to wake up T01\r\n\0");
-    SetEvent(T01, event1);
+    /*client side: 接收和處理 response_info*/
+    //inter-partition
+    if(rte_event_t03[AsynchronousServerCallReturnsEvent_3_t03]->rteevent){
+        GetLock(&lock, lock_bit);
+        rte_event_t03[AsynchronousServerCallReturnsEvent_3_t03]->rteevent--;
+        ReleaseLock(&lock, lock_bit);
+
+        ResponseInfoType server_response = ioc_client_side();
+        RTE_Enqueue(&RB_response_CR3, &server_response, sizeof(ResponseInfoType));
+
+        SetEvent(T01, event1);
+    }
+
     TerminateTask();
 }
 
 #pragma section TASK_T003_SEC
 TASK(T03)
 {
-    //for timeout mechanism
-    //in the priority rule of rte_call, the priority of RTE_E_TIMEOUT is lower than the hard transformer error.
-    if(errorFlag_Rte_Call_Port1_InterPartitionSynchronousAdd != RTE_E_HARD_TRANSFORMER_ERROR){
-        errorFlag_Rte_Call_Port1_InterPartitionSynchronousAdd = RTE_E_TIMEOUT;
+    for(int i = 0; i <10000; i++){//inter-arival protection
+        ;
     }
     TerminateTask();
 }

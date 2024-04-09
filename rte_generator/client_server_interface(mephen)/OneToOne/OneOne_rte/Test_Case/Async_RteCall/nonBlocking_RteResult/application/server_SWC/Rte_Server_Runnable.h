@@ -9,13 +9,29 @@ extern "C" {
 
 #include "Rte_Server_Runnable_Type.h"
 #include "../ringbuffer.h"
-FUNC(Impl_uint16, AUTOMATIC) Rte_Server_Runnable(Impl_uint16, Impl_uint16);
 
-//make sure only Rte_Server_Runnable_1.c can invoke these functions.
+extern RingBuffer RB_request_SR1; //each server runnable has its own request buffer
+FUNC(Impl_uint16, AUTOMATIC) RTE_RUNNABLE_Server1();
+
+extern RingBuffer RB_request_SR2;
+FUNC(Impl_uint16, AUTOMATIC) RTE_RUNNABLE_Server2();
+
+extern RingBuffer RB_request_SR3;
+FUNC(Impl_uint16, AUTOMATIC) RTE_RUNNABLE_Server3();
+
+//make sure only Rte_Server_Runnable_1.c can invoke Add_ImplUint8.
 #ifdef RTE_SERVER_RUNNABLE_1_C
-Impl_uint8 add_ImplUint8(Impl_uint8, Impl_uint8);
-Impl_uint16 add_ImplUint16(Impl_uint16, Impl_uint16);
+Impl_uint16 Add_ImplUint16();
 #endif
+
+#ifdef RTE_SERVER_RUNNABLE_2_C
+Impl_uint16 Sub_ImplUint16();
+#endif
+
+#ifdef RTE_SERVER_RUNNABLE_3_C
+Impl_uint16 Multiply_ImplUint16();
+#endif
+
 
 #ifdef __cplusplus /* [SWS_Rte_07126]  */
 } /* extern "C" */

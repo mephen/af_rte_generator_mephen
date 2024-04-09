@@ -10,43 +10,56 @@ typedef uint16 MyUint16OfVendorID;
 typedef float32 MyFloat32;
 typedef float64 MyFloat64;
 
-/****************************************************************************************/
-/*below structures are used in Rte_Client_Runnable_1.c*/
-
-//To avoid long and complex type names
-//not very useful, but it is a good practice to define the type name.(Rte_call_metaData is more flexible)
-//[SWS_Rte_06810], [SWS_Rte_01150], [SWS_Rte_01148] -> (typedef Rte_instance_const_component const* const Rte_instance)
+//use uint8 will cause error when test with GetLock/ReleaseLock protection
+typedef uint32 RteEventType;
 typedef struct{
-    uint16 client_id;
-}Rte_instance_component;
-typedef CONSTP2CONST(Rte_instance_component, AUTOMATIC, RTE_CONST) Rte_instance;
+    RteEventType rteevent;
+    RteEventType rteevent_disableinmode; //for mode switch interface
+    RteEventType rteevent_flag; //for mode switch interface
+} RteEventStatus;
+
+//Define the Ring Buffer(FIFO) structure
+typedef struct {
+    void *buffer;          // buffer array
+    size_t head;           // head index: point to the oldest data
+    size_t tail;           // tail index: point to the next available position of the newest data
+    size_t maxSize;        // maximum number of elements
+    size_t currentSize;    // current number of elements
+}RingBuffer;
 
 typedef struct{
-    uint16 client_id;
-    uint16 sequence_counter;
-    //below are meta data: help distinguish different tpye of Rte_call in the OsTask body.
-    int communication_type; //(1:"com", 2:"ioc", 3:"rte")
-    Std_ReturnType Async_rteCall_returnValue; //only for Async case
-}Rte_Cs_TransactionHandleType;
+    uint16 client_id; //runnable ID
+    uint16 sequence_counter; 
+        //Async Rte_call: the sequence_counter record how many Async Rte_call has been "invoked", and the sequence_counter of rte_result records how many c/s communication has been "finished".
+        //Sync Rte_call: the sequence_counter record how many c/s communication has been "finished".
+}Rte_Cs_TransactionHandleType; //follow spec.
 
 //each Rte_call(serverCallPoint) has its own metaData.(client server communication)
 typedef struct{
     Rte_Cs_TransactionHandleType transaction_handle;
-    char port[20];
     char connected_unconnected[20];
     char in_exclusiveArea_or_not[20];
     char CanAccess[20];
-    char sync_async[20];
-    char operation[20];
-    char run_stop[5];
-}Rte_call_metaData;
+}RteCallMetaData;
 
 //each Rte_result has its own metaData.(Asynchronous client server communication)
 typedef struct{
+    Rte_Cs_TransactionHandleType transaction_handle;
     char connected_unconnected[20];
     char in_exclusiveArea_or_not[20];
     char CanAccess[20];
-}Rte_result_metaData;
+}RteResultMetaData;
+
+typedef struct{
+    Std_ReturnType bsw_error; //record bsw service error in the client_side_task which process the server_response during a c/s communication
+    Rte_Cs_TransactionHandleType transaction_handle;
+    uint16 response;
+}ResponseInfoType;
+
+typedef struct{
+    RingBuffer response_Q;
+    RingBuffer request_Q;
+}RteClientServer;
 
 /****************************************************************************************/
-#endif
+#endif//Rte_Type_h

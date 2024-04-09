@@ -1264,7 +1264,7 @@ TaskVarType TaskVar_core1[TASK_OBJECTS_COUNT_CORE1] = {
 /** isr2-task cannot Auto Start **/
 const TaskType TasksAutoStartAppMode1[TASK_AUTOSTART_APPMODE1_COUNT]  = {
     T01,
-    // T11,
+    T12,
 };
 
 // const TaskType TasksAppModeAppMode2[4]  = {

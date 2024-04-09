@@ -1,0 +1,26 @@
+{
+    "files.associations": {
+        "transformer_stub.h": "c",
+        "rte_type.h": "c",
+        "rte_server_runnable.h": "c",
+        "rte_client_responserunnable_type.h": "c",
+        "rte_client_responserunnable.h": "c",
+        "ringbuffer.h": "c",
+        "lock.h": "c",
+        "ioc.h": "c",
+        "rte_data_management.h": "c",
+        "event_cfg.h": "c",
+        "rte_client_runnable.h": "c",
+        "rte_cs_data_management.h": "c",
+        "event.h": "c",
+        "task.h": "c",
+        "trustedfunc_cfg.h": "c",
+        "application_cfg.h": "c",
+        "rte_client_response_runnable_type.h": "c",
+        "rte_client_response_runnable.h": "c",
+        "rte.h": "c",
+        "rte_event_cfg.h": "c",
+        "rte_client_runnable_type.h": "c",
+        "alarm.h": "c"
+    }
+}

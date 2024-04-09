@@ -1,1 +1,0 @@
-#define RTE_CLIENT_RUNNABLE_2_C
