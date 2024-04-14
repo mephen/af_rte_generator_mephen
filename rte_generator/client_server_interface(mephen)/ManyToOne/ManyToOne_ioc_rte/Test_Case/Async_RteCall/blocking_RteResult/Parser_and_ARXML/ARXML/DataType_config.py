@@ -4,7 +4,7 @@ from autosarfactory import autosarfactory
 
 datatype_file = os.path.join(os.path.dirname(__file__), 'ARXML', 'Datatype.arxml') 
 
-TPC_Composition_ARPackage = autosarfactory.new_file(datatype_file, defaultArPackage = 'Datatype_Composition', overWrite = 'true') 
+TPC_Composition_ARPackage = autosarfactory.new_file(datatype_file, defaultArPackage = 'CS_Composition', overWrite = 'true') 
 Datatypes_ARPackage = TPC_Composition_ARPackage.new_ARPackage('Datatypes')
 BaseTypes_ARPackage = Datatypes_ARPackage.new_ARPackage('BaseTypes')
 Uint8 = BaseTypes_ARPackage.new_SwBaseType('Uint8')

@@ -2,7 +2,7 @@
 <AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00051.xsd">
   <AR-PACKAGES>
     <AR-PACKAGE>
-      <SHORT-NAME>Datatype_Composition</SHORT-NAME>
+      <SHORT-NAME>CS_Composition</SHORT-NAME>
       <ELEMENTS/>
       <AR-PACKAGES>
         <AR-PACKAGE>
@@ -71,7 +71,7 @@
                   <SW-DATA-DEF-PROPS>
                     <SW-DATA-DEF-PROPS-VARIANTS>
                       <SW-DATA-DEF-PROPS-CONDITIONAL>
-                        <BASE-TYPE-REF DEST="SW-BASE-TYPE">/Datatype_Composition/Datatypes/BaseTypes/Uint8</BASE-TYPE-REF>
+                        <BASE-TYPE-REF DEST="SW-BASE-TYPE">/CS_Composition/Datatypes/BaseTypes/Uint8</BASE-TYPE-REF>
                       </SW-DATA-DEF-PROPS-CONDITIONAL>
                     </SW-DATA-DEF-PROPS-VARIANTS>
                   </SW-DATA-DEF-PROPS>
@@ -87,7 +87,7 @@
                   <SW-DATA-DEF-PROPS>
                     <SW-DATA-DEF-PROPS-VARIANTS>
                       <SW-DATA-DEF-PROPS-CONDITIONAL>
-                        <BASE-TYPE-REF DEST="SW-BASE-TYPE">/Datatype_Composition/Datatypes/BaseTypes/Uint16</BASE-TYPE-REF>
+                        <BASE-TYPE-REF DEST="SW-BASE-TYPE">/CS_Composition/Datatypes/BaseTypes/Uint16</BASE-TYPE-REF>
                       </SW-DATA-DEF-PROPS-CONDITIONAL>
                     </SW-DATA-DEF-PROPS-VARIANTS>
                   </SW-DATA-DEF-PROPS>
@@ -99,7 +99,7 @@
                   <SW-DATA-DEF-PROPS>
                     <SW-DATA-DEF-PROPS-VARIANTS>
                       <SW-DATA-DEF-PROPS-CONDITIONAL>
-                        <BASE-TYPE-REF DEST="SW-BASE-TYPE">/Datatype_Composition/Datatypes/BaseTypes/Float32</BASE-TYPE-REF>
+                        <BASE-TYPE-REF DEST="SW-BASE-TYPE">/CS_Composition/Datatypes/BaseTypes/Float32</BASE-TYPE-REF>
                       </SW-DATA-DEF-PROPS-CONDITIONAL>
                     </SW-DATA-DEF-PROPS-VARIANTS>
                   </SW-DATA-DEF-PROPS>
@@ -119,7 +119,7 @@
                   <SW-DATA-DEF-PROPS>
                     <SW-DATA-DEF-PROPS-VARIANTS>
                       <SW-DATA-DEF-PROPS-CONDITIONAL>
-                        <BASE-TYPE-REF DEST="SW-BASE-TYPE">/Datatype_Composition/Datatypes/BaseTypes/Float64</BASE-TYPE-REF>
+                        <BASE-TYPE-REF DEST="SW-BASE-TYPE">/CS_Composition/Datatypes/BaseTypes/Float64</BASE-TYPE-REF>
                         <INVALID-VALUE>
                           <NUMERICAL-VALUE-SPECIFICATION>
                             <SHORT-LABEL>DefaultInvalidValue_Float64</SHORT-LABEL>
@@ -162,15 +162,15 @@
                   <SHORT-NAME>DataTypeMappingSet_A</SHORT-NAME>
                   <DATA-TYPE-MAPS>
                     <DATA-TYPE-MAP>
-                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Datatype_Composition/Datatypes/ImplementationDataTypes/Impl_float64</IMPLEMENTATION-DATA-TYPE-REF>
+                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/CS_Composition/Datatypes/ImplementationDataTypes/Impl_float64</IMPLEMENTATION-DATA-TYPE-REF>
                     </DATA-TYPE-MAP>
                     <DATA-TYPE-MAP>
-                      <APPLICATION-DATA-TYPE-REF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/Datatype_Composition/Datatypes/ApplicationDataTypes/App_uint8</APPLICATION-DATA-TYPE-REF>
-                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Datatype_Composition/Datatypes/ImplementationDataTypes/Impl_uint8</IMPLEMENTATION-DATA-TYPE-REF>
+                      <APPLICATION-DATA-TYPE-REF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/CS_Composition/Datatypes/ApplicationDataTypes/App_uint8</APPLICATION-DATA-TYPE-REF>
+                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/CS_Composition/Datatypes/ImplementationDataTypes/Impl_uint8</IMPLEMENTATION-DATA-TYPE-REF>
                     </DATA-TYPE-MAP>
                     <DATA-TYPE-MAP>
-                      <APPLICATION-DATA-TYPE-REF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/Datatype_Composition/Datatypes/ApplicationDataTypes/App_uint16</APPLICATION-DATA-TYPE-REF>
-                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/Datatype_Composition/Datatypes/ImplementationDataTypes/Impl_uint16</IMPLEMENTATION-DATA-TYPE-REF>
+                      <APPLICATION-DATA-TYPE-REF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/CS_Composition/Datatypes/ApplicationDataTypes/App_uint16</APPLICATION-DATA-TYPE-REF>
+                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/CS_Composition/Datatypes/ImplementationDataTypes/Impl_uint16</IMPLEMENTATION-DATA-TYPE-REF>
                     </DATA-TYPE-MAP>
                   </DATA-TYPE-MAPS>
                 </DATA-TYPE-MAPPING-SET>

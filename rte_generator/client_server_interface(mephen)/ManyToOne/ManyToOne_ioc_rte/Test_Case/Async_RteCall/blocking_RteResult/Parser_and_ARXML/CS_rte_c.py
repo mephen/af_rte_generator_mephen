@@ -1,0 +1,1 @@
+#合併專案時，放到 af_generate_rte_c.py 中。

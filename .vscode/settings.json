@@ -19,6 +19,7 @@
         "rte.h": "c",
         "std_types.h": "c",
         "platform_types.h": "c",
-        "typedefine.h": "c"
+        "typedefine.h": "c",
+        "rte_client_response_runnable.h": "c"
     }
 }

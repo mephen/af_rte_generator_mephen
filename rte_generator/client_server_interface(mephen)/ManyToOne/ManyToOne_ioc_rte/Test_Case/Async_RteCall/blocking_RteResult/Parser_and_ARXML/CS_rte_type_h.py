@@ -1,0 +1,1 @@
+#合併專案時，整合到 af_generate_rte_type_h.py 中。

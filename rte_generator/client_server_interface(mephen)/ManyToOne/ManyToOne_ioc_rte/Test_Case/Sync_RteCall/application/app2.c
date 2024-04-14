@@ -197,7 +197,7 @@ TASK(T11)//ioc server side: 接收request，處理request，發送response
         switch (client_id){
             case 3: //client runnable 3 發起的 request
                 GetLock(&lock, lock_bit);
-                rte_event_t03[AsynchronousServerCallReturnsEvent_3_t03]->rteevent++;
+                rte_event_t02[AsynchronousServerCallReturnsEvent_3_t02]->rteevent++;
                 ReleaseLock(&lock, lock_bit);
                 ActivateTask(T02); //client runnable 3 處理 response info 的 task
                 break;

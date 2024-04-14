@@ -1,0 +1,1 @@
+#合併專案時，放到 af_generate_app_c.py 中。

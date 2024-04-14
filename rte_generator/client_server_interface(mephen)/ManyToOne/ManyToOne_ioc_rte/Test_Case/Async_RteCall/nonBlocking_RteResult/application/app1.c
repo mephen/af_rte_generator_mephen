@@ -372,13 +372,13 @@ TASK(T02)
             case 1: //client runnable 1 發起的 request
                 //因為執行 server runnable 後還需要進行資料處理(調用 transformer、傳輸資料)，所以無法把 server-side 的 Rte event 存取包到 server runnable 內部調用的 api 裡面。
                 GetLock(&lock, lock_bit);
-                rte_event_t03[AsynchronousServerCallReturnsEvent_1_t03]->rteevent++;
+                rte_event_t02[AsynchronousServerCallReturnsEvent_1_t02]->rteevent++;
                 ReleaseLock(&lock, lock_bit);
-                // ActivateTask(T03); //client runnable 1 處理 response info 的 task
+                // ActivateTask(T02); //client runnable 1 處理 response info 的 task
                 break;
             case 2: //client runnable 2 發起的 request
                 GetLock(&lock, lock_bit);
-                rte_event_t03[AsynchronousServerCallReturnsEvent_2_t03]->rteevent++;
+                rte_event_t02[AsynchronousServerCallReturnsEvent_2_t02]->rteevent++;
                 ReleaseLock(&lock, lock_bit);
                 ActivateTask(T02); //client runnable 2 處理 response info 的 task
                 break;
@@ -390,9 +390,9 @@ TASK(T02)
     /*client side: 接收和處理 response_info*/
     //intra-partition
     //不用 while 檢查 rte event：因為 AsynchronousServerCallReturnsEvent 是告訴"某一個" client 它的 response 好了。
-    if(rte_event_t03[AsynchronousServerCallReturnsEvent_1_t03]->rteevent){
+    if(rte_event_t02[AsynchronousServerCallReturnsEvent_1_t02]->rteevent){
         GetLock(&lock, lock_bit);
-        rte_event_t03[AsynchronousServerCallReturnsEvent_1_t03]->rteevent--;
+        rte_event_t02[AsynchronousServerCallReturnsEvent_1_t02]->rteevent--;
         ReleaseLock(&lock, lock_bit);
 
         ResponseInfoType server_response = rte_client_side();//check error, call transformer, dequeue response queue
@@ -404,9 +404,9 @@ TASK(T02)
             PrintText("success\r\n\0");
         }
     }
-    if(rte_event_t03[AsynchronousServerCallReturnsEvent_2_t03]->rteevent){
+    if(rte_event_t02[AsynchronousServerCallReturnsEvent_2_t02]->rteevent){
         GetLock(&lock, lock_bit);
-        rte_event_t03[AsynchronousServerCallReturnsEvent_2_t03]->rteevent--;
+        rte_event_t02[AsynchronousServerCallReturnsEvent_2_t02]->rteevent--;
         ReleaseLock(&lock, lock_bit);
 
         ResponseInfoType server_response = rte_client_side();
@@ -420,9 +420,9 @@ TASK(T02)
     }
 
     //inter-partition
-    if(rte_event_t03[AsynchronousServerCallReturnsEvent_3_t03]->rteevent){
+    if(rte_event_t02[AsynchronousServerCallReturnsEvent_3_t02]->rteevent){
         GetLock(&lock, lock_bit);
-        rte_event_t03[AsynchronousServerCallReturnsEvent_3_t03]->rteevent--;
+        rte_event_t02[AsynchronousServerCallReturnsEvent_3_t02]->rteevent--;
         ReleaseLock(&lock, lock_bit);
 
         ResponseInfoType server_response = ioc_client_side();

@@ -13,18 +13,15 @@
 /*task T02*/
 #define OperationInvokedEvent_1_t02 0
 #define OperationInvokedEvent_2_t02 1
-
-/*task T03*/
-#define AsynchronousServerCallReturnsEvent_1_t03 0
-#define AsynchronousServerCallReturnsEvent_2_t03 1
-#define AsynchronousServerCallReturnsEvent_3_t03 2
+#define AsynchronousServerCallReturnsEvent_1_t02 2
+#define AsynchronousServerCallReturnsEvent_2_t02 3
+#define AsynchronousServerCallReturnsEvent_3_t02 4
 
 /*task T11*/
 #define OperationInvokedEvent_3_t11 0
 
 extern RteEventStatus* rte_event_t01[3];
-extern RteEventStatus* rte_event_t02[2];
-extern RteEventStatus* rte_event_t03[3];
+extern RteEventStatus* rte_event_t02[5];
 extern RteEventStatus* rte_event_t11[1];
 
 #endif//RTE_EVENT_CFG_H

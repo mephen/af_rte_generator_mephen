@@ -10,7 +10,7 @@ from autosarfactory.autosarfactory import SwImplPolicyEnum ,HandleInvalidEnum\
 #App_uint16 maps to Impl_uint16
 from DataType_config import App_uint16
 
-Interface_Composition_ARPackage = autosarfactory.new_file(interface_file, defaultArPackage = 'Interface_Composition', overWrite = 'true')
+Interface_Composition_ARPackage = autosarfactory.new_file(interface_file, defaultArPackage = 'CS_Composition', overWrite = 'true')
 Interfaces_ARPackage = Interface_Composition_ARPackage.new_ARPackage('Interfaces') 
 CS_If1 = Interfaces_ARPackage.new_ClientServerInterface('CS_If1')
 #Add Operation
