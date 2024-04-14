@@ -32,7 +32,6 @@ Impl_uint16 Sub_ImplUint16_SR2();
 Impl_uint16 Multiply_ImplUint16_SR3();
 #endif
 
-
 #ifdef __cplusplus /* [SWS_Rte_07126]  */
 } /* extern "C" */
 #endif /* __cplusplus */
