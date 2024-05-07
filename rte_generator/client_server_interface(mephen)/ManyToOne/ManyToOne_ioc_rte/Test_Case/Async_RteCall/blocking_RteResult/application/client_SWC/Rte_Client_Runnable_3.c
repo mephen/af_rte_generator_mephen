@@ -24,7 +24,7 @@ RingBuffer RB_response_CR3 = {
 
 static RteCallMetaData Rte_Call_Port1_AsyncIocMultiply_CR3_metaData = {
     .transaction_handle = {
-        .client_id = 3U,        //runnable ID, according to the configuration arxml
+        .client_id = 3U,         
         .sequence_counter = 0U, //recore how many Rte_call has been "invoked" -> sequence_counter of rte_result record how many c/s communication has been "finished".
     },
     .connected_unconnected = "connected",
@@ -34,7 +34,7 @@ static RteCallMetaData Rte_Call_Port1_AsyncIocMultiply_CR3_metaData = {
 
 static RteCallMetaData Rte_Call_Port1_SyncIocMultiply_CR3_metaData = {
     .transaction_handle = {
-        .client_id = 3U,        //runnable ID, according to the configuration arxml
+        .client_id = 3U,         
         .sequence_counter = 0U, //record how many c/s communication has been "finished".
     },
     .connected_unconnected = "connected",

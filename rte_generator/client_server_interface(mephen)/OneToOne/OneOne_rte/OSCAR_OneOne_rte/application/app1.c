@@ -69,7 +69,7 @@ uint16 rte_server_side_add(){
     //在 server side enqueue request queue
     RTE_Enqueue(&RB_request_SR1, &transformed_para_1, sizeof(uint16));
     RTE_Enqueue(&RB_request_SR1, &transformed_para_2, sizeof(uint16));
-    Impl_uint16 response = RTE_RUNNABLE_Server1();//do "add" operation, add operation 會自己去 request_queue 裡面拿參數。
+    Impl_uint16 response = RTE_RUNNABLE_Server1(); //do "add" operation, add operation 會自己去 request_queue 裡面拿參數。
     
     //transforme data into DataType for Rte_Enqueue the rte_internal_buffer
     bsw_error = Check_Transformer_Buffer(&RB_transformer_core0);

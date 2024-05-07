@@ -2,7 +2,7 @@ import os, sys
 import pdb
 from autosarfactory import autosarfactory
 
-interface_file = os.path.join(os.path.dirname(__file__), 'ARXML', 'Interface.arxml')
+interface_file = os.path.join(os.path.dirname(__file__), 'swc', 'Interface.arxml')
 
 from autosarfactory.autosarfactory import SwImplPolicyEnum ,HandleInvalidEnum\
     , SwCalibrationAccessEnum, ArgumentDirectionEnum, ServerArgumentImplPolicyEnum

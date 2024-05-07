@@ -370,6 +370,10 @@ TASK(T02)
 
         uint16 client_id = rte_server_side_sub();
         
+        // ResponseInfoType server_response = rte_client_side();//check error, call transformer, dequeue response queue
+        // RTE_Enqueue(&RB_response_CR1, &server_response, sizeof(ResponseInfoType)); //RB_response_CR1: response Q of client_runnable_1 (Sync server call point configuration)
+        // SetEvent(T01, event1);//unblock the corresponding client runnable
+
         switch (client_id){
             case 2: //client runnable 2 發起的 request
                 GetLock(&lock, lock_bit);
@@ -390,10 +394,10 @@ TASK(T02)
         rte_event_t03[AsynchronousServerCallReturnsEvent_1_t03]->rteevent--;
         ReleaseLock(&lock, lock_bit);
 
-        ResponseInfoType server_response = rte_client_side();//check error, call transformer, dequeue response queue
-        RTE_Enqueue(&RB_response_CR1, &server_response, sizeof(ResponseInfoType)); //RB_response_CR1: response Q of client_runnable_1 (Sync server call point configuration)
+        // ResponseInfoType server_response = rte_client_side();//check error, call transformer, dequeue response queue
+        // RTE_Enqueue(&RB_response_CR1, &server_response, sizeof(ResponseInfoType)); //RB_response_CR1: response Q of client_runnable_1 (Sync server call point configuration)
         
-        SetEvent(T01, event1);//unblock the corresponding client runnable
+        // SetEvent(T01, event1);//unblock the corresponding client runnable
     }
 
     TerminateTask();

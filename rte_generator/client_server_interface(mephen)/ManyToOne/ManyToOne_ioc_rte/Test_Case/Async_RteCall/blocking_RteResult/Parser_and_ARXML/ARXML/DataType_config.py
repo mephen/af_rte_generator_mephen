@@ -2,7 +2,7 @@ import os, sys
 import pdb
 from autosarfactory import autosarfactory
 
-datatype_file = os.path.join(os.path.dirname(__file__), 'ARXML', 'Datatype.arxml') 
+datatype_file = os.path.join(os.path.dirname(__file__), 'swc', 'Datatype.arxml') 
 
 TPC_Composition_ARPackage = autosarfactory.new_file(datatype_file, defaultArPackage = 'CS_Composition', overWrite = 'true') 
 Datatypes_ARPackage = TPC_Composition_ARPackage.new_ARPackage('Datatypes')
@@ -91,8 +91,8 @@ App_uint16_SwDefProps = App_uint16.new_SwDataDefProps().new_SwDataDefPropsVarian
 DataTypeMappingSets_ARPackage= Datatypes_ARPackage.new_ARPackage('DataTypeMappingSets')
 DataTypeMappingSet_A = DataTypeMappingSets_ARPackage.new_DataTypeMappingSet("DataTypeMappingSet_A")
 
-DataTypeMappingSet_A_DataTypeMapping_1 = DataTypeMappingSet_A.new_DataTypeMap('DTM_A1')
-DataTypeMappingSet_A_DataTypeMapping_1.set_implementationDataType(Impl_float64)
+# DataTypeMappingSet_A_DataTypeMapping_1 = DataTypeMappingSet_A.new_DataTypeMap('DTM_A1')
+# DataTypeMappingSet_A_DataTypeMapping_1.set_implementationDataType(Impl_float64)
 DataTypeMappingSet_A_DataTypeMapping_2 = DataTypeMappingSet_A.new_DataTypeMap('DTM_A2')
 DataTypeMappingSet_A_DataTypeMapping_2.set_applicationDataType(App_uint8)
 DataTypeMappingSet_A_DataTypeMapping_2.set_implementationDataType(Impl_uint8)

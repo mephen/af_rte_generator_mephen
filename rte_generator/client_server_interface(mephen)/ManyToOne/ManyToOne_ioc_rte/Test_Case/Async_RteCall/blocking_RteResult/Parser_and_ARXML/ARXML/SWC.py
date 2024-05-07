@@ -34,9 +34,10 @@ from autosarfactory.autosarfactory import DataTransformationErrorHandlingEnum\
 """
 from Interface_config import CS_If1, CS_If1_OP_Add, CS_If1_OP_Sub, CS_If1_OP_Multiply
 
-component_file = os.path.join(os.path.dirname(__file__), 'ARXML', 'SWC.arxml')
+component_file = os.path.join(os.path.dirname(__file__), 'swc', 'SWC.arxml')
 
 SWC_Composition_ARPackage = autosarfactory.new_file(component_file, defaultArPackage = 'CS_Composition', overWrite = 'true')
+
 SWC_ARPackage = SWC_Composition_ARPackage.new_ARPackage('SWCs')
 
 SWC_Client = SWC_ARPackage.new_ApplicationSwComponentType('SWC_Client')
@@ -121,10 +122,11 @@ SWC_Client_IntBehav_CRR1_AsynSerCallResPoint1.set_asynchronousServerCallPoint(SW
 CRR1_WaitPoint_1 = SWC_Client_IntBehav_CRR1.new_WaitPoint('CRR1_WaitPoint_1')
 CRR1_WaitPoint_1.set_timeout('60')
 CRR1_WaitPoint_1.set_trigger(AsySerCallRetEv_1)
-    # non-blocking Rte_Result
-SWC_Client_IntBehav_CRR1_AsynSerCallResPoint2 = SWC_Client_IntBehav_CRR1.new_AsynchronousServerCallResultPoint('CRR1_AsynSerCallResultPoint_2')
-SWC_Client_IntBehav_CRR1_AsynSerCallResPoint2.set_returnValueProvision(RteApiReturnValueProvisionEnum.VALUE_RETURN_VALUE_PROVIDED)
-SWC_Client_IntBehav_CRR1_AsynSerCallResPoint2.set_asynchronousServerCallPoint(SWC_Client_IntBehav_CR1_AsynSerCallPoint1)
+#     # 一個 CRR 在 blocking / non-blocking 只能二選一：因為兩者的差異在於此 CRR 的 waitPoint 是否引用了 AsynchronousServerCallReturnsEvent，是的話就代表此 CRR 都使用 blocking Rte_Result。
+#     # non-blocking Rte_Result
+# SWC_Client_IntBehav_CRR1_AsynSerCallResPoint2 = SWC_Client_IntBehav_CRR1.new_AsynchronousServerCallResultPoint('CRR1_AsynSerCallResultPoint_2')
+# SWC_Client_IntBehav_CRR1_AsynSerCallResPoint2.set_returnValueProvision(RteApiReturnValueProvisionEnum.VALUE_RETURN_VALUE_PROVIDED)
+# SWC_Client_IntBehav_CRR1_AsynSerCallResPoint2.set_asynchronousServerCallPoint(SWC_Client_IntBehav_CR1_AsynSerCallPoint1)
 
 #Client_Runnable_2
 SWC_Client_IntBehav_CR2 = SWC_Client_IntBehav.new_Runnable('Client_2')
@@ -153,10 +155,11 @@ SWC_Client_IntBehav_CRR2_AsynSerCallResPoint1.set_asynchronousServerCallPoint(SW
 CRR2_WaitPoint_1 = SWC_Client_IntBehav_CRR2.new_WaitPoint('CRR2_WaitPoint_1')
 CRR2_WaitPoint_1.set_timeout('60')
 CRR2_WaitPoint_1.set_trigger(AsySerCallRetEv_2)
-    # non-blocking Rte_Result
-SWC_Client_IntBehav_CRR2_AsynSerCallResPoint2 = SWC_Client_IntBehav_CRR2.new_AsynchronousServerCallResultPoint('CRR2_AsynSerCallResultPoint_2')
-SWC_Client_IntBehav_CRR2_AsynSerCallResPoint2.set_returnValueProvision(RteApiReturnValueProvisionEnum.VALUE_RETURN_VALUE_PROVIDED)
-SWC_Client_IntBehav_CRR2_AsynSerCallResPoint2.set_asynchronousServerCallPoint(SWC_Client_IntBehav_CR2_AsynSerCallPoint1)
+#     # 一個 CRR 在 blocking / non-blocking 只能二選一：因為兩者的差異在於此 CRR 的 waitPoint 是否引用了 AsynchronousServerCallReturnsEvent，是的話就代表此 CRR 都使用 blocking Rte_Result。
+#     # non-blocking Rte_Result
+# SWC_Client_IntBehav_CRR2_AsynSerCallResPoint2 = SWC_Client_IntBehav_CRR2.new_AsynchronousServerCallResultPoint('CRR2_AsynSerCallResultPoint_2')
+# SWC_Client_IntBehav_CRR2_AsynSerCallResPoint2.set_returnValueProvision(RteApiReturnValueProvisionEnum.VALUE_RETURN_VALUE_PROVIDED)
+# SWC_Client_IntBehav_CRR2_AsynSerCallResPoint2.set_asynchronousServerCallPoint(SWC_Client_IntBehav_CR2_AsynSerCallPoint1)
 
 #Client_Runnable_3
 SWC_Client_IntBehav_CR3 = SWC_Client_IntBehav.new_Runnable('Client_3')
@@ -179,55 +182,55 @@ SWC_Client_IntBehav_CR3_AsynSerCallPoint1_Multiply.set_targetRequiredOperation(C
 SWC_Client_IntBehav_CRR3 = SWC_Client_IntBehav.new_Runnable('Client_Response_3')
 SWC_Client_IntBehav_CRR3.set_symbol('Client_Response_3')
     # blocking Rte_Result (waitPoint refer to AsynchronousServerCallReturnsEvent)
-SWC_Client_IntBehav_CRR3_AsynSerCallResPoint1 = SWC_Client_IntBehav_CRR3.new_AsynchronousServerCallResultPoint('CRR3_AsynSerCallResultPoint_1')
-SWC_Client_IntBehav_CRR3_AsynSerCallResPoint1.set_returnValueProvision(RteApiReturnValueProvisionEnum.VALUE_RETURN_VALUE_PROVIDED)
-SWC_Client_IntBehav_CRR3_AsynSerCallResPoint1.set_asynchronousServerCallPoint(SWC_Client_IntBehav_CR3_AsynSerCallPoint1)
-CRR3_WaitPoint_1 = SWC_Client_IntBehav_CRR3.new_WaitPoint('CRR3_WaitPoint_1')
-CRR3_WaitPoint_1.set_timeout('60')
-CRR3_WaitPoint_1.set_trigger(AsySerCallRetEv_3)
+# SWC_Client_IntBehav_CRR3_AsynSerCallResPoint1 = SWC_Client_IntBehav_CRR3.new_AsynchronousServerCallResultPoint('CRR3_AsynSerCallResultPoint_1')
+# SWC_Client_IntBehav_CRR3_AsynSerCallResPoint1.set_returnValueProvision(RteApiReturnValueProvisionEnum.VALUE_RETURN_VALUE_PROVIDED)
+# SWC_Client_IntBehav_CRR3_AsynSerCallResPoint1.set_asynchronousServerCallPoint(SWC_Client_IntBehav_CR3_AsynSerCallPoint1)
+# CRR3_WaitPoint_1 = SWC_Client_IntBehav_CRR3.new_WaitPoint('CRR3_WaitPoint_1')
+# CRR3_WaitPoint_1.set_timeout('60')
+# CRR3_WaitPoint_1.set_trigger(AsySerCallRetEv_3)
+    # 一個 CRR 在 blocking / non-blocking 只能二選一：因為兩者的差異在於此 CRR 的 waitPoint 是否引用了 AsynchronousServerCallReturnsEvent，是的話就代表此 CRR 都使用 blocking Rte_Result。
     # non-blocking Rte_Result
-SWC_Client_IntBehav_CRR3_AsynSerCallResPoint3 = SWC_Client_IntBehav_CRR3.new_AsynchronousServerCallResultPoint('CRR3_AsynSerCallResultPoint_3')
-SWC_Client_IntBehav_CRR3_AsynSerCallResPoint3.set_returnValueProvision(RteApiReturnValueProvisionEnum.VALUE_RETURN_VALUE_PROVIDED)
-SWC_Client_IntBehav_CRR3_AsynSerCallResPoint3.set_asynchronousServerCallPoint(SWC_Client_IntBehav_CR3_AsynSerCallPoint1)
+SWC_Client_IntBehav_CRR3_AsynSerCallResPoint2 = SWC_Client_IntBehav_CRR3.new_AsynchronousServerCallResultPoint('CRR3_AsynSerCallResultPoint_3')
+SWC_Client_IntBehav_CRR3_AsynSerCallResPoint2.set_returnValueProvision(RteApiReturnValueProvisionEnum.VALUE_RETURN_VALUE_PROVIDED)
+SWC_Client_IntBehav_CRR3_AsynSerCallResPoint2.set_asynchronousServerCallPoint(SWC_Client_IntBehav_CR3_AsynSerCallPoint1)
 
 #Server_Runnable_1
-SWC_Server1_SR1 = SWC_Server1_IntBehav.new_Runnable('SWC_Server1_SR1')
-SWC_Server1_SR1.set_symbol('SWC_Server1_SR1')
-SWC_Server1_SR1.set_canBeInvokedConcurrently('false')
+Server1_SR1 = SWC_Server1_IntBehav.new_Runnable('Server1_SR1')
+Server1_SR1.set_symbol('Server1_SR1')
+Server1_SR1.set_canBeInvokedConcurrently(True)
 
 #Server_Runnable_2
-SWC_Server2_SR1 = SWC_Server2_IntBehav.new_Runnable('SWC_Server2_SR1')
-SWC_Server2_SR1.set_symbol('SWC_Server2_SR1')
-SWC_Server2_SR1.set_canBeInvokedConcurrently('false')
+Server2_SR1 = SWC_Server2_IntBehav.new_Runnable('Server2_SR1')
+Server2_SR1.set_symbol('Server2_SR1')
+Server2_SR1.set_canBeInvokedConcurrently(True)
 
 # RTEEvent configuration
 InitEv_1.set_startOnEvent(SWC_Client_IntBehav_CR1)
 InitEv_2.set_startOnEvent(SWC_Client_IntBehav_CR2)
 InitEv_3.set_startOnEvent(SWC_Client_IntBehav_CR3)
 #SWC_Server1 provides Add for intra-partition comm., and SWC_Server2 provides Multiply for inter-partition comm.
-OprInvokEv_1.set_startOnEvent(SWC_Server1_SR1)
+OprInvokEv_1.set_startOnEvent(Server1_SR1)
 OprInvokEv1_Add_ImplUint16 = OprInvokEv_1.new_Operation('OprInvokEv1_Add_ImplUint16')
 OprInvokEv1_Add_ImplUint16.set_contextPPort(SWC_Server1_Pport1)
 OprInvokEv1_Add_ImplUint16.set_targetProvidedOperation(CS_If1_OP_Add)
 
-OprInvokEv_2.set_startOnEvent(SWC_Server1_SR1)
+OprInvokEv_2.set_startOnEvent(Server1_SR1)
 OprInvokEv2_Add_ImplUint16 = OprInvokEv_2.new_Operation('OprInvokEv2_Add_ImplUint16')
 OprInvokEv2_Add_ImplUint16.set_contextPPort(SWC_Server1_Pport1)
 OprInvokEv2_Add_ImplUint16.set_targetProvidedOperation(CS_If1_OP_Add)
 
-OprInvokEv_3.set_startOnEvent(SWC_Server2_SR1)
-OprInvokEv3_Add_ImplUint16 = OprInvokEv_3.new_Operation('OprInvokEv3_Add_ImplUint16')
-OprInvokEv3_Add_ImplUint16.set_contextPPort(SWC_Server2_Pport1)
-OprInvokEv3_Add_ImplUint16.set_targetProvidedOperation(CS_If1_OP_Multiply)
+OprInvokEv_3.set_startOnEvent(Server2_SR1)
+OprInvokEv3_Multiply_ImplUint16 = OprInvokEv_3.new_Operation('OprInvokEv3_Multiply_ImplUint16')
+OprInvokEv3_Multiply_ImplUint16.set_contextPPort(SWC_Server2_Pport1)
+OprInvokEv3_Multiply_ImplUint16.set_targetProvidedOperation(CS_If1_OP_Multiply)
 # for blocking Rte_Result (wake up the blocked CRR)
 AsySerCallRetEv_1.set_startOnEvent(SWC_Client_IntBehav_CRR1)
 AsySerCallRetEv_1.set_eventSource(SWC_Client_IntBehav_CRR1_AsynSerCallResPoint1)
 
 AsySerCallRetEv_2.set_startOnEvent(SWC_Client_IntBehav_CRR2)
-AsySerCallRetEv_1.set_eventSource(SWC_Client_IntBehav_CRR2_AsynSerCallResPoint1)
+AsySerCallRetEv_2.set_eventSource(SWC_Client_IntBehav_CRR2_AsynSerCallResPoint1)
 
 AsySerCallRetEv_3.set_startOnEvent(SWC_Client_IntBehav_CRR3)
-AsySerCallRetEv_1.set_eventSource(SWC_Client_IntBehav_CRR3_AsynSerCallResPoint1)
-
+AsySerCallRetEv_3.set_eventSource(SWC_Client_IntBehav_CRR3_AsynSerCallResPoint2)
 
 autosarfactory.save()

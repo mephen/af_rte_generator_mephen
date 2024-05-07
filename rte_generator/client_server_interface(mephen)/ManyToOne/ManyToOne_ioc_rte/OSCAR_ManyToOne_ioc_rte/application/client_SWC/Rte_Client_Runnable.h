@@ -8,7 +8,6 @@ extern "C" {
 #endif /* __cplusplus */
 
 #include "Rte_Client_Runnable_Type.h"
-#include "../ringbuffer.h"
 #include "../Rte_Cs_Data_Management.h"
 
 extern RingBuffer RB_response_CR1; //if client use sync_rte_call to get the response, each client runnable has its own response ringbuffer.

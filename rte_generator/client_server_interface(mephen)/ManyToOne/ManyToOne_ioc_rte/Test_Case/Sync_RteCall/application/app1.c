@@ -384,61 +384,29 @@ TASK(T02)
         
         uint16 client_id = rte_server_side_add();//check error, call transformer, enqueue request queue, do operation, send response
         
+        /*client side: 接收和處理 response_info*/
+        //sync c/s case 不會配置 AsynchronousServerCallReturnsEvent，在 server runnable 結束後就可以 setEvent unblock client runnable
         switch (client_id){
             case 1: //client runnable 1 發起的 request
-                //因為執行 server runnable 後還需要進行資料處理(調用 transformer、傳輸資料)，所以無法把 server-side 的 Rte event 存取包到 server runnable 內部調用的 api 裡面。
-                GetLock(&lock, lock_bit);
-                rte_event_t02[AsynchronousServerCallReturnsEvent_1_t02]->rteevent++;
-                ReleaseLock(&lock, lock_bit);
-                // ActivateTask(T02); //client runnable 1 處理 response info 的 task
+                //因為執行 server runnable 後還需要進行資料處理(調用 transformer、傳輸資料)，所以無法把 setEvent 包到 server runnable 內部調用的 api 裡面。
+                ResponseInfoType server_response = rte_client_side();//check error, call transformer, dequeue response queue
+                RTE_Enqueue(&RB_response_CR1, &server_response, sizeof(ResponseInfoType)); //RB_response_CR1: response Q of client_runnable_1 (Sync server call point configuration)
+                SetEvent(T01, event1);//unblock the corresponding client runnable
                 break;
             case 2: //client runnable 2 發起的 request
-                GetLock(&lock, lock_bit);
-                rte_event_t02[AsynchronousServerCallReturnsEvent_2_t02]->rteevent++;
-                ReleaseLock(&lock, lock_bit);
-                // ActivateTask(T02); //client runnable 2 處理 response info 的 task
+                ResponseInfoType server_response = rte_client_side();
+                RTE_Enqueue(&RB_response_CR2, &server_response, sizeof(ResponseInfoType));
+                SetEvent(T01, event1);
                 break;
+            case 3: //client runnable 3 發起的 request
+                ResponseInfoType server_response = ioc_client_side();
+                RTE_Enqueue(&RB_response_CR3, &server_response, sizeof(ResponseInfoType));
+                SetEvent(T01, event1);
             default:
                 break;//parser error: doesn't know where is the client.
         }
     }
     
-    /*client side: 接收和處理 response_info*/
-    //intra-partition
-    //不用 while 檢查 rte event：因為 AsynchronousServerCallReturnsEvent 是告訴"某一個" client 它的 response 好了。
-    if(rte_event_t02[AsynchronousServerCallReturnsEvent_1_t02]->rteevent){
-        GetLock(&lock, lock_bit);
-        rte_event_t02[AsynchronousServerCallReturnsEvent_1_t02]->rteevent--;
-        ReleaseLock(&lock, lock_bit);
-
-        ResponseInfoType server_response = rte_client_side();//check error, call transformer, dequeue response queue
-        RTE_Enqueue(&RB_response_CR1, &server_response, sizeof(ResponseInfoType)); //RB_response_CR1: response Q of client_runnable_1 (Sync server call point configuration)
-        
-        SetEvent(T01, event1);//unblock the corresponding client runnable
-        //SetEvent() can't put in the server runnable, because client_side_task stills need to do some data processing before enqueuing server_response.
-    }
-    if(rte_event_t02[AsynchronousServerCallReturnsEvent_2_t02]->rteevent){
-        GetLock(&lock, lock_bit);
-        rte_event_t02[AsynchronousServerCallReturnsEvent_2_t02]->rteevent--;
-        ReleaseLock(&lock, lock_bit);
-
-        ResponseInfoType server_response = rte_client_side();
-        RTE_Enqueue(&RB_response_CR2, &server_response, sizeof(ResponseInfoType));
-
-        SetEvent(T01, event1);
-    }
-
-    //inter-partition
-    if(rte_event_t02[AsynchronousServerCallReturnsEvent_3_t02]->rteevent){
-        GetLock(&lock, lock_bit);
-        rte_event_t02[AsynchronousServerCallReturnsEvent_3_t02]->rteevent--;
-        ReleaseLock(&lock, lock_bit);
-
-        ResponseInfoType server_response = ioc_client_side();
-        RTE_Enqueue(&RB_response_CR3, &server_response, sizeof(ResponseInfoType));
-
-        SetEvent(T01, event1);
-    }
 
     TerminateTask();
 }

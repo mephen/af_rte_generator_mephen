@@ -27,7 +27,7 @@ typedef struct {
     size_t currentSize;    // current number of elements
 }RingBuffer;
 
-typedef struct{
+typedef struct{ 
     uint16 client_id; //runnable ID
     uint16 sequence_counter; 
         //Async Rte_call: the sequence_counter record how many Async Rte_call has been "invoked", and the sequence_counter of rte_result records how many c/s communication has been "finished".
@@ -57,9 +57,18 @@ typedef struct{
 }ResponseInfoType;
 
 typedef struct{
-    RingBuffer response_Q;
-    RingBuffer request_Q;
-}RteClientServer;
-
+    uint16 status_uint16;
+        // (LSB)0st-3th bit: rteevent counter. (count how many times this event is triggered)
+        // 4th-8th bit: rteevent type. (for-loop in OsTask need this information to use different condition statement)
+        // 9th bit: rteevent_disablemode. (rteevent can trigger the coreesponding runnable or not. If the para of Rte_Switch(mode) is irrelevant to this event , rteevent_disablemode will be cleared at the beginning of Rte_Switch, otherwise it will be set.)
+        // 10th bit: runnable_execute. (runnable is executing or not. In a sync mode_switch, the mode manager has to wait until mode_disabling_dependency_runnable terminate.)
+        // 11th-15th bit: Event type specific attribute
+            //OperationInvokedEvent、AsynchronousServerCallReturnsEvent:
+                //11th-12th bit: communication type. (inter-ecu / inter-partition / intra-partition)
+    union{
+        void (*Runnable_FuncPtr)();
+        uint16 (*Runnable_FuncPtr_RVuint16)();
+    };
+} RteEvent;
 /****************************************************************************************/
 #endif//Rte_Type_h

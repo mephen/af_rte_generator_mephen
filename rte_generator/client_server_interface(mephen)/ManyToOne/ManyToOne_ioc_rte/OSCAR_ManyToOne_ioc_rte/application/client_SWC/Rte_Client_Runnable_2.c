@@ -23,7 +23,7 @@ RingBuffer RB_response_CR2 = {
 
 static RteCallMetaData Rte_Call_Port1_AsyncRteAdd_CR2_metaData = {
     .transaction_handle = {
-        .client_id = 2U,        //runnable ID, according to the configuration arxml
+        .client_id = 2U,         
         .sequence_counter = 0U, //recore how many Rte_call has been "invoked" -> sequence_counter of rte_result record how many c/s communication has been "finished".
     },
     .connected_unconnected = "connected",
@@ -33,7 +33,7 @@ static RteCallMetaData Rte_Call_Port1_AsyncRteAdd_CR2_metaData = {
 
 static RteCallMetaData Rte_Call_Port1_SyncRteAdd_CR2_metaData = {
     .transaction_handle = {
-        .client_id = 2U,        //runnable ID, according to the configuration arxml
+        .client_id = 2U,         
         .sequence_counter = 0U, //record how many c/s communication has been "finished".
     },
     .connected_unconnected = "connected",
@@ -93,7 +93,9 @@ Std_ReturnType Rte_Call_Port1_AsyncRteAdd_CR2(Impl_uint16 para_1, Impl_uint16 pa
             Impl_uint16 transformed_para_2;
             RTE_Dequeue(&RB_transformer_core0, (void*)&transformed_para_2, sizeof(Impl_uint16));
 
+            Impl_uint16 len_arg = 2; //parser will decide the value of len_arg
             //send request info by Rte_internal_buffer
+            RTE_Enqueue(&RB_requestInfo_core0, &len_arg, sizeof(Impl_uint16));
             RTE_Enqueue(&RB_requestInfo_core0, &transformed_para_1, sizeof(Impl_uint16));
             RTE_Enqueue(&RB_requestInfo_core0, &transformed_para_2, sizeof(Impl_uint16));
             RTE_Enqueue(&RB_requestInfo_core0, &Rte_Call_Port1_AsyncRteAdd_CR2_metaData.transaction_handle.client_id, sizeof(Impl_uint16));
@@ -110,7 +112,8 @@ Std_ReturnType Rte_Call_Port1_AsyncRteAdd_CR2(Impl_uint16 para_1, Impl_uint16 pa
         
         //trigger coreesponding OperationInvokedEvent
         GetLock(&lock, lock_bit);
-        rte_event_t02[OperationInvokedEvent_2_t02]->rteevent++;
+        // rte_event_t02[OperationInvokedEvent_2_t02]->rteevent++;
+        trigger_rteevent(rte_event_t02[OperationInvokedEvent_2_t02]);
         ReleaseLock(&lock, lock_bit);
         ActivateTask(T02);
 
@@ -162,7 +165,9 @@ Std_ReturnType Rte_Call_Port1_SyncRteAdd_CR2(Impl_uint16 para_1, Impl_uint16 par
             Impl_uint16 transformed_para_2;
             RTE_Dequeue(&RB_transformer_core0, &transformed_para_2, sizeof(Impl_uint16));
             
+            Impl_uint16 len_arg = 2; //parser will decide the value of len_arg
             //send request info by Rte_internal_buffer
+            RTE_Enqueue(&RB_requestInfo_core0, &len_arg, sizeof(Impl_uint16));
             RTE_Enqueue(&RB_requestInfo_core0, &transformed_para_1, sizeof(Impl_uint16));
             RTE_Enqueue(&RB_requestInfo_core0, &transformed_para_2, sizeof(Impl_uint16));
             RTE_Enqueue(&RB_requestInfo_core0, &Rte_Call_Port1_SyncRteAdd_CR2_metaData.transaction_handle.client_id, sizeof(Impl_uint16));
@@ -170,7 +175,8 @@ Std_ReturnType Rte_Call_Port1_SyncRteAdd_CR2(Impl_uint16 para_1, Impl_uint16 par
 
             //trigger coreesponding OperationInvokedEvent
             GetLock(&lock, lock_bit);
-            rte_event_t02[OperationInvokedEvent_2_t02]->rteevent++;
+            // rte_event_t02[OperationInvokedEvent_2_t02]->rteevent++;
+            trigger_rteevent(rte_event_t02[OperationInvokedEvent_2_t02]);
             ReleaseLock(&lock, lock_bit);
             ActivateTask(T02);
             //wait until server response is available
@@ -205,6 +211,6 @@ Impl_uint16 RTE_RUNNABLE_Client2(){
     Impl_uint16 data_1 = 10U;
     Impl_uint16 data_2 = 5U;
     Impl_uint16 response;
-    Std_ReturnType rte_error = Rte_Call_Port1_SyncRteAdd_CR2(data_1, data_2, &response);
+    Std_ReturnType rte_error = Rte_Call_Port1_AsyncRteAdd_CR2(data_1, data_2);
     return response;
 }

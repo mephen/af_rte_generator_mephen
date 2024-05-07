@@ -27,7 +27,8 @@
 #include "lock.h"
 #include "client_SWC/Rte_Client_Runnable.h"
 #include "client_SWC/Rte_Client_Response_Runnable.h"
-#include "server_SWC/Rte_Server_Runnable.h"
+#include "server_SWC_1/Rte_SWC_Server1.h"
+#include "server_SWC_2/Rte_SWC_Server2.h"
 #include "Rte_Event_Cfg.h"
 #include "Transformer_stub.h"
 #include "Rte_Cs_Data_Management.h"
@@ -67,8 +68,8 @@ uint16 rte_server_side_add(){
     RTE_Dequeue(&RB_transformer_core0, (void*)&transformed_para_2, sizeof(uint16));
     
     //在 server side enqueue request queue
-    RTE_Enqueue(&RB_request_SR1, &transformed_para_1, sizeof(uint16));
-    RTE_Enqueue(&RB_request_SR1, &transformed_para_2, sizeof(uint16));
+    RTE_Enqueue(&RB_request_SWC_Server1_SR1, &transformed_para_1, sizeof(uint16));
+    RTE_Enqueue(&RB_request_SWC_Server1_SR1, &transformed_para_2, sizeof(uint16));
     Impl_uint16 response = RTE_RUNNABLE_Server1();//do "add" operation, add operation 會自己去 request_queue 裡面拿參數。
     
     //transforme data into DataType for Rte_Enqueue the rte_internal_buffer
@@ -108,9 +109,9 @@ uint16 rte_server_side_sub(){
     bsw_error = Check_Transformer_Error(transformer_error, bsw_error);
     RTE_Dequeue(&RB_transformer_core0, (void*)&transformed_para_2, sizeof(uint16));
     
-    RTE_Enqueue(&RB_request_SR2, &transformed_para_1, sizeof(uint16));//在 server side enqueue request queue
-    RTE_Enqueue(&RB_request_SR2, &transformed_para_2, sizeof(uint16));
-    Impl_uint16 response = RTE_RUNNABLE_Server2();//do "sub" operation, sub operation 會自己去 request_queue 裡面拿參數。
+    RTE_Enqueue(&RB_request_SWC_Server2_SR1, &transformed_para_1, sizeof(uint16));//在 server side enqueue request queue
+    RTE_Enqueue(&RB_request_SWC_Server2_SR1, &transformed_para_2, sizeof(uint16));
+    Impl_uint16 response = RTE_RUNNABLE_SWC_Server1_Runnable_1();//do "sub" operation, sub operation 會自己去 request_queue 裡面拿參數。
     
     //transforme data into DataType for Rte_Enqueue the rte_internal_buffer
     bsw_error = Check_Transformer_Buffer(&RB_transformer_core0);

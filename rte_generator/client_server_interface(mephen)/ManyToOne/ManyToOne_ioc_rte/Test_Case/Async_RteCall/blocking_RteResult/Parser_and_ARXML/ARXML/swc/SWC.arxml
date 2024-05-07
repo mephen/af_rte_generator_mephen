@@ -55,15 +55,17 @@
                     <ASYNCHRONOUS-SERVER-CALL-RETURNS-EVENT>
                       <SHORT-NAME>AsynchronousServerCallReturnsEvent_1</SHORT-NAME>
                       <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/CS_Composition/SWCs/SWC_Client/SWC_Client_SwcInternalBehavior/Client_Response_1</START-ON-EVENT-REF>
-                      <EVENT-SOURCE-REF DEST="ASYNCHRONOUS-SERVER-CALL-RESULT-POINT">/CS_Composition/SWCs/SWC_Client/SWC_Client_SwcInternalBehavior/Client_Response_3/CRR3_AsynSerCallResultPoint_1</EVENT-SOURCE-REF>
+                      <EVENT-SOURCE-REF DEST="ASYNCHRONOUS-SERVER-CALL-RESULT-POINT">/CS_Composition/SWCs/SWC_Client/SWC_Client_SwcInternalBehavior/Client_Response_1/CRR1_AsynSerCallResultPoint_1</EVENT-SOURCE-REF>
                     </ASYNCHRONOUS-SERVER-CALL-RETURNS-EVENT>
                     <ASYNCHRONOUS-SERVER-CALL-RETURNS-EVENT>
                       <SHORT-NAME>AsynchronousServerCallReturnsEvent_2</SHORT-NAME>
                       <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/CS_Composition/SWCs/SWC_Client/SWC_Client_SwcInternalBehavior/Client_Response_2</START-ON-EVENT-REF>
+                      <EVENT-SOURCE-REF DEST="ASYNCHRONOUS-SERVER-CALL-RESULT-POINT">/CS_Composition/SWCs/SWC_Client/SWC_Client_SwcInternalBehavior/Client_Response_2/CRR2_AsynSerCallResultPoint_1</EVENT-SOURCE-REF>
                     </ASYNCHRONOUS-SERVER-CALL-RETURNS-EVENT>
                     <ASYNCHRONOUS-SERVER-CALL-RETURNS-EVENT>
                       <SHORT-NAME>AsynchronousServerCallReturnsEvent_3</SHORT-NAME>
                       <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/CS_Composition/SWCs/SWC_Client/SWC_Client_SwcInternalBehavior/Client_Response_3</START-ON-EVENT-REF>
+                      <EVENT-SOURCE-REF DEST="ASYNCHRONOUS-SERVER-CALL-RESULT-POINT">/CS_Composition/SWCs/SWC_Client/SWC_Client_SwcInternalBehavior/Client_Response_3/CRR3_AsynSerCallResultPoint_3</EVENT-SOURCE-REF>
                     </ASYNCHRONOUS-SERVER-CALL-RETURNS-EVENT>
                   </EVENTS>
                   <RUNNABLES>
@@ -96,11 +98,6 @@
                       <ASYNCHRONOUS-SERVER-CALL-RESULT-POINTS>
                         <ASYNCHRONOUS-SERVER-CALL-RESULT-POINT>
                           <SHORT-NAME>CRR1_AsynSerCallResultPoint_1</SHORT-NAME>
-                          <RETURN-VALUE-PROVISION>RETURN-VALUE-PROVIDED</RETURN-VALUE-PROVISION>
-                          <ASYNCHRONOUS-SERVER-CALL-POINT-REF DEST="ASYNCHRONOUS-SERVER-CALL-POINT">/CS_Composition/SWCs/SWC_Client/SWC_Client_SwcInternalBehavior/Client_1/CR1_AsynSerCallPoint_1</ASYNCHRONOUS-SERVER-CALL-POINT-REF>
-                        </ASYNCHRONOUS-SERVER-CALL-RESULT-POINT>
-                        <ASYNCHRONOUS-SERVER-CALL-RESULT-POINT>
-                          <SHORT-NAME>CRR1_AsynSerCallResultPoint_2</SHORT-NAME>
                           <RETURN-VALUE-PROVISION>RETURN-VALUE-PROVIDED</RETURN-VALUE-PROVISION>
                           <ASYNCHRONOUS-SERVER-CALL-POINT-REF DEST="ASYNCHRONOUS-SERVER-CALL-POINT">/CS_Composition/SWCs/SWC_Client/SWC_Client_SwcInternalBehavior/Client_1/CR1_AsynSerCallPoint_1</ASYNCHRONOUS-SERVER-CALL-POINT-REF>
                         </ASYNCHRONOUS-SERVER-CALL-RESULT-POINT>
@@ -145,11 +142,6 @@
                           <RETURN-VALUE-PROVISION>RETURN-VALUE-PROVIDED</RETURN-VALUE-PROVISION>
                           <ASYNCHRONOUS-SERVER-CALL-POINT-REF DEST="ASYNCHRONOUS-SERVER-CALL-POINT">/CS_Composition/SWCs/SWC_Client/SWC_Client_SwcInternalBehavior/Client_2/CR2_AsynSerCallPoint_1</ASYNCHRONOUS-SERVER-CALL-POINT-REF>
                         </ASYNCHRONOUS-SERVER-CALL-RESULT-POINT>
-                        <ASYNCHRONOUS-SERVER-CALL-RESULT-POINT>
-                          <SHORT-NAME>CRR2_AsynSerCallResultPoint_2</SHORT-NAME>
-                          <RETURN-VALUE-PROVISION>RETURN-VALUE-PROVIDED</RETURN-VALUE-PROVISION>
-                          <ASYNCHRONOUS-SERVER-CALL-POINT-REF DEST="ASYNCHRONOUS-SERVER-CALL-POINT">/CS_Composition/SWCs/SWC_Client/SWC_Client_SwcInternalBehavior/Client_2/CR2_AsynSerCallPoint_1</ASYNCHRONOUS-SERVER-CALL-POINT-REF>
-                        </ASYNCHRONOUS-SERVER-CALL-RESULT-POINT>
                       </ASYNCHRONOUS-SERVER-CALL-RESULT-POINTS>
                       <WAIT-POINTS>
                         <WAIT-POINT>
@@ -187,23 +179,11 @@
                       <SYMBOL>Client_Response_3</SYMBOL>
                       <ASYNCHRONOUS-SERVER-CALL-RESULT-POINTS>
                         <ASYNCHRONOUS-SERVER-CALL-RESULT-POINT>
-                          <SHORT-NAME>CRR3_AsynSerCallResultPoint_1</SHORT-NAME>
-                          <RETURN-VALUE-PROVISION>RETURN-VALUE-PROVIDED</RETURN-VALUE-PROVISION>
-                          <ASYNCHRONOUS-SERVER-CALL-POINT-REF DEST="ASYNCHRONOUS-SERVER-CALL-POINT">/CS_Composition/SWCs/SWC_Client/SWC_Client_SwcInternalBehavior/Client_3/CR3_AsynSerCallPoint_1</ASYNCHRONOUS-SERVER-CALL-POINT-REF>
-                        </ASYNCHRONOUS-SERVER-CALL-RESULT-POINT>
-                        <ASYNCHRONOUS-SERVER-CALL-RESULT-POINT>
                           <SHORT-NAME>CRR3_AsynSerCallResultPoint_3</SHORT-NAME>
                           <RETURN-VALUE-PROVISION>RETURN-VALUE-PROVIDED</RETURN-VALUE-PROVISION>
                           <ASYNCHRONOUS-SERVER-CALL-POINT-REF DEST="ASYNCHRONOUS-SERVER-CALL-POINT">/CS_Composition/SWCs/SWC_Client/SWC_Client_SwcInternalBehavior/Client_3/CR3_AsynSerCallPoint_1</ASYNCHRONOUS-SERVER-CALL-POINT-REF>
                         </ASYNCHRONOUS-SERVER-CALL-RESULT-POINT>
                       </ASYNCHRONOUS-SERVER-CALL-RESULT-POINTS>
-                      <WAIT-POINTS>
-                        <WAIT-POINT>
-                          <SHORT-NAME>CRR3_WaitPoint_1</SHORT-NAME>
-                          <TIMEOUT>60</TIMEOUT>
-                          <TRIGGER-REF DEST="ASYNCHRONOUS-SERVER-CALL-RETURNS-EVENT">/CS_Composition/SWCs/SWC_Client/SWC_Client_SwcInternalBehavior/AsynchronousServerCallReturnsEvent_3</TRIGGER-REF>
-                        </WAIT-POINT>
-                      </WAIT-POINTS>
                     </RUNNABLE-ENTITY>
                   </RUNNABLES>
                 </SWC-INTERNAL-BEHAVIOR>
@@ -239,7 +219,7 @@
                   <EVENTS>
                     <OPERATION-INVOKED-EVENT>
                       <SHORT-NAME>OperationInvokedEvent_1</SHORT-NAME>
-                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/CS_Composition/SWCs/SWC_Server_1/SWC_Server1_SwcInternalBehavior/SWC_Server1_SR1</START-ON-EVENT-REF>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/CS_Composition/SWCs/SWC_Server_1/SWC_Server1_SwcInternalBehavior/Server1_SR1</START-ON-EVENT-REF>
                       <OPERATION-IREF>
                         <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/CS_Composition/SWCs/SWC_Server_1/SWC_Server1_Pport1</CONTEXT-P-PORT-REF>
                         <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/CS_Composition/Interfaces/CS_If1/Add_ImplUint16</TARGET-PROVIDED-OPERATION-REF>
@@ -247,7 +227,7 @@
                     </OPERATION-INVOKED-EVENT>
                     <OPERATION-INVOKED-EVENT>
                       <SHORT-NAME>OperationInvokedEvent_2</SHORT-NAME>
-                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/CS_Composition/SWCs/SWC_Server_1/SWC_Server1_SwcInternalBehavior/SWC_Server1_SR1</START-ON-EVENT-REF>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/CS_Composition/SWCs/SWC_Server_1/SWC_Server1_SwcInternalBehavior/Server1_SR1</START-ON-EVENT-REF>
                       <OPERATION-IREF>
                         <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/CS_Composition/SWCs/SWC_Server_1/SWC_Server1_Pport1</CONTEXT-P-PORT-REF>
                         <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/CS_Composition/Interfaces/CS_If1/Add_ImplUint16</TARGET-PROVIDED-OPERATION-REF>
@@ -256,9 +236,9 @@
                   </EVENTS>
                   <RUNNABLES>
                     <RUNNABLE-ENTITY>
-                      <SHORT-NAME>SWC_Server1_SR1</SHORT-NAME>
-                      <SYMBOL>SWC_Server1_SR1</SYMBOL>
-                      <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SHORT-NAME>Server1_SR1</SHORT-NAME>
+                      <SYMBOL>Server1_SR1</SYMBOL>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
                     </RUNNABLE-ENTITY>
                   </RUNNABLES>
                 </SWC-INTERNAL-BEHAVIOR>
@@ -272,7 +252,7 @@
                   <EVENTS>
                     <OPERATION-INVOKED-EVENT>
                       <SHORT-NAME>OperationInvokedEvent_3</SHORT-NAME>
-                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/CS_Composition/SWCs/SWC_Server_2/SWC_Server2_SwcInternalBehavior/SWC_Server2_SR1</START-ON-EVENT-REF>
+                      <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/CS_Composition/SWCs/SWC_Server_2/SWC_Server2_SwcInternalBehavior/Server2_SR1</START-ON-EVENT-REF>
                       <OPERATION-IREF>
                         <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/CS_Composition/SWCs/SWC_Server_1/SWC_Server2_Pport1</CONTEXT-P-PORT-REF>
                         <TARGET-PROVIDED-OPERATION-REF DEST="CLIENT-SERVER-OPERATION">/CS_Composition/Interfaces/CS_If1/Multiply_ImplUint16</TARGET-PROVIDED-OPERATION-REF>
@@ -281,9 +261,9 @@
                   </EVENTS>
                   <RUNNABLES>
                     <RUNNABLE-ENTITY>
-                      <SHORT-NAME>SWC_Server2_SR1</SHORT-NAME>
-                      <SYMBOL>SWC_Server2_SR1</SYMBOL>
-                      <CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+                      <SHORT-NAME>Server2_SR1</SHORT-NAME>
+                      <SYMBOL>Server2_SR1</SYMBOL>
+                      <CAN-BE-INVOKED-CONCURRENTLY>true</CAN-BE-INVOKED-CONCURRENTLY>
                     </RUNNABLE-ENTITY>
                   </RUNNABLES>
                 </SWC-INTERNAL-BEHAVIOR>

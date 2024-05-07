@@ -162,9 +162,6 @@
                   <SHORT-NAME>DataTypeMappingSet_A</SHORT-NAME>
                   <DATA-TYPE-MAPS>
                     <DATA-TYPE-MAP>
-                      <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/CS_Composition/Datatypes/ImplementationDataTypes/Impl_float64</IMPLEMENTATION-DATA-TYPE-REF>
-                    </DATA-TYPE-MAP>
-                    <DATA-TYPE-MAP>
                       <APPLICATION-DATA-TYPE-REF DEST="APPLICATION-PRIMITIVE-DATA-TYPE">/CS_Composition/Datatypes/ApplicationDataTypes/App_uint8</APPLICATION-DATA-TYPE-REF>
                       <IMPLEMENTATION-DATA-TYPE-REF DEST="IMPLEMENTATION-DATA-TYPE">/CS_Composition/Datatypes/ImplementationDataTypes/Impl_uint8</IMPLEMENTATION-DATA-TYPE-REF>
                     </DATA-TYPE-MAP>
