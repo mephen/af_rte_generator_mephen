@@ -90,9 +90,31 @@ typedef struct{
     RingBuffer* RB_request_ptr;
     RingBuffer* RB_response_ptr;
     RteEvent* async_return_ev;
+    uint32 SR_task;
+    uint32 CRR_task;
     enum {async = 0, sync = 1} rte_call_property;
     enum {not_used = 0, blocking = 1, non_blocking = 2} rte_result_property;
 }Rte_Cs_metaData;
+
+/*TaskType: 
+//core0
+#define IdleTask_core0  0x00000000
+#define T01             0x00000001
+#define T02             0x00000002
+#define T03             0x00000003
+#define T04             0x00000004
+#define T05             0x00000005
+#define T06             0x00000006
+#define SysTask_core0  0x0000000B
+// core1
+#define IdleTask_core1  0x00010000
+#define T11             0x00010001
+#define T14             0x00010002
+#define T12             0x00010003
+#define T13             0x00010004
+#define T15             0x00010005
+#define T16             0x00010006
+*/
 
 /****************************************************************************************/
 #endif//Rte_Type_h

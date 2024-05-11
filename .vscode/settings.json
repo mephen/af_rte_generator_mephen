@@ -23,6 +23,8 @@
         "rte_client_response_runnable.h": "c",
         "rte_server_runnable.h": "c",
         "alarm_cfg.h": "c",
-        "rte_cs_data_management.h": "c"
+        "rte_cs_data_management.h": "c",
+        "rte_swc_server_1.h": "c",
+        "rte_swc_client.h": "c"
     }
 }

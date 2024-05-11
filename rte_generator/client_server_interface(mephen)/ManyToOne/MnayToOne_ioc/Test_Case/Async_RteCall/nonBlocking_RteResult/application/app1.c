@@ -342,7 +342,7 @@ TASK(T01)//rte client side: 發送request。(發起 request 的 runnable 應該�
                                         rte_cs_metaData_arr[metaData_arr_index].CR_RVuint16(); // CR use async_rte_call : only send request
                                         if(rte_cs_metaData_arr[metaData_arr_index].rte_result_property == blocking){
                                             Impl_uint16 result = rte_cs_metaData_arr[metaData_arr_index].CRR_RVuint16(); // CRR use blocking_rte_result: wait for async_return_ev to unblock it
-                                            if((ev_t01_index==0 && result == 15U) || (ev_t01_index==1 && result == 15U) || (ev_t01_index==2 && result == 15U)){
+                                            if((ev_t01_index==0 && result == 10U) || (ev_t01_index==1 && result == 15U) || (ev_t01_index==2 && result == 15U)){
                                                 PrintText("success\r\n\0");
                                             }
                                         }
@@ -391,7 +391,9 @@ TASK(T01)//rte client side: 發送request。(發起 request 的 runnable 應該�
                                     GetLock(&lock, lock_bit);
                                     trigger_rteevent(rte_cs_metaData_arr[metaData_arr_index].async_return_ev); //trigger async_return_ev to : unblock the CRR who use blocking_rte_result / activate the CRR who use non_blocking_rte_result
                                     ReleaseLock(&lock, lock_bit);
-                                    // ActivateTask(T02); //Client 處理 response info 的 task
+                                    if(rte_cs_metaData_arr[metaData_arr_index].SR_task != rte_cs_metaData_arr[metaData_arr_index].CRR_task){
+                                        ActivateTask(rte_cs_metaData_arr[metaData_arr_index].CRR_task); //Client 處理 response info 的 task
+                                    }
                                 }
                                 break;
                             }
@@ -526,7 +528,9 @@ TASK(T02)
                                     GetLock(&lock, lock_bit);
                                     trigger_rteevent(rte_cs_metaData_arr[metaData_arr_index].async_return_ev); //trigger async_return_ev to : unblock the CRR who use blocking_rte_result / activate the CRR who use non_blocking_rte_result
                                     ReleaseLock(&lock, lock_bit);
-                                    // ActivateTask(T02); //Client 處理 response info 的 task
+                                    if(rte_cs_metaData_arr[metaData_arr_index].SR_task != rte_cs_metaData_arr[metaData_arr_index].CRR_task){
+                                        ActivateTask(rte_cs_metaData_arr[metaData_arr_index].CRR_task); //Client 處理 response info 的 task
+                                    }
                                 }
                                 break;
                             }

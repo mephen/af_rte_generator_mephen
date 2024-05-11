@@ -58,14 +58,14 @@ static uint16 rte_server_side(uint16 (*Server_Runnable)()){
     RTE_Dequeue(&RB_requestInfo_core0, &transaction_handle.client_id, sizeof(uint16));
     RTE_Dequeue(&RB_requestInfo_core0, &transaction_handle.sequence_counter, sizeof(uint16));
     
-    //transforme data into DataType for server_operation
+    //transform data into DataType for server_operation
     for(int i = 0; i < len_args; i++){
         bsw_error = Check_Transformer_Buffer(&RB_transformer_core0);
         transformer_error = Xfrm_Inv_transformer(&transaction_handle, &RB_transformer_core0, &RB_transformer_core0.currentSize, para_arr[i]);
         bsw_error = Check_Transformer_Error(transformer_error, bsw_error);
         RTE_Dequeue(&RB_transformer_core0, (void*)&transformed_para_arr[i], sizeof(uint16));
     }
-    //在 server side enqueue request queue
+    //enqueue request queue on server side
     for(int i = 0; i < sizeof(rte_cs_metaData_arr)/sizeof(Rte_Cs_metaData); i++){
         if(Server_Runnable == rte_cs_metaData_arr[i].SR_RVuint16){
             for(int j = 0; j < len_args; j++){
@@ -76,7 +76,7 @@ static uint16 rte_server_side(uint16 (*Server_Runnable)()){
         }
     }
     
-    //transforme data into DataType for Rte_Enqueue the rte_internal_buffer
+    //transform data into DataType for Rte_Enqueue the rte_internal_buffer
     bsw_error = Check_Transformer_Buffer(&RB_transformer_core0);
     transformer_error = Xfrm_transformer_2(&transaction_handle, &RB_transformer_core0, &RB_transformer_core0.currentSize, response);
     bsw_error = Check_Transformer_Error(transformer_error, bsw_error);
@@ -128,14 +128,14 @@ static uint16 ioc_server_side(uint16 (*Server_Runnable)()){
     IocReceive_Q1(&transaction_handle.client_id);
     IocReceive_Q1(&transaction_handle.sequence_counter);
     
-    //transforme data into DataType for server_operation
+    //transform data into DataType for server_operation
     for(int i = 0; i < len_args; i++){
         bsw_error = Check_Transformer_Buffer(&RB_transformer_core0);
         transformer_error = Xfrm_Inv_transformer(&transaction_handle, &RB_transformer_core0, &RB_transformer_core0.currentSize, para_arr[i]);
         bsw_error = Check_Transformer_Error(transformer_error, bsw_error);
         RTE_Dequeue(&RB_transformer_core0, (void*)&transformed_para_arr[i], sizeof(uint16));
     }
-    //在 server side enqueue request queue
+    //enqueue request queue on server side
     for(int i = 0; i < sizeof(rte_cs_metaData_arr)/sizeof(Rte_Cs_metaData); i++){
         if(Server_Runnable == rte_cs_metaData_arr[i].SR_RVuint16){
             for(int j = 0; j < len_args; j++){
@@ -146,7 +146,7 @@ static uint16 ioc_server_side(uint16 (*Server_Runnable)()){
         }
     }
     
-    //transforme data into DataType for Rte_Enqueue the rte_internal_buffer
+    //transform data into DataType for Rte_Enqueue the rte_internal_buffer
     bsw_error = Check_Transformer_Buffer(&RB_transformer_core0);
     transformer_error = Xfrm_transformer_2(&transaction_handle, &RB_transformer_core0, &RB_transformer_core0.currentSize, response);
     bsw_error = Check_Transformer_Error(transformer_error, bsw_error);
@@ -315,11 +315,11 @@ uint16 testforvil = 5;
 
 #pragma section TASK_T001_SEC
 uint32 temp1 = 10;
-TASK(T01)//rte client side: 發送request。(發起 request 的 runnable 應該放在同一個 task，不然不知道該在哪裡 activate 這些含有發起 requests 的 runnables 的 task)
+TASK(T01)
 {
     PrintText("T01 initiate a C/S op\r\n\0");
     
-    //前提假設：runnable 中只呼叫一個 Rte api (因為 parser 無法得知 user 會如何撰寫 runnable)。
+    //前提假設：runnable 中只呼叫一個 Rte_call (主因是 response buffer size = 1，發起超過一個 Rte_call 有 response 被覆蓋的風險，而且 parser 無法得知 user 會如何撰寫 runnable)。
     for(int ev_t01_index =0; ev_t01_index<(sizeof(rte_event_t01)/sizeof(rte_event_t01[0]));ev_t01_index++){
         //task priority 可能造成 runnable 無法在 rte event trigger 後馬上執行，而且可能在這期間相同的 rte event 被 trigger 多次，所以需要 while 檢查 rte event。
         while(get_rteevent_counter(rte_event_t01[ev_t01_index])){ //check if the event is triggered
@@ -330,6 +330,7 @@ TASK(T01)//rte client side: 發送request。(發起 request 的 runnable 應該�
 
                 switch (get_rteevent_type(rte_event_t01[ev_t01_index])){ //check RTEEvent type
                     case InitEvent:
+                        //rte client side: 發送request。(發起 request 的 runnable 應該放在同一個 task，不然不知道該在哪裡 activate 這些含有發起 requests 的 runnables 的 task)
                         if(get_trigger_runnable_type(rte_event_t01[ev_t01_index]) == ClientRunnable){
                             for(int metaData_arr_index = 0; metaData_arr_index < sizeof(rte_cs_metaData_arr)/sizeof(rte_cs_metaData_arr[0]); metaData_arr_index++){
                                 if(rte_cs_metaData_arr[metaData_arr_index].CR_RVuint16 == rte_event_t01[ev_t01_index]->Runnable_FuncPtr_RVuint16){ //RVuint16 is for testing, will be replaced by void in real case
@@ -391,14 +392,16 @@ TASK(T01)//rte client side: 發送request。(發起 request 的 runnable 應該�
                                     GetLock(&lock, lock_bit);
                                     trigger_rteevent(rte_cs_metaData_arr[metaData_arr_index].async_return_ev); //trigger async_return_ev to : unblock the CRR who use blocking_rte_result / activate the CRR who use non_blocking_rte_result
                                     ReleaseLock(&lock, lock_bit);
-                                    // ActivateTask(T02); //Client 處理 response info 的 task
+                                    if(rte_cs_metaData_arr[metaData_arr_index].SR_task != rte_cs_metaData_arr[metaData_arr_index].CRR_task){
+                                        ActivateTask(rte_cs_metaData_arr[metaData_arr_index].CRR_task); //Client 處理 response info 的 task
+                                    }
                                 }
                                 break;
                             }
                         }
                         break;
                     case AsynchronousServerCallReturnsEvent:
-                        /*in async case, client side: 接收和處理 response_info*/
+                        /*async case, client side: 接收和處理 response_info*/
                         //不用 while 檢查此類 rte event，因為 AsynchronousServerCallReturnsEvent 是告訴"某一個" client 它的 response 好了，而 SWS_Rte_02658 告訴我們一個 client 在之前的 request 完成前無法發起新的 request。
                         ResponseInfoType server_response;
                         switch(get_communication_type(rte_event_t01[ev_t01_index])){
@@ -526,7 +529,9 @@ TASK(T02)
                                     GetLock(&lock, lock_bit);
                                     trigger_rteevent(rte_cs_metaData_arr[metaData_arr_index].async_return_ev); //trigger async_return_ev to : unblock the CRR who use blocking_rte_result / activate the CRR who use non_blocking_rte_result
                                     ReleaseLock(&lock, lock_bit);
-                                    // ActivateTask(T02); //Client 處理 response info 的 task
+                                    if(rte_cs_metaData_arr[metaData_arr_index].SR_task != rte_cs_metaData_arr[metaData_arr_index].CRR_task){
+                                        ActivateTask(rte_cs_metaData_arr[metaData_arr_index].CRR_task); //Client 處理 response info 的 task
+                                    }
                                 }
                                 break;
                             }

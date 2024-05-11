@@ -23,6 +23,6 @@ extern RingBuffer RB_returnValue_CR2; //for RTE_RUNNABLE_ClientResponse2 to get 
 extern RingBuffer RB_returnValue_CR3; //for RTE_RUNNABLE_ClientResponse3 to get the return_value of RTE_RUNNABLE_Client3
 
 //shared by one board(include 2 cores)
-extern Rte_Cs_metaData rte_cs_metaData_arr[3];
+extern Rte_Cs_metaData rte_cs_metaData_arr[2];
 
 #endif // RTE_DATA_MANAGEMENT_H
