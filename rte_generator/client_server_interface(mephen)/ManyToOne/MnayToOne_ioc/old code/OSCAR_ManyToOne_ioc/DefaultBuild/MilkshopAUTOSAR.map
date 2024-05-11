@@ -1,0 +1,502 @@
+Renesas Optimizing Linker (W3.05.00 )             08-Apr-2024 04:00:02
+
+*** Options ***
+
+-subcommand=DefaultBuild\MilkshopAUTOSAR.clnk
+-input=DefaultBuild\alarm.obj
+-input=DefaultBuild\event.obj
+-input=DefaultBuild\isr2.obj
+-input=DefaultBuild\resource.obj
+-input=DefaultBuild\scheduler.obj
+-input=DefaultBuild\system.obj
+-input=DefaultBuild\task.obj
+-input=DefaultBuild\alarm_Cfg.obj
+-input=DefaultBuild\event_Cfg.obj
+-input=DefaultBuild\isr_Cfg.obj
+-input=DefaultBuild\resource_Cfg.obj
+-input=DefaultBuild\task_Cfg.obj
+-input=DefaultBuild\board.obj
+-input=DefaultBuild\boot.obj
+-input=DefaultBuild\context.obj
+-input=DefaultBuild\cstart1.obj
+-input=DefaultBuild\cstart2.obj
+-input=DefaultBuild\GPIO.obj
+-input=DefaultBuild\ISRInit.obj
+-input=DefaultBuild\timer.obj
+-input=DefaultBuild\r_clkc.obj
+-input=DefaultBuild\r_intc.obj
+-input=DefaultBuild\r_port.obj
+-input=DefaultBuild\r_rlin.obj
+-input=DefaultBuild\r_uart.obj
+-input=DefaultBuild\r_lin.obj
+-input=DefaultBuild\application_Cfg.obj
+-input=DefaultBuild\memprot_Cfg.obj
+-input=DefaultBuild\os_Cfg.obj
+-input=DefaultBuild\spinlock_Cfg.obj
+-input=DefaultBuild\timingprot_Cfg.obj
+-input=DefaultBuild\application.obj
+-input=DefaultBuild\spinlock.obj
+-input=DefaultBuild\timingprot.obj
+-input=DefaultBuild\boot2.obj
+-input=DefaultBuild\core.obj
+-input=DefaultBuild\lock.obj
+-input=DefaultBuild\memprot.obj
+-input=DefaultBuild\systemcall.obj
+-input=DefaultBuild\counter_Cfg.obj
+-input=DefaultBuild\counter.obj
+-input=DefaultBuild\ScheduleTable.obj
+-input=DefaultBuild\scheduleTable_Cfg.obj
+-input=DefaultBuild\string_format_test.obj
+-input=DefaultBuild\softwaretimer_Cfg.obj
+-input=DefaultBuild\softwaretimer.obj
+-input=DefaultBuild\trustedfunc_Cfg.obj
+-input=DefaultBuild\peripheral.obj
+-input=DefaultBuild\Ioc.obj
+-input=DefaultBuild\Rte_Server_Runnable_1.obj
+-input=DefaultBuild\Rte_Client_Runnable_3.obj
+-input=DefaultBuild\Rte_Server_Runnable_3.obj
+-input=DefaultBuild\Rte_Server_Runnable_2.obj
+-input=DefaultBuild\Rte.obj
+-input=DefaultBuild\rte_event_cfg.obj
+-input=DefaultBuild\Transformer_stub.obj
+-input=DefaultBuild\app1.obj
+-input=DefaultBuild\app2.obj
+-input=DefaultBuild\app3.obj
+-input=DefaultBuild\app4.obj
+-input=DefaultBuild\hook.obj
+-input=DefaultBuild\main.obj
+-input=DefaultBuild\main_pe2.obj
+-input=DefaultBuild\ringbuffer.obj
+-input=DefaultBuild\Rte_Client_Response_Runnable_3.obj
+-input=DefaultBuild\Rte_Cs_Data_Management.obj
+-input=DefaultBuild\Rte_Client_Runnable_4.obj
+-input=DefaultBuild\Rte_Client_Response_Runnable_4.obj
+-debug
+-nocompress
+-NOOPtimize
+-output=DefaultBuild\MilkshopAUTOSAR.abs
+-library=v850e3v5\rhf8n.lib
+-library=v850e3v5\libmalloc.lib
+-list=DefaultBuild\MilkshopAUTOSAR.map
+-start=RESET_PE1,EIINTTBL_PE1,SYSTEMCALLTBL/0,.text,IOC_RESERVED_SEC.text,USER_SHARED_SEC.text,LOCAL_RAM_PE1.text,LOCAL_RAM_PE2.text,SELF_AREA.text,GLOBAL_RAM_A.text,RETENTION_RAM.text,OSAPP_A01_SEC.text,ISR_I001_SEC.text,ISR_I002_SEC.text,ISR_I003_SEC.text,ISR_I004_SEC.text,TASK_T001_SEC.text,TASK_T002_SEC.text,TASK_T003_SEC.text,OSAPP_A02_SEC.text,ISR_I101_SEC.text,ISR_I102_SEC.text,ISR_I103_SEC.text,ISR_I104_SEC.text,TASK_T101_SEC.text,TASK_T102_SEC.text,TASK_T103_SEC.text,OSAPP_A03_SEC.text,ISR_I005_SEC.text,ISR_I006_SEC.text,TASK_T004_SEC.text,TASK_T005_SEC.text,TASK_T006_SEC.text,OSAPP_A04_SEC.text,ISR_I105_SEC.text,ISR_I106_SEC.text,TASK_T104_SEC.text,TASK_T105_SEC.text,TASK_T106_SEC.text,GLOBAL_RAM_B.text/00008000,RESET_PE2,EIINTTBL_PE2,.const,IOC_RESERVED_SEC.const,USER_SHARED_SEC.const,LOCAL_RAM_PE1.const,LOCAL_RAM_PE2.const,SELF_AREA.const,OSAPP_A01_SEC.const,ISR_I001_SEC.const,ISR_I002_SEC.const,ISR_I003_SEC.const,ISR_I004_SEC.const,TASK_T001_SEC.const,TASK_T002_SEC.const,TASK_T003_SEC.const,OSAPP_A02_SEC.const,ISR_I101_SEC.const,ISR_I102_SEC.const,ISR_I103_SEC.const,ISR_I104_SEC.const,TASK_T101_SEC.const,TASK_T102_SEC.const,TASK_T103_SEC.const,OSAPP_A03_SEC.const,ISR_I005_SEC.const,ISR_I006_SEC.const,TASK_T004_SEC.const,TASK_T005_SEC.const,TASK_T006_SEC.const,OSAPP_A04_SEC.const,ISR_I105_SEC.const,ISR_I106_SEC.const,TASK_T104_SEC.const,TASK_T105_SEC.const,TASK_T106_SEC.const,TASK_SysTask_core0.const,TASK_SysTask_core1.const,GLOBAL_RAM_A.const,RETENTION_RAM.const,GLOBAL_RAM_B.const,.data,IOC_RESERVED_SEC.data,USER_SHARED_SEC.data,LOCAL_RAM_PE1.data,LOCAL_RAM_PE2.data,SELF_AREA.data,OSAPP_A01_SEC.data,ISR_I001_SEC.data,ISR_I002_SEC.data,ISR_I003_SEC.data,ISR_I004_SEC.data,TASK_T001_SEC.data,TASK_T002_SEC.data,TASK_T003_SEC.data,OSAPP_A02_SEC.data,ISR_I101_SEC.data,ISR_I102_SEC.data,ISR_I103_SEC.data,ISR_I104_SEC.data,TASK_T101_SEC.data,TASK_T102_SEC.data,TASK_T103_SEC.data,OSAPP_A03_SEC.data,ISR_I005_SEC.data,ISR_I006_SEC.data,TASK_T004_SEC.data,TASK_T005_SEC.data,TASK_T006_SEC.data,OSAPP_A04_SEC.data,ISR_I105_SEC.data,ISR_I106_SEC.data,TASK_T104_SEC.data,TASK_T105_SEC.data,TASK_T106_SEC.data,TASK_SysTask_core0.data,TASK_SysTask_core1.data,GLOBAL_RAM_A.data,RETENTION_RAM.data,GLOBAL_RAM_B.data/00800000,LOCAL_RAM_PE2.bss,LOCAL_RAM_PE2.data.R,OSAPP_A02_SEC.bss,OSAPP_A02_SEC.data.R,ISR_I101_SEC.bss,ISR_I101_SEC.data.R,ISR_I102_SEC.bss,ISR_I102_SEC.data.R,ISR_I103_SEC.bss,ISR_I103_SEC.data.R,ISR_I104_SEC.bss,ISR_I104_SEC.data.R,TASK_T101_SEC.bss,TASK_T101_SEC.data.R,TASK_T102_SEC.bss,TASK_T102_SEC.data.R,TASK_T103_SEC.bss,TASK_T103_SEC.data.R,OSAPP_A04_SEC.bss,OSAPP_A04_SEC.data.R,ISR_I105_SEC.bss,ISR_I105_SEC.data.R,ISR_I106_SEC.bss,ISR_I106_SEC.data.R,TASK_T104_SEC.bss,TASK_T104_SEC.data.R,TASK_T105_SEC.bss,TASK_T105_SEC.data.R,TASK_T106_SEC.bss,TASK_T106_SEC.data.R,TASK_SysTask_core1.bss,TASK_SysTask_core1.data.R,ALL_TASK_ISR_STACK_PE2.bss,system_pe2_stack.bss/FE9E0000,LOCAL_RAM_PE1.bss,LOCAL_RAM_PE1.data.R,OSAPP_A01_SEC.bss,OSAPP_A01_SEC.data.R,ISR_I001_SEC.bss,ISR_I001_SEC.data.R,ISR_I002_SEC.bss,ISR_I002_SEC.data.R,ISR_I003_SEC.bss,ISR_I003_SEC.data.R,ISR_I004_SEC.bss,ISR_I004_SEC.data.R,TASK_T001_SEC.bss,TASK_T001_SEC.data.R,TASK_T002_SEC.bss,TASK_T002_SEC.data.R,TASK_T003_SEC.bss,TASK_T003_SEC.data.R,OSAPP_A03_SEC.bss,OSAPP_A03_SEC.data.R,ISR_I005_SEC.bss,ISR_I005_SEC.data.R,ISR_I006_SEC.bss,ISR_I006_SEC.data.R,TASK_T004_SEC.bss,TASK_T004_SEC.data.R,TASK_T005_SEC.bss,TASK_T005_SEC.data.R,TASK_T006_SEC.bss,TASK_T006_SEC.data.R,TASK_SysTask_core0.bss,TASK_SysTask_core0.data.R,ALL_TASK_ISR_STACK_PE1.bss,system_pe1_stack.bss/FEBC0000,SELF_AREA.bss,SELF_AREA.data.R/FEDFE000,IOC_RESERVED_SEC.bss,IOC_RESERVED_SEC.data.R,GLOBAL_RAM_A.bss,GLOBAL_RAM_A.data.R/FEEF8000,.bss,.data.R,RETENTION_RAM.bss,RETENTION_RAM.data.R/FEF01000,USER_SHARED_SEC.bss,USER_SHARED_SEC.data.R,GLOBAL_RAM_B.bss,GLOBAL_RAM_B.data.R/FEFF8000
+-rom=.data=.data.R,IOC_RESERVED_SEC.data=IOC_RESERVED_SEC.data.R,USER_SHARED_SEC.data=USER_SHARED_SEC.data.R,LOCAL_RAM_PE2.data=LOCAL_RAM_PE2.data.R,LOCAL_RAM_PE1.data=LOCAL_RAM_PE1.data.R,SELF_AREA.data=SELF_AREA.data.R,GLOBAL_RAM_A.data=GLOBAL_RAM_A.data.R,RETENTION_RAM.data=RETENTION_RAM.data.R,GLOBAL_RAM_B.data=GLOBAL_RAM_B.data.R,OSAPP_A01_SEC.data=OSAPP_A01_SEC.data.R,ISR_I001_SEC.data=ISR_I001_SEC.data.R,ISR_I002_SEC.data=ISR_I002_SEC.data.R,ISR_I003_SEC.data=ISR_I003_SEC.data.R,ISR_I004_SEC.data=ISR_I004_SEC.data.R,TASK_T001_SEC.data=TASK_T001_SEC.data.R,TASK_T002_SEC.data=TASK_T002_SEC.data.R,TASK_T003_SEC.data=TASK_T003_SEC.data.R,OSAPP_A02_SEC.data=OSAPP_A02_SEC.data.R,ISR_I101_SEC.data=ISR_I101_SEC.data.R,ISR_I102_SEC.data=ISR_I102_SEC.data.R,ISR_I103_SEC.data=ISR_I103_SEC.data.R,ISR_I104_SEC.data=ISR_I104_SEC.data.R,TASK_T101_SEC.data=TASK_T101_SEC.data.R,TASK_T102_SEC.data=TASK_T102_SEC.data.R,TASK_T103_SEC.data=TASK_T103_SEC.data.R,OSAPP_A03_SEC.data=OSAPP_A03_SEC.data.R,ISR_I005_SEC.data=ISR_I005_SEC.data.R,ISR_I006_SEC.data=ISR_I006_SEC.data.R,TASK_T004_SEC.data=TASK_T004_SEC.data.R,TASK_T005_SEC.data=TASK_T005_SEC.data.R,TASK_T006_SEC.data=TASK_T006_SEC.data.R,OSAPP_A04_SEC.data=OSAPP_A04_SEC.data.R,ISR_I105_SEC.data=ISR_I105_SEC.data.R,ISR_I106_SEC.data=ISR_I106_SEC.data.R,TASK_T104_SEC.data=TASK_T104_SEC.data.R,TASK_T105_SEC.data=TASK_T105_SEC.data.R,TASK_T106_SEC.data=TASK_T106_SEC.data.R,TASK_SysTask_core0.data=TASK_SysTask_core0.data.R,TASK_SysTask_core1.data=TASK_SysTask_core1.data.R
+-memory=high
+-nologo
+-end
+
+*** Error information ***
+
+W0561120:Section address is not assigned to "TASK_SysTask_core0.text"
+W0561120:Section address is not assigned to "TASK_SysTask_core1.text"
+
+*** Mapping List ***
+
+SECTION                            START      END         SIZE   ALIGN
+RESET_PE1
+                                  00000000  000001f7       1f8   200
+EIINTTBL_PE1
+                                  00000200  0000077b       57c   200
+SYSTEMCALLTBL
+                                  00000800  00000863        64   200
+.text
+                                  00008000  00024db7     1cdb8   2
+IOC_RESERVED_SEC.text
+                                  00024db8  00024db9         2   2
+USER_SHARED_SEC.text
+                                  00024dba  000255d1       818   2
+LOCAL_RAM_PE1.text
+                                  000255d2  000255d3         2   2
+LOCAL_RAM_PE2.text
+                                  000255d4  000255d5         2   2
+SELF_AREA.text
+                                  000255d6  000255d7         2   2
+GLOBAL_RAM_A.text
+                                  000255d8  000255d9         2   2
+RETENTION_RAM.text
+                                  000255da  000255db         2   2
+OSAPP_A01_SEC.text
+                                  000255dc  000257e9       20e   2
+ISR_I001_SEC.text
+                                  000257ea  000257fd        14   2
+ISR_I002_SEC.text
+                                  000257fe  00025811        14   2
+ISR_I003_SEC.text
+                                  00025812  00025825        14   2
+ISR_I004_SEC.text
+                                  00025826  00025839        14   2
+TASK_T001_SEC.text
+                                  0002583a  00025911        d8   2
+TASK_T002_SEC.text
+                                  00025912  00025a3f       12e   2
+TASK_T003_SEC.text
+                                  00025a40  00025a67        28   2
+OSAPP_A02_SEC.text
+                                  00025a68  00025c03       19c   2
+ISR_I101_SEC.text
+                                  00025c04  00025c17        14   2
+ISR_I102_SEC.text
+                                  00025c18  00025c2b        14   2
+ISR_I103_SEC.text
+                                  00025c2c  00025c3f        14   2
+ISR_I104_SEC.text
+                                  00025c40  00025c53        14   2
+TASK_T101_SEC.text
+                                  00025c54  00025dcd       17a   2
+TASK_T102_SEC.text
+                                  00025dce  00025dd1         4   2
+TASK_T103_SEC.text
+                                  00025dd2  00025dd5         4   2
+OSAPP_A03_SEC.text
+                                  00025dd6  00025f47       172   2
+ISR_I005_SEC.text
+                                  00025f48  00025f5b        14   2
+ISR_I006_SEC.text
+                                  00025f5c  00025f6f        14   2
+TASK_T004_SEC.text
+                                  00025f70  00025f93        24   2
+TASK_T005_SEC.text
+                                  00025f94  00025fab        18   2
+TASK_T006_SEC.text
+                                  00025fac  00025fc3        18   2
+OSAPP_A04_SEC.text
+                                  00025fc4  00026121       15e   2
+ISR_I105_SEC.text
+                                  00026122  00026135        14   2
+ISR_I106_SEC.text
+                                  00026136  00026149        14   2
+TASK_T104_SEC.text
+                                  0002614a  00026157         e   2
+TASK_T105_SEC.text
+                                  00026158  00026165         e   2
+TASK_T106_SEC.text
+                                  00026166  00026173         e   2
+GLOBAL_RAM_B.text
+                                  00026174  00026175         2   2
+RESET_PE2
+                                  00800000  008001f7       1f8   200
+EIINTTBL_PE2
+                                  00800200  008009ff       800   200
+.const
+                                  00800a00  00801cd9      12da   4
+IOC_RESERVED_SEC.const
+                                  00801cdc  00801cdf         4   4
+USER_SHARED_SEC.const
+                                  00801ce0  00801ce3         4   4
+LOCAL_RAM_PE1.const
+                                  00801ce4  00801ce7         4   4
+LOCAL_RAM_PE2.const
+                                  00801ce8  00801ceb         4   4
+SELF_AREA.const
+                                  00801cec  00801cef         4   4
+OSAPP_A01_SEC.const
+                                  00801cf0  00801f2e       23f   4
+ISR_I001_SEC.const
+                                  00801f30  00801f4b        1c   4
+ISR_I002_SEC.const
+                                  00801f4c  00801f67        1c   4
+ISR_I003_SEC.const
+                                  00801f68  00801f83        1c   4
+ISR_I004_SEC.const
+                                  00801f84  00801f9f        1c   4
+TASK_T001_SEC.const
+                                  00801fa0  00801fd2        33   4
+TASK_T002_SEC.const
+                                  00801fd4  00801fd7         4   4
+TASK_T003_SEC.const
+                                  00801fd8  00801fdb         4   4
+OSAPP_A02_SEC.const
+                                  00801fdc  008021ea       20f   4
+ISR_I101_SEC.const
+                                  008021ec  00802206        1b   4
+ISR_I102_SEC.const
+                                  00802208  00802222        1b   4
+ISR_I103_SEC.const
+                                  00802224  0080223e        1b   4
+ISR_I104_SEC.const
+                                  00802240  0080225a        1b   4
+TASK_T101_SEC.const
+                                  0080225c  0080225f         4   4
+TASK_T102_SEC.const
+                                  00802260  00802263         4   4
+TASK_T103_SEC.const
+                                  00802264  00802267         4   4
+OSAPP_A03_SEC.const
+                                  00802268  0080246e       207   4
+ISR_I005_SEC.const
+                                  00802470  0080248b        1c   4
+ISR_I006_SEC.const
+                                  0080248c  008024a7        1c   4
+TASK_T004_SEC.const
+                                  008024a8  008024b7        10   4
+TASK_T005_SEC.const
+                                  008024b8  008024c7        10   4
+TASK_T006_SEC.const
+                                  008024c8  008024d7        10   4
+OSAPP_A04_SEC.const
+                                  008024d8  008026bc       1e5   4
+ISR_I105_SEC.const
+                                  008026c0  008026da        1b   4
+ISR_I106_SEC.const
+                                  008026dc  008026f6        1b   4
+TASK_T104_SEC.const
+                                  008026f8  008026fb         4   4
+TASK_T105_SEC.const
+                                  008026fc  008026ff         4   4
+TASK_T106_SEC.const
+                                  00802700  00802703         4   4
+TASK_SysTask_core0.const
+                                  00802704  00802707         4   4
+TASK_SysTask_core1.const
+                                  00802708  0080270b         4   4
+GLOBAL_RAM_A.const
+                                  0080270c  0080270f         4   4
+RETENTION_RAM.const
+                                  00802710  00802713         4   4
+GLOBAL_RAM_B.const
+                                  00802714  00802717         4   4
+.data
+                                  00802718  008042cb      1bb4   4
+IOC_RESERVED_SEC.data
+                                  008042cc  008042cf         4   4
+USER_SHARED_SEC.data
+                                  008042d0  008042d5         6   4
+LOCAL_RAM_PE1.data
+                                  008042d8  008042dd         6   4
+LOCAL_RAM_PE2.data
+                                  008042e0  008042e3         4   4
+SELF_AREA.data
+                                  008042e4  008042e7         4   4
+OSAPP_A01_SEC.data
+                                  008042e8  008042f1         a   4
+ISR_I001_SEC.data
+                                  008042f4  008042f7         4   4
+ISR_I002_SEC.data
+                                  008042f8  008042ff         8   4
+ISR_I003_SEC.data
+                                  00804300  00804303         4   4
+ISR_I004_SEC.data
+                                  00804304  00804307         4   4
+TASK_T001_SEC.data
+                                  00804308  0080430f         8   4
+TASK_T002_SEC.data
+                                  00804310  00804317         8   4
+TASK_T003_SEC.data
+                                  00804318  0080431b         4   4
+OSAPP_A02_SEC.data
+                                  0080431c  00804323         8   4
+ISR_I101_SEC.data
+                                  00804324  00804327         4   4
+ISR_I102_SEC.data
+                                  00804328  0080432b         4   4
+ISR_I103_SEC.data
+                                  0080432c  0080432f         4   4
+ISR_I104_SEC.data
+                                  00804330  00804333         4   4
+TASK_T101_SEC.data
+                                  00804334  00804337         4   4
+TASK_T102_SEC.data
+                                  00804338  0080433b         4   4
+TASK_T103_SEC.data
+                                  0080433c  0080433f         4   4
+OSAPP_A03_SEC.data
+                                  00804340  0080434b         c   4
+ISR_I005_SEC.data
+                                  0080434c  0080434f         4   4
+ISR_I006_SEC.data
+                                  00804350  00804353         4   4
+TASK_T004_SEC.data
+                                  00804354  00804357         4   4
+TASK_T005_SEC.data
+                                  00804358  0080435b         4   4
+TASK_T006_SEC.data
+                                  0080435c  0080435f         4   4
+OSAPP_A04_SEC.data
+                                  00804360  00804367         8   4
+ISR_I105_SEC.data
+                                  00804368  0080436b         4   4
+ISR_I106_SEC.data
+                                  0080436c  0080436f         4   4
+TASK_T104_SEC.data
+                                  00804370  00804373         4   4
+TASK_T105_SEC.data
+                                  00804374  00804377         4   4
+TASK_T106_SEC.data
+                                  00804378  0080437b         4   4
+TASK_SysTask_core0.data
+                                  0080437c  0080437f         4   4
+TASK_SysTask_core1.data
+                                  00804380  00804383         4   4
+GLOBAL_RAM_A.data
+                                  00804384  00804387         4   4
+RETENTION_RAM.data
+                                  00804388  0080438b         4   4
+GLOBAL_RAM_B.data
+                                  0080438c  0080438f         4   4
+LOCAL_RAM_PE2.bss
+                                  fe9e0000  fe9e0003         4   4
+LOCAL_RAM_PE2.data.R
+                                  fe9e0004  fe9e0007         4   4
+OSAPP_A02_SEC.bss
+                                  fe9e0008  fe9e000b         4   4
+OSAPP_A02_SEC.data.R
+                                  fe9e000c  fe9e0013         8   4
+ISR_I101_SEC.bss
+                                  fe9e0014  fe9e0017         4   4
+ISR_I101_SEC.data.R
+                                  fe9e0018  fe9e001b         4   4
+ISR_I102_SEC.bss
+                                  fe9e001c  fe9e001f         4   4
+ISR_I102_SEC.data.R
+                                  fe9e0020  fe9e0023         4   4
+ISR_I103_SEC.bss
+                                  fe9e0024  fe9e0027         4   4
+ISR_I103_SEC.data.R
+                                  fe9e0028  fe9e002b         4   4
+ISR_I104_SEC.bss
+                                  fe9e002c  fe9e002f         4   4
+ISR_I104_SEC.data.R
+                                  fe9e0030  fe9e0033         4   4
+TASK_T101_SEC.bss
+                                  fe9e0034  fe9e0037         4   4
+TASK_T101_SEC.data.R
+                                  fe9e0038  fe9e003b         4   4
+TASK_T102_SEC.bss
+                                  fe9e003c  fe9e003f         4   4
+TASK_T102_SEC.data.R
+                                  fe9e0040  fe9e0043         4   4
+TASK_T103_SEC.bss
+                                  fe9e0044  fe9e0047         4   4
+TASK_T103_SEC.data.R
+                                  fe9e0048  fe9e004b         4   4
+OSAPP_A04_SEC.bss
+                                  fe9e004c  fe9e004f         4   4
+OSAPP_A04_SEC.data.R
+                                  fe9e0050  fe9e0057         8   4
+ISR_I105_SEC.bss
+                                  fe9e0058  fe9e005b         4   4
+ISR_I105_SEC.data.R
+                                  fe9e005c  fe9e005f         4   4
+ISR_I106_SEC.bss
+                                  fe9e0060  fe9e0063         4   4
+ISR_I106_SEC.data.R
+                                  fe9e0064  fe9e0067         4   4
+TASK_T104_SEC.bss
+                                  fe9e0068  fe9e006b         4   4
+TASK_T104_SEC.data.R
+                                  fe9e006c  fe9e006f         4   4
+TASK_T105_SEC.bss
+                                  fe9e0070  fe9e0073         4   4
+TASK_T105_SEC.data.R
+                                  fe9e0074  fe9e0077         4   4
+TASK_T106_SEC.bss
+                                  fe9e0078  fe9e007b         4   4
+TASK_T106_SEC.data.R
+                                  fe9e007c  fe9e007f         4   4
+TASK_SysTask_core1.bss
+                                  fe9e0080  fe9e0093        14   4
+TASK_SysTask_core1.data.R
+                                  fe9e0094  fe9e0097         4   4
+ALL_TASK_ISR_STACK_PE2.bss
+                                  fe9e0098  fe9e1897      1800   4
+system_pe2_stack.bss
+                                  fe9e1898  fe9e1c97       400   4
+LOCAL_RAM_PE1.bss
+                                  febc0000  febc0003         4   4
+LOCAL_RAM_PE1.data.R
+                                  febc0004  febc0009         6   4
+OSAPP_A01_SEC.bss
+                                  febc000c  febc000f         4   4
+OSAPP_A01_SEC.data.R
+                                  febc0010  febc0019         a   4
+ISR_I001_SEC.bss
+                                  febc001c  febc001f         4   4
+ISR_I001_SEC.data.R
+                                  febc0020  febc0023         4   4
+ISR_I002_SEC.bss
+                                  febc0024  febc0027         4   4
+ISR_I002_SEC.data.R
+                                  febc0028  febc002f         8   4
+ISR_I003_SEC.bss
+                                  febc0030  febc0033         4   4
+ISR_I003_SEC.data.R
+                                  febc0034  febc0037         4   4
+ISR_I004_SEC.bss
+                                  febc0038  febc003b         4   4
+ISR_I004_SEC.data.R
+                                  febc003c  febc003f         4   4
+TASK_T001_SEC.bss
+                                  febc0040  febc0043         4   4
+TASK_T001_SEC.data.R
+                                  febc0044  febc004b         8   4
+TASK_T002_SEC.bss
+                                  febc004c  febc004f         4   4
+TASK_T002_SEC.data.R
+                                  febc0050  febc0057         8   4
+TASK_T003_SEC.bss
+                                  febc0058  febc005b         4   4
+TASK_T003_SEC.data.R
+                                  febc005c  febc005f         4   4
+OSAPP_A03_SEC.bss
+                                  febc0060  febc0063         4   4
+OSAPP_A03_SEC.data.R
+                                  febc0064  febc006f         c   4
+ISR_I005_SEC.bss
+                                  febc0070  febc0073         4   4
+ISR_I005_SEC.data.R
+                                  febc0074  febc0077         4   4
+ISR_I006_SEC.bss
+                                  febc0078  febc007b         4   4
+ISR_I006_SEC.data.R
+                                  febc007c  febc007f         4   4
+TASK_T004_SEC.bss
+                                  febc0080  febc0083         4   4
+TASK_T004_SEC.data.R
+                                  febc0084  febc0087         4   4
+TASK_T005_SEC.bss
+                                  febc0088  febc008b         4   4
+TASK_T005_SEC.data.R
+                                  febc008c  febc008f         4   4
+TASK_T006_SEC.bss
+                                  febc0090  febc0093         4   4
+TASK_T006_SEC.data.R
+                                  febc0094  febc0097         4   4
+TASK_SysTask_core0.bss
+                                  febc0098  febc00ab        14   4
+TASK_SysTask_core0.data.R
+                                  febc00ac  febc00af         4   4
+ALL_TASK_ISR_STACK_PE1.bss
+                                  febc00b0  febc18af      1800   4
+system_pe1_stack.bss
+                                  febc18b0  febc1caf       400   4
+SELF_AREA.bss
+                                  fedfe000  fedfe053        54   4
+SELF_AREA.data.R
+                                  fedfe054  fedfe057         4   4
+IOC_RESERVED_SEC.bss
+                                  feef8000  feef8003         4   4
+IOC_RESERVED_SEC.data.R
+                                  feef8004  feef8007         4   4
+GLOBAL_RAM_A.bss
+                                  feef8008  feef802b        24   4
+GLOBAL_RAM_A.data.R
+                                  feef802c  feef802f         4   4
+.bss
+                                  fef01000  fef02b5b      1b5c   4
+.data.R
+                                  fef02b5c  fef0470f      1bb4   4
+RETENTION_RAM.bss
+                                  fef04710  fef04713         4   4
+RETENTION_RAM.data.R
+                                  fef04714  fef04717         4   4
+USER_SHARED_SEC.bss
+                                  feff8000  feff8043        44   4
+USER_SHARED_SEC.data.R
+                                  feff8044  feff8049         6   4
+GLOBAL_RAM_B.bss
+                                  feff804c  feff804f         4   4
+GLOBAL_RAM_B.data.R
+                                  feff8050  feff8053         4   4
+TASK_SysTask_core0.text
+                                  feff8054  feff8055         2   2
+TASK_SysTask_core1.text
+                                  feff8056  feff8057         2   2

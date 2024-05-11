@@ -18,7 +18,7 @@ RingBuffer RB_response_CRR1 = {
 
 RteResultMetaData Rte_Result_Port1_NonBlocking_CRR1_metaData = {
     .transaction_handle = {
-        .client_id = 1U,         
+        .client_id = 1U,        //same as corresponding CR
         .sequence_counter = 0U, //record how many c/s communication has been "finished".
     },
     "connected",
@@ -27,7 +27,7 @@ RteResultMetaData Rte_Result_Port1_NonBlocking_CRR1_metaData = {
 };
 RteResultMetaData Rte_Result_Port1_Blocking_CRR1_metaData = {
     .transaction_handle = {
-        .client_id = 1U,         
+        .client_id = 1U,        //same as corresponding CR
         .sequence_counter = 0U, //record how many c/s communication has been "finished".
     },
     "connected",
@@ -35,6 +35,9 @@ RteResultMetaData Rte_Result_Port1_Blocking_CRR1_metaData = {
     "Can"
 };
 
+//difference between blocking & non-blocking rte_result are only
+//1. wait/set event at the beginning
+//2. metaData
 Std_ReturnType Rte_Result_Port1_NonBlocking_CRR1(Impl_uint16* response){
     SetRelAlarm(alarm3, 50, 0);
     Std_ReturnType rte_error = RTE_E_OK;
@@ -131,6 +134,6 @@ Std_ReturnType Rte_Result_Port1_Blocking_CRR1(Impl_uint16* response){
 Impl_uint16 RTE_RUNNABLE_ClientResponse1(){
     //for developer to design the implementation
     Impl_uint16 response = 0;
-    Std_ReturnType rte_error = Rte_Result_Port1_NonBlocking_CRR1(&response);
+    Std_ReturnType rte_error = Rte_Result_Port1_Blocking_CRR1(&response);
     return response;
 }

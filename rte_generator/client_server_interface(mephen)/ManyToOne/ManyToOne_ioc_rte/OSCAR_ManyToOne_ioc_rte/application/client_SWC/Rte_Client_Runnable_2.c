@@ -112,8 +112,8 @@ Std_ReturnType Rte_Call_Port1_AsyncRteAdd_CR2(Impl_uint16 para_1, Impl_uint16 pa
         
         //trigger coreesponding OperationInvokedEvent
         GetLock(&lock, lock_bit);
-        // rte_event_t02[OperationInvokedEvent_2_t02]->rteevent++;
-        trigger_rteevent(rte_event_t02[OperationInvokedEvent_2_t02]);
+        // rte_event_t02[OperationInvokedEvent_1_t02]->rteevent++;
+        trigger_rteevent(rte_event_t02[OperationInvokedEvent_1_t02]);
         ReleaseLock(&lock, lock_bit);
         ActivateTask(T02);
 
@@ -175,8 +175,8 @@ Std_ReturnType Rte_Call_Port1_SyncRteAdd_CR2(Impl_uint16 para_1, Impl_uint16 par
 
             //trigger coreesponding OperationInvokedEvent
             GetLock(&lock, lock_bit);
-            // rte_event_t02[OperationInvokedEvent_2_t02]->rteevent++;
-            trigger_rteevent(rte_event_t02[OperationInvokedEvent_2_t02]);
+            // rte_event_t02[OperationInvokedEvent_1_t02]->rteevent++;
+            trigger_rteevent(rte_event_t02[OperationInvokedEvent_1_t02]);
             ReleaseLock(&lock, lock_bit);
             ActivateTask(T02);
             //wait until server response is available
@@ -211,6 +211,6 @@ Impl_uint16 RTE_RUNNABLE_Client2(){
     Impl_uint16 data_1 = 10U;
     Impl_uint16 data_2 = 5U;
     Impl_uint16 response;
-    Std_ReturnType rte_error = Rte_Call_Port1_AsyncRteAdd_CR2(data_1, data_2);
+    Std_ReturnType rte_error = Rte_Call_Port1_SyncRteAdd_CR2(data_1, data_2, &response);
     return response;
 }

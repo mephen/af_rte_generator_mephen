@@ -18,7 +18,7 @@ RingBuffer RB_response_CRR3 = {
 
 RteResultMetaData Rte_Result_Port1_NonBlocking_CRR3_metaData = {
     .transaction_handle = {
-        .client_id = 3U,         
+        .client_id = 3U,        //same as corresponding CR
         .sequence_counter = 0U, //record how many c/s communication has been "finished".
     },
     "connected",
@@ -27,7 +27,7 @@ RteResultMetaData Rte_Result_Port1_NonBlocking_CRR3_metaData = {
 };
 RteResultMetaData Rte_Result_Port1_Blocking_CRR3_metaData = {
     .transaction_handle = {
-        .client_id = 3U,         
+        .client_id = 3U,        //same as corresponding CR
         .sequence_counter = 0U, //record how many c/s communication has been "finished".
     },
     "connected",
@@ -81,9 +81,9 @@ Std_ReturnType Rte_Result_Port1_NonBlocking_CRR3(Impl_uint16* response){
 }
 
 Std_ReturnType Rte_Result_Port1_Blocking_CRR3(Impl_uint16* response){
-    WaitEvent(event3); //wait for AsynchronousServerCallReturnsEvent
+    WaitEvent(event1); //wait for AsynchronousServerCallReturnsEvent
     //reset SetEvent bit
-    ClearEvent(event3);
+    ClearEvent(event1);
     SetRelAlarm(alarm3, 50, 0);
     Std_ReturnType rte_error = RTE_E_OK;
     if(Rte_Result_Port1_Blocking_CRR3_metaData.connected_unconnected == "unconnected"){

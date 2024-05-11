@@ -1,4 +1,27 @@
 #include "Rte_Cs_Data_Management.h"
+/*****************************************************************************/
+/*for:
+1. server_side_fn.
+2. initEv & async_return_Ev case of for-loop event_check_fn. in os-task-body
+*/
+#include "client_SWC/Rte_Client_Runnable.h"
+#include "server_SWC/Rte_Server_Runnable.h"
+#include "client_SWC/Rte_Client_Response_Runnable.h"
+#include "Rte_Event_Cfg.h"
+Rte_Cs_metaData rte_cs_metaData_arr[3] = {
+    //async + non_blocking
+    // {.CR_RVuint16 = RTE_RUNNABLE_Client1, .CRR_RVuint16 = RTE_RUNNABLE_ClientResponse1, .SR_RVuint16 = RTE_RUNNABLE_Server1, .client_id = 1, .RB_request_ptr = &RB_request_SR1, .RB_response_ptr = &RB_response_CRR1, .async_return_ev = &AsynchronousServerCallReturnsEvent_1, .rte_call_property = async, .rte_result_property = non_blocking},
+    // {.CR_RVuint16 = RTE_RUNNABLE_Client2, .CRR_RVuint16 = RTE_RUNNABLE_ClientResponse2, .SR_RVuint16 = RTE_RUNNABLE_Server1, .client_id = 2, .RB_request_ptr = &RB_request_SR1, .RB_response_ptr = &RB_response_CRR2, .async_return_ev = &AsynchronousServerCallReturnsEvent_2, .rte_call_property = async, .rte_result_property = non_blocking},
+    // {.CR_RVuint16 = RTE_RUNNABLE_Client3, .CRR_RVuint16 = RTE_RUNNABLE_ClientResponse3, .SR_RVuint16 = RTE_RUNNABLE_Server3, .client_id = 3, .RB_request_ptr = &RB_request_SR3, .RB_response_ptr = &RB_response_CRR3, .async_return_ev = &AsynchronousServerCallReturnsEvent_3, .rte_call_property = async, .rte_result_property = non_blocking},
+    //async + blocking
+    {.CR_RVuint16 = RTE_RUNNABLE_Client1, .CRR_RVuint16 = RTE_RUNNABLE_ClientResponse1, .SR_RVuint16 = RTE_RUNNABLE_Server1, .client_id = 1, .RB_request_ptr = &RB_request_SR1, .RB_response_ptr = &RB_response_CRR1, .async_return_ev = &AsynchronousServerCallReturnsEvent_1, .rte_call_property = async, .rte_result_property = blocking},
+    {.CR_RVuint16 = RTE_RUNNABLE_Client2, .CRR_RVuint16 = RTE_RUNNABLE_ClientResponse2, .SR_RVuint16 = RTE_RUNNABLE_Server1, .client_id = 2, .RB_request_ptr = &RB_request_SR1, .RB_response_ptr = &RB_response_CRR2, .async_return_ev = &AsynchronousServerCallReturnsEvent_2, .rte_call_property = async, .rte_result_property = blocking},
+    {.CR_RVuint16 = RTE_RUNNABLE_Client3, .CRR_RVuint16 = RTE_RUNNABLE_ClientResponse3, .SR_RVuint16 = RTE_RUNNABLE_Server3, .client_id = 3, .RB_request_ptr = &RB_request_SR3, .RB_response_ptr = &RB_response_CRR3, .async_return_ev = &AsynchronousServerCallReturnsEvent_3, .rte_call_property = async, .rte_result_property = blocking},
+    //sync + not_used
+    // {.CR_RVuint16 = RTE_RUNNABLE_Client1, .SR_RVuint16 = RTE_RUNNABLE_Server1, .client_id = 1, .RB_request_ptr = &RB_request_SR1, .RB_response_ptr = &RB_response_CR1, .rte_call_property = sync, .rte_result_property = not_used},
+    // {.CR_RVuint16 = RTE_RUNNABLE_Client2, .SR_RVuint16 = RTE_RUNNABLE_Server1, .client_id = 2, .RB_request_ptr = &RB_request_SR1, .RB_response_ptr = &RB_response_CR2, .rte_call_property = sync, .rte_result_property = not_used},
+    // {.CR_RVuint16 = RTE_RUNNABLE_Client3, .SR_RVuint16 = RTE_RUNNABLE_Server3, .client_id = 3, .RB_request_ptr = &RB_request_SR3, .RB_response_ptr = &RB_response_CR3, .rte_call_property = sync, .rte_result_property = not_used},
+};
 
 /*****************************************************************************/
 /*per pair of a client_runnable and a client_response_runnable*/

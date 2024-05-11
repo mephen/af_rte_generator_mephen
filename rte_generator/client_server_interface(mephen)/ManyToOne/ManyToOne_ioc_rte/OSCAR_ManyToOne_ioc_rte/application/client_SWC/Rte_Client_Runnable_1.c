@@ -214,6 +214,6 @@ Impl_uint16 RTE_RUNNABLE_Client1(){
     Impl_uint16 data_1 = 4U;
     Impl_uint16 data_2 = 6U;
     Impl_uint16 response;
-    Std_ReturnType rte_error = Rte_Call_Port1_AsyncRteAdd_CR1(data_1, data_2);
+    Std_ReturnType rte_error = Rte_Call_Port1_SyncRteAdd_CR1(data_1, data_2, &response);
     return response;
 }

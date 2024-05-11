@@ -27,7 +27,7 @@ typedef struct {
     size_t currentSize;    // current number of elements
 }RingBuffer;
 
-typedef struct{
+typedef struct{ 
     uint16 client_id; //runnable ID
     uint16 sequence_counter; 
         //Async Rte_call: the sequence_counter record how many Async Rte_call has been "invoked", and the sequence_counter of rte_result records how many c/s communication has been "finished".
@@ -57,9 +57,42 @@ typedef struct{
 }ResponseInfoType;
 
 typedef struct{
-    RingBuffer response_Q;
-    RingBuffer request_Q;
-}RteClientServer;
+    uint16 status_uint16;
+        // (LSB)0st-3th bit: rteevent counter. (count how many times this event is triggered)
+        // 4th-8th bit: rteevent type. (for-loop in OsTask need this information to use different condition statement)
+        // 9th bit: rteevent_disablemode. (rteevent can trigger the coreesponding runnable or not. If the para of Rte_Switch(mode) is irrelevant to this event , rteevent_disablemode will be cleared at the beginning of Rte_Switch, otherwise it will be set.)
+        // 10th bit: runnable_execute. (runnable is executing or not. In a sync mode_switch, the mode manager has to wait until mode_disabling_dependency_runnable terminate.)
+        // 11th-15th bit: Event type specific attribute
+            //InitEvent:
+                //11th-12th bit:trigger runnable type. (e.g. client runnable, sender runnable, mode requester runnable)
+            //OperationInvokedEvent、AsynchronousServerCallReturnsEvent:
+                //11th-12th bit: communication type. (inter-ecu / inter-partition / intra-partition)
+    union{
+        void (*Runnable_FuncPtr)();
+        uint16 (*Runnable_FuncPtr_RVuint16)();
+    };
+} RteEvent;
+
+typedef struct{
+    union{
+        void (*CR)();
+        uint16 (*CR_RVuint16)(); //only for testing, CR doesn't return value in real case
+    };
+    union{
+        void (*CRR)();
+        uint16 (*CRR_RVuint16)(); //only for testing, CRR doesn't return value in real case
+    };
+    union{
+        uint8 (*SR_RVuint8)();
+        uint16 (*SR_RVuint16)();
+    };
+    uint16 client_id;
+    RingBuffer* RB_request_ptr;
+    RingBuffer* RB_response_ptr;
+    RteEvent* async_return_ev;
+    enum {async = 0, sync = 1} rte_call_property;
+    enum {not_used = 0, blocking = 1, non_blocking = 2} rte_result_property;
+}Rte_Cs_metaData;
 
 /****************************************************************************************/
 #endif//Rte_Type_h

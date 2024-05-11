@@ -1,5 +1,5 @@
 QualityReport
-2024年4月8日 上午 03:29:32
+2024年5月11日 上午 09:03:39
 
 ------ Start build(MilkshopAUTOSAR, DefaultBuild) ------
 D:\CS+\CC\CC-RH\V2.05.00\Bin\ccrh.exe kernel\alarm.c kernel\event.c kernel\isr2.c kernel\resource.c kernel\scheduler.c kernel\system.c kernel\task.c Os_Configure\src\alarm_Cfg.c Os_Configure\src\event_Cfg.c Os_Configure\src\isr_Cfg.c Os_Configure\src\resource_Cfg.c Os_Configure\src\task_Cfg.c device\board.c device\context.c device\GPIO.c device\ISRInit.c device\timer.c device\renesas_modules\peripherals\clkc\r_clkc.c device\renesas_modules\peripherals\intc\r_intc.c device\renesas_modules\peripherals\port\r_port.c device\renesas_modules\peripherals\rlin\r_rlin.c device\renesas_modules\modules\uart\r_uart.c device\renesas_modules\modules\lin\r_lin.c Os_Configure\src\application_Cfg.c Os_Configure\src\memprot_Cfg.c Os_Configure\src\os_Cfg.c Os_Configure\src\spinlock_Cfg.c Os_Configure\src\timingprot_Cfg.c kernel\application.c kernel\spinlock.c kernel\timingprot.c device\core.c device\lock.c device\memprot.c device\systemcall.c Os_Configure\src\counter_Cfg.c kernel\counter.c kernel\ScheduleTable.c Os_Configure\src\scheduleTable_Cfg.c kernel\string_format_test.c Os_Configure\src\softwaretimer_Cfg.c kernel\softwaretimer.c Os_Configure\src\trustedfunc_Cfg.c kernel\peripheral.c kernel\Ioc.c application\client_SWC\Rte_Client_Runnable_1.c application\server_SWC\Rte_Server_Runnable_1.c application\client_SWC\Rte_Client_Runnable_2.c application\client_SWC\Rte_Client_Runnable_3.c application\server_SWC\Rte_Server_Runnable_3.c application\server_SWC\Rte_Server_Runnable_2.c application\Rte.c application\rte_event_cfg.c application\Transformer_stub.c application\app1.c application\app2.c application\app3.c application\app4.c application\hook.c application\main.c application\main_pe2.c application\ringbuffer.c application\client_SWC\Rte_Client_Response_Runnable_1.c application\client_SWC\Rte_Client_Response_Runnable_2.c application\client_SWC\Rte_Client_Response_Runnable_3.c application\Rte_Cs_Data_Management.c -Xobj_path=DefaultBuild -Xcpu=g3m -g -g_line -Onothing -Iapplication\server_SWC -Iapplication\client_SWC -Iapplication -Idevice\renesas_modules\modules\lin -Idevice\renesas_modules\modules\uart -Idevice\renesas_modules\peripherals\rlin -Idevice\renesas_modules\peripherals\port -Idevice\renesas_modules\peripherals\intc -Idevice\renesas_modules\peripherals\clkc -Idevice\renesas_modules -Idevice -IOs_Configure\inc -Ikernel -Idevice\renesas_modules\peripherals -I. -D__CSP__ -lang=c99 -use_recipf -c -Xmsg_lang=english
@@ -442,22 +442,29 @@ application\client_SWC\../../kernel/typedefine.h(12):W0520301:Typedef name has a
 application\client_SWC\../../kernel/typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
 application\client_SWC\../../kernel/typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
 application\client_SWC\../../kernel/typedefine.h(24):W0520301:Typedef name has already been declared (with same type)
-application\client_SWC\Rte_Client_Runnable_1.c(116):W0520223:Function "ActivateTask" declared implicitly
-application\client_SWC\Rte_Client_Runnable_1.c(176):W0520223:Function "ActivateTask" declared implicitly
 application\client_SWC\../../kernel/typedefine.h(11):W0520301:Typedef name has already been declared (with same type)
 application\client_SWC\../../kernel/typedefine.h(12):W0520301:Typedef name has already been declared (with same type)
 application\client_SWC\../../kernel/typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
 application\client_SWC\../../kernel/typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
 application\client_SWC\../../kernel/typedefine.h(24):W0520301:Typedef name has already been declared (with same type)
-application\client_SWC\Rte_Client_Runnable_2.c(115):W0520223:Function "ActivateTask" declared implicitly
-application\client_SWC\Rte_Client_Runnable_2.c(175):W0520223:Function "ActivateTask" declared implicitly
+application\client_SWC\Rte_Client_Runnable_2.c(118):W0520223:Function "ActivateTask" declared implicitly
+application\client_SWC\Rte_Client_Runnable_2.c(181):W0520223:Function "ActivateTask" declared implicitly
 application\client_SWC\../../kernel/typedefine.h(11):W0520301:Typedef name has already been declared (with same type)
 application\client_SWC\../../kernel/typedefine.h(12):W0520301:Typedef name has already been declared (with same type)
 application\client_SWC\../../kernel/typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
 application\client_SWC\../../kernel/typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
 application\client_SWC\../../kernel/typedefine.h(24):W0520301:Typedef name has already been declared (with same type)
-application\client_SWC\Rte_Client_Runnable_3.c(114):W0520223:Function "ActivateTask" declared implicitly
-application\client_SWC\Rte_Client_Runnable_3.c(172):W0520223:Function "ActivateTask" declared implicitly
+application\client_SWC\Rte_Client_Runnable_3.c(103):W0520223:Function "ActivateTask" declared implicitly
+application\client_SWC\Rte_Client_Runnable_3.c(197):W0520223:Function "ActivateTask" declared implicitly
+application\rte_event_cfg.c(49):W0520144:A value of type "MyUint16OfVendorID (*)()" cannot be used to initialize an entity of type "void (*)()"
+application\rte_event_cfg.c(50):W0520144:A value of type "MyUint16OfVendorID (*)()" cannot be used to initialize an entity of type "void (*)()"
+application\rte_event_cfg.c(51):W0520144:A value of type "MyUint16OfVendorID (*)()" cannot be used to initialize an entity of type "void (*)()"
+application\rte_event_cfg.c(58):W0520144:A value of type "MyUint16OfVendorID (*)()" cannot be used to initialize an entity of type "void (*)()"
+application\rte_event_cfg.c(59):W0520144:A value of type "MyUint16OfVendorID (*)()" cannot be used to initialize an entity of type "void (*)()"
+application\rte_event_cfg.c(60):W0520144:A value of type "MyUint16OfVendorID (*)()" cannot be used to initialize an entity of type "void (*)()"
+application\rte_event_cfg.c(61):W0520144:A value of type "MyUint16OfVendorID (*)()" cannot be used to initialize an entity of type "void (*)()"
+application\rte_event_cfg.c(62):W0520144:A value of type "MyUint16OfVendorID (*)()" cannot be used to initialize an entity of type "void (*)()"
+application\rte_event_cfg.c(71):W0520144:A value of type "MyUint16OfVendorID (*)()" cannot be used to initialize an entity of type "void (*)()"
 application\Transformer_stub.c(5):W0520147:Declaration is incompatible with "uint8 Xfrm_transformer(const Rte_Cs_TransactionHandleType *, RingBuffer *, uint32 *, uint8)" (declared at line 7 of "application\Transformer_stub.h")
 application\Transformer_stub.c(7):W0520223:Function "RTE_Enqueue" declared implicitly
 application\Transformer_stub.c(11):W0520147:Declaration is incompatible with "uint8 Xfrm_Inv_transformer(const Rte_Cs_TransactionHandleType *, RingBuffer *, uint32 *, uint8)" (declared at line 8 of "application\Transformer_stub.h")
@@ -472,20 +479,41 @@ D:\OneDrive - gs.ncku.edu.tw\oneDrive_vscode\AUTOSAR\RTE\af_rte_generator_mephen
 D:\OneDrive - gs.ncku.edu.tw\oneDrive_vscode\AUTOSAR\RTE\af_rte_generator_mephen\rte_generator\client_server_interface(mephen)\ManyToOne\ManyToOne_ioc_rte\OSCAR_ManyToOne_ioc_rte\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
 D:\OneDrive - gs.ncku.edu.tw\oneDrive_vscode\AUTOSAR\RTE\af_rte_generator_mephen\rte_generator\client_server_interface(mephen)\ManyToOne\ManyToOne_ioc_rte\OSCAR_ManyToOne_ioc_rte\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
 D:\OneDrive - gs.ncku.edu.tw\oneDrive_vscode\AUTOSAR\RTE\af_rte_generator_mephen\rte_generator\client_server_interface(mephen)\ManyToOne\ManyToOne_ioc_rte\OSCAR_ManyToOne_ioc_rte\kernel\typedefine.h(24):W0520301:Typedef name has already been declared (with same type)
-application\app1.c(156):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
-application\app1.c(157):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
-application\app1.c(158):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
-application\app1.c(263):W0520177:Variable "tt" was declared but never referenced
-application\app1.c(274):W0520177:Variable "tt" was declared but never referenced
+application\app1.c(124):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+application\app1.c(126):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+application\app1.c(128):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+application\app1.c(129):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+application\app1.c(167):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+application\app1.c(168):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+application\app1.c(169):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+application\app1.c(278):W0520177:Variable "tt" was declared but never referenced
+application\app1.c(359):W0521072:A declaration cannot have a label
+application\app1.c(359):W0520068:Integer conversion resulted in a change of sign
+application\app1.c(403):W0521072:A declaration cannot have a label
+application\app1.c(331):W0520546:Transfer of control bypasses initialization of:
+            Variable "client_id" (declared at line 359)
+application\app1.c(494):W0521072:A declaration cannot have a label
+application\app1.c(494):W0520068:Integer conversion resulted in a change of sign
+application\app1.c(538):W0521072:A declaration cannot have a label
+application\app1.c(466):W0520546:Transfer of control bypasses initialization of:
+            Variable "client_id" (declared at line 494)
 D:\OneDrive - gs.ncku.edu.tw\oneDrive_vscode\AUTOSAR\RTE\af_rte_generator_mephen\rte_generator\client_server_interface(mephen)\ManyToOne\ManyToOne_ioc_rte\OSCAR_ManyToOne_ioc_rte\kernel\typedefine.h(11):W0520301:Typedef name has already been declared (with same type)
 D:\OneDrive - gs.ncku.edu.tw\oneDrive_vscode\AUTOSAR\RTE\af_rte_generator_mephen\rte_generator\client_server_interface(mephen)\ManyToOne\ManyToOne_ioc_rte\OSCAR_ManyToOne_ioc_rte\kernel\typedefine.h(12):W0520301:Typedef name has already been declared (with same type)
 D:\OneDrive - gs.ncku.edu.tw\oneDrive_vscode\AUTOSAR\RTE\af_rte_generator_mephen\rte_generator\client_server_interface(mephen)\ManyToOne\ManyToOne_ioc_rte\OSCAR_ManyToOne_ioc_rte\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
 D:\OneDrive - gs.ncku.edu.tw\oneDrive_vscode\AUTOSAR\RTE\af_rte_generator_mephen\rte_generator\client_server_interface(mephen)\ManyToOne\ManyToOne_ioc_rte\OSCAR_ManyToOne_ioc_rte\kernel\typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
 D:\OneDrive - gs.ncku.edu.tw\oneDrive_vscode\AUTOSAR\RTE\af_rte_generator_mephen\rte_generator\client_server_interface(mephen)\ManyToOne\ManyToOne_ioc_rte\OSCAR_ManyToOne_ioc_rte\kernel\typedefine.h(24):W0520301:Typedef name has already been declared (with same type)
-application\app2.c(42):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
-application\app2.c(43):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
-application\app2.c(44):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
-application\app2.c(45):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+application\app2.c(116):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+application\app2.c(118):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+application\app2.c(120):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+application\app2.c(121):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+application\app2.c(159):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+application\app2.c(160):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+application\app2.c(161):W0520167:Argument of type "uint16 *" is incompatible with parameter of type "uint8 *"
+application\app2.c(331):W0521072:A declaration cannot have a label
+application\app2.c(331):W0520068:Integer conversion resulted in a change of sign
+application\app2.c(375):W0521072:A declaration cannot have a label
+application\app2.c(303):W0520546:Transfer of control bypasses initialization of:
+            Variable "client_id" (declared at line 331)
 D:\OneDrive - gs.ncku.edu.tw\oneDrive_vscode\AUTOSAR\RTE\af_rte_generator_mephen\rte_generator\client_server_interface(mephen)\ManyToOne\ManyToOne_ioc_rte\OSCAR_ManyToOne_ioc_rte\kernel\typedefine.h(11):W0520301:Typedef name has already been declared (with same type)
 D:\OneDrive - gs.ncku.edu.tw\oneDrive_vscode\AUTOSAR\RTE\af_rte_generator_mephen\rte_generator\client_server_interface(mephen)\ManyToOne\ManyToOne_ioc_rte\OSCAR_ManyToOne_ioc_rte\kernel\typedefine.h(12):W0520301:Typedef name has already been declared (with same type)
 D:\OneDrive - gs.ncku.edu.tw\oneDrive_vscode\AUTOSAR\RTE\af_rte_generator_mephen\rte_generator\client_server_interface(mephen)\ManyToOne\ManyToOne_ioc_rte\OSCAR_ManyToOne_ioc_rte\kernel\typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
@@ -526,6 +554,12 @@ application\client_SWC\../../kernel/typedefine.h(12):W0520301:Typedef name has a
 application\client_SWC\../../kernel/typedefine.h(13):W0520301:Typedef name has already been declared (with same type)
 application\client_SWC\../../kernel/typedefine.h(14):W0520301:Typedef name has already been declared (with same type)
 application\client_SWC\../../kernel/typedefine.h(24):W0520301:Typedef name has already been declared (with same type)
+application\Rte_Cs_Data_Management.c(21):W0520144:A value of type "MyUint16OfVendorID (*)()" cannot be used to initialize an entity of type "void (*)()"
+application\Rte_Cs_Data_Management.c(21):W0520144:A value of type "MyUint16OfVendorID (*)()" cannot be used to initialize an entity of type "uint8 (*)()"
+application\Rte_Cs_Data_Management.c(22):W0520144:A value of type "MyUint16OfVendorID (*)()" cannot be used to initialize an entity of type "void (*)()"
+application\Rte_Cs_Data_Management.c(22):W0520144:A value of type "MyUint16OfVendorID (*)()" cannot be used to initialize an entity of type "uint8 (*)()"
+application\Rte_Cs_Data_Management.c(23):W0520144:A value of type "MyUint16OfVendorID (*)()" cannot be used to initialize an entity of type "void (*)()"
+application\Rte_Cs_Data_Management.c(23):W0520144:A value of type "MyUint16OfVendorID (*)()" cannot be used to initialize an entity of type "uint8 (*)()"
 D:\CS+\CC\CC-RH\V2.05.00\Bin\ccrh.exe device\boot.asm device\cstart1.asm device\cstart2.asm device\boot2.asm -Xobj_path=DefaultBuild -Xcpu=g3m -g -c -Xmsg_lang=english
 D:\CS+\CC\CC-RH\V2.05.00\Bin\rlink.exe -subcommand=DefaultBuild\MilkshopAUTOSAR.clnk
 W0561017:Paid license of CC-RH V2 is not found, and the evaluation period has expired. Please consider purchasing the product.
@@ -533,7 +567,7 @@ W0561120:Section address is not assigned to "TASK_SysTask_core0.text"
 W0561120:Section address is not assigned to "TASK_SysTask_core1.text"
 W0561017:Paid license of CC-RH V2 is not found, and the evaluation period has expired. Please consider purchasing the product.
 Renesas Optimizing Linker Completed
------- Build ended(Error:0, Warning:527)(MilkshopAUTOSAR, DefaultBuild) ------
+------ Build ended(Error:0, Warning:558)(MilkshopAUTOSAR, DefaultBuild) ------
 
 --- CommandFile 1 ---
 DefaultBuild\MilkshopAUTOSAR.clnk :
@@ -626,8 +660,8 @@ DefaultBuild\MilkshopAUTOSAR.clnk :
 
 
 --- SHA1 hash value of output files ---
-D:\OneDrive - gs.ncku.edu.tw\oneDrive_vscode\AUTOSAR\RTE\af_rte_generator_mephen\rte_generator\client_server_interface(mephen)\ManyToOne\ManyToOne_ioc_rte\OSCAR_ManyToOne_ioc_rte\DefaultBuild\MilkshopAUTOSAR.abs: a2b2158815365d943b2056670bc774a08b0209ea
-D:\OneDrive - gs.ncku.edu.tw\oneDrive_vscode\AUTOSAR\RTE\af_rte_generator_mephen\rte_generator\client_server_interface(mephen)\ManyToOne\ManyToOne_ioc_rte\OSCAR_ManyToOne_ioc_rte\DefaultBuild\MilkshopAUTOSAR.mot: f35f9435872edc2f3304715edbe9c5b8308d6f6d
+D:\OneDrive - gs.ncku.edu.tw\oneDrive_vscode\AUTOSAR\RTE\af_rte_generator_mephen\rte_generator\client_server_interface(mephen)\ManyToOne\ManyToOne_ioc_rte\OSCAR_ManyToOne_ioc_rte\DefaultBuild\MilkshopAUTOSAR.abs: 60848248641ebb0374c7babe6dc6fc5657195562
+D:\OneDrive - gs.ncku.edu.tw\oneDrive_vscode\AUTOSAR\RTE\af_rte_generator_mephen\rte_generator\client_server_interface(mephen)\ManyToOne\ManyToOne_ioc_rte\OSCAR_ManyToOne_ioc_rte\DefaultBuild\MilkshopAUTOSAR.mot: 137e4dac2ad805b65e2d2bbe73f7d71cb3b47961
 
 
 --- System Information ---
@@ -653,13 +687,13 @@ D:\OneDrive - gs.ncku.edu.tw\oneDrive_vscode\AUTOSAR\RTE\af_rte_generator_mephen
  D:\CS+\CC
 *Memory Usage
  *Private Working Set
-  570 MB
+  554 MB
  *Number of GDI Objects
-  2119
+  2374
  *Number of USER Objects
-  1103
+  1317
  *Opened Files
-  7 editors, 7 files, 109 KB
+  16 editors, 16 files, 245 KB
 
 --- Build Tool Plug-in Information ---
 RH850 Build tool CC-RH Plug-in
@@ -817,6 +851,9 @@ Build Tool Information
 Debug Tool Information
  *RH850 E1(LPD)
   Debugger Library V8.10.00.02 [12 May 2023]
+  RH850G3 Executor V4.09.00.01
+  E1/E20/E2 RH850  F/W V.1.00.00.000
+  Control Board V.1.13.00.007 Rev.0002 FPGA Version V03.00
   
 
 Other Tool Information

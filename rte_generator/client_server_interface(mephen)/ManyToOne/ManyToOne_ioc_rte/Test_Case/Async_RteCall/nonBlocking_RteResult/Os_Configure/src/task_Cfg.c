@@ -208,7 +208,7 @@ const TaskConstType TaskConst_core0[TASK_OBJECTS_COUNT_CORE0] = {
         },
         task_static_prio_T01, /* task priority */
         55, /* task max activations */
-        0 | event1, /* events mask */
+        0 | event1 | event2 | event3, /* events mask */
         0 | (1 << (resourceApp1 & 0xffff)), /* resources mask */
 
         //RomToRamInitTableType RomToRamInitTable
@@ -234,7 +234,7 @@ const TaskConstType TaskConst_core0[TASK_OBJECTS_COUNT_CORE0] = {
         },
         task_static_prio_T02, /* task priority */
         10, /* task max activations */
-        0 | event1 , /* events mask */
+        0 | event1 | event2 | event3, /* events mask */
         0 | (1 << (resource1 & 0xffff))  | (1 << (resource2 & 0xffff)) | (1 << (resource3 & 0xffff)) | (1 << (resourceApp1 & 0xffff)),   /* resources mask */
 
         //RomToRamInitTableType RomToRamInitTable

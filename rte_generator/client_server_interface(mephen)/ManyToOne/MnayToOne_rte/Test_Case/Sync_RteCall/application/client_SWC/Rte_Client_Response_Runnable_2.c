@@ -18,7 +18,7 @@ RingBuffer RB_response_CRR2 = {
 
 RteResultMetaData Rte_Result_Port1_NonBlocking_CRR2_metaData = {
     .transaction_handle = {
-        .client_id = 2U,        //runnable ID, according to the configuration arxml
+        .client_id = 2U,        //same as corresponding CR
         .sequence_counter = 0U, //record how many c/s communication has been "finished".
     },
     "connected",
@@ -27,7 +27,7 @@ RteResultMetaData Rte_Result_Port1_NonBlocking_CRR2_metaData = {
 };
 RteResultMetaData Rte_Result_Port1_Blocking_CRR2_metaData = {
     .transaction_handle = {
-        .client_id = 2U,        //runnable ID, according to the configuration arxml
+        .client_id = 2U,        //same as corresponding CR
         .sequence_counter = 0U, //record how many c/s communication has been "finished".
     },
     "connected",
@@ -130,6 +130,6 @@ Std_ReturnType Rte_Result_Port1_Blocking_CRR2(Impl_uint16* response){
 Impl_uint16 RTE_RUNNABLE_ClientResponse2(){
     //for developer to design the implementation
     Impl_uint16 response = 0;
-    Std_ReturnType rte_error = Rte_Result_Port1_NonBlocking_CRR2(&response);
+    Std_ReturnType rte_error = Rte_Result_Port1_Blocking_CRR2(&response);
     return response;
 }

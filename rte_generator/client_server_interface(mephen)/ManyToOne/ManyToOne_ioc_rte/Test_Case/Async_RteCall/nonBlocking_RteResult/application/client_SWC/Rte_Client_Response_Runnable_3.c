@@ -18,7 +18,7 @@ RingBuffer RB_response_CRR3 = {
 
 RteResultMetaData Rte_Result_Port1_NonBlocking_CRR3_metaData = {
     .transaction_handle = {
-        .client_id = 3U,         
+        .client_id = 3U,        //same as corresponding CR
         .sequence_counter = 0U, //record how many c/s communication has been "finished".
     },
     "connected",
@@ -27,7 +27,7 @@ RteResultMetaData Rte_Result_Port1_NonBlocking_CRR3_metaData = {
 };
 RteResultMetaData Rte_Result_Port1_Blocking_CRR3_metaData = {
     .transaction_handle = {
-        .client_id = 3U,         
+        .client_id = 3U,        //same as corresponding CR
         .sequence_counter = 0U, //record how many c/s communication has been "finished".
     },
     "connected",

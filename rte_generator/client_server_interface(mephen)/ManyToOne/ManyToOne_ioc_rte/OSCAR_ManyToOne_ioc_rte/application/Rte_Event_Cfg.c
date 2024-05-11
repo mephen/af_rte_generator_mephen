@@ -46,29 +46,20 @@
 #include "client_SWC/Rte_Client_Runnable.h"
 #include "server_SWC/Rte_Server_Runnable.h"
 #include "client_SWC/Rte_Client_Response_Runnable.h"
-RteEvent InitEvent_1 = {(uint16)InitEvent+1, Client_1}; //+1 means triggered once
-RteEvent InitEvent_2 = {(uint16)InitEvent+1, Client_2};
-RteEvent InitEvent_3 = {(uint16)InitEvent+1, Client_3};
-RteEvent* rte_event_t01[3] = {
+RteEvent InitEvent_1 = {(uint16)InitEvent+0x1, Client_1}; //+1 means triggered once
+RteEvent InitEvent_2 = {(uint16)InitEvent+0x1, Client_2};
+RteEvent* rte_event_t01[2] = {
     &InitEvent_1,
     &InitEvent_2,
-    &InitEvent_3
 };
 
 RteEvent OperationInvokedEvent_1 = {(uint16)OperationInvokedEvent+IntraPartition, Server_1};
-RteEvent OperationInvokedEvent_2 = {(uint16)OperationInvokedEvent+IntraPartition, Server_2};
+RteEvent OperationInvokedEvent_2 = {(uint16)OperationInvokedEvent+IntraPartition, Server_1};
 RteEvent AsynchronousServerCallReturnsEvent_1 = {(uint16)AsynchronousServerCallReturnsEvent+IntraPartition, ClientResponse_1};
 RteEvent AsynchronousServerCallReturnsEvent_2 = {(uint16)AsynchronousServerCallReturnsEvent+IntraPartition, ClientResponse_2};
-RteEvent AsynchronousServerCallReturnsEvent_3 = {(uint16)AsynchronousServerCallReturnsEvent+InterPartition, ClientResponse_3};
-RteEvent* rte_event_t02[5] = {
+RteEvent* rte_event_t02[4] = {
     &OperationInvokedEvent_1,
     &OperationInvokedEvent_2,
     &AsynchronousServerCallReturnsEvent_1,
     &AsynchronousServerCallReturnsEvent_2,
-    &AsynchronousServerCallReturnsEvent_3
-};
-
-RteEvent OperationInvokedEvent_3 = {(uint16)OperationInvokedEvent+InterPartition, Server_3};
-RteEvent* rte_event_t11[1] = {
-    &OperationInvokedEvent_3
 };

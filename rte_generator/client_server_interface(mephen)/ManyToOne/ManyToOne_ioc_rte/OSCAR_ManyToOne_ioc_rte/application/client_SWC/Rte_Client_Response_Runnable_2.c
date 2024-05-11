@@ -130,6 +130,6 @@ Std_ReturnType Rte_Result_Port1_Blocking_CRR2(Impl_uint16* response){
 Impl_uint16 RTE_RUNNABLE_ClientResponse2(){
     //for developer to design the implementation
     Impl_uint16 response = 0;
-    Std_ReturnType rte_error = Rte_Result_Port1_NonBlocking_CRR2(&response);
+    Std_ReturnType rte_error = Rte_Result_Port1_Blocking_CRR2(&response);
     return response;
 }

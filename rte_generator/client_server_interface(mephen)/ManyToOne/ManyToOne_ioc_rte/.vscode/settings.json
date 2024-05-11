@@ -28,6 +28,7 @@
         "rte_swc_client.h": "c",
         "rte_swc_server_1.h": "c",
         "alarm_cfg.h": "c",
-        "rte_swc_server_2.h": "c"
+        "rte_swc_server_2.h": "c",
+        "string_format_test.h": "c"
     }
 }

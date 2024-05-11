@@ -10,10 +10,11 @@
 #include "../../kernel/event.h"
 #include "../../device/lock.h"
 #include "../../OS_Configure/inc/event_Cfg.h"
+#include "../../kernel/task.h"
 
 //SWS_Rte_02528
 ResponseInfoType response_buffer_CR1[1];
-RingBuffer RB_response_CR1 = {
+RingBuffer RB_response_CR1 = { //for sync rte_call
     response_buffer_CR1,
     0,
     0,
@@ -23,7 +24,7 @@ RingBuffer RB_response_CR1 = {
 
 static RteCallMetaData Rte_Call_Port1_AsyncRteAdd_CR1_metaData = {
     .transaction_handle = {
-        .client_id = 1U,         
+        .client_id = 1U,        //start from 1, each CR has its own client_id
         .sequence_counter = 0U, //recore how many Rte_call has been "invoked" -> sequence_counter of rte_result record how many c/s communication has been "finished".
     },
     .connected_unconnected = "connected",
@@ -44,83 +45,7 @@ static RteCallMetaData Rte_Call_Port1_SyncRteAdd_CR1_metaData = {
 static uint8 lock = 0;
 static uint8 lock_bit = 1;
 static int running_asyncApi_number  = 0; //record the number of running async Rte_call
-int request_number_CR1 = 0; //max: 1 (SWS_Rte_02658), shared by CRR1.
-
-Std_ReturnType Rte_Call_Port1_AsyncRteAdd_CR1(Impl_uint16 para_1, Impl_uint16 para_2){
-    if(request_number_CR1 == 0){//one client can only has one request at a time.
-        request_number_CR1 = 1;
-
-        //in async rte_call, don't need to check timeout
-        GetLock(&lock, lock_bit);
-        running_asyncApi_number++;
-        ReleaseLock(&lock, lock_bit);
-
-        Std_ReturnType rte_error = RTE_E_OK;
-
-        if(Rte_Call_Port1_AsyncRteAdd_CR1_metaData.connected_unconnected == "unconnected"){
-            rte_error = RTE_E_UNCONNECTED;
-        }
-        if(rte_error == RTE_E_OK){
-            if(Rte_Call_Port1_AsyncRteAdd_CR1_metaData.in_exclusiveArea_or_not == "InExclusiveArea"){
-                rte_error = RTE_E_IN_EXCLUSIVE_AREA;
-            }
-        }
-        if(rte_error == RTE_E_OK){
-            if (running_asyncApi_number > 1) { 
-                rte_error = RTE_E_LIMIT;
-            }
-        }
-        if(rte_error == RTE_E_OK){
-            if(Rte_Call_Port1_AsyncRteAdd_CR1_metaData.CanAccess == "CanNot"){
-                rte_error = RTE_E_SEG_FAULT;
-            }
-        }
-        //transform parameter1
-        if(rte_error == RTE_E_OK){
-            rte_error = Check_Transformer_Buffer(&RB_transformer_core0);
-            uint8 transformer_error = Xfrm_transformer(&Rte_Call_Port1_AsyncRteAdd_CR1_metaData.transaction_handle, &RB_transformer_core0, &RB_transformer_core0.currentSize, para_1);
-            rte_error = Check_Transformer_Error(transformer_error, rte_error);
-        }
-        //transform parameter1
-        if(rte_error == RTE_E_OK){
-            rte_error = Check_Transformer_Buffer(&RB_transformer_core0);
-            uint8 transformer_error = Xfrm_transformer(&Rte_Call_Port1_AsyncRteAdd_CR1_metaData.transaction_handle, &RB_transformer_core0, &RB_transformer_core0.currentSize, para_2);
-            rte_error = Check_Transformer_Error(transformer_error, rte_error);
-        }
-        //get transformed parameters & send to server side
-        if(rte_error == RTE_E_OK || rte_error == RTE_E_SOFT_TRANSFORMER_ERROR){
-            Impl_uint16 transformed_para_1;
-            RTE_Dequeue(&RB_transformer_core0, (void*)&transformed_para_1, sizeof(Impl_uint16));
-            Impl_uint16 transformed_para_2;
-            RTE_Dequeue(&RB_transformer_core0, (void*)&transformed_para_2, sizeof(Impl_uint16));
-
-            //send request info by Rte_internal_buffer()
-            RTE_Enqueue(&RB_requestInfo_core0, &transformed_para_1, sizeof(Impl_uint16));
-            RTE_Enqueue(&RB_requestInfo_core0, &transformed_para_2, sizeof(Impl_uint16));
-            RTE_Enqueue(&RB_requestInfo_core0, &Rte_Call_Port1_AsyncRteAdd_CR1_metaData.transaction_handle.client_id, sizeof(Impl_uint16));
-            RTE_Enqueue(&RB_requestInfo_core0, &Rte_Call_Port1_AsyncRteAdd_CR1_metaData.transaction_handle.sequence_counter, sizeof(uint16));
-
-            Rte_Call_Port1_AsyncRteAdd_CR1_metaData.transaction_handle.sequence_counter++; //means that x-th Rte_call is finished (x = sequence_counter)
-        }
-        //send return_value to coreesponding Rte_result
-        RTE_Enqueue(&RB_returnValue_CR1, &rte_error, sizeof(Std_ReturnType));
-        
-        GetLock(&lock, lock_bit);
-        running_asyncApi_number--;
-        ReleaseLock(&lock, lock_bit);
-
-        //trigger coreesponding OperationInvokedEvent
-        GetLock(&lock, lock_bit);
-        rte_event_t02[OperationInvokedEvent_1_t02]->rteevent++;
-        ReleaseLock(&lock, lock_bit);
-        ActivateTask(T02);
-
-        //return value follow the priority rules of RTE spec.
-        return rte_error;
-    }else{//wait for the previous request to be finished.
-        return 2;//user defined error
-    }
-}
+int request_number_CR1 = 0; //(SWS_Rte_02658), max: 1, used by CR1 & CRR1 in Async case; only used by CR1 in Sync case.
 
 Std_ReturnType Rte_Call_Port1_SyncRteAdd_CR1(Impl_uint16 para_1, Impl_uint16 para_2, Impl_uint16* response){
     if(request_number_CR1 == 0){//one client can only has one request at a time.
@@ -163,7 +88,9 @@ Std_ReturnType Rte_Call_Port1_SyncRteAdd_CR1(Impl_uint16 para_1, Impl_uint16 par
             Impl_uint16 transformed_para_2;
             RTE_Dequeue(&RB_transformer_core0, &transformed_para_2, sizeof(Impl_uint16));
             
+            Impl_uint16 len_arg = 2; //parser will decide the value of len_arg
             //send request info by Rte_internal_buffer
+            RTE_Enqueue(&RB_requestInfo_core0, &len_arg, sizeof(Impl_uint16));
             RTE_Enqueue(&RB_requestInfo_core0, &transformed_para_1, sizeof(Impl_uint16));
             RTE_Enqueue(&RB_requestInfo_core0, &transformed_para_2, sizeof(Impl_uint16));
             RTE_Enqueue(&RB_requestInfo_core0, &Rte_Call_Port1_SyncRteAdd_CR1_metaData.transaction_handle.client_id, sizeof(Impl_uint16));
@@ -171,7 +98,8 @@ Std_ReturnType Rte_Call_Port1_SyncRteAdd_CR1(Impl_uint16 para_1, Impl_uint16 par
 
             //trigger coreesponding OperationInvokedEvent
             GetLock(&lock, lock_bit);
-            rte_event_t02[OperationInvokedEvent_1_t02]->rteevent++;
+            // rte_event_t02[OperationInvokedEvent_1_t02]->rteevent++;
+            trigger_rteevent(rte_event_t02[OperationInvokedEvent_1_t02]);
             ReleaseLock(&lock, lock_bit);
             ActivateTask(T02);
             //wait until server response is available
@@ -202,11 +130,90 @@ Std_ReturnType Rte_Call_Port1_SyncRteAdd_CR1(Impl_uint16 para_1, Impl_uint16 par
     }
 }
 
+Std_ReturnType Rte_Call_Port1_AsyncRteAdd_CR1(Impl_uint16 para_1, Impl_uint16 para_2){
+    if(request_number_CR1 == 0){//one client can only has one request at a time.
+        request_number_CR1 = 1;
+
+        //in async rte_call, don't need to check timeout
+        GetLock(&lock, lock_bit);
+        running_asyncApi_number++;
+        ReleaseLock(&lock, lock_bit);
+
+        Std_ReturnType rte_error = RTE_E_OK;
+
+        if(Rte_Call_Port1_AsyncRteAdd_CR1_metaData.connected_unconnected == "unconnected"){
+            rte_error = RTE_E_UNCONNECTED;
+        }
+        if(rte_error == RTE_E_OK){
+            if(Rte_Call_Port1_AsyncRteAdd_CR1_metaData.in_exclusiveArea_or_not == "InExclusiveArea"){
+                rte_error = RTE_E_IN_EXCLUSIVE_AREA;
+            }
+        }
+        if(rte_error == RTE_E_OK){
+            if (running_asyncApi_number > 1) { 
+                rte_error = RTE_E_LIMIT;
+            }
+        }
+        if(rte_error == RTE_E_OK){
+            if(Rte_Call_Port1_AsyncRteAdd_CR1_metaData.CanAccess == "CanNot"){
+                rte_error = RTE_E_SEG_FAULT;
+            }
+        }
+        //transform parameter1
+        if(rte_error == RTE_E_OK){
+            rte_error = Check_Transformer_Buffer(&RB_transformer_core0);
+            uint8 transformer_error = Xfrm_transformer(&Rte_Call_Port1_AsyncRteAdd_CR1_metaData.transaction_handle, &RB_transformer_core0, &RB_transformer_core0.currentSize, para_1);
+            rte_error = Check_Transformer_Error(transformer_error, rte_error);
+        }
+        //transform parameter2
+        if(rte_error == RTE_E_OK){
+            rte_error = Check_Transformer_Buffer(&RB_transformer_core0);
+            uint8 transformer_error = Xfrm_transformer(&Rte_Call_Port1_AsyncRteAdd_CR1_metaData.transaction_handle, &RB_transformer_core0, &RB_transformer_core0.currentSize, para_2);
+            rte_error = Check_Transformer_Error(transformer_error, rte_error);
+        }
+        //get transformed parameters & send to server side
+        if(rte_error == RTE_E_OK || rte_error == RTE_E_SOFT_TRANSFORMER_ERROR){
+            Impl_uint16 transformed_para_1;
+            RTE_Dequeue(&RB_transformer_core0, (void*)&transformed_para_1, sizeof(Impl_uint16));
+            Impl_uint16 transformed_para_2;
+            RTE_Dequeue(&RB_transformer_core0, (void*)&transformed_para_2, sizeof(Impl_uint16));
+            
+            Impl_uint16 len_arg = 2; //parser will decide the value of len_arg
+            //send request info by Rte_internal_buffer
+            RTE_Enqueue(&RB_requestInfo_core0, &len_arg, sizeof(Impl_uint16));
+            RTE_Enqueue(&RB_requestInfo_core0, &transformed_para_1, sizeof(Impl_uint16));
+            RTE_Enqueue(&RB_requestInfo_core0, &transformed_para_2, sizeof(Impl_uint16));
+            RTE_Enqueue(&RB_requestInfo_core0, &Rte_Call_Port1_AsyncRteAdd_CR1_metaData.transaction_handle.client_id, sizeof(uint16));
+            RTE_Enqueue(&RB_requestInfo_core0, &Rte_Call_Port1_AsyncRteAdd_CR1_metaData.transaction_handle.sequence_counter, sizeof(uint16));
+
+            Rte_Call_Port1_AsyncRteAdd_CR1_metaData.transaction_handle.sequence_counter++; //means that x-th Rte_call is finished (x = sequence_counter)
+        }
+        //send return_value to coreesponding Rte_result
+        RTE_Enqueue(&RB_returnValue_CR1, &rte_error, sizeof(Std_ReturnType));
+        
+        GetLock(&lock, lock_bit);
+        running_asyncApi_number--;
+        ReleaseLock(&lock, lock_bit);
+
+        //trigger coreesponding OperationInvokedEvent
+        GetLock(&lock, lock_bit);
+        // rte_event_t02[OperationInvokedEvent_1_t02]->rteevent++;
+        trigger_rteevent(rte_event_t02[OperationInvokedEvent_1_t02]);
+        ReleaseLock(&lock, lock_bit);
+        ActivateTask(T02);
+
+        //return value follow the priority rules of RTE spec.
+        return rte_error;
+    }else{//wait for the previous request to be finished.
+        return 2;//user defined error
+    }
+}
+
 Impl_uint16 RTE_RUNNABLE_Client1(){
     //for developer to design the implementation
     Impl_uint16 data_1 = 4U;
     Impl_uint16 data_2 = 6U;
     Impl_uint16 response;
     Std_ReturnType rte_error = Rte_Call_Port1_SyncRteAdd_CR1(data_1, data_2, &response);
-    return;
+    return response;
 }

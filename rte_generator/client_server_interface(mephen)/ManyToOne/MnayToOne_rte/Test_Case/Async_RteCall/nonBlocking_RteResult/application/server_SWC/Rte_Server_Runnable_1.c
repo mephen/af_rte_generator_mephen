@@ -2,7 +2,7 @@
 #include "Rte_Server_Runnable.h"
 #include "../ringbuffer.h"
 
-uint16 request_buffer_SR1[20];
+Impl_uint16 request_buffer_SR1[20];
 RingBuffer RB_request_SR1 = {
     request_buffer_SR1,
     0,
@@ -12,9 +12,9 @@ RingBuffer RB_request_SR1 = {
 };
 
 Impl_uint16 Add_ImplUint16_SR1(){
-    uint16 data_1, data_2;
-    RTE_Dequeue(&RB_request_SR1, &data_1, sizeof(uint16));
-    RTE_Dequeue(&RB_request_SR1, &data_2, sizeof(uint16));
+    Impl_uint16 data_1, data_2;
+    RTE_Dequeue(&RB_request_SR1, &data_1, sizeof(Impl_uint16));
+    RTE_Dequeue(&RB_request_SR1, &data_2, sizeof(Impl_uint16));
     return data_1 + data_2;
 }
 

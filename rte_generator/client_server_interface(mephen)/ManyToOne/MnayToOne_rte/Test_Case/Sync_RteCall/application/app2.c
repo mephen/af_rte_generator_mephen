@@ -30,35 +30,114 @@ extern int PrintText_R35(char *TextArray);
 /************* USER_SHARED_SEC *****************/
 #pragma section USER_SHARED_SEC
 
-extern uint8 lock;
-extern uint8 lock_bit;
+static uint8 lock = 0;
+static uint8 lock_bit = 1;
 
-uint16 ioc_server_side_multiply(){
-    uint16 para1, para2, transformed_para_1, transformed_para_2, transformed_response;
+static uint16 rte_server_side(uint16 (*Server_Runnable)()){
+    uint8 transformer_error;
+    uint16 len_args, transformed_response;
+    Impl_uint16 response;
+    Rte_Cs_TransactionHandleType transaction_handle;//for transformer stub.
+    Std_ReturnType bsw_error = RTE_E_OK;
+    
+    uint16 para_arr[10];
+    uint16 transformed_para_arr[10];
+    //get request information (parameters & sequence_counter).
+    RTE_Dequeue(&RB_requestInfo_core1, &len_args, sizeof(uint16));
+    for(int i = 0; i < len_args; i++){
+        RTE_Dequeue(&RB_requestInfo_core1, &para_arr[i], sizeof(Impl_uint16));
+    }
+    RTE_Dequeue(&RB_requestInfo_core1, &transaction_handle.client_id, sizeof(uint16));
+    RTE_Dequeue(&RB_requestInfo_core1, &transaction_handle.sequence_counter, sizeof(uint16));
+    
+    //transforme data into DataType for server_operation
+    for(int i = 0; i < len_args; i++){
+        bsw_error = Check_Transformer_Buffer(&RB_transformer_core1);
+        transformer_error = Xfrm_Inv_transformer(&transaction_handle, &RB_transformer_core1, &RB_transformer_core1.currentSize, para_arr[i]);
+        bsw_error = Check_Transformer_Error(transformer_error, bsw_error);
+        RTE_Dequeue(&RB_transformer_core1, (void*)&transformed_para_arr[i], sizeof(uint16));
+    }
+    //在 server side enqueue request queue
+    for(int i = 0; i < sizeof(rte_cs_metaData_arr)/sizeof(Rte_Cs_metaData); i++){
+        if(Server_Runnable == rte_cs_metaData_arr[i].SR_RVuint16){
+            for(int j = 0; j < len_args; j++){
+                RTE_Enqueue(rte_cs_metaData_arr[i].RB_request_ptr, &transformed_para_arr[j], sizeof(uint16));
+            }
+            response = rte_cs_metaData_arr[i].SR_RVuint16();//do server operation, server runnable 會自己去 request_queue 裡面拿參數。
+            break;
+        }
+    }
+
+    //transforme data into DataType for Rte_Enqueue the rte_internal_buffer
+    bsw_error = Check_Transformer_Buffer(&RB_transformer_core1);
+    transformer_error = Xfrm_transformer_2(&transaction_handle, &RB_transformer_core1, &RB_transformer_core1.currentSize, response);
+    bsw_error = Check_Transformer_Error(transformer_error, bsw_error);
+    RTE_Dequeue(&RB_transformer_core1, &transformed_response, sizeof(uint16));
+
+    ResponseInfoType response_info = {
+        RTE_E_OK,
+        transaction_handle,
+        transformed_response
+    };
+    RTE_Enqueue(&RB_responseInfo_core1, &response_info, sizeof(ResponseInfoType));//via rte_internal_buffer, store response information (response & sequence_counter)
+    return transaction_handle.client_id;
+}
+
+static ResponseInfoType rte_client_side(){
+    uint16 transformed_response;
+    Rte_Cs_TransactionHandleType transaction_handle;//for transformer stub.
+    Std_ReturnType bsw_error = RTE_E_OK;
+    ResponseInfoType response_info;
+    RTE_Dequeue(&RB_responseInfo_core1, &response_info, sizeof(ResponseInfoType));
+    
+    bsw_error = Check_Transformer_Buffer(&RB_transformer_core1);
+    uint8 transformer_error = Xfrm_Inv_transformer_2(&transaction_handle, &RB_transformer_core1, &RB_transformer_core1.currentSize, response_info.response);
+    bsw_error = Check_Transformer_Error(transformer_error, bsw_error);
+    RTE_Dequeue(&RB_transformer_core1, &transformed_response, sizeof(uint16));
+
+    ResponseInfoType server_response = {
+        bsw_error,
+        response_info.transaction_handle,
+        transformed_response
+    };
+    return server_response;
+}
+
+static uint16 ioc_server_side(uint16 (*Server_Runnable)()){
+    uint8 transformer_error;
+    uint16 len_args, transformed_response;
+    Impl_uint16 response;
     Rte_Cs_TransactionHandleType transaction_handle;
     Std_ReturnType bsw_error = RTE_E_OK;
     
+    uint16 para_arr[10];
+    uint16 transformed_para_arr[10];
     //get request information (parameters & sequence_counter).
-    IocReceive_Q1(&para1);
-    IocReceive_Q1(&para2);
+    IocReceive_Q1(&len_args);
+    for(int i = 0; i < len_args; i++){
+        IocReceive_Q1(&para_arr[i]);
+    }
     IocReceive_Q1(&transaction_handle.client_id);
     IocReceive_Q1(&transaction_handle.sequence_counter);
     
     //transforme data into DataType for server_operation
-    bsw_error = Check_Transformer_Buffer(&RB_transformer_core1);
-    uint8 transformer_error = Xfrm_Inv_transformer(&transaction_handle, &RB_transformer_core1, &RB_transformer_core1.currentSize, para1);
-    bsw_error = Check_Transformer_Error(transformer_error, bsw_error);
-    RTE_Dequeue(&RB_transformer_core1, (void*)&transformed_para_1, sizeof(uint16));
+    for(int i = 0; i < len_args; i++){
+        bsw_error = Check_Transformer_Buffer(&RB_transformer_core1);
+        transformer_error = Xfrm_Inv_transformer(&transaction_handle, &RB_transformer_core1, &RB_transformer_core1.currentSize, para_arr[i]);
+        bsw_error = Check_Transformer_Error(transformer_error, bsw_error);
+        RTE_Dequeue(&RB_transformer_core1, (void*)&transformed_para_arr[i], sizeof(uint16));
+    }
+    //在 server side enqueue request queue
+    for(int i = 0; i < sizeof(rte_cs_metaData_arr)/sizeof(Rte_Cs_metaData); i++){
+        if(Server_Runnable == rte_cs_metaData_arr[i].SR_RVuint16){
+            for(int j = 0; j < len_args; j++){
+                RTE_Enqueue(rte_cs_metaData_arr[i].RB_request_ptr, &transformed_para_arr[j], sizeof(uint16));
+            }
+            response = rte_cs_metaData_arr[i].SR_RVuint16();//do server operation, server runnable 會自己去 request_queue 裡面拿參數。
+            break;
+        }
+    }
 
-    bsw_error = Check_Transformer_Buffer(&RB_transformer_core1);
-    transformer_error = Xfrm_Inv_transformer(&transaction_handle, &RB_transformer_core1, &RB_transformer_core1.currentSize, para2);
-    bsw_error = Check_Transformer_Error(transformer_error, bsw_error);
-    RTE_Dequeue(&RB_transformer_core1, (void*)&transformed_para_2, sizeof(uint16));
-    
-    RTE_Enqueue(&RB_request_SR3, &transformed_para_1, sizeof(uint16));//在 server side enqueue request queue
-    RTE_Enqueue(&RB_request_SR3, &transformed_para_2, sizeof(uint16));
-    Impl_uint16 response = RTE_RUNNABLE_Server3();//do "multiply" operation, multiply operation 會自己去 request_queue 裡面拿參數。
-    
     //transforme data into DataType for Rte_Enqueue the rte_internal_buffer
     bsw_error = Check_Transformer_Buffer(&RB_transformer_core1);
     transformer_error = Xfrm_transformer_2(&transaction_handle, &RB_transformer_core1, &RB_transformer_core1.currentSize, response);
@@ -71,6 +150,29 @@ uint16 ioc_server_side_multiply(){
     IocSend_Q1_SND1(transformed_response);//for server_response.response
     return transaction_handle.client_id;
 }
+
+static ResponseInfoType ioc_client_side(){
+    uint16 transformed_response;
+    Rte_Cs_TransactionHandleType transaction_handle;//for transformer stub.
+    Std_ReturnType bsw_error = RTE_E_OK;
+    ResponseInfoType response_info;
+    IocReceive_Q1(&response_info.transaction_handle.client_id);
+    IocReceive_Q1(&response_info.transaction_handle.sequence_counter);
+    IocReceive_Q1(&response_info.response);
+    
+    bsw_error = Check_Transformer_Buffer(&RB_transformer_core1);
+    uint8 transformer_error = Xfrm_Inv_transformer_2(&transaction_handle, &RB_transformer_core1, &RB_transformer_core1.currentSize, response_info.response);
+    bsw_error = Check_Transformer_Error(transformer_error, bsw_error);
+    RTE_Dequeue(&RB_transformer_core1, &transformed_response, sizeof(uint16));
+
+    ResponseInfoType server_response = {
+        bsw_error,
+        response_info.transaction_handle,
+        transformed_response
+    };
+    return server_response;
+}
+
 /************* OSAPP_A02 *****************/
 #pragma section OSAPP_A02_SEC
 
@@ -187,24 +289,10 @@ TASK(T11)//ioc server side: 接收request，處理request，發送response
     for(int i = 0; i <10000; i++){//inter-arival protection
         ;
     }
-    while(rte_event_t11[OperationInvokedEvent_3_t11]->rteevent){//use while instead of if. Because inter-partition communication is multi-core, so there may be multiple requests coming when the server is processing the request.
-        GetLock(&lock, lock_bit);
-        rte_event_t11[OperationInvokedEvent_3_t11]->rteevent--;
-        ReleaseLock(&lock, lock_bit);
-        
-        uint16 client_id = ioc_server_side_multiply();//check error, call transformer, enqueue request queue, do operation, send response
 
-        switch (client_id){
-            case 3: //client runnable 3 發起的 request
-                GetLock(&lock, lock_bit);
-                rte_event_t03[AsynchronousServerCallReturnsEvent_3_t03]->rteevent++;
-                ReleaseLock(&lock, lock_bit);
-                ActivateTask(T02); //client runnable 3 處理 response info 的 task
-                break;
-            default:
-                break;//parser error: doesn't know where is the client.
-        }
-    }
+  
+
+    TerminateTask();
 }
 
 #pragma section TASK_T102_SEC

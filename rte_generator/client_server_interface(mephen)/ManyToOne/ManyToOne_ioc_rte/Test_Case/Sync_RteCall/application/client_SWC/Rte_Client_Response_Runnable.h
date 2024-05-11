@@ -13,13 +13,16 @@ extern "C" {
 
 extern RingBuffer RB_response_CRR1;//if client use Rte_result to get the response, each client response runnable has its own response ringbuffer.
 //Runnable declaration shouldn't be put btw #ifdef~#endif, otherise, os application can't access it.
-FUNC(Impl_uint16, AUTOMATIC) RTE_RUNNABLE_ClientResponse1(); //return value is for testing
+FUNC(Impl_uint16, AUTOMATIC) ClientResponse_1(); //Impl_uint16 of return value is for testing
+#define RTE_RUNNABLE_ClientResponse1 ClientResponse_1
 
 extern RingBuffer RB_response_CRR2;
-FUNC(Impl_uint16, AUTOMATIC) RTE_RUNNABLE_ClientResponse2();
+FUNC(Impl_uint16, AUTOMATIC) ClientResponse_2();
+#define RTE_RUNNABLE_ClientResponse2 ClientResponse_2
 
 extern RingBuffer RB_response_CRR3;
-FUNC(Impl_uint16, AUTOMATIC) RTE_RUNNABLE_ClientResponse3();
+FUNC(Impl_uint16, AUTOMATIC) ClientResponse_3();
+#define RTE_RUNNABLE_ClientResponse3 ClientResponse_3
 
 
 /********************************************/
