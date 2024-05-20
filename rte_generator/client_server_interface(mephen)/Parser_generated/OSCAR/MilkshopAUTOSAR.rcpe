@@ -148,9 +148,6 @@
           <Path>application\SWC_Client\Rte_Client_1.c</Path>
           <Path>application\SWC_Client\Rte_Client_2.c</Path>
           <Path>application\SWC_Client\Rte_Client_3.c</Path>
-          <Path>application\SWC_Client\Rte_Client_Response_1.c</Path>
-          <Path>application\SWC_Client\Rte_Client_Response_2.c</Path>
-          <Path>application\SWC_Client\Rte_Client_Response_3.c</Path>
           <Path>application\SWC_Client\Rte_SWC_Client.h</Path>
           <Path>application\SWC_Client\Rte_SWC_Client_Type.h</Path>
         </Category>
@@ -262,9 +259,6 @@
           <Path>DefaultBuild\Rte_Client_1.obj</Path>
           <Path>DefaultBuild\Rte_Client_2.obj</Path>
           <Path>DefaultBuild\Rte_Client_3.obj</Path>
-          <Path>DefaultBuild\Rte_Client_Response_1.obj</Path>
-          <Path>DefaultBuild\Rte_Client_Response_2.obj</Path>
-          <Path>DefaultBuild\Rte_Client_Response_3.obj</Path>
           <Path>DefaultBuild\Rte_Server1_SR1.obj</Path>
           <Path>DefaultBuild\Rte_Server2_SR1.obj</Path>
         </LinkOrder>
@@ -346,7 +340,7 @@
           <Option>-EXIt</Option>
         </LinkOptions>
         <IOHeaderGenerationOptions>
-          <Option>"-df=C:\Program Files (x86)\Renesas Electronics\CS+\CC\Device\RH850\Devicefile\DR7F701527.DVF"</Option>
+          <Option>-df=D:\CS+\CC\Device\RH850\Devicefile\DR7F701527.DVF</Option>
           <Option>"-o=D:\OneDrive - gs.ncku.edu.tw\oneDrive_vscode\AUTOSAR\RTE\af_rte_generator_mephen\rte_generator\client_server_interface(mephen)\Parser_generated\OSCAR\iodefine.h"</Option>
           <Option>-def=off</Option>
           <Option>-f</Option>

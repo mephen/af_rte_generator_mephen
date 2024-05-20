@@ -117,15 +117,57 @@ def main():
         'typedef struct{',
         '    union{',
         '        void (*CR)();',
-        '        uint16 (*CR_RVuint16)(); //only for testing, CR doesn\'t return value in real case',
+        '        uint16 (*CR_RVuint16)(); //only for testing, CR doesn\'t return value in real case', #實際 case 不需要生這個
         '    };',
         '    union{',
         '        void (*CRR)();',
-        '        uint16 (*CRR_RVuint16)(); //only for testing, CRR doesn\'t return value in real case',
+        '        uint16 (*CRR_RVuint16)(); //only for testing, CRR doesn\'t return value in real case', #實際 case 不需要生這個
         '    };',
         '    union{',
-        '        uint8 (*SR_RVuint8)();',
-        '        uint16 (*SR_RVuint16)();',
+    ])
+    #收集 SR return value type
+    SR_RV_type_arr = []
+    for component in client_server_component_list:
+        server_ev = None
+        found_flag = False
+        for swc in swc_dict.values():
+            event_of_swc = [] #儲存一個 swc 的所有 events
+            swc_ib_keys = swc.get_internalBehaviors() #internal behaviors
+            for ib_key in swc_ib_keys:
+                swc_ib_rable_keys = ib_key.get_runnables() #runnables
+                event_keys = ib_key.get_events() #rte events
+                event_of_swc.extend(event_keys)
+            for event in event_of_swc:
+                if((type(event) == OperationInvokedEvent) and (event.get_startOnEvent() == component["SR"])):
+                    server_ev = event
+                    found_flag = True
+                    break
+            if(found_flag):
+                break
+        op = server_ev.get_operation().get_targetProvidedOperation()
+        op_name = op.get_shortName()
+        op_args = op.get_arguments()
+        DT_app = list(op_args)[0].get_type()
+        DT_impl = None
+        DT_impl_name = None
+        #找出 server arg 對應的 DT_impl
+        for DT_mappingSet_instance in dataType_mappingSets:
+            DT_maps = DT_mappingSet_instance.get_dataTypeMaps()
+            for DT_map in DT_maps:
+                if((DT_map.get_applicationDataType() == DT_app)):
+                    DT_impl = DT_map.get_implementationDataType()
+                    DT_impl_name = DT_impl.get_shortName()
+                    break
+        if('uint' in DT_impl_name):
+            num = DT_impl_name.split('uint')[-1]
+            SR_RV = f'uint{num} (*SR_RVuint{num})();'
+            if(SR_RV not in SR_RV_type_arr):
+                SR_RV_type_arr.append(SR_RV)
+        else: #other type
+            pass
+    for SR_RV_type in SR_RV_type_arr:
+        write_content.append(f'        {SR_RV_type}')
+    write_content.extend([
         '    };',
         '    uint16 client_id;',
         '    RingBuffer* RB_request_ptr;',

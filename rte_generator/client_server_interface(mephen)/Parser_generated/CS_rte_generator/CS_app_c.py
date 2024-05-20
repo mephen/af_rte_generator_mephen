@@ -616,13 +616,51 @@ def gen_Rte_Cs_Data_Management_c():
     TaskID_mapping = {"T01": "0x00000001", "T02": "0x00000002", "T03": "0x00000003", "T04": "0x00000004", "T05": "0x00000005", "T06": "0x00000006",\
                         "T11": "0x00010001", "T12": "0x00010002", "T13": "0x00010003", "T14": "0x00010004", "T15": "0x00010005", "T16": "0x00010006"}
     arr_ele = ''
+    
     for component in client_server_component_list:
         async_sync = ''
         block_nonblock = ''
+        server_ev = None
+        found_flag = False
+        for swc in swc_dict.values():
+            event_of_swc = [] #儲存一個 swc 的所有 events
+            swc_ib_keys = swc.get_internalBehaviors() #internal behaviors
+            for ib_key in swc_ib_keys:
+                swc_ib_rable_keys = ib_key.get_runnables() #runnables
+                event_keys = ib_key.get_events() #rte events
+                event_of_swc.extend(event_keys)
+            for event in event_of_swc:
+                if((type(event) == OperationInvokedEvent) and (event.get_startOnEvent() == component["SR"])):
+                    server_ev = event
+                    found_flag = True
+                    break
+            if(found_flag):
+                break
+        op = server_ev.get_operation().get_targetProvidedOperation()
+        op_name = op.get_shortName()
+        op_args = op.get_arguments()
+        DT_app = list(op_args)[0].get_type()
+        DT_impl = None
+        DT_impl_name = None
+        #找出 server arg 對應的 DT_impl
+        for DT_mappingSet_instance in dataType_mappingSets:
+            DT_maps = DT_mappingSet_instance.get_dataTypeMaps()
+            for DT_map in DT_maps:
+                if((DT_map.get_applicationDataType() == DT_app)):
+                    DT_impl = DT_map.get_implementationDataType()
+                    DT_impl_name = DT_impl.get_shortName()
+                    break
+        SR_RV = None
+        if('uint' in DT_impl_name):
+            SR_RV = 'SR_RVuint' + DT_impl_name.split('uint')[-1]
+        else: #other type
+            pass
+        # print(SR_RV)
+        #CR_RVuint16 和 CRR_RVuint16 為測試用，實際 case 請改成 CR + CRR
         if(component['CRR'] != None): #async rte_call
             async_sync = 'async'
             arr_ele += '    {' f'.CR_RVuint16 = {component["CR"].get_shortName()}, .CRR_RVuint16 = {component["CRR"].get_shortName()},'\
-                f' .SR_RVuint16 = {component["SR"].get_shortName()}, .client_id = {component["CR_id"]}, .RB_request_ptr = &RB_request_{component["SR"].get_shortName()},'\
+                f' .{SR_RV} = {component["SR"].get_shortName()}, .client_id = {component["CR_id"]}, .RB_request_ptr = &RB_request_{component["SR"].get_shortName()},'\
                 f' .RB_response_ptr = &RB_response_{component["CRR"].get_shortName()}, .async_return_ev = &{component["AsynchronousServerCallReturnsEvent"].get_shortName()},'\
                 f' .SR_task = {TaskID_mapping[component["SR-task"].get_shortName()]}, .CRR_task = {TaskID_mapping[component["CRR-task"].get_shortName()]}, .rte_call_property = async,'
             if(component['Block_NonBlock'] == 'non_blocking'): #non-blocking rte_result
@@ -634,7 +672,7 @@ def gen_Rte_Cs_Data_Management_c():
         else: #sync rte_call
             async_sync = 'sync'
             block_nonblock = 'not_used_rte_result'
-            arr_ele += '    {' f'.CR_RVuint16 = {component["CR"].get_shortName()}, .SR_RVuint16 = {component["SR"].get_shortName()}, .client_id = {component["CR_id"]},'\
+            arr_ele += '    {' f'.CR_RVuint16 = {component["CR"].get_shortName()}, .{SR_RV} = {component["SR"].get_shortName()}, .client_id = {component["CR_id"]},'\
                 f' .RB_request_ptr = &RB_request_{component["SR"].get_shortName()}, .RB_response_ptr = &RB_response_{component["CR"].get_shortName()},'\
                 f' .rte_call_property = sync, .rte_result_property = not_used''},'
         arr_ele += '\n'

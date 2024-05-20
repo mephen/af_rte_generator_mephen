@@ -1610,7 +1610,6 @@ def main():
                     continue
         alerting.print_nodeinfo(referred_swctype)
 
-
         rte_swc_instance_path = rte_swc_instance.get_path()
         if rte_sw_component_instance_dict[rte_swc_instance_path]:
             rte_sw_component_instance_dict[rte_swc_instance_path].swc_type_symbol = shared_function.get_swc_symbol(referred_swctype)

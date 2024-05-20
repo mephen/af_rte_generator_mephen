@@ -81,7 +81,6 @@ typedef struct{
         uint16 (*CRR_RVuint16)(); //only for testing, CRR doesn't return value in real case
     };
     union{
-        uint8 (*SR_RVuint8)();
         uint16 (*SR_RVuint16)();
     };
     uint16 client_id;

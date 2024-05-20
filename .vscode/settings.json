@@ -25,6 +25,7 @@
         "alarm_cfg.h": "c",
         "rte_cs_data_management.h": "c",
         "rte_swc_server_1.h": "c",
-        "rte_swc_client.h": "c"
+        "rte_swc_client.h": "c",
+        "rte_swc_server_2.h": "c"
     }
 }
