@@ -71,6 +71,29 @@ def gen_app_c(swc):
                 comm_type = 'Ioc'
             elif(CS_component['comm-type'] == inter_ECU):
                 comm_type = 'Com'
+            
+            start_ev = CS_component['start_event']
+            ev_ref = None
+            task_ref = None
+            for ev_map in RteEventToTaskMapping_keys:
+                refs = ev_map.get_referenceValues()
+                for ref in refs:
+                    if((os.path.basename(ref.get_definition()) == 'RteEventRef') and (ref.get_value() != None) and (ref.get_value().get_shortName() == start_ev.get_shortName())):
+                        ev_ref = ref.get_value()
+                        # print(ev_ref.get_shortName())
+                    if(os.path.basename(ref.get_definition()) == 'RteMappedToTaskRef'):
+                        task_ref = ref.get_value()
+                        # print(task_ref.get_shortName())
+                if(ev_ref != None and task_ref != None):
+                    break
+            
+            core = None
+            core0_task = ['T01', 'T02', 'T03', 'T04', 'T05', 'T06']
+            core1_task = ['T11', 'T12', 'T13', 'T14', 'T15', 'T16']
+            if(task_ref.get_shortName() in core0_task):
+                core = 'core0'
+            elif(task_ref.get_shortName() not in core1_task):
+                core = 'core1'
 
             write_content.extend([
                 f'ResponseInfoType response_buffer_{rable_name}[1];//for sync rte_call',
@@ -90,7 +113,6 @@ def gen_app_c(swc):
                 r_port_name = os.path.basename(r_port.get_path())
                 op = scp.get_operation().get_targetRequiredOperation()
                 op_name = op.get_shortName().split('_')[0]
-                
                 if(type(scp) == SynchronousServerCallPoint):
                     write_content.extend([
                         f'static RteCallMetaData Rte_Call_{r_port_name}_Sync{comm_type}{op_name}_{rable_name}_metaData = ''{',
@@ -216,8 +238,8 @@ def gen_app_c(swc):
                     for index, op_arg in enumerate(op_args):
                         write_content.extend([
                         '        if(rte_error == RTE_E_OK){',
-                        '            rte_error = Check_Transformer_Buffer(&RB_transformer_core0);', 
-                        f'            uint8 transformer_error = Xfrm_transformer(&Rte_Call_{r_port_name}_{sync_async}{comm_type}{op_name}_{rable_name}_metaData.transaction_handle, &RB_transformer_core0, &RB_transformer_core0.currentSize, para_{index+1});',
+                        f'            rte_error = Check_Transformer_Buffer(&RB_transformer_{core});', 
+                        f'            uint8 transformer_error = Xfrm_transformer(&Rte_Call_{r_port_name}_{sync_async}{comm_type}{op_name}_{rable_name}_metaData.transaction_handle, &RB_transformer_{core}, &RB_transformer_{core}.currentSize, para_{index+1});',
                         '            rte_error = Check_Transformer_Error(transformer_error, rte_error);',
                         '        }',
                         ])
@@ -234,7 +256,7 @@ def gen_app_c(swc):
                     for index, op_arg in enumerate(op_args):
                         write_content.extend([
                         f'            {signal_DT_name} transformed_para_{index+1};',
-                        f'            RTE_Dequeue(&RB_transformer_core0, (void*)&transformed_para_{index+1}, sizeof({signal_DT_name}));',
+                        f'            RTE_Dequeue(&RB_transformer_{core}, (void*)&transformed_para_{index+1}, sizeof({signal_DT_name}));',
                         ])
                     for index, op_arg in enumerate(op_args):
                         if(comm_type == 'Rte'):
@@ -243,10 +265,10 @@ def gen_app_c(swc):
                                     '',
                                     f'            {signal_DT_name} len_arg = {len(op_args)}; //parser will decide the value of len_arg',
                                     '            //send request info by Rte_internal_buffer()',
-                                    f'            RTE_Enqueue(&RB_requestInfo_core0, &len_arg, sizeof({signal_DT_name}));',
+                                    f'            RTE_Enqueue(&RB_requestInfo_{core}, &len_arg, sizeof({signal_DT_name}));',
                                 ])
                             write_content.extend([
-                                f'            RTE_Enqueue(&RB_requestInfo_core0, &transformed_para_{index+1}, sizeof({signal_DT_name}));',
+                                f'            RTE_Enqueue(&RB_requestInfo_{core}, &transformed_para_{index+1}, sizeof({signal_DT_name}));',
                             ])
                         elif(comm_type == 'Ioc'):
                             if(index == 0):
@@ -262,8 +284,8 @@ def gen_app_c(swc):
                     
                     if(comm_type == 'Rte'):
                         write_content.extend([
-                            f'            RTE_Enqueue(&RB_requestInfo_core0, &Rte_Call_{r_port_name}_{sync_async}{comm_type}{op_name}_{rable_name}_metaData.transaction_handle.client_id, sizeof(uint16));',
-                            f'            RTE_Enqueue(&RB_requestInfo_core0, &Rte_Call_{r_port_name}_{sync_async}{comm_type}{op_name}_{rable_name}_metaData.transaction_handle.sequence_counter, sizeof(uint16));',
+                            f'            RTE_Enqueue(&RB_requestInfo_{core}, &Rte_Call_{r_port_name}_{sync_async}{comm_type}{op_name}_{rable_name}_metaData.transaction_handle.client_id, sizeof(uint16));',
+                            f'            RTE_Enqueue(&RB_requestInfo_{core}, &Rte_Call_{r_port_name}_{sync_async}{comm_type}{op_name}_{rable_name}_metaData.transaction_handle.sequence_counter, sizeof(uint16));',
                         ])
                     elif(comm_type == 'Ioc'):
                         write_content.extend([
