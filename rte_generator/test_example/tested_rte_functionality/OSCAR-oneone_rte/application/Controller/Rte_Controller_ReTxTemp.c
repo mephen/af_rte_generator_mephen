@@ -22,6 +22,7 @@ void RTE_RUNNABLE_ReTxTemp(){
      myTransformerError.transformerClass = STD_TRANSFORMER_SERIALIZER;
 
      for(i = 123 ; i <125 ; i++){
+          //queued
           Std_ReturnType returnx = Rte_Send_PpIfTemperature_Temp(i,myTransformerError);
      }
      return;

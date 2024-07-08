@@ -1,6 +1,0 @@
-{
-    "files.associations": {
-        "event_cfg.h": "c",
-        "rte_type.h": "c"
-    }
-}
