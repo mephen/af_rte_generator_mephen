@@ -74,6 +74,7 @@ class ImplDataTypeModule:
                         if symbol_i == symbol_j:
                             typeEmitter_i = impldatatype_value_i.get_typeEmitter()
                             typeEmitter_j = impldatatype_value_j.get_typeEmitter()
+                            #typeEmitter = 'RTE' or 'None' or None 的檢查不用重複做，在上面的 validate_typeEmitter 中會檢查。
                             if typeEmitter_i != typeEmitter_j and\
                                 typeEmitter_i not in (None, 'None', 'RTE') and\
                                     typeEmitter_j not in (None, 'None', 'RTE'):
@@ -264,7 +265,6 @@ class RteTypesHdrFileGenerator(ImplDataTypeModule):
                     f'{four_space}size_t currentSize;    // current number of elements',
                     '} RingBuffer;',
                     '',
-
             ])
             self.__Rte_Type_h_contents.extend(self._ImplDataTypeModule__typedefs_to_write)
             self.__Rte_Type_h_contents.extend([f'#endif // RTE_TYPE_H'])

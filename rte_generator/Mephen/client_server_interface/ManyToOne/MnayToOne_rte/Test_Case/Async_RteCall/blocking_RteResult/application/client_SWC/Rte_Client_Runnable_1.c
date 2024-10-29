@@ -101,6 +101,7 @@ Std_ReturnType Rte_Call_Port1_SyncRteAdd_CR1(Impl_uint16 para_1, Impl_uint16 par
             // rte_event_t02[OperationInvokedEvent_1_t02]->rteevent++;
             trigger_rteevent(rte_event_t02[OperationInvokedEvent_1_t02]);
             ReleaseLock(&lock, lock_bit);
+
             ActivateTask(T02);
             //wait until server response is available
             WaitEvent(event1);

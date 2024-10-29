@@ -26,7 +26,6 @@ isr{//com 收到資料後，觸發 isr
 
 Request_type request_q[10];
 Serverresponsetype response_q[10];
- 
 
 //activate init event
 rte_event[InitEvent_1] = 1;

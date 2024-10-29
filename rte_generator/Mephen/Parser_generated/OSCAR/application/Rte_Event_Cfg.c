@@ -1,29 +1,30 @@
 #include "Rte_Event_Cfg.h"
 
-#include "SWC_Client/Rte_SWC_Client.h"
-#include "SWC_Server_1/Rte_SWC_Server_1.h"
-#include "SWC_Server_2/Rte_SWC_Server_2.h"
 
-//task T01
-RteEvent InitEvent_1 = {(uint16)InitEvent+0x1, Client_1}; 
-RteEvent InitEvent_2 = {(uint16)InitEvent+0x1, Client_2}; 
-RteEvent InitEvent_3 = {(uint16)InitEvent+0x1, Client_3}; 
-RteEvent* rte_event_t01[3] = {
-    &InitEvent_1, 
-    &InitEvent_2, 
-    &InitEvent_3, 
+//task T16
+RteEvent RteBackgroundEvent_1 = {(uint16)BackgroundEvent, Runnable_background_1};
+RteEvent* rte_event_t16[1] = {
+    &RteBackgroundEvent_1, 
 };
 
 //task T02
-RteEvent OperationInvokedEvent_1 = {(uint16)OperationInvokedEvent+IntraPartition, Server1_SR1}; 
-RteEvent OperationInvokedEvent_2 = {(uint16)OperationInvokedEvent+IntraPartition, Server1_SR1}; 
-RteEvent* rte_event_t02[2] = {
-    &OperationInvokedEvent_1, 
-    &OperationInvokedEvent_2, 
+RteEvent RteTimingEvent_1 = {(uint16)TimingEvent, Runnable_timing_1};
+RteEvent* rte_event_t02[1] = {
+    &RteTimingEvent_1, 
 };
 
-//task T11
-RteEvent OperationInvokedEvent_3 = {(uint16)OperationInvokedEvent+InterPartition, Server2_SR1}; 
-RteEvent* rte_event_t11[1] = {
-    &OperationInvokedEvent_3, 
+//task T03
+RteEvent RteInitEvent_2 = {(uint16)InitEvent, Runnable_init_2};
+RteEvent RteInitEvent_1 = {(uint16)InitEvent, Runnable_init_1};
+RteEvent* rte_event_t03[2] = {
+    &RteInitEvent_2, 
+    &RteInitEvent_1, 
+};
+
+//task T04
+RteEvent RteModeSwitchEvent_1 = {(uint16)SwcModeSwitchEvent, Runnable_modeSwitch_1};
+RteEvent RteModeSwitchEvent_2 = {(uint16)SwcModeSwitchEvent, Runnable_modeSwitch_2};
+RteEvent* rte_event_t04[2] = {
+    &RteModeSwitchEvent_1, 
+    &RteModeSwitchEvent_2, 
 };

@@ -1,0 +1,138 @@
+from generator.config import config
+from gen.cores import app_cores
+from generator import globals as gr
+
+global config
+global app_cores
+apps = config.getList("/AUTOSAR","OsApplication")
+k = 1
+for app in apps:
+    gr.genfile = open(gr.application_path + "/app" + str(k) + ".c",'w')
+    k += 1
+    gr.printFile("#include \"iodefine.h\"")
+    gr.printFile("#include \"board.h\"")
+    gr.printFile("#include \"os.h\"")
+    gr.printFile("#include \"timer.h\"")
+    gr.printFile("#include \"os_Cfg.h\"")
+    gr.printFile("#include \"task_Cfg.h\"")
+    gr.printFile("#include \"event_Cfg.h\"")
+    gr.printFile("#include \"alarm_Cfg.h\"")
+    gr.printFile("#include \"application_Cfg.h\"")
+    gr.printFile("#include \"counter.h\"")
+    gr.printFile("#include \"alarm.h\"")
+    gr.printFile("#include \"task.h\"")
+    gr.printFile("#include \"isr2.h\"")
+    gr.printFile("#include \"event.h\"")
+    gr.printFile("#include \"memsection.h\"")
+    gr.printFile("#include \"memprot_Cfg.h\"")
+    gr.printFile("#include \"string_format_test.h\"")
+    gr.printFile("#include \"systemcall.h\"")
+    gr.printFile("#include \"application.h\"")
+    gr.printFile("#include \"ISRInit.h\"")
+    gr.printFile("#include \"isr_Cfg.h\"")
+    gr.printFile("#include \"spinlock.h\"")
+    gr.printFile("#include \"resource.h\"")
+    gr.printFile("#include \"memsection.h\"")
+    gr.printFile("#include \"trustedFunc_Cfg.h\"")
+    gr.printFile("#include \"spinlock_Cfg.h\"\n")
+
+    gr.printFile("extern int PrintText(char *TextArray);")
+    gr.printFile("extern int PrintText_R35(char *TextArray);\n")
+
+    gr.printFile("/************* USER_SHARED_SEC *****************/")
+    gr.printFile("#pragma section USER_SHARED_SEC\n")
+
+    gr.printFile("extern int PrintText(char *TextArray);")
+    gr.printFile("extern int PrintText_R35(char *TextArray);\n")
+
+    gr.printFile("/************* OSAPP_{} *****************/".format(app))
+    gr.printFile("#pragma section OSAPP_{}_SEC\n".format(app))
+
+    #數值
+    gr.printFile("int {}_test_data = 0x22;".format(app))
+
+    gr.printFile("/* Brief StartupHook */")
+    gr.printFile("void StartupHook_OSAPP_{}(void)".format(app))
+    gr.printFile("{")
+    gr.printFile("}\n")
+
+    gr.printFile("/* Brief ShutdownHook */")
+    gr.printFile("void ShutdownHook_OSAPP_{}(StatusType Error)".format(app))
+    gr.printFile("{")
+    gr.printFile("}\n")
+
+    gr.printFile("/* Brief ErrorHook */")
+    gr.printFile("void ErrorHook_OSAPP_{}(StatusType Error)".format(app))
+    gr.printFile("{")   
+    gr.printFile("    switch (Error)")
+    gr.printFile("    {")
+    gr.printFile("    case E_OS_ACCESS:")
+    gr.printFile("        PrintText(\"[ErrorHook]: E_OS_ACCESS\\r\\n\");")
+    gr.printFile("        break;")
+    gr.printFile("    case E_OS_CALLEVEL:")
+    gr.printFile("        PrintText(\"[ErrorHook]: E_OS_CALLEVEL\\r\\n\");")
+    gr.printFile("        break;")
+    gr.printFile("    case E_OS_ID:")
+    gr.printFile("        PrintText(\"[ErrorHook]: E_OS_ID\\r\\n\");")
+    gr.printFile("        break;")
+    gr.printFile("    case E_OS_LIMIT:")
+    gr.printFile("        PrintText(\"[ErrorHook]: E_OS_LIMIT\\r\\n\");")
+    gr.printFile("        break;")
+    gr.printFile("    case E_OS_NOFUNC:")
+    gr.printFile("        PrintText(\"[ErrorHook]: E_OS_NOFUNC\\r\\n\");")
+    gr.printFile("        break;")
+    gr.printFile("    case E_OS_RESOURCE:")
+    gr.printFile("        PrintText(\"[ErrorHook]: E_OS_RESOURCE\\r\\n\");")
+    gr.printFile("        break;")
+    gr.printFile("    case E_OS_STATE:")
+    gr.printFile("        PrintText(\"[ErrorHook]: E_OS_STATE\\r\\n\");")
+    gr.printFile("        break;")
+    gr.printFile("    case E_OS_VALUE:")
+    gr.printFile("        PrintText(\"[ErrorHook]: E_OS_VALUE\\r\\n\");")
+    gr.printFile("        break;")
+    gr.printFile("    case E_OS_SYS_NOFUNC:")
+    gr.printFile("        PrintText(\"[ErrorHook]: E_OS_SYS_NOFUNC\\r\\n\");")
+    gr.printFile("        break;")
+    gr.printFile("    case E_OS_SERVICEID:")
+    gr.printFile("        PrintText(\"[ErrorHook]: E_OS_SERVICEID\\r\\n\");")
+    gr.printFile("        break;")
+    gr.printFile("    case E_OS_INTERFERENCE_DEADLOCK:")
+    gr.printFile("        PrintText(\"[ErrorHook]: E_OS_INTERFERENCE_DEADLOCK\\r\\n\");")
+    gr.printFile("        break;")
+    gr.printFile("    case E_OS_SYS_OK_CROSSCORE:")
+    gr.printFile("        PrintText(\"[ErrorHook]: E_OS_SYS_OK_CROSSCORE\\r\\n\");")
+    gr.printFile("        break;")
+    gr.printFile("    case E_OS_SPINLOCK:")
+    gr.printFile("        PrintText(\"[ErrorHook]: E_OS_SPINLOCK\\r\\n\");")
+    gr.printFile("        break;")
+    gr.printFile("    case E_OS_DISABLEDINT:")
+    gr.printFile("        PrintText(\"[ErrorHook]: E_OS_DISABLEDINT\\r\\n\");")
+    gr.printFile("        break;")
+    gr.printFile("    default:")
+    gr.printFile("        PrintText(\"[ErrorHook]: \\r\\n\");")
+    gr.printFile("        break;")
+    gr.printFile("    }")
+    gr.printFile("}")
+    
+    
+    TrustedFunctions = config.getList("/AUTOSAR/" + app, "OsApplicationTrustedFunction")
+    for tf in TrustedFunctions:
+        name = config.getValue("/AUTOSAR/" + app + "/" + tf,"OsTrustedFunctionName")
+        gr.printFile("void TRUSTED_TF_{}( TrustedFunctionIndexType id, TrustedFunctionParameterRefType para)".format(name))
+        gr.printFile("{")
+        gr.printFile("};\n")
+
+
+    ISRs = config.getList("/AUTOSAR/" + app,"OsAppIsrRef")
+    for isr in ISRs:
+        gr.printFile("#pragma section ISR_{}_SEC".format(isr))
+        gr.printFile("ISR({})".format(isr))
+        gr.printFile("{")
+        gr.printFile("};\n")
+    
+    tasks = config.getList("/AUTOSAR/" + app,"OsAppTaskRef")
+    for task in tasks:
+        gr.printFile("#pragma section TASK_{}_SEC".format(task))
+        gr.printFile("TASK({})".format(task))
+        gr.printFile("{")
+        gr.printFile("};\n")

@@ -11,7 +11,7 @@ from tsepp_modules.arnode_query import  ArxmlConfigurationError
 from tsepp_modules.communication_structs import OsApplication\
     , RteEventToTaskMapping, SenderReceiverPair, RteSwComponentInstance\
     , CommunicationBoundaryPair, OsIoc
- 
+
 class SharedData():
     def __init__(self):
         self.__ecuc_module_conf_val_dict = {}
@@ -189,7 +189,7 @@ class SharedData():
                             setattr(os_application_instance, attribute_name, new_value)
                     
             self.__os_application_dict[os_application_path] = os_application_instance
-             
+
     def populate_task_to_osapp_mapping_dict(self):
         for os_application in self.__os_application_dict.values():
             task_list = os_application.os_app_task_ref
@@ -320,7 +320,7 @@ class SharedData():
                                 self.__os_ioc_ecuc_para_def.os_ioc_data_property_index= para  
                     else:
                         self.__os_ioc_ecuc_para_def.os_ioc_buffer_length = sub_container
-                                   
+
     def create_hash_table_from_input(self,arpackages_list):
         self.__ecuc_module_def_dict = arnode_query.find_arnode(arpackages_list,EcucModuleDef)
         self.__ecuc_module_conf_val_dict = arnode_query.find_arnode(arpackages_list,EcucModuleConfigurationValues)
@@ -330,7 +330,7 @@ class SharedData():
         self.__impldatatype_dict = arnode_query.find_arnode(arpackages_list,ImplementationDataType)
         self.__data_type_mapping_set_dict = arnode_query.find_arnode(arpackages_list,DataTypeMappingSet)
         self.__system_mapping_dict = arnode_query.find_arnode(arpackages_list,SystemMapping)
-     
+    
         reault = self.populate_sender_receiver_pair_dict(arpackages_list)
         if isinstance(reault,list):
             return_messages = reault + [f'Method initialize_properties failed.'] 
@@ -373,10 +373,10 @@ class SharedData():
     
     def get_impldatatype_dict(self):
         return self.__impldatatype_dict 
-     
+    
     def get_sender_receiver_pair_dict(self):
         return self.__sender_receiver_pair_dict
-     
+    
     def get_data_type_mapping_set_dict(self):
         return self.__data_type_mapping_set_dict
     

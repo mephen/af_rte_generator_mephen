@@ -1,0 +1,7 @@
+RTE life cycle 跟 schm life cycle、Rte mode switch interface 有密切關係(嵌套關係、函數引用關係)。
+
+但由於還沒有時間整合 schm parser 和 Rte mode switch interface parser，
+所以目前生成好的 RTE life cycle，
+仍需要手動移到 Jack 生成的 schm_lifecycle_mode_rte_mode_environment 中測試。
+
+RTE life cycle parser 仍需要生成 schm life cycle & Rte mode switch interface 的 stub function，確保完整性以及日後方便整合。

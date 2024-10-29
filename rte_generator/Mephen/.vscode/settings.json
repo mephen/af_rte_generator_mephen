@@ -1,0 +1,16 @@
+{
+    "files.associations": {
+        "rte_cs_data_management.h": "c",
+        "event_cfg.h": "c",
+        "rte_swc_server_2.h": "c",
+        "share_function.h": "c",
+        "rte_event_cfg.h": "c",
+        "transformer_stub.h": "c",
+        "rte_main.h": "c",
+        "string_format_test.h": "c",
+        "application_cfg.h": "c",
+        "alarm_cfg.h": "c",
+        "schm_mode_data_management_cfg.h": "c",
+        "rte_type.h": "c"
+    }
+}

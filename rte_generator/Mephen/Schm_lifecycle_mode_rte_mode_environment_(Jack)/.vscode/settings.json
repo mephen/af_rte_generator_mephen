@@ -1,0 +1,22 @@
+{
+    "files.associations": {
+        "bsw2_engine_mode_display.h": "c",
+        "share_function.h": "c",
+        "bsw_event_cfg.h": "c",
+        "rte_type.h": "c",
+        "rte_main.h": "c",
+        "schm.h": "c",
+        "schm_client_server_data_management_cfg.h": "c",
+        "app2swc_modeuser.h": "c",
+        "task_cfg.h": "c",
+        "os.h": "c",
+        "alarm_cfg.h": "c",
+        "alarm.h": "c",
+        "task.h": "c",
+        "lock.h": "c",
+        "rte_event_cfg.h": "c",
+        "transformer_stub.h": "c",
+        "event_cfg.h": "c",
+        "rte_lifecycle1.h": "c"
+    }
+}

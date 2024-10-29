@@ -144,27 +144,25 @@
         </Category>
       </Category>
       <Category Name="application">
-        <Category Name="SWC_Client">
-          <Path>application\SWC_Client\Rte_Client_1.c</Path>
-          <Path>application\SWC_Client\Rte_Client_2.c</Path>
-          <Path>application\SWC_Client\Rte_Client_3.c</Path>
-          <Path>application\SWC_Client\Rte_SWC_Client.h</Path>
-          <Path>application\SWC_Client\Rte_SWC_Client_Type.h</Path>
+        <Category Name="SWC_Mode_A">
+          <Path>application\SWC_Mode_A\Rte_Runnable_modeSwitch_1.c</Path>
+          <Path>application\SWC_Mode_A\Rte_Runnable_modeSwitch_2.c</Path>
+          <Path>application\SWC_Mode_A\Rte_SWC_Mode_A.h</Path>
+          <Path>application\SWC_Mode_A\Rte_SWC_Mode_A_Type.h</Path>
         </Category>
-        <Category Name="SWC_Server_1">
-          <Path>application\SWC_Server_1\Rte_Server1_SR1.c</Path>
-          <Path>application\SWC_Server_1\Rte_SWC_Server_1.h</Path>
-          <Path>application\SWC_Server_1\Rte_SWC_Server_1_Type.h</Path>
-        </Category>
-        <Category Name="SWC_Server_2">
-          <Path>application\SWC_Server_2\Rte_Server2_SR1.c</Path>
-          <Path>application\SWC_Server_2\Rte_SWC_Server_2.h</Path>
-          <Path>application\SWC_Server_2\Rte_SWC_Server_2_Type.h</Path>
+        <Category Name="SWC_LifeCycle">
+          <Path>application\SWC_LifeCycle\Rte_Runnable_background_1.c</Path>
+          <Path>application\SWC_LifeCycle\Rte_Runnable_init_1.c</Path>
+          <Path>application\SWC_LifeCycle\Rte_Runnable_init_2.c</Path>
+          <Path>application\SWC_LifeCycle\Rte_Runnable_timing_1.c</Path>
+          <Path>application\SWC_LifeCycle\Rte_SWC_LifeCycle.h</Path>
+          <Path>application\SWC_LifeCycle\Rte_SWC_LifeCycle_Type.h</Path>
         </Category>
         <Path>application\app1.c</Path>
         <Path>application\app2.c</Path>
         <Path>application\app3.c</Path>
         <Path>application\app4.c</Path>
+        <Path>application\Bsw_Event_Cfg.h</Path>
         <Path>application\Compiler.h</Path>
         <Path>application\Compiler_Cfg.h</Path>
         <Path>application\hook.c</Path>
@@ -175,14 +173,16 @@
         <Path>application\ringbuffer.h</Path>
         <Path>application\Rte.c</Path>
         <Path>application\Rte.h</Path>
-        <Path>application\Rte_Cs_Data_Management.c</Path>
-        <Path>application\Rte_Cs_Data_Management.h</Path>
         <Path>application\Rte_Event_Cfg.c</Path>
         <Path>application\Rte_Event_Cfg.h</Path>
+        <Path>application\Rte_Main.h</Path>
+        <Path>application\SchM.h</Path>
+        <Path>application\SchM_Mode_Data_Management_Cfg.c</Path>
+        <Path>application\SchM_Mode_Data_Management_Cfg.h</Path>
+        <Path>application\Share_Function.c</Path>
+        <Path>application\Share_Function.h</Path>
         <Path>application\Rte_Type.h</Path>
         <Path>application\Std_Types.h</Path>
-        <Path>application\Transformer_stub.c</Path>
-        <Path>application\Transformer_stub.h</Path>
       </Category>
     </Files>
     <DebugOptions>
@@ -253,16 +253,19 @@
           <Path>DefaultBuild\main_pe2.obj</Path>
           <Path>DefaultBuild\ringbuffer.obj</Path>
           <Path>DefaultBuild\Rte.obj</Path>
-          <Path>DefaultBuild\Rte_Cs_Data_Management.obj</Path>
           <Path>DefaultBuild\Rte_Event_Cfg.obj</Path>
-          <Path>DefaultBuild\Transformer_stub.obj</Path>
-          <Path>DefaultBuild\Rte_Client_1.obj</Path>
-          <Path>DefaultBuild\Rte_Client_2.obj</Path>
-          <Path>DefaultBuild\Rte_Client_3.obj</Path>
-          <Path>DefaultBuild\Rte_Server1_SR1.obj</Path>
-          <Path>DefaultBuild\Rte_Server2_SR1.obj</Path>
+          <Path>DefaultBuild\Rte_Runnable_modeSwitch_1.obj</Path>
+          <Path>DefaultBuild\Rte_Runnable_modeSwitch_2.obj</Path>
+          <Path>DefaultBuild\Rte_Runnable_background_1.obj</Path>
+          <Path>DefaultBuild\Rte_Runnable_init_1.obj</Path>
+          <Path>DefaultBuild\Rte_Runnable_init_2.obj</Path>
+          <Path>DefaultBuild\Rte_Runnable_timing_1.obj</Path>
+          <Path>DefaultBuild\SchM_Mode_Data_Management_Cfg.obj</Path>
+          <Path>DefaultBuild\Share_Function.obj</Path>
         </LinkOrder>
         <CommonOptions>
+          <IncludePathForC>application\SWC_LifeCycle</IncludePathForC>
+          <IncludePathForC>application\SWC_Mode_A</IncludePathForC>
           <IncludePathForC>application\SWC_Server_2</IncludePathForC>
           <IncludePathForC>application\SWC_Server_1</IncludePathForC>
           <IncludePathForC>application\SWC_Client</IncludePathForC>
@@ -292,6 +295,8 @@
           <Option>-g</Option>
           <Option>-g_line</Option>
           <Option>-Onothing</Option>
+          <Option>-Iapplication\SWC_LifeCycle</Option>
+          <Option>-Iapplication\SWC_Mode_A</Option>
           <Option>-Iapplication\SWC_Server_2</Option>
           <Option>-Iapplication\SWC_Server_1</Option>
           <Option>-Iapplication\SWC_Client</Option>
@@ -341,7 +346,7 @@
         </LinkOptions>
         <IOHeaderGenerationOptions>
           <Option>-df=D:\CS+\CC\Device\RH850\Devicefile\DR7F701527.DVF</Option>
-          <Option>"-o=D:\OneDrive - gs.ncku.edu.tw\oneDrive_vscode\AUTOSAR\RTE\af_rte_generator_mephen\rte_generator\client_server_interface(mephen)\Parser_generated\OSCAR\iodefine.h"</Option>
+          <Option>"-o=D:\OneDrive - gs.ncku.edu.tw\oneDrive_vscode\AUTOSAR\RTE\af_rte_generator_mephen\rte_generator\Mephen\Parser_generated\OSCAR\iodefine.h"</Option>
           <Option>-def=off</Option>
           <Option>-f</Option>
           <UpdateIOMode>None</UpdateIOMode>

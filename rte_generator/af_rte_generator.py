@@ -46,13 +46,12 @@ def main():
     result = shared_function.validate_input_configuration()
     if isinstance(reault,list):
             raise ArxmlConfigurationError(reault)
-        
+    
     af_generate_rte_type_h.main()
     af_generate_app_type_h.main()
     af_generate_app_h.main()
     af_generate_app_c.main()
     af_generate_rte_c.main()
-    
     
     
 if __name__ == "__main__":

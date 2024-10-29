@@ -34,6 +34,10 @@
         "os_cfg.h": "c",
         "system.h": "c",
         "application_cfg.h": "c",
-        "ring_buffer.h": "c"
+        "ring_buffer.h": "c",
+        "rte_swc_client_type.h": "c",
+        "memsection.h": "c",
+        "transformer_stub.h": "c",
+        "application.h": "c"
     }
 }

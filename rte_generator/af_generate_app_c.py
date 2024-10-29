@@ -1492,7 +1492,6 @@ class VFBIfImplModule():
             elif 'Rte_Invalidate' in api:
                 __generate_Rte_Invalidate_implementation(api)
 
-
 class AppSrcFileGenerator(VFBIfImplModule):
     def __init__(self):
         super().__init__()

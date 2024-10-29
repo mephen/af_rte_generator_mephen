@@ -10,14 +10,6 @@ typedef uint16 MyUint16OfVendorID;
 typedef float32 MyFloat32;
 typedef float64 MyFloat64;
 
-//use uint8 will cause error when test with GetLock/ReleaseLock protection
-typedef uint32 RteEventType;
-typedef struct{
-    RteEventType rteevent;
-    RteEventType rteevent_disableinmode; //for mode switch interface
-    RteEventType rteevent_flag; //for mode switch interface
-} RteEventStatus;
-
 //Define the Ring Buffer(FIFO) structure
 typedef struct {
     void *buffer;          // buffer array
@@ -81,7 +73,6 @@ typedef struct{
         uint16 (*CRR_RVuint16)(); //only for testing, CRR doesn't return value in real case
     };
     union{
-        uint16 (*SR_RVuint16)();
     };
     uint16 client_id;
     RingBuffer* RB_request_ptr;
@@ -92,6 +83,13 @@ typedef struct{
     enum {async = 0, sync = 1} rte_call_property;
     enum {not_used = 0, blocking = 1, non_blocking = 2} rte_result_property;
 }Rte_Cs_metaData;
+
+#define RTE_STATE_UNINIT        0
+#define RTE_STATE_SCHM_START    1
+#define RTE_STATE_SCHM_INIT     2
+#define RTE_STATE_START         3
+#define RTE_STATE_INIT          4
+#define RTE_STATE_STOP          5
 
 /*TaskType: 
 //core0
@@ -113,5 +111,44 @@ typedef struct{
 #define T16             0x00010006
 */
 
-/****************************************************************************************/
+/*--------------------------------------*/
+//Jack add
+typedef uint32 RteEventType;
+typedef uint32 RteModeType;
+typedef uint32 SchMModeType;
+
+//use uint8 will cause error when test with GetLock/ReleaseLock protection
+typedef struct{
+    RteEventType rteevent;
+    RteEventType rteevent_disableinmode; //for mode switch interface
+    RteEventType rteevent_flag; //for mode switch interface
+} RteEventStatus;
+
+typedef struct {
+    int switch_status;
+    int previousmode;
+    int currentmode;
+    int nextmode;
+} ModeStatusType;
+
+//bsw(need to be integrated with RteEvent)
+typedef struct {
+    uint16 status_uint16;
+    // (LSB)0st-3th bit: event counter. (count how many times this event is triggered)
+    // 4th-8th bit: event type. (for-loop in OsTask need this information to use different condition statement)
+    // 9th bit: event_disablemode. (event can trigger the coreesponding entity or not. At the beginning of a mode switch, the RTE shall activate the mode disablings of the next mode)
+    // 10th bit: entity_execute. (entity is executing or not. In a sync mode_switch, the mode manager has to wait until mode_disabling_dependency_entity terminate.)
+    // 11th-15th bit: Event type specific attribute
+        // OperationInvokedEvent, AsynchronousServerCallReturnsEvent:
+        // 11th-12th bit: communication type. (inter-ecu / inter-partition / intra-partition)
+    union {
+        void (*Entity_FuncPtr)();
+        uint16 (*Entity_FuncPtr_RVuint16)();
+    };
+} Event;
+
+typedef struct {
+    uint8 schedulerId;
+} SchM_ConfigType;
+/*--------------------------------------*/
 #endif//Rte_Type_h

@@ -104,7 +104,7 @@ int flagforPROTECTION_LOCKED=0;     //test code
 ProtectionReturnType ProtectionHook(StatusType Error)
 {   
     ProtectionReturnType retMsg = PRO_IGNORE;
-      
+    
     itoa_16_show_id(my_prot_err_str_arr, CURRENTTASK.currentID);
     switch (Error)
     {

@@ -1,6 +1,8 @@
 #ifndef RTE_EVENT_CFG_H
 #define RTE_EVENT_CFG_H
 #include "Rte_Type.h"
+#include "SWC_LifeCycle/Rte_SWC_LifeCycle.h"
+#include "SWC_Mode_A/Rte_SWC_Mode_A.h"
 
 //RteEvent common status
 #define get_rteevent_counter(event) event->status_uint16 & 0x0F
@@ -55,31 +57,36 @@
     //other RteEvent subclass specific status(if needed)
 
 
-
 //event array of different task
-extern RteEvent* rte_event_t01[3];
-extern RteEvent* rte_event_t02[2];
-extern RteEvent* rte_event_t11[1];
+extern RteEvent* rte_event_t01[0];
+extern RteEvent* rte_event_t16[1];
+extern RteEvent* rte_event_t02[1];
+extern RteEvent* rte_event_t03[2];
+extern RteEvent* rte_event_t04[2];
 
 //Use macro instead of index to access rte_event array
 //The event order in task_ev_arr is important, should follow the c/s comm. flow (init_ev -> op_ev -> async_return_ev)
 //(when parsing arxml) according to the runnables that are mapped to task x, find the RTEEvents that task x can use
 //task T01
-extern RteEvent InitEvent_1; 
-extern RteEvent InitEvent_2; 
-extern RteEvent InitEvent_3; 
-#define InitEvent_1_t01 0
-#define InitEvent_2_t01 1
-#define InitEvent_3_t01 2
+
+//task T16
+extern RteEvent RteBackgroundEvent_1; 
+#define RteBackgroundEvent_1_t16 0 
 
 //task T02
-extern RteEvent OperationInvokedEvent_1; 
-extern RteEvent OperationInvokedEvent_2; 
-#define OperationInvokedEvent_1_t02 0
-#define OperationInvokedEvent_2_t02 1
+extern RteEvent RteTimingEvent_1; 
+#define RteTimingEvent_1_t02 0 
 
-//task T11
-extern RteEvent OperationInvokedEvent_3; 
-#define OperationInvokedEvent_3_t11 0
+//task T03
+extern RteEvent RteInitEvent_1; 
+extern RteEvent RteInitEvent_2; 
+#define RteInitEvent_1_t03 1 
+#define RteInitEvent_2_t03 0 
+
+//task T04
+extern RteEvent RteModeSwitchEvent_1; 
+extern RteEvent RteModeSwitchEvent_2; 
+#define RteModeSwitchEvent_1_t04 0 
+#define RteModeSwitchEvent_2_t04 1 
 
 #endif//RTE_EVENT_CFG_H

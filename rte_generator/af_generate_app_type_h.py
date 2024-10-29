@@ -27,7 +27,6 @@ class DataTypeRedefineModule():
                     not_have = False 
                     break
             return not_have
-        # [SWS_Rte_06718]  
         # 要收集 SWC 會使用到的 ImplemeneationDataType -> 可以從 PortProtoype 找
         swc_ports = swctype.get_ports()
         for swc_port in swc_ports:
@@ -42,11 +41,13 @@ class DataTypeRedefineModule():
                 impl_data_type = shared_function.get_implementation_data_type(data_prototype)
                 if isinstance(impl_data_type, ImplementationDataType):
                     if isinstance(impl_data_type.get_symbolProps(),SymbolProps):
-                        if impl_data_type.get_symbolProps().get_symbol() not in (None,'','None'):
+                        #沒定義 symbol 的話，symbol = shortName of Impl_DT，只要宣告在 Rte_Type.h，不需要宣告在 app type header file
+                        #[SWS_Rte_06718]
+                        if impl_data_type.get_symbolProps().get_symbol() not in (None,'','None') and \
+                            (impl_data_type.get_symbolProps().get_symbol() != impl_data_type.get_shortName()):
                             define_str_for_validation = f'#define {impl_data_type.get_shortName()} {impl_data_type.get_symbolProps().get_symbol()}'
                             if __validate_duplicate_define(define_str_for_validation):
                                 self.__strings_to_write.append(define_str_for_validation)
-                                
 class AppTypeHdrFileGenerator(DataTypeRedefineModule):
     def __init__(self):
         super().__init__()
@@ -57,22 +58,22 @@ class AppTypeHdrFileGenerator(DataTypeRedefineModule):
         self.__Rte_SWCSymbol_Type_h_contents.clear()
         self._DataTypeRedefineModule__strings_to_write.clear()
         self.__alerting_message.clear()
-       
+    
     def _write___alerting_message_contents(self,SWCSymbol):
         dir_path = f'./generated/{SWCSymbol}'
         
         if not os.path.exists(dir_path):
             os.makedirs(dir_path)
-             
+            
         if SWCSymbol == 'AppTypeHdrFileGenerator':
             target_file_name = f'AppTypeHdrFileGenerator_alerting_message.log'
             file_path = os.path.join(dir_path, target_file_name)
             with open(file_path, 'a') as f:
                 f.write('\n'.join(self.__alerting_message) + '\n') 
         else:
-           target_file_name = f'Rte_{SWCSymbol}_Type.h_alerting_message.log' 
-           file_path = os.path.join(dir_path, target_file_name)
-           with open(file_path, 'w') as f:
+            target_file_name = f'Rte_{SWCSymbol}_Type.h_alerting_message.log' 
+            file_path = os.path.join(dir_path, target_file_name)
+            with open(file_path, 'w') as f:
                 f.write('\n'.join(self.__alerting_message) + '\n') 
         
     def _write___Rte_SWCSymbol_Type_h_contents(self,SWCSymbol):
@@ -83,7 +84,7 @@ class AppTypeHdrFileGenerator(DataTypeRedefineModule):
             
         target_file_name = f'Rte_{SWCSymbol}_Type.h'
         file_path = os.path.join(dir_path, target_file_name)
-         
+        
         with open(file_path, 'w') as f:
             self.__Rte_SWCSymbol_Type_h_contents.extend([
             '#ifdef __cplusplus /* [SWS_Rte_07125] */',
@@ -130,6 +131,6 @@ def main():
             ecu_instance.generate_application_type_h(swctype)
     
     return True
-               
+
 if __name__ == '__main__':
     main()

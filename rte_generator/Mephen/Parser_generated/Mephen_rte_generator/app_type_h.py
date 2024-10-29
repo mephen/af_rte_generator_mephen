@@ -1,3 +1,4 @@
+#將 parser 做模組化，每種 RTE API 都有對應的 generator function，方便日後整合。
 #合併專案時，放到 af_generate_app_type_h.py 中。
 import pdb
 import platform
@@ -13,6 +14,58 @@ from autosarfactory.autosarfactory import DataTypeMappingSet\
     , OperationInvokedEvent, AsynchronousServerCallReturnsEvent, ARPackage, ARElement\
     , ApplicationPrimitiveDataType, ImplementationDataType, DataTypeMappingSet
 from app_h import dataType_mappingSets, client_server_component_list, arpackages_list, swc_dict, check_server
+
+def collect_ImplDT_name_CR(scp_keys, DT_impl_name_list, DT_impl_symbol_list):
+    for scp in scp_keys:
+        op_args = scp.get_operation().get_targetRequiredOperation().get_arguments()
+        DT_app = list(op_args)[0].get_type()
+        DT_impl = None
+        for DT_mappingSet_instance in dataType_mappingSets:
+            DT_maps = DT_mappingSet_instance.get_dataTypeMaps()
+            for DT_map in DT_maps:
+                if((DT_map.get_applicationDataType() == DT_app)):
+                    DT_impl = DT_map.get_implementationDataType()
+                    break
+        if((DT_impl != None) and (DT_impl.get_shortName() not in DT_impl_name_list) and (DT_impl.get_symbolProps().get_symbol() not in DT_impl_symbol_list)):
+            DT_impl_name_list.append(DT_impl.get_shortName())
+            DT_impl_symbol_list.append(DT_impl.get_symbolProps().get_symbol())
+
+def collect_ImplDT_name_CRR(async_scrp_keys, DT_impl_name_list, DT_impl_symbol_list):
+    for async_scrp in async_scrp_keys:
+        op_args = async_scrp.get_asynchronousServerCallPoint().get_operation().get_targetRequiredOperation().get_arguments()
+        DT_app = list(op_args)[0].get_type()
+        DT_impl = None
+        #找出 arg 對應的 DT_impl
+        for DT_mappingSet_instance in dataType_mappingSets:
+            DT_maps = DT_mappingSet_instance.get_dataTypeMaps()
+            for DT_map in DT_maps:
+                if((DT_map.get_applicationDataType() == DT_app)):
+                    DT_impl = DT_map.get_implementationDataType()
+                    break
+        if((DT_impl != None) and (DT_impl.get_shortName() not in DT_impl_name_list) and (DT_impl.get_symbolProps().get_symbol() not in DT_impl_symbol_list)):
+            DT_impl_name_list.append(DT_impl.get_shortName())
+            DT_impl_symbol_list.append(DT_impl.get_symbolProps().get_symbol())
+
+def collect_ImplDT_name_SR(event_of_swc, rable, DT_impl_name_list, DT_impl_symbol_list):
+    server_ev = None
+    for event in event_of_swc:
+        if((type(event) == OperationInvokedEvent) and (event.get_startOnEvent() == rable)):
+            server_ev = event
+            break
+    op = server_ev.get_operation().get_targetProvidedOperation()
+    op_args = op.get_arguments()
+    DT_app = list(op_args)[0].get_type()
+    DT_impl = None
+    #找出 arg 對應的 DT_impl
+    for DT_mappingSet_instance in dataType_mappingSets:
+        DT_maps = DT_mappingSet_instance.get_dataTypeMaps()
+        for DT_map in DT_maps:
+            if((DT_map.get_applicationDataType() == DT_app)):
+                DT_impl = DT_map.get_implementationDataType()
+                break
+    if((DT_impl != None) and (DT_impl.get_shortName() not in DT_impl_name_list) and (DT_impl.get_symbolProps().get_symbol() not in DT_impl_symbol_list)):
+        DT_impl_name_list.append(DT_impl.get_shortName())
+        DT_impl_symbol_list.append(DT_impl.get_symbolProps().get_symbol())
 
 def gen_app_type_h(swc):
     rables_of_swc = [] #儲存一個 swc 的所有 runnables
@@ -54,54 +107,12 @@ def gen_app_type_h(swc):
         scp_keys = rable.get_serverCallPoints()
         async_scrp_keys = rable.get_asynchronousServerCallResultPoints()
         if(len(scp_keys) > 0): #client runnable
-            for scp in scp_keys:
-                op_args = scp.get_operation().get_targetRequiredOperation().get_arguments()
-                DT_app = list(op_args)[0].get_type()
-                DT_impl = None
-                for DT_mappingSet_instance in dataType_mappingSets:
-                    DT_maps = DT_mappingSet_instance.get_dataTypeMaps()
-                    for DT_map in DT_maps:
-                        if((DT_map.get_applicationDataType() == DT_app)):
-                            DT_impl = DT_map.get_implementationDataType()
-                            break
-                if((DT_impl != None) and (DT_impl.get_shortName() not in DT_impl_name_list) and (DT_impl.get_symbolProps().get_symbol() not in DT_impl_symbol_list)):
-                    DT_impl_name_list.append(DT_impl.get_shortName())
-                    DT_impl_symbol_list.append(DT_impl.get_symbolProps().get_symbol())
+            collect_ImplDT_name_CR(scp_keys, DT_impl_name_list, DT_impl_symbol_list)
         if(len(async_scrp_keys) > 0): #client response runnable
-            for async_scrp in async_scrp_keys:
-                op_args = async_scrp.get_asynchronousServerCallPoint().get_operation().get_targetRequiredOperation().get_arguments()
-                DT_app = list(op_args)[0].get_type()
-                DT_impl = None
-                #找出 arg 對應的 DT_impl
-                for DT_mappingSet_instance in dataType_mappingSets:
-                    DT_maps = DT_mappingSet_instance.get_dataTypeMaps()
-                    for DT_map in DT_maps:
-                        if((DT_map.get_applicationDataType() == DT_app)):
-                            DT_impl = DT_map.get_implementationDataType()
-                            break
-                if((DT_impl != None) and (DT_impl.get_shortName() not in DT_impl_name_list) and (DT_impl.get_symbolProps().get_symbol() not in DT_impl_symbol_list)):
-                    DT_impl_name_list.append(DT_impl.get_shortName())
-                    DT_impl_symbol_list.append(DT_impl.get_symbolProps().get_symbol())
+            collect_ImplDT_name_CRR(async_scrp_keys, DT_impl_name_list, DT_impl_symbol_list)
         if(check_server(event_of_swc, rable)): #server runnable
-            server_ev = None
-            for event in event_of_swc:
-                if((type(event) == OperationInvokedEvent) and (event.get_startOnEvent() == rable)):
-                    server_ev = event
-                    break
-            op = server_ev.get_operation().get_targetProvidedOperation()
-            op_args = op.get_arguments()
-            DT_app = list(op_args)[0].get_type()
-            DT_impl = None
-            #找出 arg 對應的 DT_impl
-            for DT_mappingSet_instance in dataType_mappingSets:
-                DT_maps = DT_mappingSet_instance.get_dataTypeMaps()
-                for DT_map in DT_maps:
-                    if((DT_map.get_applicationDataType() == DT_app)):
-                        DT_impl = DT_map.get_implementationDataType()
-                        break
-            if((DT_impl != None) and (DT_impl.get_shortName() not in DT_impl_name_list) and (DT_impl.get_symbolProps().get_symbol() not in DT_impl_symbol_list)):
-                DT_impl_name_list.append(DT_impl.get_shortName())
-                DT_impl_symbol_list.append(DT_impl.get_symbolProps().get_symbol())
+            collect_ImplDT_name_SR(event_of_swc, rable, DT_impl_name_list, DT_impl_symbol_list)
+
     # print(DT_impl_name_list)
     # print(DT_impl_symbol_list)
 

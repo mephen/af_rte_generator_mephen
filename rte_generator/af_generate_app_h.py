@@ -52,7 +52,7 @@ class VFBIfDeclModule():
             return None
 
         return port_prototype, target_data_prototype, target_impldatatype, sw_data_def_prop
-                 
+        
     def define_api_signature(self, supports_multi_inst, runnable, port_api_options):
         attributes = [
             'asynchronousServerCallResultPoints','dataReadAccess','dataReceivePointByArguments','dataReceivePointByValues',
@@ -126,7 +126,7 @@ class VFBIfDeclModule():
                 return return_messages
 
             port_prototype, target_data_prototype , _ , sw_data_def_prop = result
-            # [constr_2020] 
+            # [constr_2020]
             if sw_data_def_prop.get_swImplPolicy() == SwImplPolicyEnum.VALUE_QUEUED:
                 return_messages = [f'[REJECT]: {runnable} violating [constr_2020]',
                                             f'Method __generate_Rte_IRead_and_Rte_IReadRef failed.']
@@ -139,7 +139,7 @@ class VFBIfDeclModule():
                 return_messages = result + [f'Method __generate_Rte_IRead_and_Rte_IReadRef failed.'] 
                 return return_messages
             # [SWS_Rte_04578]
-            # get_return_type 第一個  paramter 表示這次 API Signature 的 <return> 是回傳 reference 
+            # get_return_type 第一個  paramter 表示這次 API Signature 的 <return> 是回傳 reference
             return_type = shared_function.get_return_type(True, target_data_prototype)
             result =__append_implicit_signature(True, return_type, 'receiver', 'Rte_IReadRef',
                                                         re, port_prototype, target_data_prototype, arg_list)
@@ -147,7 +147,7 @@ class VFBIfDeclModule():
                 return_messages = result + [f'Method __generate_Rte_IRead_and_Rte_IReadRef failed.'] 
                 return return_messages
             return True
-            
+        
         def __generate_Rte_IStatus(variable_access,re, arg_list):
             result = self.extract_and_prepare_data(variable_access)
             if isinstance(result,list):
@@ -198,7 +198,7 @@ class VFBIfDeclModule():
                         return_messages = result + [f'Method __generate_Rte_IStatus failed.'] 
                         return return_messages
                     return True
-
+        
         def __generate_Rte_IWrite_and_Rte_IWriteRef(variable_access,re, arg_list):
             result = self.extract_and_prepare_data(variable_access)
             if isinstance(result,list):
@@ -248,7 +248,7 @@ class VFBIfDeclModule():
                 return_messages = result + [f'Method __generate_Rte_IWrite_and_Rte_IWriteRef failed.'] 
                 return return_messages
             return True
-            
+        
         def __generate_Rte_IInvalidate(variable_access, re,arg_list):
             result = self.extract_and_prepare_data(variable_access)
             if isinstance(result,list):
@@ -407,7 +407,7 @@ class VFBIfDeclModule():
                             return_messages = result + [f'Method __generate_Rte_Invalidate failed.'] 
                             return return_messages  
                         return True
-         
+        
         def __generate_Rte_Read_or_Rte_Receive(variable_access, arg_list):
             result = self.extract_and_prepare_data(variable_access)
             if isinstance(result,list):
@@ -473,7 +473,7 @@ class VFBIfDeclModule():
                 return_messages = result + [f'Method __generate_Rte_DRead failed.'] 
                 return return_messages  
             return True
-        
+
         re = runnable.get_shortName()
         self.__srapi_to_write_app_h.append(' ' + '\n' + f'#ifdef RTE_RUNNABLEAPI_{re}') #[SWS_Rte_02751]
         for attr in attributes:
@@ -788,7 +788,7 @@ class VFBIfDeclModule():
             f''
         ]
         self.__entry_point_prototype_to_write_app_h.extend(ready_to_write)
-                                      
+                                    
 class SWCDSModule():
     def __init__(self):
        self.__swc_ds_to_write_app_h = []
@@ -800,7 +800,7 @@ class SWCDSModule():
         self.__swc_ds_to_write_app_h.append(f'typedef struct {structure_synbol} {structure_synbol};')
         self.__swc_ds_to_write_app_h.append(
             (f'//struct {structure_synbol} ' 
-             '{ <component data sections> }; ')
+                '{ <component data sections> }; ')
             )
 
 class AppHdrFileGenerator(SWCDSModule,VFBIfDeclModule):

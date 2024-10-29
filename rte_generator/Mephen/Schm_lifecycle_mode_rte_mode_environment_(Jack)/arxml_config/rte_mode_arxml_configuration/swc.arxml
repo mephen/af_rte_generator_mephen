@@ -1,0 +1,367 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00051.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>swc</SHORT-NAME>
+      <ELEMENTS>
+        <APPLICATION-SW-COMPONENT-TYPE>
+          <SHORT-NAME>App1Swc_ModeManager</SHORT-NAME>
+          <PORTS>
+            <P-PORT-PROTOTYPE>
+              <SHORT-NAME>ModeSwitchInterface_PPort</SHORT-NAME>
+              <PROVIDED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/swc/ModeSwitchInterface/AC_Manager</PROVIDED-INTERFACE-TREF>
+              <PROVIDED-COM-SPECS>
+                <MODE-SWITCH-SENDER-COM-SPEC>
+                  <ENHANCED-MODE-API>false</ENHANCED-MODE-API>
+                  <MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/swc/ModeSwitchInterface/AC_Manager/AC_Manager_MDGroup</MODE-GROUP-REF>
+                  <MODE-SWITCHED-ACK>
+                    <TIMEOUT>10</TIMEOUT>
+                  </MODE-SWITCHED-ACK>
+                  <QUEUE-LENGTH>10</QUEUE-LENGTH>
+                </MODE-SWITCH-SENDER-COM-SPEC>
+              </PROVIDED-COM-SPECS>
+            </P-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR>
+              <SHORT-NAME>IB_AC_Controller</SHORT-NAME>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>RE_AC_ModeSwitch</SHORT-NAME>
+                  <SYMBOL>RE_AC_ModeSwitch</SYMBOL>
+                  <MODE-SWITCH-POINTS>
+                    <MODE-SWITCH-POINT>
+                      <SHORT-NAME>RE_AC_ModeSwitchPoint</SHORT-NAME>
+                      <RETURN-VALUE-PROVISION>NO-RETURN-VALUE-PROVIDED</RETURN-VALUE-PROVISION>
+                      <MODE-GROUP-IREF>
+                        <CONTEXT-P-PORT-REF DEST="P-PORT-PROTOTYPE">/swc/App1Swc_ModeManager/ModeSwitchInterface_PPort</CONTEXT-P-PORT-REF>
+                        <TARGET-MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/swc/ModeSwitchInterface/AC_Manager/AC_Manager_MDGroup</TARGET-MODE-GROUP-REF>
+                      </MODE-GROUP-IREF>
+                    </MODE-SWITCH-POINT>
+                  </MODE-SWITCH-POINTS>
+                </RUNNABLE-ENTITY>
+                <!-- <RUNNABLE-ENTITY>
+                  <SHORT-NAME>RE_AC_ModeSwitchAck</SHORT-NAME>
+                  <SYMBOL>RE_AC_ModeSwitchAck</SYMBOL>
+                  <WAIT-POINTS>
+                    <WAIT-POINT>
+                      <SHORT-NAME>RE_AC_ModeSwitchAck_waitpoint</SHORT-NAME>
+                      <TRIGGER-REF DEST="MODE-SWITCHED-ACK-EVENT">/swc/App1Swc_ModeManager/IB_AC_Controller/EV_AC_ModeSwitchedAck</TRIGGER-REF>
+                    </WAIT-POINT>
+                  </WAIT-POINTS>
+                </RUNNABLE-ENTITY> -->
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>RE_AC_test</SHORT-NAME>
+                  <SYMBOL>RE_AC_test</SYMBOL>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+              <EVENTS>
+                <SWC-MODE-SWITCH-EVENT>
+                  <SHORT-NAME>EV_AC_ModeSwitch</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/swc/App1Swc_ModeManager/IB_AC_Controller/RE_AC_ModeSwitch</START-ON-EVENT-REF>
+                </SWC-MODE-SWITCH-EVENT>
+                <!-- <MODE-SWITCHED-ACK-EVENT>
+                  <SHORT-NAME>EV_AC_ModeSwitchedAck</SHORT-NAME>
+                  <EVENT-SOURCE-REF DEST="MODE-SWITCH-POINT">/swc/App1Swc_ModeManager/IB_AC_Controller/RE_AC_ModeSwitch/RE_AC_ModeSwitchPoint</EVENT-SOURCE-REF>
+                </MODE-SWITCHED-ACK-EVENT> -->
+              </EVENTS>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </APPLICATION-SW-COMPONENT-TYPE>
+        <APPLICATION-SW-COMPONENT-TYPE>
+          <SHORT-NAME>App2Swc_ModeUser</SHORT-NAME>
+          <PORTS>
+            <R-PORT-PROTOTYPE>
+              <SHORT-NAME>ModeSwitchInterface_RPort</SHORT-NAME>
+              <REQUIRED-INTERFACE-TREF DEST="MODE-SWITCH-INTERFACE">/swc/ModeSwitchInterface/AC_Manager</REQUIRED-INTERFACE-TREF>
+              <REQUIRED-COM-SPECS>
+                <MODE-SWITCH-RECEIVER-COM-SPEC>
+                  <ENHANCED-MODE-API>false</ENHANCED-MODE-API>
+                  <MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/swc/ModeSwitchInterface/AC_Manager/AC_Manager_MDGroup</MODE-GROUP-REF>
+                  <SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>false</SUPPORTS-ASYNCHRONOUS-MODE-SWITCH>
+                </MODE-SWITCH-RECEIVER-COM-SPEC>
+              </REQUIRED-COM-SPECS>
+            </R-PORT-PROTOTYPE>
+          </PORTS>
+          <INTERNAL-BEHAVIORS>
+            <SWC-INTERNAL-BEHAVIOR>
+              <SHORT-NAME>IB_AC_Mode_Display</SHORT-NAME>
+              <RUNNABLES>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>RE_Mode0_Entry</SHORT-NAME>
+                  <SYMBOL>RE_Mode0_Entry</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>RE_Mode0_Exit</SHORT-NAME>
+                  <SYMBOL>RE_Mode0_Exit</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>RE_Mode0_Transition</SHORT-NAME>
+                  <SYMBOL>RE_Mode0_Transition</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>RE_Mode1_Entry</SHORT-NAME>
+                  <SYMBOL>RE_Mode1_Entry</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>RE_Mode1_Exit</SHORT-NAME>
+                  <SYMBOL>RE_Mode1_Exit</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>RE_Mode1_Transition</SHORT-NAME>
+                  <SYMBOL>RE_Mode1_Transition</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>RE_Mode2_Entry</SHORT-NAME>
+                  <SYMBOL>RE_Mode2_Entry</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>RE_Mode2_Exit</SHORT-NAME>
+                  <SYMBOL>RE_Mode2_Exit</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>RE_Mode2_Transition</SHORT-NAME>
+                  <SYMBOL>RE_Mode2_Transition</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>RE_0</SHORT-NAME>
+                  <SYMBOL>RE_0</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>RE_1</SHORT-NAME>
+                  <SYMBOL>RE_1</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>RE_2</SHORT-NAME>
+                  <SYMBOL>RE_2</SYMBOL>
+                </RUNNABLE-ENTITY>
+                <RUNNABLE-ENTITY>
+                  <SHORT-NAME>RE_3</SHORT-NAME>
+                  <SYMBOL>RE_3</SYMBOL>
+                  <MODE-ACCESS-POINTS>
+                    <MODE-ACCESS-POINT>
+                      <MODE-GROUP-IREF>
+                        <R-MODE-GROUP-IN-ATOMIC-SWC-INSTANCE-REF>
+                          <CONTEXT-R-PORT-REF DEST="R-PORT-PROTOTYPE">/swc/App2Swc_ModeUser/ModeSwitchInterface_RPort</CONTEXT-R-PORT-REF>
+                          <TARGET-MODE-GROUP-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/swc/ModeSwitchInterface/AC_Manager/AC_Manager_MDGroup</TARGET-MODE-GROUP-REF>
+                        </R-MODE-GROUP-IN-ATOMIC-SWC-INSTANCE-REF>
+                      </MODE-GROUP-IREF>
+                    </MODE-ACCESS-POINT>
+                  </MODE-ACCESS-POINTS>
+                </RUNNABLE-ENTITY>
+              </RUNNABLES>
+              <EVENTS>
+                <SWC-MODE-SWITCH-EVENT>
+                  <SHORT-NAME>EV_0</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/swc/App2Swc_ModeUser/IB_AC_Mode_Display/RE_0</START-ON-EVENT-REF>
+                  <DISABLED-MODE-IREFS>
+                    <DISABLED-MODE-IREF>
+                      <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/swc/AC_MDGroup/AC_MDGroup/INITMODE</TARGET-MODE-DECLARATION-REF>
+                    </DISABLED-MODE-IREF>
+                  </DISABLED-MODE-IREFS>
+                </SWC-MODE-SWITCH-EVENT>
+                <SWC-MODE-SWITCH-EVENT>
+                  <SHORT-NAME>EV_1</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/swc/App2Swc_ModeUser/IB_AC_Mode_Display/RE_1</START-ON-EVENT-REF>
+                  <DISABLED-MODE-IREFS>
+                    <DISABLED-MODE-IREF>
+                      <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/swc/AC_MDGroup/AC_MDGroup/CODE</TARGET-MODE-DECLARATION-REF>
+                    </DISABLED-MODE-IREF>
+                  </DISABLED-MODE-IREFS>
+                </SWC-MODE-SWITCH-EVENT>
+                <SWC-MODE-SWITCH-EVENT>
+                  <SHORT-NAME>EV_2</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/swc/App2Swc_ModeUser/IB_AC_Mode_Display/RE_2</START-ON-EVENT-REF>
+                  <DISABLED-MODE-IREFS>
+                    <DISABLED-MODE-IREF>
+                      <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/swc/AC_MDGroup/AC_MDGroup/HEAT</TARGET-MODE-DECLARATION-REF>
+                    </DISABLED-MODE-IREF>
+                  </DISABLED-MODE-IREFS>
+                </SWC-MODE-SWITCH-EVENT>
+                <SWC-MODE-SWITCH-EVENT>
+                  <SHORT-NAME>EV_3</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/swc/App2Swc_ModeUser/IB_AC_Mode_Display/RE_3</START-ON-EVENT-REF>
+                </SWC-MODE-SWITCH-EVENT>
+                <SWC-MODE-SWITCH-EVENT>
+                  <SHORT-NAME>EV_Mode0_Entry</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/swc/App2Swc_ModeUser/IB_AC_Mode_Display/RE_Mode0_Entry</START-ON-EVENT-REF>
+                  <ACTIVATION>ON-ENTRY</ACTIVATION>
+                  <MODE-IREFS>
+                    <MODE-IREF>
+                      <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/swc/ModeSwitchInterface/AC_Manager/AC_Manager_MDGroup</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                      <CONTEXT-PORT-REF DEST="R-PORT-PROTOTYPE">/swc/App2Swc_ModeUser/ModeSwitchInterface_RPort</CONTEXT-PORT-REF>
+                      <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/swc/AC_MDGroup/AC_MDGroup/INITMODE</TARGET-MODE-DECLARATION-REF>
+                    </MODE-IREF>
+                  </MODE-IREFS>
+                </SWC-MODE-SWITCH-EVENT>
+                <SWC-MODE-SWITCH-EVENT>
+                  <SHORT-NAME>EV_Mode0_Exit</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/swc/App2Swc_ModeUser/IB_AC_Mode_Display/RE_Mode0_Exit</START-ON-EVENT-REF>
+                  <ACTIVATION>ON-EXIT</ACTIVATION>
+                  <MODE-IREFS>
+                    <MODE-IREF>
+                      <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/swc/ModeSwitchInterface/AC_Manager/AC_Manager_MDGroup</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                      <CONTEXT-PORT-REF DEST="R-PORT-PROTOTYPE">/swc/App2Swc_ModeUser/ModeSwitchInterface_RPort</CONTEXT-PORT-REF>
+                      <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/swc/AC_MDGroup/AC_MDGroup/INITMODE</TARGET-MODE-DECLARATION-REF>
+                    </MODE-IREF>
+                  </MODE-IREFS>
+                </SWC-MODE-SWITCH-EVENT>
+                <SWC-MODE-SWITCH-EVENT>
+                  <SHORT-NAME>EV_Mode0_Transition</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/swc/App2Swc_ModeUser/IB_AC_Mode_Display/RE_Mode0_Transition</START-ON-EVENT-REF>
+                  <ACTIVATION>ON-TRANSITION</ACTIVATION>
+                  <MODE-IREFS>
+                    <MODE-IREF>
+                      <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/swc/ModeSwitchInterface/AC_Manager/AC_Manager_MDGroup</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                      <CONTEXT-PORT-REF DEST="R-PORT-PROTOTYPE">/swc/App2Swc_ModeUser/ModeSwitchInterface_RPort</CONTEXT-PORT-REF>
+                      <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/swc/AC_MDGroup/AC_MDGroup/INITMODE</TARGET-MODE-DECLARATION-REF>
+                    </MODE-IREF>
+                  </MODE-IREFS>
+                </SWC-MODE-SWITCH-EVENT>
+                <SWC-MODE-SWITCH-EVENT>
+                  <SHORT-NAME>EV_Mode1_Entry</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/swc/App2Swc_ModeUser/IB_AC_Mode_Display/RE_Mode1_Entry</START-ON-EVENT-REF>
+                  <ACTIVATION>ON-ENTRY</ACTIVATION>
+                  <MODE-IREFS>
+                    <MODE-IREF>
+                      <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/swc/ModeSwitchInterface/AC_Manager/AC_Manager_MDGroup</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                      <CONTEXT-PORT-REF DEST="R-PORT-PROTOTYPE">/swc/App2Swc_ModeUser/ModeSwitchInterface_RPort</CONTEXT-PORT-REF>
+                      <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/swc/AC_MDGroup/AC_MDGroup/CODE</TARGET-MODE-DECLARATION-REF>
+                    </MODE-IREF>
+                  </MODE-IREFS>
+                </SWC-MODE-SWITCH-EVENT>
+                <SWC-MODE-SWITCH-EVENT>
+                  <SHORT-NAME>EV_Mode1_Exit</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/swc/App2Swc_ModeUser/IB_AC_Mode_Display/RE_Mode1_Exit</START-ON-EVENT-REF>
+                  <ACTIVATION>ON-EXIT</ACTIVATION>
+                  <MODE-IREFS>
+                    <MODE-IREF>
+                      <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/swc/ModeSwitchInterface/AC_Manager/AC_Manager_MDGroup</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                      <CONTEXT-PORT-REF DEST="R-PORT-PROTOTYPE">/swc/App2Swc_ModeUser/ModeSwitchInterface_RPort</CONTEXT-PORT-REF>
+                      <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/swc/AC_MDGroup/AC_MDGroup/CODE</TARGET-MODE-DECLARATION-REF>
+                    </MODE-IREF>
+                  </MODE-IREFS>
+                </SWC-MODE-SWITCH-EVENT>
+                <SWC-MODE-SWITCH-EVENT>
+                  <SHORT-NAME>EV_Mode1_Transition</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/swc/App2Swc_ModeUser/IB_AC_Mode_Display/RE_Mode1_Transition</START-ON-EVENT-REF>
+                  <ACTIVATION>ON-TRANSITION</ACTIVATION>
+                  <MODE-IREFS>
+                    <MODE-IREF>
+                      <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/swc/ModeSwitchInterface/AC_Manager/AC_Manager_MDGroup</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                      <CONTEXT-PORT-REF DEST="R-PORT-PROTOTYPE">/swc/App2Swc_ModeUser/ModeSwitchInterface_RPort</CONTEXT-PORT-REF>
+                      <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/swc/AC_MDGroup/AC_MDGroup/CODE</TARGET-MODE-DECLARATION-REF>
+                    </MODE-IREF>
+                  </MODE-IREFS>
+                </SWC-MODE-SWITCH-EVENT>
+                <SWC-MODE-SWITCH-EVENT>
+                  <SHORT-NAME>EV_Mode2_Entry</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/swc/App2Swc_ModeUser/IB_AC_Mode_Display/RE_Mode2_Entry</START-ON-EVENT-REF>
+                  <ACTIVATION>ON-ENTRY</ACTIVATION>
+                  <MODE-IREFS>
+                    <MODE-IREF>
+                      <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/swc/ModeSwitchInterface/AC_Manager/AC_Manager_MDGroup</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                      <CONTEXT-PORT-REF DEST="R-PORT-PROTOTYPE">/swc/App2Swc_ModeUser/ModeSwitchInterface_RPort</CONTEXT-PORT-REF>
+                      <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/swc/AC_MDGroup/AC_MDGroup/HEAT</TARGET-MODE-DECLARATION-REF>
+                    </MODE-IREF>
+                  </MODE-IREFS>
+                </SWC-MODE-SWITCH-EVENT>
+                <SWC-MODE-SWITCH-EVENT>
+                  <SHORT-NAME>EV_Mode2_Exit</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/swc/App2Swc_ModeUser/IB_AC_Mode_Display/RE_Mode2_Exit</START-ON-EVENT-REF>
+                  <ACTIVATION>ON-EXIT</ACTIVATION>
+                  <MODE-IREFS>
+                    <MODE-IREF>
+                      <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/swc/ModeSwitchInterface/AC_Manager/AC_Manager_MDGroup</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                      <CONTEXT-PORT-REF DEST="R-PORT-PROTOTYPE">/swc/App2Swc_ModeUser/ModeSwitchInterface_RPort</CONTEXT-PORT-REF>
+                      <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/swc/AC_MDGroup/AC_MDGroup/HEAT</TARGET-MODE-DECLARATION-REF>
+                    </MODE-IREF>
+                  </MODE-IREFS>
+                </SWC-MODE-SWITCH-EVENT>
+                <SWC-MODE-SWITCH-EVENT>
+                  <SHORT-NAME>EV_Mode2_Transition</SHORT-NAME>
+                  <START-ON-EVENT-REF DEST="RUNNABLE-ENTITY">/swc/App2Swc_ModeUser/IB_AC_Mode_Display/RE_Mode2_Transition</START-ON-EVENT-REF>
+                  <ACTIVATION>ON-TRANSITION</ACTIVATION>
+                  <MODE-IREFS>
+                    <MODE-IREF>
+                      <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/swc/ModeSwitchInterface/AC_Manager/AC_Manager_MDGroup</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                      <CONTEXT-PORT-REF DEST="R-PORT-PROTOTYPE">/swc/App2Swc_ModeUser/ModeSwitchInterface_RPort</CONTEXT-PORT-REF>
+                      <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/swc/AC_MDGroup/AC_MDGroup/HEAT</TARGET-MODE-DECLARATION-REF>
+                    </MODE-IREF>
+                  </MODE-IREFS>
+                </SWC-MODE-SWITCH-EVENT>
+              </EVENTS>
+            </SWC-INTERNAL-BEHAVIOR>
+          </INTERNAL-BEHAVIORS>
+        </APPLICATION-SW-COMPONENT-TYPE>
+        <COMPOSITION-SW-COMPONENT-TYPE>
+          <SHORT-NAME>CompositionSwc</SHORT-NAME>
+          <COMPONENTS>
+            <SW-COMPONENT-PROTOTYPE>
+              <SHORT-NAME>Component_ModeManager</SHORT-NAME>
+              <TYPE-TREF DEST="APPLICATION-SW-COMPONENT-TYPE">/swc/App1Swc_ModeManager</TYPE-TREF>
+            </SW-COMPONENT-PROTOTYPE>
+            <SW-COMPONENT-PROTOTYPE>
+              <SHORT-NAME>Component_ModeUser</SHORT-NAME>
+              <TYPE-TREF DEST="APPLICATION-SW-COMPONENT-TYPE">/swc/App2Swc_ModeUser</TYPE-TREF>
+            </SW-COMPONENT-PROTOTYPE>
+          </COMPONENTS>
+          <CONNECTORS>
+            <ASSEMBLY-SW-CONNECTOR>
+              <SHORT-NAME>Connector</SHORT-NAME>
+              <PROVIDER-IREF>
+                <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/swc/CompositionSwc/Component_ModeManager</CONTEXT-COMPONENT-REF>
+                <TARGET-P-PORT-REF DEST="P-PORT-PROTOTYPE">/swc/App1Swc_ModeManager/ModeSwitchInterface_PPort</TARGET-P-PORT-REF>
+              </PROVIDER-IREF>
+              <REQUESTER-IREF>
+                <CONTEXT-COMPONENT-REF DEST="SW-COMPONENT-PROTOTYPE">/swc/CompositionSwc/Component_ModeUser</CONTEXT-COMPONENT-REF>
+                <TARGET-R-PORT-REF DEST="R-PORT-PROTOTYPE">/swc/App2Swc_ModeUser/ModeSwitchInterface_RPort</TARGET-R-PORT-REF>
+              </REQUESTER-IREF>
+            </ASSEMBLY-SW-CONNECTOR>
+          </CONNECTORS>
+        </COMPOSITION-SW-COMPONENT-TYPE>
+      </ELEMENTS>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>AC_MDGroup</SHORT-NAME>
+          <ELEMENTS>
+            <MODE-DECLARATION-GROUP>
+              <SHORT-NAME>AC_MDGroup</SHORT-NAME>
+              <CATEGORY>ALPHABETIC_ORDER</CATEGORY>
+              <MODE-DECLARATIONS>
+                <MODE-DECLARATION>
+                  <SHORT-NAME>INITMODE</SHORT-NAME>
+                </MODE-DECLARATION>
+                <MODE-DECLARATION>
+                  <SHORT-NAME>CODE</SHORT-NAME>
+                </MODE-DECLARATION>
+                <MODE-DECLARATION>
+                  <SHORT-NAME>HEAT</SHORT-NAME>
+                </MODE-DECLARATION>
+              </MODE-DECLARATIONS>
+              <INITIAL-MODE-REF DEST="MODE-DECLARATION">/swc/AC_MDGroup/AC_MDGroup/INITMODE</INITIAL-MODE-REF>
+              <MODE-MANAGER-ERROR-BEHAVIOR>
+                <ERROR-REACTION-POLICY>DEFAULT-MODE</ERROR-REACTION-POLICY>
+              </MODE-MANAGER-ERROR-BEHAVIOR>
+              <MODE-USER-ERROR-BEHAVIOR>
+                <ERROR-REACTION-POLICY>DEFAULT-MODE</ERROR-REACTION-POLICY>
+              </MODE-USER-ERROR-BEHAVIOR>
+            </MODE-DECLARATION-GROUP>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>ModeSwitchInterface</SHORT-NAME>
+          <ELEMENTS>
+            <MODE-SWITCH-INTERFACE>
+              <SHORT-NAME>AC_Manager</SHORT-NAME>
+              <MODE-GROUP>
+                <SHORT-NAME>AC_Manager_MDGroup</SHORT-NAME>
+                <TYPE-TREF DEST="MODE-DECLARATION-GROUP">/swc/AC_MDGroup/AC_MDGroup</TYPE-TREF>
+              </MODE-GROUP>
+            </MODE-SWITCH-INTERFACE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

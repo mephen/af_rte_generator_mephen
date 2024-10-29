@@ -5,7 +5,7 @@
 #include "SWC_Server_2/Rte_SWC_Server_2.h"
 
 //task T01
-RteEvent InitEvent_1 = {(uint16)InitEvent+0x1, Client_1}; 
+RteEvent InitEvent_1 = {(uint16)InitEvent+0x1, Client_1}; //assume the event is already triggered by Rte LifeCycle api
 RteEvent InitEvent_2 = {(uint16)InitEvent+0x1, Client_2}; 
 RteEvent InitEvent_3 = {(uint16)InitEvent+0x1, Client_3}; 
 RteEvent* rte_event_t01[3] = {

@@ -23,7 +23,7 @@
 #include "resource.h"
 #include "memsection.h"
 #include "trustedFunc_Cfg.h"
-#include "Controller/Rte_Controller.h"
+#include "Controller/Rte_Controller.h" 
 #include "Observation/Rte_Observation.h"
 extern int PrintText(char *TextArray);
 extern int PrintText_R35(char *TextArray);
@@ -210,6 +210,6 @@ TASK(T03)
     for(uint32 i=0; i<10000 ; i++){
         temp++;
     }
-
+    
     TerminateTask();
 }

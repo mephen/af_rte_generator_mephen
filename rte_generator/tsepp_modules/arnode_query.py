@@ -26,7 +26,7 @@ def convert_to_dict(target):
 def find_arnode(arpackages_list, target):
     # 建立一個空的字典來存儲節點
     target_dict = {}
-    
+    issubclass(RTEEvent, RTEEvent)
     def get_method_str(target):
         if issubclass(target, RTEEvent):
             return 'get_events'

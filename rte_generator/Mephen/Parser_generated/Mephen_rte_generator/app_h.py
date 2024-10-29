@@ -1,3 +1,4 @@
+#將 parser 做模組化，每種 RTE API 都有對應的 generator function，方便日後整合。
 #合併專案時，放到 af_generate_app_h.py 中。
 import pdb
 import platform
@@ -11,10 +12,27 @@ from autosarfactory.autosarfactory import DataTypeMappingSet\
     , SwComponentType, ApplicationSwComponentType, EcucModuleConfigurationValues,EcucModuleDef\
     , DataReceivedEvent, AssemblySwConnector, SystemMapping, SynchronousServerCallPoint, AsynchronousServerCallPoint\
     , OperationInvokedEvent, AsynchronousServerCallReturnsEvent, ARPackage, ARElement\
-    , ApplicationPrimitiveDataType, ImplementationDataType, DataTypeMappingSet
+    , ApplicationPrimitiveDataType, ImplementationDataType, DataTypeMappingSet\
+    , BackgroundEvent, TimingEvent, InitEvent, SwcModeSwitchEvent, OperationInvokedEvent, AsynchronousServerCallReturnsEvent 
+
+class eventToTaskMapping_Item:
+    def __init__(self, attr1, attr2, attr3, attr4):
+        self.task_name = attr1
+        self.alarm_name = attr2
+        self.initContainer_name = attr3
+        self.position_in_task = attr4
+
+class event_order_Item:
+    def __init__(self, attr1, attr2, attr3):
+        self.event_path = attr1
+        self.task_name = attr2
+        self.position_in_task = attr3
 
 def print_object(obj):
-    print(f'{os.path.basename(obj.get_path())}')
+    if(type(obj) == type(None)):
+        print('None')
+    else:
+        print(f'{os.path.basename(obj.get_path())}')
 
 def print_test(container):
     #ele of container: autoarfactory object
@@ -27,8 +45,10 @@ def print_test(container):
             print(os.path.basename(str))
     print('')
 
-def find_used_app_and_task(used_app, used_task):
+def find_taskToAppMapping_eventToTaskMapping(used_app, task_to_app_mapping, event_to_task_mapping):
     for container in Os0.get_containers():
+        if(type(container.get_definition()) == type(None)):
+            continue
         if(os.path.basename(container.get_definition()) == 'OsTask'):
             refs = container.get_referenceValues()
             for ref in refs:
@@ -37,21 +57,46 @@ def find_used_app_and_task(used_app, used_task):
                     app_ref = ref.get_value()
                     osTask_appRef_dict.update({f'{task_name}' : app_ref})
     
+    task_to_app_mapping.update({'T01': 'App1'}) #RTE Task(專門處理 Timing event)
+    
+    print('----------------- eventToTaskMapping:-----------------')
     for ev_map in RteEventToTaskMapping_keys:
         refs = ev_map.get_referenceValues()
-        ev_ref = None
-        task_ref = None
+        task_name = None
+        ev_name = None
+        alarm_name = None
+        initContainer_name = None
+        position_in_task = None
+
         for ref in refs:
             if(os.path.basename(ref.get_definition()) == 'RteEventRef'):
                 ev_ref = ref.get_value()
+                ev_name = os.path.basename(ev_ref.get_path())
             if(os.path.basename(ref.get_definition()) == 'RteMappedToTaskRef'):
                 task_ref = ref.get_value()
-                if task_ref not in used_task.keys():
+                task_name = task_ref.get_shortName()
+                if task_ref not in task_to_app_mapping.keys():
                     # print(osTask_appRef_dict[task_ref.get_shortName()])
                     app = osTask_appRef_dict[task_ref.get_shortName()].get_shortName()
                     if app not in used_app:
                         used_app.append(app)
-                    used_task.update({task_ref.get_shortName(): osTask_appRef_dict[task_ref.get_shortName()].get_shortName()})
+                    task_to_app_mapping.update({task_ref.get_shortName(): osTask_appRef_dict[task_ref.get_shortName()].get_shortName()})
+            if(os.path.basename(ref.get_definition()) == 'RteUsedOsAlarmRef'):
+                alarm_ref = ref.get_value()
+                alarm_name = os.path.basename(alarm_ref.get_path())
+                # print(alarm_name)
+            if(os.path.basename(ref.get_definition()) == 'RteUsedInitFnc'):
+                initContainer_name = os.path.basename(ref.get_value().get_path())
+                # print(initContainer_name)
+        
+        paras = ev_map.get_parameterValues()
+        for para in paras:
+            if(os.path.basename(para.get_definition()) == 'RtePositionInTask'):
+                position_in_task = para.get_value().get()
+        
+        event_to_task_mapping.update({ev_name: eventToTaskMapping_Item(task_name, alarm_name, initContainer_name, position_in_task)})
+        print(ev_name, ",", event_to_task_mapping[ev_name].task_name, ",", event_to_task_mapping[ev_name].alarm_name, ",", event_to_task_mapping[ev_name].initContainer_name, ",", event_to_task_mapping[ev_name].position_in_task)
+    print('------------------------------------------------------')
 
 def set_AsyncSerCallRetEv_startOnEvent(rable, event):
     event_name = os.path.basename(event.get_path())
@@ -68,7 +113,10 @@ def set_client_server_component_list(arpackages_list, Rte, Os0, client_server_co
     osTask_appRef_dict = {} #osTask 被 map 到哪個 app
     app_ecucRef_dict = {} #app 被 map 到哪個 ecuc
     swc_instance_keys = [] #swc 在 os 上的 instances
+    # print(Os0.get_containers())
     for container in Os0.get_containers():
+        if(type(container.get_definition()) == type(None)):
+            continue
         if(os.path.basename(container.get_definition()) == 'OsTask'):
             refs = container.get_referenceValues()
             for ref in refs:
@@ -92,6 +140,7 @@ def set_client_server_component_list(arpackages_list, Rte, Os0, client_server_co
     # print(osTask_appRef_dict)
 
     for container in Rte.get_containers():
+        # print(container)
         if(os.path.basename(container.get_definition()) == 'RteSwComponentInstance'):
             swc_instance_keys.append(container)
 
@@ -106,12 +155,13 @@ def set_client_server_component_list(arpackages_list, Rte, Os0, client_server_co
     client_response_runnable_list = []
     server_runnable_list = []
 
-    # 不知道為什麼 AsynchronousServerCallReturnsEvent 抓不到 startOnEvent，只好在 parser 這邊設定。
+    # 不知道為什麼 AsynchronousServerCallReturnsEvent 抓不到 startOnEvent，只好在 parser 設定 startOnEvent。
     for ev in ev_dict:
         for rable in rable_dict:
             set_finished = set_AsyncSerCallRetEv_startOnEvent(rable_dict[rable], ev_dict[ev])
             if(set_finished): break
-        # if(type(ev_dict[ev])== AsynchronousServerCallReturnsEvent): print_object(ev_dict[ev].get_startOnEvent())
+        # if(type(ev_dict[ev])== AsynchronousServerCallReturnsEvent): 
+        #     print_object(ev_dict[ev].get_startOnEvent())
 
     # 準備 CR, CRR, SR 的 list
     for rable in rable_dict:
@@ -258,74 +308,207 @@ def check_server(event_of_swc, rable):
         if((type(event) == OperationInvokedEvent) and (event.get_startOnEvent() == rable)):
             return True
 
-def gen_externData_and_runnable(scp_keys, async_scrp_keys, rable, write_content, event_of_swc, swc, rables_of_swc, client_server_component_list, first_dict):
+#client runnable
+def gen_externData_CR(scp_keys, rable_name, write_content, first_dict):
+    sync_rte_call = False
+    for scp in scp_keys:
+        if(type(scp) == SynchronousServerCallPoint): sync_rte_call = True
+        break
+    if(sync_rte_call == True): #in sync_rte_call case, client runnable needs response ringbuffer
+        write_content.extend([
+            '',
+            f'extern RingBuffer RB_response_{rable_name};',
+            f'extern int request_number_{rable_name};',
+        ])
+        if(first_dict['CR']):
+            write_content[-2] += '//if client use sync_rte_call to get the response, each client runnable has its own response ringbuffer.'
+
+#client response runnable
+def gen_externData_CRR(rable, rables_of_swc, swc_name, rable_name, write_content, first_dict):
+    for component in client_server_component_list: #client runnable 和 client response runnable 在不同 swc 的情況
+        if(component['CRR'] == rable):
+            if component['CR'] not in rables_of_swc:
+                write_content.extend([
+                    f'#include "Rte_{swc_name}.h"', 
+                ])
+    write_content.extend([
+        '',
+        f'extern RingBuffer RB_response_{rable_name};',
+    ])
+    if(first_dict['CRR']):
+        write_content[-1] += '//if client use Rte_result to get the response, each client response runnable has its own response ringbuffer.'
+
+#server runnable
+def gen_externData_SR(rable_name, write_content, first_dict):
+    write_content.extend([
+        '',
+        f'extern RingBuffer RB_request_{rable_name};',
+    ])
+    if(first_dict['SR']):
+        write_content[-1] += '//each server runnable has its own request buffer.'
+        first_dict['SR'] = False
+
+def gen_externData_and_runnable(rable, write_content, event_of_swc, swc, rables_of_swc, first_dict):
     swc_name = os.path.basename(swc.get_path())
     rable_name = os.path.basename(rable.get_path())
-    # print_object(rable)
-    # print_test(scp_keys)
-    #判斷是 client / client_response / server runnable
+    scp_keys = rable.get_serverCallPoints()
+    async_scrp_keys = rable.get_asynchronousServerCallResultPoints()
+    
+    #檢查 externData 是否需要宣告
     if(len(scp_keys) > 0): #client runnable
-        sync_rte_call = False
-        for scp in scp_keys:
-            if(type(scp) == SynchronousServerCallPoint): sync_rte_call = True
-            break
-        if(sync_rte_call == True): #in sync_rte_call case, client runnable needs response ringbuffer
-            write_content.extend([
-                '',
-                f'extern RingBuffer RB_response_{rable_name};',
-            ])
-            if(first_dict['CR']):
-                write_content[-1] += '//if client use sync_rte_call to get the response, each client runnable has its own response ringbuffer.'
+        gen_externData_CR(scp_keys, rable_name, write_content, first_dict)
+    if(len(async_scrp_keys) > 0): #client response runnable
+        gen_externData_CRR(rable, rables_of_swc, swc_name, rable_name, write_content, first_dict)
+    if(check_server(event_of_swc, rable)): #server runnable
+        gen_externData_SR(rable_name, write_content, first_dict)
+
+    #宣告 runnable
+    if(client_server_component_list == []):
         write_content.extend([
-            f'extern int request_number_{rable_name};',
+            '',
+            f'FUNC(void, AUTOMATIC) {rable_name}();',
+            f'#define RTE_RUNNABLE_{rable_name} {rable_name}',
+            '',
+        ])
+    else: #test for C/S interface
+        write_content.extend([
+            '',
             f'FUNC(Impl_uint16, AUTOMATIC) {rable_name}();',
             f'#define RTE_RUNNABLE_{rable_name} {rable_name}',
             '',
         ])
+
+
+    #註解
+    if(len(scp_keys) > 0): #client runnable
         if(first_dict['CR']): 
             write_content[-4] += '//shared by 1 specific client response runnable'
             write_content[-3] += '//[SWS_Rte_07194] \'Impl_uint16\' only for test case, return value will be \'void\' in real case'
             write_content[-2] += '//[SWS_Rte_06713]'
-        first_dict['CR'] = False
-
+            first_dict['CR'] = False
     if(len(async_scrp_keys) > 0): #client response runnable
-        for component in client_server_component_list: #client runnable 和 client response runnable 在不同 swc 的情況
-            if(component['CRR'] == rable):
-                if component['CR'] not in rables_of_swc:
-                    write_content.extend([
-                        f'#include "Rte_{swc_name}.h"', 
-                    ])
-        write_content.extend([
-            '',
-            f'extern RingBuffer RB_response_{rable_name};',
-        ])
-        if(first_dict['CRR']):
-            write_content[-1] += '//if client use Rte_result to get the response, each client response runnable has its own response ringbuffer.'
-            write_content.extend([
-                '//Runnable declaration shouldn\'t be put btw #ifdef~#endif, otherise, os application can\'t access it.',
-            ])
-        write_content.extend([
-            f'FUNC(Impl_uint16, AUTOMATIC) {rable_name}();',
-            f'#define RTE_RUNNABLE_{rable_name} {rable_name}',
-            '',
-        ])
         if(first_dict['CRR']):
             write_content[-3] += '//Impl_uint16 of return value is for testing'
-        first_dict['CRR'] = False
-    
-    if(check_server(event_of_swc, rable)): #server runnable
-        write_content.extend([
-            '',
-            f'extern RingBuffer RB_request_{rable_name};',
-        ])
-        if(first_dict['SR']):
-            write_content[-1] += '//each server runnable has its own request buffer.'
-        write_content.extend([
-            f'FUNC(Impl_uint16, AUTOMATIC) {rable_name}();',
-            f'#define RTE_RUNNABLE_{rable_name} {rable_name}',
-            '',
-        ])
-        first_dict['SR'] = False
+            first_dict['CRR'] = False
+
+def gen_Rte_Call(rable, write_content, scp_keys, rable_name):
+    #CR 需要判斷 comm. type
+    for component in client_server_component_list:
+        # print(rable)
+        # print(component['CR'])
+        # print('\n')
+        if(component['CR'] == rable):
+            write_content.extend([
+                f"/*{component['comm-type']}*/",
+            ])
+            break
+    #宣告 Rte_Call
+    for scp in scp_keys:
+        r_port = scp.get_operation().get_contextRPort()
+        r_port_name = os.path.basename(r_port.get_path())
+        op = scp.get_operation().get_targetRequiredOperation()
+        op_name = op.get_shortName().split('_')[0]
+        # print(op_name)
+        # print(op.get_shortName())
+        op_args = scp.get_operation().get_targetRequiredOperation().get_arguments()
+        DT_app = list(op_args)[0].get_type()
+        # print_test(op_args)
+        DT_impl = None
+        DT_impl_name = None
+        #找出 arg 對應的 DT_impl
+        for DT_mappingSet_instance in dataType_mappingSets:
+            # print(DT_mappingSet_instance)
+            # print(type(DT_mappingSet_instance))
+            DT_maps = DT_mappingSet_instance.get_dataTypeMaps()
+            for DT_map in DT_maps:
+                # print(list(op_args)[0].get_type())
+                if((DT_map.get_applicationDataType() == DT_app)):
+                    DT_impl = DT_map.get_implementationDataType()
+                    DT_impl_name = os.path.basename(DT_impl.get_path())
+                    break
+                    # print(DT_impl)
+                    # print('\n')
+
+        #判斷 comm_type
+        comm_type = None
+        for component in client_server_component_list:
+            if(component['CR'] == rable):
+                if(component['comm-type'] == intra_partition):
+                    comm_type = 'Rte'
+                elif(component['comm-type'] == inter_partition):
+                    comm_type = 'Ioc'
+                elif(component['comm-type'] == inter_ECU):
+                    comm_type = 'Com'
+                break
+
+        if(type(scp) == SynchronousServerCallPoint):
+            write_content.extend([
+                f'Std_ReturnType Rte_Call_{r_port_name}_Sync{comm_type}{op_name}_{rable_name}({DT_impl_name}, {DT_impl_name}, {DT_impl_name}*);',
+            ])
+        else:
+            write_content.extend([
+                f'Std_ReturnType Rte_Call_{r_port_name}_AsyncRte{comm_type}{op_name}_{rable_name}({DT_impl_name}, {DT_impl_name});',
+            ])
+
+def gen_Rte_Result(async_scrp_keys, rable, write_content, rable_name):
+    #宣告 Rte_Result
+    for async_scrp in async_scrp_keys:
+        r_port = async_scrp.get_asynchronousServerCallPoint().get_operation().get_contextRPort()
+        r_port_name = os.path.basename(r_port.get_path())
+        # print(r_port)
+        op_args = async_scrp.get_asynchronousServerCallPoint().get_operation().get_targetRequiredOperation().get_arguments()
+        DT_app = list(op_args)[0].get_type()
+        # print_test(op_args)
+        DT_impl = None
+        DT_impl_name = None
+        #找出 arg 對應的 DT_impl
+        for DT_mappingSet_instance in dataType_mappingSets:
+            DT_maps = DT_mappingSet_instance.get_dataTypeMaps()
+            for DT_map in DT_maps:
+                if((DT_map.get_applicationDataType() == DT_app)):
+                    DT_impl = DT_map.get_implementationDataType()
+                    DT_impl_name = os.path.basename(DT_impl.get_path())
+                    break
+
+        WPs = rable.get_waitPoints()
+        nonblock_flag = True
+        for wp in WPs:
+            if(type(wp.get_trigger()) == AsynchronousServerCallReturnsEvent):
+                write_content.extend([
+                    f'Std_ReturnType Rte_Result_{r_port_name}_Blocking_{rable_name}({DT_impl_name}*);',
+                ])
+                nonblock_flag = False
+                break
+        # print(nonblock_flag)
+        if(nonblock_flag):
+            write_content.extend([
+                f'Std_ReturnType Rte_Result_{r_port_name}_NonBlocking_{rable_name}({DT_impl_name}*);',
+            ])
+
+def gen_Server_Opt(event_of_swc, write_content, rable, rable_name):
+    server_ev = None
+    for event in event_of_swc:
+        if((type(event) == OperationInvokedEvent) and (event.get_startOnEvent() == rable)):
+            server_ev = event
+            break
+    op = server_ev.get_operation().get_targetProvidedOperation()
+    op_name = os.path.basename(op.get_path())
+    op_args = op.get_arguments()
+    DT_app = list(op_args)[0].get_type()
+    DT_impl = None
+    DT_impl_name = None
+    #找出 arg 對應的 DT_impl
+    for DT_mappingSet_instance in dataType_mappingSets:
+        DT_maps = DT_mappingSet_instance.get_dataTypeMaps()
+        for DT_map in DT_maps:
+            if((DT_map.get_applicationDataType() == DT_app)):
+                DT_impl = DT_map.get_implementationDataType()
+                DT_impl_name = os.path.basename(DT_impl.get_path())
+                break
+    #宣告 server operation
+    write_content.extend([
+        f'{DT_impl_name} {op_name}_{rable_name}();',
+    ])
 
 def gen_runnable_specific_RTEapi(scp_keys, async_scrp_keys, rable, write_content, event_of_swc, swc, rables_of_swc, client_server_component_list, dataType_mappingSets):
     swc_name = os.path.basename(swc.get_path())
@@ -339,123 +522,12 @@ def gen_runnable_specific_RTEapi(scp_keys, async_scrp_keys, rable, write_content
 
     #判斷是 client / client_response / server runnable
     if(len(scp_keys) > 0): #client runnable
-        #CR 需要判斷 comm. type
-        for component in client_server_component_list:
-            # print(rable)
-            # print(component['CR'])
-            # print('\n')
-            if(component['CR'] == rable):
-                write_content.extend([
-                    f"/*{component['comm-type']}*/",
-                ])
-                break
-        #宣告 Rte_Call
-        for scp in scp_keys:
-            r_port = scp.get_operation().get_contextRPort()
-            r_port_name = os.path.basename(r_port.get_path())
-            op = scp.get_operation().get_targetRequiredOperation()
-            op_name = op.get_shortName().split('_')[0]
-            # print(op_name)
-            # print(op.get_shortName())
-            op_args = scp.get_operation().get_targetRequiredOperation().get_arguments()
-            DT_app = list(op_args)[0].get_type()
-            # print_test(op_args)
-            DT_impl = None
-            DT_impl_name = None
-            #找出 arg 對應的 DT_impl
-            for DT_mappingSet_instance in dataType_mappingSets:
-                # print(DT_mappingSet_instance)
-                # print(type(DT_mappingSet_instance))
-                DT_maps = DT_mappingSet_instance.get_dataTypeMaps()
-                for DT_map in DT_maps:
-                    # print(list(op_args)[0].get_type())
-                    if((DT_map.get_applicationDataType() == DT_app)):
-                        DT_impl = DT_map.get_implementationDataType()
-                        DT_impl_name = os.path.basename(DT_impl.get_path())
-                        break
-                        # print(DT_impl)
-                        # print('\n')
-
-            #判斷 comm_type
-            comm_type = None
-            for component in client_server_component_list:
-                if(component['CR'] == rable):
-                    if(component['comm-type'] == intra_partition):
-                        comm_type = 'Rte'
-                    elif(component['comm-type'] == inter_partition):
-                        comm_type = 'Ioc'
-                    elif(component['comm-type'] == inter_ECU):
-                        comm_type = 'Com'
-                    break
-
-            if(type(scp) == SynchronousServerCallPoint):
-                write_content.extend([
-                    f'Std_ReturnType Rte_Call_{r_port_name}_Sync{comm_type}{op_name}_{rable_name}({DT_impl_name}, {DT_impl_name}, {DT_impl_name}*);',
-                ])
-            else:
-                write_content.extend([
-                    f'Std_ReturnType Rte_Call_{r_port_name}_AsyncRte{comm_type}{op_name}_{rable_name}({DT_impl_name}, {DT_impl_name});',
-                ])
-
+        gen_Rte_Call(rable, write_content, scp_keys, rable_name)
     if(len(async_scrp_keys) > 0): #client response runnable
-        #宣告 Rte_Result
-        for async_scrp in async_scrp_keys:
-            r_port = async_scrp.get_asynchronousServerCallPoint().get_operation().get_contextRPort()
-            r_port_name = os.path.basename(r_port.get_path())
-            # print(r_port)
-            op_args = async_scrp.get_asynchronousServerCallPoint().get_operation().get_targetRequiredOperation().get_arguments()
-            DT_app = list(op_args)[0].get_type()
-            # print_test(op_args)
-            DT_impl = None
-            DT_impl_name = None
-            #找出 arg 對應的 DT_impl
-            for DT_mappingSet_instance in dataType_mappingSets:
-                DT_maps = DT_mappingSet_instance.get_dataTypeMaps()
-                for DT_map in DT_maps:
-                    if((DT_map.get_applicationDataType() == DT_app)):
-                        DT_impl = DT_map.get_implementationDataType()
-                        DT_impl_name = os.path.basename(DT_impl.get_path())
-                        break
-
-            WPs = rable.get_waitPoints()
-            nonblock_flag = True
-            for wp in WPs:
-                if(type(wp.get_trigger()) == AsynchronousServerCallReturnsEvent):
-                    write_content.extend([
-                        f'Std_ReturnType Rte_Result_{r_port_name}_Blocking_{rable_name}({DT_impl_name}*);',
-                    ])
-                    nonblock_flag = False
-                    break
-            # print(nonblock_flag)
-            if(nonblock_flag):
-                write_content.extend([
-                    f'Std_ReturnType Rte_Result_{r_port_name}_NonBlocking_{rable_name}({DT_impl_name}*);',
-                ])
-
+        gen_Rte_Result(async_scrp_keys, rable, write_content, rable_name)
     if(check_server(event_of_swc, rable)): #server runnable
-        server_ev = None
-        for event in event_of_swc:
-            if((type(event) == OperationInvokedEvent) and (event.get_startOnEvent() == rable)):
-                server_ev = event
-                break
-        op = server_ev.get_operation().get_targetProvidedOperation()
-        op_name = os.path.basename(op.get_path())
-        op_args = op.get_arguments()
-        DT_app = list(op_args)[0].get_type()
-        DT_impl = None
-        DT_impl_name = None
-        #找出 arg 對應的 DT_impl
-        for DT_mappingSet_instance in dataType_mappingSets:
-            DT_maps = DT_mappingSet_instance.get_dataTypeMaps()
-            for DT_map in DT_maps:
-                if((DT_map.get_applicationDataType() == DT_app)):
-                    DT_impl = DT_map.get_implementationDataType()
-                    DT_impl_name = os.path.basename(DT_impl.get_path())
-                    break
-        #宣告 server operation
-        write_content.extend([
-            f'{DT_impl_name} {op_name}_{rable_name}();',
-        ])
+        gen_Server_Opt(event_of_swc, write_content, rable, rable_name)
+    
 
     #存取權保護
     write_content.extend([
@@ -498,18 +570,21 @@ def gen_app_h(swc, client_server_component_list, dataType_mappingSets):
         '#endif /* __cplusplus */',
         '',
         f'#include "Rte_{swc_name}_Type.h"',
-        '#include "../Rte_Cs_Data_Management.h"',
     ])
+    if client_server_component_list != []:
+        write_content.extend([
+            '#include "../Rte_Cs_Data_Management.h"',
+        ])
     
     first_dict = {'CR': True, 'CRR': True, 'SR': True}
     for rable in rables_of_swc:
         # print(len(rables_of_swc))
-        scp_keys = rable.get_serverCallPoints()
-        async_scrp_keys = rable.get_asynchronousServerCallResultPoints()
-        gen_externData_and_runnable(scp_keys, async_scrp_keys, rable, write_content, event_of_swc, swc, rables_of_swc, client_server_component_list, first_dict)
+        gen_externData_and_runnable(rable, write_content, event_of_swc, swc, rables_of_swc, first_dict)
     
     write_content.extend([
+        '',
         '/********************************************/',
+        '//Runnable declaration shouldn\'t be put btw #ifdef~#endif, otherise, os application can\'t access it.',
         f'//make sure only specific runnable.c can invoke these functions.',
     ])
 
@@ -533,6 +608,9 @@ def gen_app_h(swc, client_server_component_list, dataType_mappingSets):
         f.write('\n'.join(write_content))
 
 def gen_Rte_Cs_Data_Management_h():
+    if(client_server_component_list == []):
+        return
+
     dir_path = './generated'
     if not os.path.exists(dir_path):
         os.makedirs(dir_path)
@@ -626,6 +704,13 @@ def gen_Rte_Event_Cfg_h():
         '#ifndef RTE_EVENT_CFG_H',
         '#define RTE_EVENT_CFG_H',
         '#include "Rte_Type.h"',
+    ])
+    for key in swc_dict:
+        swc_name = swc_dict[key].get_shortName()
+        write_content.extend([
+            f'#include "{swc_name}/Rte_{swc_name}.h"',
+        ])
+    write_content.extend([
         '',
         '//RteEvent common status',
         '#define get_rteevent_counter(event) event->status_uint16 & 0x0F',
@@ -680,7 +765,6 @@ def gen_Rte_Event_Cfg_h():
         '    //other RteEvent subclass specific status(if needed)',
         '',
         '',
-        '',
     ])
 
     #event array of different task
@@ -688,13 +772,16 @@ def gen_Rte_Event_Cfg_h():
         '//event array of different task',
     ])
     task_ev_len_arr = {}
-    for task_name in used_task:
+    for task_name in task_to_app_mapping:
         task_ev_len = 0
-        for component in client_server_component_list:
-            if(component['c/s-interface-invoke-type'] == in_task):
-                if(component['CR-task'].get_shortName() == task_name):  task_ev_len += 1
-                if(component['SR-task'].get_shortName() == task_name):  task_ev_len += 1
-                if((component['CRR-task'] != None) and (component['CRR-task'].get_shortName() == task_name)):  task_ev_len += 1
+        for ev_name in event_to_task_mapping.keys():
+            if(event_to_task_mapping[ev_name].task_name == task_name):
+                task_ev_len += 1
+        # for component in client_server_component_list:
+        #     if(component['c/s-interface-invoke-type'] == in_task):
+        #         if(component['CR-task'].get_shortName() == task_name):  task_ev_len += 1
+        #         if(component['SR-task'].get_shortName() == task_name):  task_ev_len += 1
+        #         if((component['CRR-task'] != None) and (component['CRR-task'].get_shortName() == task_name)):  task_ev_len += 1
         task_ev_len_arr.update({task_name.lower(): task_ev_len})
     for task_name in task_ev_len_arr.keys():
         # print(task_ev_len)
@@ -713,39 +800,158 @@ def gen_Rte_Event_Cfg_h():
         '//The event order in task_ev_arr is important, should follow the c/s comm. flow (init_ev -> op_ev -> async_return_ev)',
         '//(when parsing arxml) according to the runnables that are mapped to task x, find the RTEEvents that task x can use',
     ])
-    for task_name in used_task:
+
+    for task_name in task_to_app_mapping:
         write_content.extend([
             f'//task {task_name}',
         ])
-        ev_macro = ''
-        ev_start_macro = []
-        ev_op_macro = []
-        ev_async_macro = []
-        ev_start_extern = ''
-        ev_op_extern = ''
-        ev_async_extern = ''
-        for component in client_server_component_list:
-            if(component['c/s-interface-invoke-type'] == in_task):
-                if((component['start_event'] != None) and (component['CR-task'].get_shortName() == task_name)):
-                    ev_start_extern += f'extern RteEvent {component["start_event"].get_shortName()}; \n'
-                    ev_start_macro.append(f'#define {component["start_event"].get_shortName()}_{task_name.lower()}')
-                if((component['operationInvokedEvent'] != None) and (component['SR-task'].get_shortName() == task_name)):
-                    ev_op_extern += f'extern RteEvent {component["operationInvokedEvent"].get_shortName()}; \n'
-                    ev_op_macro.append(f'#define {component["operationInvokedEvent"].get_shortName()}_{task_name.lower()}')
-                if((component['AsynchronousServerCallReturnsEvent'] != None) and (component['CRR-task'].get_shortName() == task_name)):
-                    ev_async_extern += f'extern RteEvent {component["AsynchronousServerCallReturnsEvent"].get_shortName()}; \n'
-                    ev_async_macro.append(f'#define {component["AsynchronousServerCallReturnsEvent"].get_shortName()}_{task_name.lower()}')
-        for index in range(len(ev_start_macro)):
-            ev_start_macro[index] += f' {index}'
-        for index in range(len(ev_op_macro)):
-            ev_op_macro[index] += f' {index+len(ev_start_macro)}'
-        for index in range(len(ev_async_macro)):
-            ev_async_macro[index] += f' {index+len(ev_start_macro)+len(ev_op_macro)}'
-        for macro in ev_start_macro + ev_op_macro + ev_async_macro:
-            ev_macro += macro + '\n'
+        
+        event_array_index = 0
+        
+        ev_Background_macro = ''
+        ev_Timing_macro = ''
+        ev_Init_macro = ''
+        ev_Modeswitch_macro = ''
+        ev_OpInvok_macro = ''
+        ev_AsyncReturn_macro = ''
+        
+        ev_Background_extern = ''
+        ev_Timing_extern = ''
+        ev_Init_extern = ''
+        ev_Modeswitch_extern = ''
+        ev_OpInvok_extern = ''
+        ev_AsyncReturn_extern = ''
+
+        ev_order_list_item = None #event_path, task_name, position_in_task
+        ev_order_list_item_sameTask = [] #儲存 ev_order_list_item
+
+        for ev_path in ev_dict:
+            ev_name = os.path.basename(ev_dict[ev_path].get_path())
+            # print(type(ev_dict[ev_path]))
+            if(event_to_task_mapping[ev_name].task_name == task_name):
+                if(type(ev_dict[ev_path]) == BackgroundEvent):
+                    ev_Background_extern += f'extern RteEvent {ev_name}; \n'
+                    if(event_to_task_mapping[ev_name].position_in_task != None):
+                        position_in_task = event_to_task_mapping[ev_name].position_in_task
+                        ev_Background_macro += f'#define {ev_name}_{task_name.lower()} {event_array_index -1 + int(position_in_task)} \n'
+                        ev_order_list_item = event_order_Item(ev_path, task_name, event_array_index -1 + int(position_in_task))
+                        event_array_index -= 1 #避免 event_array_index+1 造成的誤差 
+                    else:
+                        ev_Background_macro += f'#define {ev_name}_{task_name.lower()} {event_array_index} \n'
+                        ev_order_list_item = event_order_Item(ev_path, task_name, event_array_index)
+                elif(type(ev_dict[ev_path]) == TimingEvent):
+                    ev_Timing_extern += f'extern RteEvent {ev_name}; \n'
+                    if(event_to_task_mapping[ev_name].position_in_task != None):
+                        position_in_task = event_to_task_mapping[ev_name].position_in_task
+                        ev_Timing_macro += f'#define {ev_name}_{task_name.lower()} {event_array_index -1 + int(position_in_task)} \n'
+                        ev_order_list_item = event_order_Item(ev_path, task_name, event_array_index -1 + int(position_in_task))
+                        event_array_index -= 1 
+                    else:
+                        ev_Timing_macro += f'#define {ev_name}_{task_name.lower()} {event_array_index} \n'
+                        ev_order_list_item = event_order_Item(ev_path, task_name, event_array_index)
+                elif(type(ev_dict[ev_path]) == InitEvent):
+                    ev_Init_extern += f'extern RteEvent {ev_name}; \n'
+                    if(event_to_task_mapping[ev_name].position_in_task != None):
+                        position_in_task = event_to_task_mapping[ev_name].position_in_task
+                        ev_Init_macro += f'#define {ev_name}_{task_name.lower()} {event_array_index -1 + int(position_in_task)} \n'
+                        ev_order_list_item = event_order_Item(ev_path, task_name, event_array_index -1 + int(position_in_task))
+                        event_array_index -= 1 
+                    else:
+                        ev_Init_macro += f'#define {ev_name}_{task_name.lower()} {event_array_index} \n'
+                        ev_order_list_item = event_order_Item(ev_path, task_name, event_array_index)
+                elif(type(ev_dict[ev_path]) == SwcModeSwitchEvent):
+                    ev_Modeswitch_extern += f'extern RteEvent {ev_name}; \n'
+                    if(event_to_task_mapping[ev_name].position_in_task != None):
+                        position_in_task = event_to_task_mapping[ev_name].position_in_task
+                        ev_Modeswitch_macro += f'#define {ev_name}_{task_name.lower()} {event_array_index -1 + int(position_in_task)} \n'
+                        ev_order_list_item = event_order_Item(ev_path, task_name, event_array_index -1 + int(position_in_task))
+                        event_array_index -= 1 
+                    else:
+                        ev_Modeswitch_macro += f'#define {ev_name}_{task_name.lower()} {event_array_index} \n'
+                        ev_order_list_item = event_order_Item(ev_path, task_name, event_array_index)
+                elif(type(ev_dict[ev_path]) == OperationInvokedEvent):
+                    ev_OpInvok_extern += f'extern RteEvent {ev_name}; \n'
+                    if(event_to_task_mapping[ev_name].position_in_task != None):
+                        position_in_task = event_to_task_mapping[ev_name].position_in_task
+                        ev_OpInvok_macro += f'#define {ev_name}_{task_name.lower()} {event_array_index -1 + int(position_in_task)} \n'
+                        ev_order_list_item = event_order_Item(ev_path, task_name, event_array_index -1 + int(position_in_task))
+                        event_array_index -= 1 
+                    else:
+                        ev_OpInvok_macro += f'#define {ev_name}_{task_name.lower()} {event_array_index} \n'
+                        ev_order_list_item = event_order_Item(ev_path, task_name, event_array_index)
+                elif(type(ev_dict[ev_path]) == AsynchronousServerCallReturnsEvent):
+                    ev_AsyncReturn_extern += f'extern RteEvent {ev_name}; \n'
+                    if(event_to_task_mapping[ev_name].position_in_task != None):
+                        position_in_task = event_to_task_mapping[ev_name].position_in_task
+                        ev_AsyncReturn_macro += f'#define {ev_name}_{task_name.lower()} {event_array_index -1 + int(position_in_task)} \n'
+                        ev_order_list_item = event_order_Item(ev_path, task_name, event_array_index -1 + int(position_in_task))
+                        event_array_index -= 1 
+                    else:
+                        ev_AsyncReturn_macro += f'#define {ev_name}_{task_name.lower()} {event_array_index} \n'
+                        ev_order_list_item = event_order_Item(ev_path, task_name, event_array_index)
+                event_array_index += 1
+                ev_order_list_item_sameTask.append(ev_order_list_item)
+        
+        #對同個 task event array 的 event 依種類和順序排序
+        same_category_start = 0
+        same_category_end = 0 #排序時不包含
+        for index, ev_order_item in enumerate(ev_order_list_item_sameTask):
+            ev_path = ev_order_list_item_sameTask[index].event_path
+            if index+1 != len(ev_order_list_item_sameTask):
+                next_ev_path = ev_order_list_item_sameTask[index+1].event_path
+                # print(ev_dict[ev_path].get_shortName())
+                # print(ev_dict[next_ev_path].get_shortName())
+                if(type(ev_dict[ev_path]) == type(ev_dict[next_ev_path])):
+                    same_category_end += 1
+                    # print("same")
+                else:
+                    ev_order_list_item_sameTask = ev_order_list_item_sameTask[same_category_start : same_category_end] = sorted(ev_order_list_item_sameTask[same_category_start : same_category_end], key=lambda x: x.position_in_task)
+                    same_category_start = index + 1
+                    same_category_end = same_category_start
+                    # print("diff")
+                if index+1 == len(ev_order_list_item_sameTask)-1:
+                    ev_order_list_item_sameTask = ev_order_list_item_sameTask[same_category_start : same_category_end+1] = sorted(ev_order_list_item_sameTask[same_category_start : same_category_end+1], key=lambda x: x.position_in_task)
+        
+        ev_order_list.extend(ev_order_list_item_sameTask)
+
         write_content.extend([
-            ev_start_extern + ev_op_extern + ev_async_extern + ev_macro,
+            ev_Background_extern + ev_Timing_extern + ev_Init_extern + ev_Modeswitch_extern + ev_OpInvok_extern + ev_AsyncReturn_extern + \
+            ev_Background_macro + ev_Timing_macro + ev_Init_macro + ev_Modeswitch_macro + ev_OpInvok_macro + ev_AsyncReturn_macro,
         ])
+        
+        # event_array_index = 0
+        # ev_ClientStart_macro = []
+        # ev_OpInvok_macro = []
+        # ev_AsyncReturn_macro = []
+        # ev_ClientStart_extern = ''
+        # ev_OpInvok_extern = ''
+        # ev_AsyncReturn_extern = ''
+
+        # for component in client_server_component_list:
+        #     if(component['c/s-interface-invoke-type'] == in_task):
+        #         if((component['start_event'] != None) and (component['CR-task'].get_shortName() == task_name)):
+        #             ev_ClientStart_extern += f'extern RteEvent {component["start_event"].get_shortName()}; \n'
+        #             ev_ClientStart_macro.append(f'#define {component["start_event"].get_shortName()}_{task_name.lower()}')
+        #         if((component['operationInvokedEvent'] != None) and (component['SR-task'].get_shortName() == task_name)):
+        #             ev_OpInvok_extern += f'extern RteEvent {component["operationInvokedEvent"].get_shortName()}; \n'
+        #             ev_OpInvok_macro.append(f'#define {component["operationInvokedEvent"].get_shortName()}_{task_name.lower()}')
+        #         if((component['AsynchronousServerCallReturnsEvent'] != None) and (component['CRR-task'].get_shortName() == task_name)):
+        #             ev_AsyncReturn_extern += f'extern RteEvent {component["AsynchronousServerCallReturnsEvent"].get_shortName()}; \n'
+        #             ev_AsyncReturn_macro.append(f'#define {component["AsynchronousServerCallReturnsEvent"].get_shortName()}_{task_name.lower()}')
+
+        # for index in range(len(ev_ClientStart_macro)):
+        #     ev_ClientStart_macro[index] += f' {event_array_index} \n'
+        #     event_array_index += 1
+        # for index in range(len(ev_OpInvok_macro)):
+        #     ev_OpInvok_macro[index] += f' {event_array_index} \n'
+        #     event_array_index += 1
+        # for index in range(len(ev_AsyncReturn_macro)):
+        #     ev_AsyncReturn_macro[index] += f' {event_array_index} \n'
+        #     event_array_index += 1
+        # write_content.extend([
+        #     ev_ClientStart_extern + ev_OpInvok_extern + ev_AsyncReturn_extern,
+        #     ev_ClientStart_macro + ev_OpInvok_macro + ev_AsyncReturn_macro,
+        # ])
     
     write_content.extend([
         '#endif//RTE_EVENT_CFG_H',
@@ -754,12 +960,6 @@ def gen_Rte_Event_Cfg_h():
     #覆寫
     with open(file_path, 'w') as f:
         f.write('\n'.join(write_content))
-
-def main():
-    for ele in swc_dict:
-        gen_app_h(swc_dict[ele], client_server_component_list, dataType_mappingSets)
-    gen_Rte_Cs_Data_Management_h()
-    gen_Rte_Event_Cfg_h()
 
 #comm-type
 inter_ECU = 'inter_ECU'
@@ -772,7 +972,7 @@ trusted_fn_call = 'trusted_fn_call'
 
 osTask_appRef_dict = {} #osTask 被 map 到哪個 app
 used_app = []
-used_task = {} #key: task_name, value: app
+task_to_app_mapping = {} #key: task_name, value: app
 
 # ecuc_file_paths = input('Please enter the paths of ecuc descrptions, separated by (semicolon + space) : ') 
 # swc_file_paths = input('Please enter the paths of software component descrptions, separated by (semicolon + space) : ')
@@ -788,7 +988,11 @@ read_return = autosarfactory.read(all_file_paths_list)
 autosar_root_node = read_return[0]
 # print(autosar_root_node)
 arpackages_list = list(autosar_root_node.get_arPackages())
-# print(arpackages_list)
+# print(autosar_root_node._AUTOSAR__arPackages)
+# print(dir(arpackages_list[0]))
+# print(arpackages_list[0].get_elements())
+# print(arpackages_list[1].get_arPackages())
+
 ActiveEcuC, Rte, Os0 = None, None, None
 for arpackage in arpackages_list:
     if(arpackage.get_shortName() == 'ActiveEcuC'):
@@ -802,18 +1006,22 @@ for ele in ActiveEcuC.get_elements():
 # print(ActiveEcuC, Rte, Os0)
 
 #1. 用 arnode_query.find_arnode 能讓你快速找到某 class 的所有 instance (dict 'key:value' 為 '路徑:類別')。
-#2. 用 autosarfactory 的 get fn. 則能讓你容易看出 object 的上下階層關係，但回傳的是 dict.keys，
-#且 key 代表 '類別'，'透過list轉型' 抓出某個 key 才能再用其他 autosarfactory fn.)
 swc_dict = arnode_query.find_arnode(arpackages_list, ApplicationSwComponentType) #swc
 rable_dict = arnode_query.find_arnode(arpackages_list, RunnableEntity)
 ev_dict = arnode_query.find_arnode(arpackages_list, RTEEvent)
-# print(swc_dict) #dict
+sorted_ev_dict = dict(sorted(ev_dict.items(), key=lambda x:str(x[1]))) #把相同種類的 event 放在一起
+ev_dict = sorted_ev_dict
+# print(ev_dict.values())
+
+ev_order_list = [] #event ordered by its position in task(if it has)，儲存 event_order_Item
 
 client_server_component_list = [] #儲存一個 C/S comm. 需要的 client, client_response, server runnables, operationInvoked event, AsynchronousServerCallReturnsEvent, comm. type(inter-ECU, inter-partition, intra-partition). (sync case 不會有 client response runnable)
-RteEventToTaskMapping_keys = []
-set_client_server_component_list(arpackages_list, Rte, Os0, client_server_component_list, RteEventToTaskMapping_keys)
+RteEventToTaskMapping_keys = [] #儲存有哪些 RteEventToTaskMapping
+event_to_task_mapping = {} #key: event_name, value: eventToTaskMapping_Item
 
-find_used_app_and_task(used_app, used_task)
+set_client_server_component_list(arpackages_list, Rte, Os0, client_server_component_list, RteEventToTaskMapping_keys)
+# print(RteEventToTaskMapping_keys)
+find_taskToAppMapping_eventToTaskMapping(used_app, task_to_app_mapping, event_to_task_mapping)
 
 dataType_mappingSets = []
 for arpackage in arpackages_list:
@@ -830,5 +1038,14 @@ for arpackage in arpackages_list:
                         for mappingSet in pack_data.get_elements():
                             dataType_mappingSets.append(mappingSet)
 
+gen_Rte_Cs_Data_Management_h()
+gen_Rte_Event_Cfg_h()
+def main():
+    for ele in swc_dict:
+        gen_app_h(swc_dict[ele], client_server_component_list, dataType_mappingSets)
+
 if __name__ == '__main__':
     main()
+    # for ev in ev_order_list:
+    #     print(ev_dict[(ev.event_path)].get_shortName(), ev.task_name, ev.position_in_task)
+    print(task_to_app_mapping)

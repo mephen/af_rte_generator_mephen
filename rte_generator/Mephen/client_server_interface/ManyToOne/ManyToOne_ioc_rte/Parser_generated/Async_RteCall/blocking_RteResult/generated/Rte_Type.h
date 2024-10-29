@@ -5,11 +5,12 @@
 #include "Rte.h"
 
 /* AUTOSAR Implementation data types, specific to software component */
-typedef uint8 MyUint8OfVendorID;
 typedef uint16 MyUint16OfVendorID;
+typedef float16 MyFloat16;
 typedef float32 MyFloat32;
 typedef float64 MyFloat64;
 
+typedef uint8 MyUint8OfVendorID;
 //use uint8 will cause error when test with GetLock/ReleaseLock protection
 typedef uint32 RteEventType;
 typedef struct{
